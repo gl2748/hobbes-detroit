@@ -34,10 +34,33 @@ collections:
       - {label: "Featured Post", name: "featuredpost", widget: "boolean"}
       - {label: "Featured Image", name: "featuredimage", widget: image}
       - {label: "Tags", name: "tags", widget: "list"}
-      - label: "modules"
-        name: "Modules"
+      - label: "Modules"
+        name: "modules"
         widget: "list"
-        types: 
+        types:
+          - label: "Project Banner"
+            name: "projectBanner"
+            widget: "object"
+            fields: 
+              - label: "Project Banner Media"
+                name: "projectBannerMedia"
+                widget: "file"
+                types:
+                  - label: "Banner Image"
+                    name: "bannerImage"
+                    widget: "object"
+                    fields:
+                      - { label: "Image", name: "image", widget: "image" }
+                  - label: "Banner Video"
+                    name: "bannerVideo"
+                    widget: "object"
+                    fields:
+                      - { label: "Video URL", name: "videoURL", widget: "string" }
+                  - label: "Banner File"
+                    name: "bannerFile"
+                    widget: "object"
+                    fields:
+                      - { label: "File", name: "file", widget: "file" }
           - label: "Header"
             name: "header"
             widget: "object"
@@ -101,7 +124,7 @@ collections:
       - file: "src/pages/index.md"
         label: "Landing Page"
         name: "index"
-        fields:
+        fields: 
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
           - {label: Title, name: title, widget: string}
           - {label: Image, name: image, widget: image}
