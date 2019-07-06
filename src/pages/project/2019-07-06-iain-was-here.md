@@ -9,8 +9,11 @@ tags:
   - Cool
   - fun
   - Ok
-Modules:
-  - headerText: This is the header
+modules:
+  - textColumns:
+      - column: 'This is a text aream, lotsa words in here!'
+    type: textArea
+  - headerText: header Was added first but appears second
     type: header
 ---
 
