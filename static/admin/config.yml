@@ -20,6 +20,80 @@ collections:
       - {label: "Featured Image", name: "featuredimage", widget: image}
       - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Tags", name: "tags", widget: "list"}
+  
+  - name: "project"
+    label: "Project"
+    folder: "src/pages/project"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields: 
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "project-post"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Featured Post", name: "featuredpost", widget: "boolean"}
+      - {label: "Featured Image", name: "featuredimage", widget: image}
+      - {label: "Tags", name: "tags", widget: "list"}
+      - label: "modules"
+        name: "Modules"
+        widget: "list"
+        types: 
+          - label: "Header",
+            name: "header",
+            widget: "object",
+            fields:
+              - {label: "Header Text", name: "headerText", widget: "string" }
+          - label: "Text Area"
+            name: "textArea"
+            widget: "object"
+            fields:
+              - label: "Text Columns"
+                name: "textColumns"
+                widget: "list"
+                fields:
+                  - { label: "Column", name: "column", widget: "markdown" }
+          - label: "Image Grid"
+            name: "imageGrid"
+            widget: "object"
+            fields:
+              - label: "Images"
+                name: "images"
+                widget: "list"
+                fields:
+                  - { label: "Image", name: image, widget: image }
+          - label: "Large Image"
+            name: "largeImage"
+            widget: "object"
+            fields:
+              - { label: "Caption", name: "caption", widget: "string" }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Bleed", name: "bleed", widget: "boolean", hint: "Display image without margin or pagging" }
+          - label: "Gallery"
+            name: "gallery"
+            widget: "object"
+            fields:
+              - label: "Slides"
+                name: "slides"
+                widget: "list"
+                types:
+                  - label: "Image Slide"
+                    name: "imageSlide"
+                    widget: "object"
+                    fields:
+                      - { label: "Image", name: "image", widget: "image" }
+                      - { label: "Caption", name: "caption", widget: "string" }
+                  - label: "Video Slide"
+                    name: "videoSlide"
+                    widget: "object"
+                    fields:
+                      - { label: "Video URL", name: "videoURL", widget: "string" }
+                      - { label: "Caption", name: "caption", widget: "string" }
+                  - label: "File Slide"
+                    name: "fileSlide"
+                    widget: "object"
+                    fields:
+                      - { label: "File", name: "file", widget: "file" }
+                      - { label: "Caption", name: "caption", widget: "string" }
 
   - name: "pages"
     label: "Pages"
