@@ -44,6 +44,7 @@ exports.createPages = ({ actions, graphql }) => {
           id,
         },
       }
+      // Used for debugging.
       console.log('Creating Post:', newPost)
       createPage(newPost)
     })
