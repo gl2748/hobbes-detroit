@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+<<<<<<< HEAD
 import { kebabCase } from 'lodash'
 import Helmet from 'react-helmet'
 import { graphql, Link } from 'gatsby'
@@ -75,6 +76,16 @@ const ProjectPost = ({ data }) => {
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
       />
+=======
+import { graphql } from 'gatsby'
+import Layout from '../components/Layout'
+
+const ProjectPost = ({ data }) => {
+  const { markdownRemark: post } = data
+  return (
+    <Layout>
+      <div>{post.frontmatter.title}{post.frontmatter.tags}{post.frontmatter.description} </div>
+>>>>>>> add project-post.js template
     </Layout>
   )
 }
