@@ -38,11 +38,11 @@ collections:
         name: "Modules"
         widget: "list"
         types: 
-          - label: "Header",
-            name: "header",
-            widget: "object",
+          - label: "Header"
+            name: "header"
+            widget: "object"
             fields:
-              - {label: "Header Text", name: "headerText", widget: "string" }
+              - { label: "Header Text", name: "headerText", widget: "string" }
           - label: "Text Area"
             name: "textArea"
             widget: "object"
