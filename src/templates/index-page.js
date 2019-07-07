@@ -1,10 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
-import Features from '../components/Features'
-import BlogRoll from '../components/BlogRoll'
 import ProjectRoll from '../components/ProjectRoll'
 
 export const IndexPageTemplate = ({
@@ -14,7 +12,8 @@ export const IndexPageTemplate = ({
   phone,
   email,
   social
-}) => (
+}) => {
+return (
   <div>
     <div>Featured post gallery goes here</div>
     <div>Project Roll:</div>
@@ -23,8 +22,13 @@ export const IndexPageTemplate = ({
       {title}
     </h1>
       <p>{description}</p>
+      <p>{address}</p>
+      <p>{phone}</p>
+      <p>{email}</p>
+      <p>{social[0].title}</p>
+      <p>{social[0].url}</p>
   </div>
-)
+)}
 
 IndexPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -40,17 +44,15 @@ IndexPageTemplate.propTypes = {
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
-
   return (
     <Layout>
       <IndexPageTemplate
-        image={frontmatter.image}
         title={frontmatter.title}
-        heading={frontmatter.heading}
-        subheading={frontmatter.subheading}
-        mainpitch={frontmatter.mainpitch}
         description={frontmatter.description}
-        intro={frontmatter.intro}
+        address={frontmatter.address}
+        email={frontmatter.email}
+        phone={frontmatter.phone}
+        social={frontmatter.social}
       />
     </Layout>
   )
@@ -72,6 +74,13 @@ export const pageQuery = graphql`
       frontmatter {
         title
         description
+        address
+        phone
+        email
+        social {
+          url
+          title
+        }
       }
     }
   }
