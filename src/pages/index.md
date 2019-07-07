@@ -5,6 +5,8 @@ description: Hobbes is a dev studio
 address: Somewhere near here
 phone: 313 666 420
 email: hobbes@leviathan.com
-social: []
+social:
+  - title: Instagram
+    url: 'https://www.instagram.com/cool'
 ---
 
