@@ -118,3 +118,17 @@ collections:
           - { label: "Phone", name: "phone", widget: "string" }
           - { label: "Email", name: "email", widget: "string" }
           - { label: "Social", name: "social", widget: "list", fields: [{label: "Title", name: "title", widget: "string"}, {label: "URL", name: "url", widget: "string"}]}
+      - file: "src/pages/legal/index.md"
+        label: "Legal Page"
+        name: "legal"
+        fields: 
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "legal-page"}
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "markdown" }
+      - file: "src/pages/cookie/index.md"
+        label: "Cookie Page"
+        name: "cookie"
+        fields: 
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "cookie-page"}
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "markdown" }

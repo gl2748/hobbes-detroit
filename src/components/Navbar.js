@@ -3,17 +3,17 @@ import { Link } from 'gatsby'
 
 const Navbar = () => {
   return (
-    <div className="navbar-brand">
-      <Link className="navbar-item" to="/" >
+    <div >
+      <Link  to="/" >
         Hobbes
       </Link>
-      <Link className="navbar-item" to="/project">
+      <Link  to="/project">
         Projects
       </Link>
-      <Link className="navbar-item" to="/contact">
+      <Link  to="/contact">
         Contact
       </Link>
-      <Link className="navbar-item" to="/tags">
+      <Link  to="/tags">
         Tags
       </Link>
     </div>
