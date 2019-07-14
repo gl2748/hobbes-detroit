@@ -1,8 +1,4 @@
-// Make all graphQL queries here and pass in the results as props to dumb components, then for the CMS previews we don't use the containers, and pass CMS input in directly to the dumb component.
-
-
 import React from 'react'
-import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { StaticQuery } from 'gatsby'
 import { Studio } from '../components/Studio'

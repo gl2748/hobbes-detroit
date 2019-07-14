@@ -15,13 +15,12 @@ const TagsPage = ({
   <Layout>
     <section >
       <Helmet title={`Tags | ${title}`} />
-      <div className="container content">
+      <div >
         <div >
           <div
-            className="column is-10 is-offset-1"
             style={{ marginBottom: '6rem' }}
           >
-            <h1 className="title is-size-2 is-bold-light">Tags</h1>
+            <h1 >Tags</h1>
             <ul >
               {group.map(tag => (
                 <li key={tag.fieldValue}>

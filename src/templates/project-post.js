@@ -19,10 +19,10 @@ export const ProjectPostTemplate = ({
   return (
     <section >
       {helmet || ''}
-      <div className="container content">
+      <div >
         <div >
-          <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
+          <div >
+            <h1>
               {title}
             </h1>
             <p>{description}</p>
