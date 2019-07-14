@@ -13,6 +13,9 @@ const Navbar = () => {
       <Link className="navbar-item" to="/contact">
         Contact
       </Link>
+      <Link className="navbar-item" to="/tags">
+        Tags
+      </Link>
     </div>
   )
 }
