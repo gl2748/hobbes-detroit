@@ -33,7 +33,7 @@ exports.createPages = ({ actions, graphql }) => {
 
     posts.forEach(edge => {
       const id = edge.node.id
-      createPage({
+      const newPost = {
         path: edge.node.fields.slug,
         tags: edge.node.frontmatter.tags,
         component: path.resolve(
@@ -43,7 +43,10 @@ exports.createPages = ({ actions, graphql }) => {
         context: {
           id,
         },
-      })
+      }
+      // Used for debugging.
+      console.log('Creating Post:', newPost)
+      createPage(newPost)
     })
 
     // Tag pages:

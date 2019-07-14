@@ -1,21 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { IndexPageTemplate } from '../../templates/index-page'
+import ProjectRoll from "../../components/ProjectRoll"
+import { Studio } from "../../components/Studio"
 
-const IndexPagePreview = ({ entry, getAsset }) => {
+const IndexPagePreview = ({ entry }) => {
   const data = entry.getIn(['data']).toJS()
-
-  if (data) {
+  if (data && data.description && data.title && data.phone && data.email && data.address && data.social[0] ) {
     return (
-      <IndexPageTemplate
-        image={data.image}
+      <div>
+      <ProjectRoll/>
+      <Studio
         title={data.title}
-        heading={data.heading}
-        subheading={data.subheading}
         description={data.description}
-        intro={data.intro || { blurbs: [] }}
-        mainpitch={data.mainpitch || {}}
+        phone={data.phone}
+        email={data.email}
+        address={data.address}
+        social={data.social}
       />
+      </div>
     )
   } else {
     return <div>Loading...</div>
