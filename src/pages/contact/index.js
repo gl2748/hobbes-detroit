@@ -36,9 +36,9 @@ export default class Index extends React.Component {
   render() {
     return (
       <Layout>
-        <section >
-          <div >
-            <div >
+        <section>
+          <div>
+            <div>
               <h1>Contact</h1>
               <form
                 name="contact"
@@ -56,13 +56,10 @@ export default class Index extends React.Component {
                     <input name="bot-field" onChange={this.handleChange} />
                   </label>
                 </div>
-                <div >
-                  <label  htmlFor={'name'}>
-                    Your name
-                  </label>
-                  <div >
+                <div>
+                  <label htmlFor={'name'}>Your name</label>
+                  <div>
                     <input
-                      
                       type={'text'}
                       name={'name'}
                       onChange={this.handleChange}
@@ -71,13 +68,10 @@ export default class Index extends React.Component {
                     />
                   </div>
                 </div>
-                <div >
-                  <label  htmlFor={'email'}>
-                    Email
-                  </label>
-                  <div >
+                <div>
+                  <label htmlFor={'email'}>Email</label>
+                  <div>
                     <input
-                      
                       type={'email'}
                       name={'email'}
                       onChange={this.handleChange}
@@ -86,13 +80,10 @@ export default class Index extends React.Component {
                     />
                   </div>
                 </div>
-                <div >
-                  <label  htmlFor={'message'}>
-                    Message
-                  </label>
-                  <div >
+                <div>
+                  <label htmlFor={'message'}>Message</label>
+                  <div>
                     <textarea
-                      
                       name={'message'}
                       onChange={this.handleChange}
                       id={'message'}
@@ -100,10 +91,8 @@ export default class Index extends React.Component {
                     />
                   </div>
                 </div>
-                <div >
-                  <button  type="submit">
-                    Send
-                  </button>
+                <div>
+                  <button type="submit">Send</button>
                 </div>
               </form>
             </div>

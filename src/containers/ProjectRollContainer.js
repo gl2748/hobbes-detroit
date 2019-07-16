@@ -1,10 +1,10 @@
 import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
-import { ProjectRoll } from "../components/ProjectRoll"
+import { ProjectRoll } from '../components/ProjectRoll'
 
 export default () => (
-    <StaticQuery
-        query={graphql`
+  <StaticQuery
+    query={graphql`
       query ProjectRollQuery {
         allMarkdownRemark(
           sort: { order: DESC, fields: [frontmatter___date] }
@@ -35,6 +35,6 @@ export default () => (
         }
       }
     `}
-        render={(data, count) => <ProjectRoll data={data} count={count} />}
-    />
+    render={(data, count) => <ProjectRoll data={data} count={count} />}
+  />
 )

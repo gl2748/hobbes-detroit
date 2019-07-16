@@ -6,7 +6,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <div>
-        <CookieContainer/>
+        <CookieContainer />
       </div>
     </Layout>
   )

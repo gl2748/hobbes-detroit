@@ -5,13 +5,14 @@ const ProjectPostPreview = ({ entry }) => {
   const data = entry.getIn(['data']).toJS()
   console.log(data)
 
-  const out = Object.keys(data).map((k) =>{
+  const out = Object.keys(data).map(k => {
     if (k === 'modules') {
-      return data[k].map((mod) => {
-        return Object.keys(mod).map((k)=> {
+      return data[k].map(mod => {
+        return Object.keys(mod).map(k => {
           return (
             <div>
-              {`${k}: `}{mod[k].toString()}
+              {`${k}: `}
+              {mod[k].toString()}
             </div>
           )
         })
@@ -19,18 +20,15 @@ const ProjectPostPreview = ({ entry }) => {
     } else {
       return (
         <div>
-          {`${k}: `}{data[k].toString()}
+          {`${k}: `}
+          {data[k].toString()}
         </div>
       )
     }
   })
 
   if (data) {
-    return (
-      <div>
-        {out}
-      </div>
-    )
+    return <div>{out}</div>
   } else {
     return <div>Loading...</div>
   }
