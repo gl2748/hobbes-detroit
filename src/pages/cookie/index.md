@@ -1,4 +1,5 @@
 ---
+templateKey: cookie-page
 title: This is the cookie policy page.
 description: |-
   ## What's a cookie?

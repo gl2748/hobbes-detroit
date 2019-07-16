@@ -1,9 +1,9 @@
 import React from 'react'
 
 import Layout from '../../components/Layout'
-import ProjectRoll from '../../components/ProjectRoll';
+import ProjectRoll from '../../containers/ProjectRollContainer';
 
-export default class BlogIndexPage extends React.Component {
+export default class ProjectIndexPage extends React.Component {
   render() {
     return (
       <Layout>

@@ -1,3 +1,8 @@
+# notes
+Netlify CMS has two collection types - Folder collections, for things that there might be multiples of, for example blog posts and File Collections. Of which there will only be one, like a 'Legal Page'.
+Folder collections require a template to be defined in src/templates
+while file collections simply require an page `index.js` to be defined in pages, this will make netlify create a route there.
+Finally, each collection, be it a folder or a file collection requires a preview template to be defined in `cms/preview-templates`
 # Gatsby + Netlify CMS Starter
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b654c94e-08a6-4b79-b443-7837581b1d8d/deploy-status)](https://app.netlify.com/sites/gatsby-starter-netlify-cms-ci/deploys)

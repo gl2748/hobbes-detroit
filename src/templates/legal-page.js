@@ -1,13 +1,15 @@
 import React from 'react'
+import Layout from '../components/Layout'
+import LegalContainer from '../containers/LegalContainer'
 
-const CookiePage= () => {
+const IndexPage = () => {
   return (
     <Layout>
       <div>
-        <div>cookie page :-)</div>
+        <LegalContainer />
       </div>
     </Layout>
   )
 }
 
-export default CookiePage
+export default IndexPage

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ProjectRoll from "../../components/ProjectRoll"
+import ProjectRoll from "../../containers/ProjectRollContainer"
 import { Studio } from "../../components/Studio"
 
 const IndexPagePreview = ({ entry }) => {
