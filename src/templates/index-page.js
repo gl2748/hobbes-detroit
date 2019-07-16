@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../components/Layout'
-import ProjectRoll from '../components/ProjectRoll'
+import ProjectRoll from '../containers/ProjectRollContainer'
 import StudioContainer from '../containers/StudioContainer'
 
 const IndexPage = () => {

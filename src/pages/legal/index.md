@@ -1,4 +1,5 @@
 ---
+templateKey: legal-page
 title: This is the legal page
 description: |-
   # Legal
