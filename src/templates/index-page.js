@@ -1,18 +1,18 @@
-import React from 'react'
-import Layout from '../components/Layout'
-import ProjectRoll from '../containers/ProjectRollContainer'
-import StudioContainer from '../containers/StudioContainer'
+import React from "react";
+import { Layout } from "../components/Layout";
+import { ProjectRollContainer } from "../containers/ProjectRollContainer";
+import { StudioContainer } from "../containers/StudioContainer";
 
 const IndexPage = () => {
   return (
     <Layout>
       <div>
         <div>Featured post gallery goes here</div>
-        <ProjectRoll />
+        <ProjectRollContainer />
         <StudioContainer />
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;

@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Layout from '../../components/Layout'
-import ProjectRoll from '../../containers/ProjectRollContainer'
+import { Layout } from '../../components/Layout'
+import { ProjectRollContainer } from '../../containers/ProjectRollContainer'
 
 export default class ProjectIndexPage extends React.Component {
   render() {
@@ -13,7 +13,7 @@ export default class ProjectIndexPage extends React.Component {
         <section>
           <div>
             <div>
-              <ProjectRoll />
+              <ProjectRollContainer />
             </div>
           </div>
         </section>

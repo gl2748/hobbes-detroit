@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const ProjectPostPreview = ({ entry }) => {
+export const ProjectPostPreview = ({ entry }) => {
   const data = entry.getIn(['data']).toJS()
   console.log(data)
 
@@ -40,5 +40,3 @@ ProjectPostPreview.propTypes = {
   }),
   getAsset: PropTypes.func,
 }
-
-export default ProjectPostPreview

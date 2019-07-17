@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
-import PreviewCompatibleImage from './PreviewCompatibleImage'
+import { PreviewCompatibleImage } from './PreviewCompatibleImage'
 
 export const ProjectRoll = ({ data }) => {
   const { edges: posts } = data.allMarkdownRemark

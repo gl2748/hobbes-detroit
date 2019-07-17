@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { StaticQuery } from 'gatsby'
 import { Cookie } from '../components/Cookie'
 
-export default () => (
+export const CookieContainer = () => (
   <StaticQuery
     query={graphql`
       query CookieContainerQuery {

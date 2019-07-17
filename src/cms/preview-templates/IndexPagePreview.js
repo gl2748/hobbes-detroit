@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ProjectRoll from '../../containers/ProjectRollContainer'
+import { ProjectRollContainer } from '../../containers/ProjectRollContainer'
 import { Studio } from '../../components/Studio'
 
-const IndexPagePreview = ({ entry }) => {
+export const IndexPagePreview = ({ entry }) => {
   const data = entry.getIn(['data']).toJS()
   if (
     data &&
@@ -16,7 +16,7 @@ const IndexPagePreview = ({ entry }) => {
   ) {
     return (
       <div>
-        <ProjectRoll />
+        <ProjectRollContainer />
         <Studio
           title={data.title}
           description={data.description}
@@ -38,5 +38,3 @@ IndexPagePreview.propTypes = {
   }),
   getAsset: PropTypes.func,
 }
-
-export default IndexPagePreview

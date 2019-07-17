@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Legal } from '../../components/Legal'
 
-const LegalPagePreview = ({ entry }) => {
+export const LegalPagePreview = ({ entry }) => {
   const data = entry.getIn(['data']).toJS()
   if (data && data.description && data.title) {
     return (
@@ -15,11 +15,9 @@ const LegalPagePreview = ({ entry }) => {
   }
 }
 
-IndexPagePreview.propTypes = {
+LegalPagePreview.propTypes = {
   entry: PropTypes.shape({
     getIn: PropTypes.func,
   }),
   getAsset: PropTypes.func,
 }
-
-export default LegalPagePreview

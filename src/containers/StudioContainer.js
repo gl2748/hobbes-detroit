@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { StaticQuery } from 'gatsby'
 import { Studio } from '../components/Studio'
 
-export default () => (
+export const StudioContainer = () => (
   <StaticQuery
     query={graphql`
       query StudioContainerQuery {

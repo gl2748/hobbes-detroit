@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { StaticQuery } from 'gatsby'
 import { Legal } from '../components/Legal'
 
-export default () => (
+export const LegalContainer = () => (
   <StaticQuery
     query={graphql`
       query LegalContainerQuery {

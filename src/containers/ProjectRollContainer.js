@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
 import { ProjectRoll } from '../components/ProjectRoll'
 
-export default () => (
+export const ProjectRollContainer = () => (
   <StaticQuery
     query={graphql`
       query ProjectRollQuery {
