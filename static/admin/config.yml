@@ -4,6 +4,10 @@ backend:
 
 media_folder: static/img
 public_folder: /img
+media_library:
+  name: uploadcare
+  config:
+    publicKey: 70d063a0b7e99e040bf8
 
 collections:  
   - name: "project"
