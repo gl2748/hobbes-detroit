@@ -1,35 +1,36 @@
-import PropTypes from "prop-types"
-import React from "react"
-import { Cookie } from "../../components/Cookie"
+import PropTypes from "prop-types";
+import React from "react";
+import { Cookie } from "../../components/Cookie";
 
 export interface IStringIndex {
-    [k: string]: any
+  [k: string]: any;
 }
 
 export interface IImmutableJSType {
-    getIn: (arg0: string[]) => { toJS: () => ICookieData }
+  getIn: (arg0: string[]) => { toJS: () => any };
 }
 
-export interface ICookiePreviewProps {
-    entry: IImmutableJSType,
-    getAsset: () => void
+export interface IPagePreviewProps {
+  entry: IImmutableJSType;
+  getAsset: () => void;
 }
 
 export interface ICookieData {
-    title: string,
-    description: string
+  title: string;
+  description: string;
 }
 
-export const CookiePagePreview: React.FC<ICookiePreviewProps> = ({ entry }: ICookiePreviewProps) => {
-    const data: ICookieData = entry.getIn(["data"]).toJS()
-    if (data && data.description && data.title) {
-        return (
-            <div>
-                <Cookie title={data.title} description={data.description} />
-            </div>
-        )
-    } else {
-        return <div>Loading...</div>
-    }
-}
-
+export const CookiePagePreview: React.FC<IPagePreviewProps> = ({
+  entry
+}: IPagePreviewProps) => {
+  const data: ICookieData = entry.getIn(["data"]).toJS();
+  if (data && data.description && data.title) {
+    return (
+      <div>
+        <Cookie title={data.title} description={data.description} />
+      </div>
+    );
+  } else {
+    return <div>Loading...</div>;
+  }
+};

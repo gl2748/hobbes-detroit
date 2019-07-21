@@ -1,10 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { ProjectRollContainer } from '../../containers/ProjectRollContainer'
-import { Studio } from '../../components/Studio'
-
-export const IndexPagePreview = ({ entry }) => {
-  const data = entry.getIn(['data']).toJS()
+import React from "react";
+import { ProjectRollContainer } from "../../containers/ProjectRollContainer";
+import { Studio, IStudioProps } from "../../components/Studio";
+import { IPagePreviewProps } from "./CookiePagePreview";
+export const IndexPagePreview: React.FC<IPagePreviewProps> = ({
+  entry
+}: IPagePreviewProps) => {
+  const data: IStudioProps = entry.getIn(["data"]).toJS();
   if (
     data &&
     data.description &&
@@ -26,15 +27,8 @@ export const IndexPagePreview = ({ entry }) => {
           social={data.social}
         />
       </div>
-    )
+    );
   } else {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
-}
-
-IndexPagePreview.propTypes = {
-  entry: PropTypes.shape({
-    getIn: PropTypes.func,
-  }),
-  getAsset: PropTypes.func,
-}
+};
