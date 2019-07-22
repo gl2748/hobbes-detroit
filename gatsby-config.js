@@ -82,7 +82,7 @@ module.exports = {
   developMiddleware: app => {
     app.use(
       '/.netlify/functions/',
-      proxy({
+      proxy({   
         target: 'http://localhost:9000',
         pathRewrite: {
           '/.netlify/functions/': '',
