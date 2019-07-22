@@ -1,21 +1,48 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
-import { PreviewCompatibleImage } from './PreviewCompatibleImage'
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "gatsby";
+import {
+  PreviewCompatibleImage,
+  IPreviewCompatibleImageProps
+} from "./PreviewCompatibleImage";
 
-export const ProjectRoll = ({ data }) => {
-  const { edges: posts } = data.allMarkdownRemark
+export interface IProjectProps {
+  title: string;
+  id: number;
+  fields: {
+    slug: string;
+  };
+  frontmatter: {
+    featuredpost: {};
+    featuredimage: {};
+    date: string;
+    title: string;
+  };
+}
+
+export interface IProjectRollProps {
+  data: {
+    allMarkdownRemark: {
+      edges: [{ node: IProjectProps }];
+    };
+  };
+}
+
+export const ProjectRoll: React.FC<IProjectRollProps> = ({
+  data
+}: IProjectRollProps) => {
+  const { edges: posts } = data.allMarkdownRemark;
   const tempImageStyle = {
-    maxWidth: '300px',
-  }
+    maxWidth: "300px"
+  };
   return (
     <div>
       {posts &&
-        posts.map(({ node: post }) => (
+        posts.map(({ node: post }: { node: IProjectProps }) => (
           <div key={post.id}>
             <article
               className={`${
-                post.frontmatter.featuredpost ? 'is-featured' : ''
+                post.frontmatter.featuredpost ? "is-featured" : ""
               }`}
             >
               <header>
@@ -24,7 +51,7 @@ export const ProjectRoll = ({ data }) => {
                     <PreviewCompatibleImage
                       imageInfo={{
                         image: post.frontmatter.featuredimage,
-                        alt: `featured image thumbnail for post ${post.title}`,
+                        alt: `featured image thumbnail for post ${post.title}`
                       }}
                     />
                   </div>
@@ -40,13 +67,5 @@ export const ProjectRoll = ({ data }) => {
           </div>
         ))}
     </div>
-  )
-}
-
-ProjectRoll.propTypes = {
-  data: PropTypes.shape({
-    allMarkdownRemark: PropTypes.shape({
-      edges: PropTypes.array,
-    }),
-  }),
-}
+  );
+};

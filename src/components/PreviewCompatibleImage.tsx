@@ -5,12 +5,12 @@ import Img, { FluidObject } from "gatsby-image";
 export interface IPreviewCompatibleImageProps {
   imageInfo: {
     alt: string;
-    childImageSharp: {
+    childImageSharp?: {
       fluid: FluidObject;
     };
-    style: {};
+    style?: {};
     image: {
-      childImageSharp: {
+      childImageSharp?: {
         fluid: FluidObject;
       };
     };

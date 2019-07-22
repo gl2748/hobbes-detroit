@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 import { Link, graphql } from 'gatsby'
 import { Layout } from '../../components/Layout'
 
-export default ({
+export default({
   data: {
     allMarkdownRemark: { group },
     site: {

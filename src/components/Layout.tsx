@@ -1,12 +1,15 @@
-import React from 'react'
-import { Helmet } from 'react-helmet'
-import { Footer } from '../components/Footer'
-import { Navbar } from '../components/Navbar'
-import './all.sass'
-import { useSiteMetadata } from './SiteMetadata'
+import React, { ReactPortal, ReactChildren } from "react";
+import { Helmet } from "react-helmet";
+import { Footer } from "./Footer";
+import { Navbar } from "./Navbar";
+import "./all.sass";
+import { useSiteMetadata } from "./SiteMetadata";
+import { ReactNodeArray } from "prop-types";
 
-export const Layout = ({ children }) => {
-  const { title, description } = useSiteMetadata()
+export interface ILayoutProps {}
+
+export const Layout: React.FC<ILayoutProps> = ({ children }) => {
+  const { title, description } = useSiteMetadata();
   return (
     <div>
       <Helmet>
@@ -47,5 +50,5 @@ export const Layout = ({ children }) => {
       <div>{children}</div>
       <Footer />
     </div>
-  )
-}
+  );
+};

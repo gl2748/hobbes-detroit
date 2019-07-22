@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 
-export const Footer = () => {
+export const Footer: React.FC = () => {
   return (
     <ul>
       <li>
