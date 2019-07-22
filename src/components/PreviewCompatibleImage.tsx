@@ -1,8 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 
-const PreviewCompatibleImage = ({ imageInfo }) => {
+export interface IPreviewCompatibleImageProps {
+  imageInfo: {
+    alt: string
+    childImageSharp?: {
+      fluid: FluidObject
+    }
+    style?: {}
+    image: {
+      childImageSharp?: {
+        fluid: FluidObject
+      }
+    }
+  }
+}
+
+export const PreviewCompatibleImage: React.FC<IPreviewCompatibleImageProps> = ({
+  imageInfo,
+}: IPreviewCompatibleImageProps) => {
   const imageStyle = { borderRadius: '5px' }
   const { alt = '', childImageSharp, image } = imageInfo
 
@@ -21,14 +38,3 @@ const PreviewCompatibleImage = ({ imageInfo }) => {
 
   return null
 }
-
-PreviewCompatibleImage.propTypes = {
-  imageInfo: PropTypes.shape({
-    alt: PropTypes.string,
-    childImageSharp: PropTypes.object,
-    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
-    style: PropTypes.object,
-  }).isRequired,
-}
-
-export default PreviewCompatibleImage

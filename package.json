@@ -4,15 +4,21 @@
   "version": "1.1.3",
   "author": "Austin Green",
   "dependencies": {
-    "bulma": "^0.7.0",
+    "@types/lodash": "^4.14.136",
+    "@types/node": "^12.6.6",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-helmet": "^5.0.8",
     "gatsby": "^2.1.34",
     "gatsby-image": "^2.0.23",
+    "gatsby-plugin-eslint": "^2.0.5",
     "gatsby-plugin-netlify": "^2.0.6",
     "gatsby-plugin-netlify-cms": "^4.0.0",
     "gatsby-plugin-purgecss": "^4.0.0",
     "gatsby-plugin-react-helmet": "^3.0.4",
     "gatsby-plugin-sass": "^2.0.7",
     "gatsby-plugin-sharp": "^2.0.15",
+    "gatsby-plugin-typescript": "^2.0.0",
     "gatsby-remark-copy-linked-files": "^2.0.7",
     "gatsby-remark-images": "^3.0.1",
     "gatsby-remark-relative-images": "^0.2.1",
@@ -22,7 +28,6 @@
     "lodash": "^4.17.5",
     "lodash-webpack-plugin": "^0.11.4",
     "netlify-cms-app": "^2.9.5",
-    "netlify-cms-media-library-cloudinary": "^1.3.2",
     "netlify-cms-media-library-uploadcare": "^0.5.2",
     "node-sass": "^4.11.0",
     "parcel-bundler": "^1.9.4",
@@ -47,13 +52,16 @@
     "build": "run-p build:**",
     "develop": "npm run clean && gatsby develop",
     "serve": "gatsby serve",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js}\"",
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write '{src,test}/**/*.{ts,tsx}' '*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
     "http-proxy-middleware": "^0.19.1",
     "netlify-lambda": "^1.4.3",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.15.3"
+    "prettier": "^1.15.3",
+    "tslint": "^5.10.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^2.9.1"
   }
 }

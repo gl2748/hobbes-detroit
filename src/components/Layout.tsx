@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { ReactPortal, ReactChildren } from 'react'
 import { Helmet } from 'react-helmet'
-import Footer from '../components/Footer'
-import Navbar from '../components/Navbar'
+import { Footer } from './Footer'
+import { Navbar } from './Navbar'
 import './all.sass'
-import useSiteMetadata from './SiteMetadata'
+import { useSiteMetadata } from './SiteMetadata'
+import { ReactNodeArray } from 'prop-types'
 
-const TemplateWrapper = ({ children }) => {
+export interface ILayoutProps {}
+
+export const Layout: React.FC<ILayoutProps> = ({ children }) => {
   const { title, description } = useSiteMetadata()
   return (
     <div>
@@ -49,5 +52,3 @@ const TemplateWrapper = ({ children }) => {
     </div>
   )
 }
-
-export default TemplateWrapper

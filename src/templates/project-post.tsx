@@ -1,36 +1,42 @@
-import React from 'react'
+import React, { ReactNode, ReactComponentElement, ReactElement } from 'react'
 import PropTypes from 'prop-types'
 import { kebabCase } from 'lodash'
-import Helmet from 'react-helmet'
+import Helmet, { HelmetProps, HelmetData } from 'react-helmet'
 import { graphql, Link } from 'gatsby'
-import Layout from '../components/Layout'
-import Content, { HTMLContent } from '../components/Content'
+import { Layout } from '../components/Layout'
+import { Content, HTMLContent } from '../components/Content'
+export interface IProjectPostTemplateProps {
+  content: ReactNode
+  contentComponent: HTMLContent
+  description: string
+  tags: string[]
+  title: string
+  helmet: ReactElement
+}
 
-export const ProjectPostTemplate = ({
+export const ProjectPostTemplate: React.FC<IProjectPostTemplateProps> = ({
   content,
   contentComponent,
   description,
   tags,
   title,
   helmet,
-}) => {
+}: IProjectPostTemplateProps) => {
   const PostContent = contentComponent || Content
 
   return (
-    <section >
+    <section>
       {helmet || ''}
-      <div >
-        <div >
-          <div >
-            <h1>
-              {title}
-            </h1>
+      <div>
+        <div>
+          <div>
+            <h1>{title}</h1>
             <p>{description}</p>
             <PostContent content={content} />
             {tags && tags.length ? (
               <div style={{ marginTop: `4rem` }}>
                 <h4>Tags</h4>
-                <ul >
+                <ul>
                   {tags.map(tag => (
                     <li key={tag + `tag`}>
                       <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
@@ -46,15 +52,16 @@ export const ProjectPostTemplate = ({
   )
 }
 
-ProjectPostTemplate.propTypes = {
-  content: PropTypes.node.isRequired,
-  contentComponent: PropTypes.func,
-  description: PropTypes.string,
-  title: PropTypes.string,
-  helmet: PropTypes.object,
-}
-
-const ProjectPost = ({ data }) => {
+const ProjectPost = ({
+  data,
+}: {
+  data: {
+    markdownRemark: {
+      html: any
+      frontmatter: { description: string; title: string; tags: string[] }
+    }
+  }
+}) => {
   const { markdownRemark: post } = data
 
   return (

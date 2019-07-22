@@ -1,3 +1,10 @@
+Make implicit pages like tags and projects index pages explicit - i.e. add them as pages to netlify CMS.
+
+Then follow same flow.
+cms config -> gatsby-node.js -> templates -> container -> component
+and for the cms preview templates.
+cms-preview -> component.
+
 # notes
 Netlify CMS has two collection types - Folder collections, for things that there might be multiples of, for example blog posts and File Collections. Of which there will only be one, like a 'Legal Page'.
 Folder collections require a template to be defined in src/templates
@@ -20,7 +27,7 @@ It follows the [JAMstack architecture](https://jamstack.org) by using Git as a s
 - Create Blog posts from Netlify CMS
 - Tags: Separate page for posts under each tag
 - Basic directory organization
-- Uses Bulma for styling, but size is reduced by `purge-css-plugin`
+- Size is reduced by `purge-css-plugin`
 - Blazing fast loading times thanks to pre-rendered HTML and automatic chunk loading of JS files
 - Uses `gatbsy-image` with Netlify-CMS preview support
 - Separate components for everything

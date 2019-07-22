@@ -3,9 +3,9 @@ import { graphql } from 'gatsby'
 import { StaticQuery } from 'gatsby'
 import { Legal } from '../components/Legal'
 
-export default () => (
-    <StaticQuery
-        query={graphql`
+export const LegalContainer: React.FC = () => (
+  <StaticQuery
+    query={graphql`
       query LegalContainerQuery {
         allMarkdownRemark(
           filter: { frontmatter: { templateKey: { eq: "legal-page" } } }
@@ -21,16 +21,12 @@ export default () => (
         }
       }
     `}
-        render={
-            (data) => {
-                const { title, description } = data.allMarkdownRemark.edges[0].node.frontmatter
-                return (
-                    <Legal
-                        title={title}
-                        description={description} 
-                    />
-                )
-            }
-        }
-    />
+    render={data => {
+      const {
+        title,
+        description,
+      } = data.allMarkdownRemark.edges[0].node.frontmatter
+      return <Legal title={title} description={description} />
+    }}
+  />
 )

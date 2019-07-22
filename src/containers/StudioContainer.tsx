@@ -3,9 +3,9 @@ import { graphql } from 'gatsby'
 import { StaticQuery } from 'gatsby'
 import { Studio } from '../components/Studio'
 
-export default () => (
-    <StaticQuery
-        query={graphql`
+export const StudioContainer = () => (
+  <StaticQuery
+    query={graphql`
       query StudioContainerQuery {
         allMarkdownRemark(
           filter: { frontmatter: { templateKey: { eq: "index-page" } } }
@@ -28,20 +28,25 @@ export default () => (
         }
       }
     `}
-        render={
-            (data) => {
-                const { title, description, address, phone, email, social } = data.allMarkdownRemark.edges[0].node.frontmatter
-                return (
-                    <Studio
-                        title={title}
-                        description={description}
-                        address={address}
-                        phone={phone}
-                        email={email}
-                        social={social}
-                    />
-                )
-            }
-        }
-    />
+    render={data => {
+      const {
+        title,
+        description,
+        address,
+        phone,
+        email,
+        social,
+      } = data.allMarkdownRemark.edges[0].node.frontmatter
+      return (
+        <Studio
+          title={title}
+          description={description}
+          address={address}
+          phone={phone}
+          email={email}
+          social={social}
+        />
+      )
+    }}
+  />
 )
