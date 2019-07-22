@@ -1,6 +1,6 @@
-import React from "react";
-import { Layout } from "../components/Layout";
-import { LegalContainer } from "../containers/LegalContainer";
+import React from 'react'
+import { Layout } from '../components/Layout'
+import { LegalContainer } from '../containers/LegalContainer'
 
 const LegalPage = () => {
   return (
@@ -9,7 +9,7 @@ const LegalPage = () => {
         <LegalContainer />
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default LegalPage;
+export default LegalPage

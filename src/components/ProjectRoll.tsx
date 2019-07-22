@@ -1,40 +1,40 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link } from "gatsby";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'gatsby'
 import {
   PreviewCompatibleImage,
-  IPreviewCompatibleImageProps
-} from "./PreviewCompatibleImage";
+  IPreviewCompatibleImageProps,
+} from './PreviewCompatibleImage'
 
 export interface IProjectProps {
-  title: string;
-  id: number;
+  title: string
+  id: number
   fields: {
-    slug: string;
-  };
+    slug: string
+  }
   frontmatter: {
-    featuredpost: {};
-    featuredimage: {};
-    date: string;
-    title: string;
-  };
+    featuredpost: {}
+    featuredimage: {}
+    date: string
+    title: string
+  }
 }
 
 export interface IProjectRollProps {
   data: {
     allMarkdownRemark: {
-      edges: [{ node: IProjectProps }];
-    };
-  };
+      edges: [{ node: IProjectProps }]
+    }
+  }
 }
 
 export const ProjectRoll: React.FC<IProjectRollProps> = ({
-  data
+  data,
 }: IProjectRollProps) => {
-  const { edges: posts } = data.allMarkdownRemark;
+  const { edges: posts } = data.allMarkdownRemark
   const tempImageStyle = {
-    maxWidth: "300px"
-  };
+    maxWidth: '300px',
+  }
   return (
     <div>
       {posts &&
@@ -42,7 +42,7 @@ export const ProjectRoll: React.FC<IProjectRollProps> = ({
           <div key={post.id}>
             <article
               className={`${
-                post.frontmatter.featuredpost ? "is-featured" : ""
+                post.frontmatter.featuredpost ? 'is-featured' : ''
               }`}
             >
               <header>
@@ -51,7 +51,7 @@ export const ProjectRoll: React.FC<IProjectRollProps> = ({
                     <PreviewCompatibleImage
                       imageInfo={{
                         image: post.frontmatter.featuredimage,
-                        alt: `featured image thumbnail for post ${post.title}`
+                        alt: `featured image thumbnail for post ${post.title}`,
                       }}
                     />
                   </div>
@@ -67,5 +67,5 @@ export const ProjectRoll: React.FC<IProjectRollProps> = ({
           </div>
         ))}
     </div>
-  );
-};
+  )
+}

@@ -1,11 +1,11 @@
-import React from "react";
-import { ProjectRollContainer } from "../../containers/ProjectRollContainer";
-import { Studio, IStudioProps } from "../../components/Studio";
-import { IPagePreviewProps } from "./CookiePagePreview";
+import React from 'react'
+import { ProjectRollContainer } from '../../containers/ProjectRollContainer'
+import { Studio, IStudioProps } from '../../components/Studio'
+import { IPagePreviewProps } from './CookiePagePreview'
 export const IndexPagePreview: React.FC<IPagePreviewProps> = ({
-  entry
+  entry,
 }: IPagePreviewProps) => {
-  const data: IStudioProps = entry.getIn(["data"]).toJS();
+  const data: IStudioProps = entry.getIn(['data']).toJS()
   if (
     data &&
     data.description &&
@@ -27,8 +27,8 @@ export const IndexPagePreview: React.FC<IPagePreviewProps> = ({
           social={data.social}
         />
       </div>
-    );
+    )
   } else {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
-};
+}

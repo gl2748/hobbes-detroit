@@ -1,6 +1,6 @@
-import React from "react";
-import { Layout } from "../components/Layout";
-import { CookieContainer } from "../containers/CookieContainer";
+import React from 'react'
+import { Layout } from '../components/Layout'
+import { CookieContainer } from '../containers/CookieContainer'
 
 const CookiePage = () => {
   return (
@@ -9,7 +9,7 @@ const CookiePage = () => {
         <CookieContainer />
       </div>
     </Layout>
-  );
-};
+  )
+}
 
-export default CookiePage;
+export default CookiePage

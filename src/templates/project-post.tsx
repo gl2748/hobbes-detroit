@@ -1,24 +1,32 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { kebabCase } from "lodash";
-import Helmet from "react-helmet";
-import { graphql, Link } from "gatsby";
-import { Layout } from "../components/Layout";
-import { Content, HTMLContent } from "../components/Content";
+import React, { ReactNode, ReactComponentElement, ReactElement } from 'react'
+import PropTypes from 'prop-types'
+import { kebabCase } from 'lodash'
+import Helmet, { HelmetProps, HelmetData } from 'react-helmet'
+import { graphql, Link } from 'gatsby'
+import { Layout } from '../components/Layout'
+import { Content, HTMLContent } from '../components/Content'
+export interface IProjectPostTemplateProps {
+  content: ReactNode
+  contentComponent: HTMLContent
+  description: string
+  tags: string[]
+  title: string
+  helmet: ReactElement
+}
 
-export const ProjectPostTemplate = ({
+export const ProjectPostTemplate: React.FC<IProjectPostTemplateProps> = ({
   content,
   contentComponent,
   description,
   tags,
   title,
-  helmet
-}) => {
-  const PostContent = contentComponent || Content;
+  helmet,
+}: IProjectPostTemplateProps) => {
+  const PostContent = contentComponent || Content
 
   return (
     <section>
-      {helmet || ""}
+      {helmet || ''}
       <div>
         <div>
           <div>
@@ -41,19 +49,20 @@ export const ProjectPostTemplate = ({
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-ProjectPostTemplate.propTypes = {
-  content: PropTypes.node.isRequired,
-  contentComponent: PropTypes.func,
-  description: PropTypes.string,
-  title: PropTypes.string,
-  helmet: PropTypes.object
-};
-
-const ProjectPost = ({ data }) => {
-  const { markdownRemark: post } = data;
+const ProjectPost = ({
+  data,
+}: {
+  data: {
+    markdownRemark: {
+      html: any
+      frontmatter: { description: string; title: string; tags: string[] }
+    }
+  }
+}) => {
+  const { markdownRemark: post } = data
 
   return (
     <Layout>
@@ -74,16 +83,16 @@ const ProjectPost = ({ data }) => {
         title={post.frontmatter.title}
       />
     </Layout>
-  );
-};
+  )
+}
 
 ProjectPost.propTypes = {
   data: PropTypes.shape({
-    markdownRemark: PropTypes.object
-  })
-};
+    markdownRemark: PropTypes.object,
+  }),
+}
 
-export default ProjectPost;
+export default ProjectPost
 
 export const pageQuery = graphql`
   query ProjectPostByID($id: String!) {
@@ -98,4 +107,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

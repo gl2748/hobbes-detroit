@@ -1,13 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { IImmutableJSType } from './CookiePagePreview'
 
-export const ProjectPostPreview = ({ entry }) => {
+export interface IProjectPostPreviewProps {
+  entry: IImmutableJSType
+  getAsset: () => void
+}
+
+export const ProjectPostPreview: React.FC<IProjectPostPreviewProps> = ({
+  entry,
+}: IProjectPostPreviewProps) => {
   const data = entry.getIn(['data']).toJS()
-  console.log(data)
 
   const out = Object.keys(data).map(k => {
     if (k === 'modules') {
-      return data[k].map(mod => {
+      return data[k].map((mod: any) => {
         return Object.keys(mod).map(k => {
           return (
             <div>
@@ -32,11 +39,4 @@ export const ProjectPostPreview = ({ entry }) => {
   } else {
     return <div>Loading...</div>
   }
-}
-
-ProjectPostPreview.propTypes = {
-  entry: PropTypes.shape({
-    getIn: PropTypes.func,
-  }),
-  getAsset: PropTypes.func,
 }

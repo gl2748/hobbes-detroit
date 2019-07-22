@@ -1,6 +1,6 @@
-import React from "react";
-import { graphql, StaticQuery } from "gatsby";
-import { ProjectRoll, IProjectProps } from "../components/ProjectRoll";
+import React from 'react'
+import { graphql, StaticQuery } from 'gatsby'
+import { ProjectRoll, IProjectProps } from '../components/ProjectRoll'
 
 export const ProjectRollContainer: React.FC = () => (
   <StaticQuery
@@ -36,7 +36,7 @@ export const ProjectRollContainer: React.FC = () => (
       }
     `}
     render={(data: {
-      allMarkdownRemark: { edges: [{ node: IProjectProps }] };
+      allMarkdownRemark: { edges: [{ node: IProjectProps }] }
     }): React.ReactNode => <ProjectRoll data={data} />}
   />
-);
+)
