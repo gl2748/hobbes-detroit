@@ -18,7 +18,6 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
   data,
 }: IProjectPostProps) => {
   const { markdownRemark: post } = data;
-
   return (
     <Layout>
       <Project
