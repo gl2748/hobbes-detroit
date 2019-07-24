@@ -42,7 +42,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
 
 export default ProjectPost;
 
-// The $id param here comes from gatsby-node.js createPage method with a context property in its param.
+// The $id param here comes from gatsby-node.js createPage method with a context property in the first argument.
 export const pageQuery = graphql`
   query ProjectPostByID($id: String!) {
     markdownRemark(id: { eq: $id }) {

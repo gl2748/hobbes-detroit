@@ -4,7 +4,7 @@ title: Iain Was Here
 date: 2019-07-06T16:56:48.468Z
 description: Hello!
 featuredpost: false
-featuredimage: /img/chemex.jpg
+featuredimage: /img/hobbes_004.jpg
 tags:
   - Cool
   - fun
@@ -16,4 +16,3 @@ modules:
   - headerText: header Was added first but appears second
     type: header
 ---
-
