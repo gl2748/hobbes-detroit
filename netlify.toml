@@ -6,7 +6,7 @@
   YARN_VERSION = "1.9.4"
   YARN_FLAGS = "--no-ignore-optional"
 [[headers]]
-  for = "/*" # This defines which paths this specific [[headers]] block will cover.
+  for = "/auth" # This defines which paths this specific [[headers]] block will cover.
   [headers.values]
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
