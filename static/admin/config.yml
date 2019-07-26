@@ -1,6 +1,7 @@
 backend:
   name: git-gateway
-  branch: master
+
+publish_mode: editorial_workflow
 
 media_folder: static/img
 public_folder: /img
@@ -8,6 +9,8 @@ media_library:
   name: uploadcare
   config:
     publicKey: 70d063a0b7e99e040bf8
+
+logo_url: https://i.ibb.co/9HVyrzQ/android-chrome-144x144.png
 
 collections:
   - name: 'project'
