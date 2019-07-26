@@ -1,10 +1,11 @@
 ---
 templateKey: project-post
-title: Iain Was Here
+title: 'Iain Was Here, Test'
 date: 2019-07-06T16:56:48.468Z
 description: Hello!
-featuredProject: false
-featuredImage: /img/hobbes_004.jpg
+protectedpost: false
+featuredpost: false
+featuredimage: /img/hobbes_004.jpg
 tags:
   - Cool
   - fun
@@ -16,3 +17,4 @@ modules:
   - headerText: header Was added first but appears second
     type: header
 ---
+
