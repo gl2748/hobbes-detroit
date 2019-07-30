@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-netlify-cms",
-  "description": "Example Gatsby, and Netlify CMS project",
-  "version": "1.1.3",
-  "author": "Austin Green",
+  "name": "hobbes_studio",
+  "description": "Hobbes Studio Site",
+  "version": "0.0.1",
+  "author": "iain maitland",
   "dependencies": {
     "@types/lodash": "^4.14.136",
     "@types/node": "^12.6.6",
