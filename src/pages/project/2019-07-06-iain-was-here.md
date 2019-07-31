@@ -3,8 +3,8 @@ templateKey: project-post
 title: Iain Was Here
 date: 2019-07-06T16:56:48.468Z
 description: Hello!
-featuredpost: false
-featuredimage: /img/hobbes_004.jpg
+featuredPost: false
+featuredImage: /img/hobbes_004.jpg
 tags:
   - Cool
   - fun

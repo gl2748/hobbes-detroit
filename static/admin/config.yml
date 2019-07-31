@@ -28,9 +28,9 @@ collections:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Description', name: 'description', widget: 'text' }
-      - { label: 'Protected Post', name: 'protectedpost', widget: 'boolean' }
-      - { label: 'Featured Post', name: 'featuredpost', widget: 'boolean' }
-      - { label: 'Featured Image', name: 'featuredimage', widget: image }
+      - { label: 'Protected Post', name: 'protectedPost', widget: 'boolean' }
+      - { label: 'Featured Post', name: 'featuredPost', widget: 'boolean' }
+      - { label: 'Featured Image', name: 'featuredImage', widget: image }
       - { label: 'Tags', name: 'tags', widget: 'list' }
       - label: 'Modules'
         name: 'modules'

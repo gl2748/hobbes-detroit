@@ -3,9 +3,9 @@ templateKey: project-post
 title: Google Device Iconography
 date: 2019-07-26T21:33:22.713Z
 description: ghgh
-protectedpost: true
-featuredpost: true
-featuredimage: 'https://ucarecdn.com/8ed8d734-c834-4a92-913b-cc8720084bee/'
+protectedPost: true
+featuredPost: true
+featuredImage: 'https://ucarecdn.com/8ed8d734-c834-4a92-913b-cc8720084bee/'
 tags:
   - google
   - '2018'
@@ -47,4 +47,3 @@ modules:
     image: 'https://ucarecdn.com/fad64e77-d7bc-4dc6-a707-2bde48598026/'
     type: largeImage
 ---
-
