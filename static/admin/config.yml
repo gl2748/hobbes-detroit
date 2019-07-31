@@ -28,8 +28,16 @@ collections:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Description', name: 'description', widget: 'text' }
-      - { label: 'Protected Post', name: 'protectedPost', widget: 'boolean' }
-      - { label: 'Featured Post', name: 'featuredPost', widget: 'boolean' }
+      - {
+          label: 'Protected Project',
+          name: 'protectedProject',
+          widget: 'boolean',
+        }
+      - {
+          label: 'Featured Project',
+          name: 'featuredProject',
+          widget: 'boolean',
+        }
       - { label: 'Featured Image', name: 'featuredImage', widget: image }
       - { label: 'Tags', name: 'tags', widget: 'list' }
       - label: 'Modules'

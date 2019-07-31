@@ -13,7 +13,7 @@ export interface IProjectProps {
     slug: string;
   };
   frontmatter: {
-    featuredPost: {};
+    featuredProject: {};
     featuredImage: {};
     date: string;
     title: string;
@@ -42,7 +42,7 @@ export const ProjectRoll: React.FC<IProjectRollProps> = ({
           <div key={post.id}>
             <article
               className={`${
-                post.frontmatter.featuredPost ? 'is-featured' : ''
+                post.frontmatter.featuredProject ? 'is-featured' : ''
               }`}
             >
               <header>

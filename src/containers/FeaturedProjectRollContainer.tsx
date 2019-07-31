@@ -2,13 +2,18 @@ import React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
 import { ProjectRoll, IProjectProps } from '../components/ProjectRoll';
 
-export const ProjectRollContainer: React.FC = () => (
+export const FeaturedProjectRollContainer: React.FC = () => (
   <StaticQuery
     query={graphql`
-      query ProjectRollQuery {
+      query FeaturedProjectRollQuery {
         allMarkdownRemark(
           sort: { order: DESC, fields: [frontmatter___date] }
-          filter: { frontmatter: { templateKey: { eq: "project-post" } } }
+          filter: {
+            frontmatter: {
+              templateKey: { eq: "project-post" }
+              featuredProject: { eq: true }
+            }
+          }
         ) {
           edges {
             node {
