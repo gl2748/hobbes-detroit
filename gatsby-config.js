@@ -69,6 +69,12 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-netlify-identity`,
+      options: {
+        url: `https://hobbes.netlify.com/`, // required!
+      },
+    },
+    {
       resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
       options: {
         develop: true, // Activates purging in npm run develop

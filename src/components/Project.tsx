@@ -2,6 +2,7 @@ import React, { ReactNode, ReactElement } from 'react';
 import { kebabCase } from 'lodash';
 import { Content, HTMLContent } from '../components/Content';
 import { Link } from 'gatsby';
+import './post.scss';
 
 export interface IProjectProps {
   content: ReactNode;
