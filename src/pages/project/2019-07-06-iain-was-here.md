@@ -13,8 +13,11 @@ tags:
 modules:
   - textColumns:
       - column: 'This is a text aream, lotsa words in here!'
+      - column: This is the second column!
     type: textArea
   - headerText: header Was added first but appears second
     type: header
+  - slides: []
+    type: gallery
 ---
 
