@@ -23,7 +23,7 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
       identity.user.user_metadata &&
       identity.user.user_metadata.name) ||
     'NoName';
-
+  debugger;
   console.log(JSON.stringify(identity));
   const isLoggedIn = identity && identity.isLoggedIn;
 
