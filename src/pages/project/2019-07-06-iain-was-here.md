@@ -3,9 +3,9 @@ templateKey: project-post
 title: 'Iain Was Here, Test'
 date: 2019-07-06T16:56:48.468Z
 description: Hello!
-protectedpost: false
-featuredpost: false
-featuredimage: /img/hobbes_004.jpg
+protectedProject: false
+featuredProject: false
+featuredImage: 'https://ucarecdn.com/0632de8d-b900-479d-a6da-9a9360f252c7/'
 tags:
   - Cool
   - fun
