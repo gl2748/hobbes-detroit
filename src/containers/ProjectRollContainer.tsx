@@ -22,13 +22,7 @@ export const ProjectRollContainer: React.FC = () => (
                 templateKey
                 date(formatString: "MMMM DD, YYYY")
                 featuredProject
-                featuredImage {
-                  childImageSharp {
-                    fluid(maxWidth: 120, quality: 100) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
+                featuredImage
               }
             }
           }
