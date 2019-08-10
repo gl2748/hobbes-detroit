@@ -8,7 +8,7 @@ public_folder: /img
 media_library:
   name: uploadcare
   config:
-    publicKey: 70d063a0b7e99e040bf8
+    publicKey: 7b969f8af066608712d4
 
 logo_url: https://i.ibb.co/9HVyrzQ/android-chrome-144x144.png
 
