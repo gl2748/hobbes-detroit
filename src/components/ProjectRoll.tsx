@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
-import {
-  PreviewCompatibleImage,
-  IPreviewCompatibleImageProps,
-} from './PreviewCompatibleImage';
 
 export interface IProjectProps {
   title: string;
@@ -14,6 +10,7 @@ export interface IProjectProps {
   };
   frontmatter: {
     featuredProject: {};
+    protectedProject: boolean;
     featuredImage: {};
     date: string;
     title: string;
@@ -46,18 +43,16 @@ export const ProjectRoll: React.FC<IProjectRollProps> = ({
               }`}
             >
               <header>
-                {post.frontmatter.featuredImage ? (
-                  <div style={tempImageStyle}>
-                    <PreviewCompatibleImage
-                      imageInfo={{
-                        image: post.frontmatter.featuredImage,
-                        alt: `featured image thumbnail for post ${post.title}`,
-                      }}
-                    />
-                  </div>
-                ) : null}
                 <p>
-                  <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
+                  <Link
+                    to={
+                      post.frontmatter.protectedProject
+                        ? `/protected${post.fields.slug}`
+                        : post.fields.slug
+                    }
+                  >
+                    {post.frontmatter.title}
+                  </Link>
                 </p>
                 <p>
                   <span>{post.frontmatter.date}</span>
