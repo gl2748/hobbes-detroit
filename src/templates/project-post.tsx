@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import { Layout } from '../components/Layout';
 import { HTMLContent } from '../components/Content';
 import { Project } from '../components/Project';
+import { WithAuth } from '../components/WithAuth';
 
 export interface IProjectPostProps {
   data: {
@@ -18,9 +19,10 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
   data,
 }: IProjectPostProps) => {
   const { markdownRemark: post } = data;
+  const ProjectWithAuth = WithAuth(Project);
   return (
     <Layout>
-      <Project
+      <ProjectWithAuth
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
