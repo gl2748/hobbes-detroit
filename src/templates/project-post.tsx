@@ -10,7 +10,13 @@ export interface IProjectPostProps {
   data: {
     markdownRemark: {
       html: any;
-      frontmatter: { description: string; title: string; tags: string[] };
+      frontmatter: {
+        description: string;
+        title: string;
+        tags: string[];
+        protectedProject: boolean;
+        featured: boolean;
+      };
     };
   };
 }
@@ -19,10 +25,13 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
   data,
 }: IProjectPostProps) => {
   const { markdownRemark: post } = data;
-  const ProjectWithAuth = WithAuth(Project);
+
+  const EnhancedProjectComponent = post.frontmatter.protectedProject
+    ? WithAuth(Project)
+    : Project;
   return (
     <Layout>
-      <ProjectWithAuth
+      <EnhancedProjectComponent
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
@@ -37,6 +46,8 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
         }
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
+        protectedProject={post.frontmatter.protectedProject}
+        featured={post.frontmatter.featured}
       />
     </Layout>
   );
@@ -55,6 +66,7 @@ export const pageQuery = graphql`
         title
         description
         tags
+        protectedProject
       }
     }
   }

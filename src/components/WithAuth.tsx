@@ -1,5 +1,4 @@
-import React, { Component, useState } from 'react';
-import { navigate } from 'gatsby';
+import React, { useState } from 'react';
 
 import IdentityModal, {
   useIdentityContext,
@@ -9,10 +8,10 @@ export const WithAuth = <P extends object>(
   Component: React.ComponentType<P>
 ): React.FC<P> => ({ ...props }) => {
   const identity = useIdentityContext();
-  const [dialog, setDialog] = useState(false);
+  const [dialog, setDialog] = useState(true);
   console.log(JSON.stringify(identity));
   const isLoggedIn = identity && identity.isLoggedIn;
-  debugger;
+
   if (isLoggedIn) {
     return <Component {...(props as P)} />;
   } else {

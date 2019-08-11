@@ -10,6 +10,8 @@ export interface IProjectProps {
   tags: string[];
   title: string;
   helmet: ReactElement;
+  featured: boolean;
+  protectedProject: boolean;
 }
 
 export const Project: React.FC<IProjectProps> = ({
@@ -19,6 +21,8 @@ export const Project: React.FC<IProjectProps> = ({
   tags,
   title,
   helmet,
+  featured,
+  protectedProject,
 }: IProjectProps) => {
   const PostContent = contentComponent || Content;
 

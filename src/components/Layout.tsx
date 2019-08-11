@@ -4,11 +4,9 @@ import { Footer } from './Footer';
 import { Navbar } from './Navbar';
 import './all.sass';
 import { useSiteMetadata } from './SiteMetadata';
-import { ReactNodeArray } from 'prop-types';
 import IdentityModal, {
   useIdentityContext,
 } from 'react-netlify-identity-widget';
-import 'react-netlify-identity-widget/styles.css'; // delete if you want to bring your own CSS
 
 export interface ILayoutProps {}
 
@@ -16,14 +14,12 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
   const { title, description } = useSiteMetadata();
 
   const identity = useIdentityContext();
-  const [dialog, setDialog] = React.useState(false);
   const name =
     (identity &&
       identity.user &&
       identity.user.user_metadata &&
       identity.user.user_metadata.name) ||
     'NoName';
-  debugger;
   console.log(JSON.stringify(identity));
   const isLoggedIn = identity && identity.isLoggedIn;
 
@@ -67,15 +63,11 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
       <nav style={{ background: 'green' }}>
         {' '}
         Login Status:
-        <button className='btn' onClick={() => setDialog(true)}>
+        <button className='btn'>
           {isLoggedIn ? `Hello ${name}, Log out here!` : 'LOG IN'}
         </button>
       </nav>
       <div>{children}</div>
-      <IdentityModal
-        showDialog={dialog}
-        onCloseDialog={() => setDialog(false)}
-      />
       <Footer />
     </div>
   );
