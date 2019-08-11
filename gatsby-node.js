@@ -44,7 +44,8 @@ exports.createPages = ({ actions, graphql }) => {
       }
       // Project Posts
       if (String(edge.node.frontmatter.templateKey) === 'project-post') {
-        // If this is a protected project...create a post at the /protected path.
+        // If this is a protectedProject project...create a post at the /protectedProject path.
+        // See the gatsby-plugin-create-client-paths plugin in the gatsby config.
         let p = `${edge.node.fields.slug}`;
         if (_.get(edge, `node.frontmatter.protectedProject`)) {
           p = `/protected${edge.node.fields.slug}`;

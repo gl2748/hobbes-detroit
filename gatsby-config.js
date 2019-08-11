@@ -49,8 +49,8 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-create-client-paths`,
-      options: { prefixes: [`/protected/*`] },
+      resolve: `gatsby-plugin-create-client-paths`, // https://www.gatsbyjs.org/tutorial/authentication-tutorial/#creating-client-only-routes
+      options: { prefixes: [`/protected/*`] }, // See gatsby-node.js where project posts with the protectedProject flag are put on the /protectedProject/ route
     },
     {
       resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
