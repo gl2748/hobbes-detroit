@@ -18,6 +18,7 @@ exports.createPages = ({ actions, graphql }) => {
             frontmatter {
               tags
               templateKey
+              protectedProject
             }
           }
         }
@@ -34,25 +35,50 @@ exports.createPages = ({ actions, graphql }) => {
     posts.forEach(edge => {
       const id = edge.node.id;
       let newPost = {};
+      // Template key null Guard.
       if (String(edge.node.frontmatter.templateKey) === 'null') {
         console.log(
           'It looks like you have a markdown file with improperly formatted or absent front matter, in this case the template key field is missing, consider either hand-coding a markdown file with the correct front matter or else deploying your latest changes to the netlify branch and using the CMS to create a new page / piece of content. Note: once you have done that in the CMS you will need to pull down the changes.'
         );
         return;
       }
-      newPost = {
-        path: edge.node.fields.slug,
-        tags: edge.node.frontmatter.tags,
-        component: path.resolve(
-          `src/templates/${String(edge.node.frontmatter.templateKey)}.tsx`
-        ),
-        // additional data can be passed via context.
-        // Available via graphql pageQuery in component defined above.
-        context: {
-          id,
-        },
-      };
-      createPage(newPost);
+      // Project Posts
+      if (String(edge.node.frontmatter.templateKey) === 'project-post') {
+        // If this is a protected project...create a post at the /protected path.
+        let p = `${edge.node.fields.slug}`;
+        if (_.get(edge, `node.frontmatter.protectedProject`)) {
+          p = `/protected${edge.node.fields.slug}`;
+        }
+        newPost = {
+          path: p,
+          tags: edge.node.frontmatter.tags,
+          component: path.resolve(
+            `src/templates/${String(edge.node.frontmatter.templateKey)}.tsx`
+          ),
+          // additional data can be passed via context.
+          // Available via graphql pageQuery in component defined above.
+          context: {
+            id,
+          },
+        };
+        createPage(newPost);
+      }
+      // Everything else
+      if (String(edge.node.frontmatter.templateKey) !== 'project-post') {
+        newPost = {
+          path: edge.node.fields.slug,
+          tags: edge.node.frontmatter.tags,
+          component: path.resolve(
+            `src/templates/${String(edge.node.frontmatter.templateKey)}.tsx`
+          ),
+          // additional data can be passed via context.
+          // Available via graphql pageQuery in component defined above.
+          context: {
+            id,
+          },
+        };
+        createPage(newPost);
+      }
     });
 
     // Tag pages:
