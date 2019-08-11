@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import { Layout } from '../components/Layout';
 import { HTMLContent } from '../components/Content';
 import { Project } from '../components/Project';
-import { WithAuth } from '../components/WithAuth';
+import { WithAuth } from '../higherOrderComponents/WithAuth';
 
 export interface IProjectPostProps {
   data: {
