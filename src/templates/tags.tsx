@@ -67,6 +67,7 @@ export const tagPageQuery = graphql`
           }
           frontmatter {
             title
+            protectedProject
           }
         }
       }

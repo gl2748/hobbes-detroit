@@ -15,6 +15,7 @@ export interface ITagProps {
         };
         frontmatter: {
           title: string;
+          protectedProject: boolean;
         };
       };
     }
@@ -27,10 +28,11 @@ export const Tag: React.FC<ITagProps> = ({
   title,
   totalCount,
 }: ITagProps) => {
+    debugger
   const postLinks = posts.map(post => (
     <li key={post.node.fields.slug}>
-      <Link to={post.node.fields.slug}>
-        <h2>{post.node.frontmatter.title}</h2>
+      <Link to={post.node.frontmatter.protectedProject ? `protected/${post.node.fields.slug}` : post.node.fields.slug}>
+        <h2>{post.node.frontmatter.title} elll!</h2>
       </Link>
     </li>
   ));
