@@ -14,7 +14,6 @@ export const Panel: React.FC<IPanelProps> = ({
   if (isVisible) {
     return (
       <div>
-        This is the panel!
         {children}
         <div onClick={onClose}>CLOSE</div>
       </div>
