@@ -97,7 +97,7 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
         isVisible={state.showPanel}
       >
         <div>
-          {isLoggedIn ? <LogoutForm /> : <LoginForm />}
+          {isLoggedIn ? <LogoutForm /> : <LoginForm onClose={()=>null}/>}
         </div>
       </Panel>
       <nav>

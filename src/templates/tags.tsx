@@ -24,6 +24,7 @@ export interface ITagTemplateProps {
             };
             frontmatter: {
               title: string;
+              protectedProject: boolean;
             };
           };
         }
