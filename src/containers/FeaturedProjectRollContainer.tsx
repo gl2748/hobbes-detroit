@@ -5,13 +5,13 @@ import { ProjectRoll, IProjectProps } from '../components/ProjectRoll';
 export const FeaturedProjectRollContainer: React.FC = () => (
   <StaticQuery
     query={graphql`
-      query FeaturedProjectRollQuery {
+      query featuredRollQuery {
         allMarkdownRemark(
           sort: { order: DESC, fields: [frontmatter___date] }
           filter: {
             frontmatter: {
               templateKey: { eq: "project-post" }
-              featuredProject: { eq: true }
+              featured: { eq: true }
             }
           }
         ) {
@@ -26,14 +26,8 @@ export const FeaturedProjectRollContainer: React.FC = () => (
                 title
                 templateKey
                 date(formatString: "MMMM DD, YYYY")
-                featuredProject
-                featuredImage {
-                  childImageSharp {
-                    fluid(maxWidth: 120, quality: 100) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
+                featured
+                featuredImage
               }
             }
           }

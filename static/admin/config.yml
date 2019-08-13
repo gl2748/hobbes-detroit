@@ -8,7 +8,7 @@ public_folder: /img
 media_library:
   name: uploadcare
   config:
-    publicKey: 70d063a0b7e99e040bf8
+    publicKey: 7b969f8af066608712d4
 
 logo_url: https://i.ibb.co/9HVyrzQ/android-chrome-144x144.png
 
@@ -17,7 +17,7 @@ collections:
     label: 'Project'
     folder: 'src/pages/project'
     create: true
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    slug: '{{client}}_{{title}}'
     fields:
       - {
           label: 'Template Key',
@@ -32,14 +32,17 @@ collections:
           label: 'Protected Project',
           name: 'protectedProject',
           widget: 'boolean',
+          default: false,
         }
       - {
           label: 'Featured Project',
-          name: 'featuredProject',
+          name: 'featured',
           widget: 'boolean',
+          default: false,
         }
       - { label: 'Featured Image', name: 'featuredImage', widget: image }
       - { label: 'Tags', name: 'tags', widget: 'list' }
+      - { label: 'Client', name: 'client', widget: 'string' }
       - label: 'Modules'
         name: 'modules'
         widget: 'list'
@@ -151,7 +154,7 @@ collections:
               default: 'index-page',
             }
           - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Description', name: 'description', widget: 'string' }
+          - { label: 'Description', name: 'description', widget: 'text' }
           - { label: 'Address', name: 'address', widget: 'string' }
           - { label: 'Phone', name: 'phone', widget: 'string' }
           - { label: 'Email', name: 'email', widget: 'string' }

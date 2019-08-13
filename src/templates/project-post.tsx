@@ -4,12 +4,19 @@ import { graphql } from 'gatsby';
 import { Layout } from '../components/Layout';
 import { HTMLContent } from '../components/Content';
 import { Project } from '../components/Project';
+import { WithAuth } from '../higherOrderComponents/WithAuth';
 
 export interface IProjectPostProps {
   data: {
     markdownRemark: {
       html: any;
-      frontmatter: { description: string; title: string; tags: string[] };
+      frontmatter: {
+        description: string;
+        title: string;
+        tags: string[];
+        protectedProject: boolean;
+        featured: boolean;
+      };
     };
   };
 }
@@ -18,9 +25,13 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
   data,
 }: IProjectPostProps) => {
   const { markdownRemark: post } = data;
+
+  const EnhancedProjectComponent = post.frontmatter.protectedProject
+    ? WithAuth(Project)
+    : Project;
   return (
     <Layout>
-      <Project
+      <EnhancedProjectComponent
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
@@ -35,6 +46,8 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
         }
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
+        protectedProject={post.frontmatter.protectedProject}
+        featured={post.frontmatter.featured}
       />
     </Layout>
   );
@@ -53,6 +66,7 @@ export const pageQuery = graphql`
         title
         description
         tags
+        protectedProject
       }
     }
   }

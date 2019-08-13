@@ -24,6 +24,7 @@ export interface ITagTemplateProps {
             };
             frontmatter: {
               title: string;
+              protectedProject: boolean;
             };
           };
         }
@@ -67,6 +68,7 @@ export const tagPageQuery = graphql`
           }
           frontmatter {
             title
+            protectedProject
           }
         }
       }

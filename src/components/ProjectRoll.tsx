@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
-import {
-  PreviewCompatibleImage,
-  IPreviewCompatibleImageProps,
-} from './PreviewCompatibleImage';
 
 export interface IProjectProps {
   title: string;
@@ -13,7 +9,8 @@ export interface IProjectProps {
     slug: string;
   };
   frontmatter: {
-    featuredProject: {};
+    featured: {};
+    protectedProject: boolean;
     featuredImage: {};
     date: string;
     title: string;
@@ -41,23 +38,19 @@ export const ProjectRoll: React.FC<IProjectRollProps> = ({
         posts.map(({ node: post }: { node: IProjectProps }) => (
           <div key={post.id}>
             <article
-              className={`${
-                post.frontmatter.featuredProject ? 'is-featured' : ''
-              }`}
+              className={`${post.frontmatter.featured ? 'is-featured' : ''}`}
             >
               <header>
-                {post.frontmatter.featuredImage ? (
-                  <div style={tempImageStyle}>
-                    <PreviewCompatibleImage
-                      imageInfo={{
-                        image: post.frontmatter.featuredImage,
-                        alt: `featured image thumbnail for post ${post.title}`,
-                      }}
-                    />
-                  </div>
-                ) : null}
                 <p>
-                  <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
+                  <Link
+                    to={
+                      post.frontmatter.protectedProject
+                        ? `/protected${post.fields.slug}`
+                        : post.fields.slug
+                    }
+                  >
+                    {post.frontmatter.title}
+                  </Link>
                 </p>
                 <p>
                   <span>{post.frontmatter.date}</span>

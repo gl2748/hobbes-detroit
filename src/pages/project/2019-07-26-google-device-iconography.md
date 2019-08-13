@@ -4,7 +4,7 @@ title: Google Device Iconography
 date: 2019-07-26T21:33:22.713Z
 description: ghgh
 protectedProject: true
-featuredProject: true
+featured: true
 featuredImage: 'https://ucarecdn.com/8ed8d734-c834-4a92-913b-cc8720084bee/'
 tags:
   - google

@@ -2,14 +2,14 @@ var proxy = require('http-proxy-middleware');
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby + Netlify CMS Starter',
-    description:
-      'This repo contains an example business website that is built with Gatsby, and Netlify CMS.It follows the JAMstack architecture by using Git as a single source of truth, and Netlify for continuous deployment, and CDN distribution.',
+    title: 'Hobbes',
+    description: 'Hobbes Detroit, design',
   },
   plugins: [
     'gatsby-plugin-typescript',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
+    'gatsby-remark-relative-images',
     {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: 'gatsby-source-filesystem',
@@ -32,41 +32,24 @@ module.exports = {
         name: 'images',
       },
     },
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-transformer-remark',
-      options: {
-        plugins: [
-          {
-            resolve: 'gatsby-remark-relative-images',
-            options: {
-              name: 'uploads',
-            },
-          },
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              // It's important to specify the maxWidth (in pixels) of
-              // the content container as this plugin uses this as the
-              // base for generating different widths of each image.
-              maxWidth: 2048,
-            },
-          },
-          {
-            resolve: 'gatsby-remark-copy-linked-files',
-            options: {
-              destinationDir: 'static',
-            },
-          },
-        ],
-      },
     },
     {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
         modulePath: `${__dirname}/src/cms/cms.js`,
       },
+    },
+    {
+      resolve: `gatsby-plugin-netlify-identity`,
+      options: {
+        url: `https://hobbes.netlify.com/`, // required!
+      },
+    },
+    {
+      resolve: `gatsby-plugin-create-client-paths`, // https://www.gatsbyjs.org/tutorial/authentication-tutorial/#creating-client-only-routes
+      options: { prefixes: [`/protected/*`] }, // See gatsby-node.js where project posts with the protectedProject flag are put on the /protectedProject/ route
     },
     {
       resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
