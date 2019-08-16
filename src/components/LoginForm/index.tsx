@@ -47,8 +47,9 @@ export const LoginForm: React.FC<ILoginFormProps> = ({
 
   const clearMessage = () => dispatch({ type: 'updateMessage', payload: '' });
 
-  const handlePasswordRecover = () => {
-    //dispatch({type: 'updateMessage', payload: ''})
+  const handlePasswordRecover = (e: React.MouseEvent) => {
+    e.preventDefault();
+    clearMessage();
     load(requestPasswordRecovery(state.email))
       .then(res => {
         return;
@@ -58,16 +59,17 @@ export const LoginForm: React.FC<ILoginFormProps> = ({
           void console.error(err) ||
           dispatch({ type: 'updateMessage', payload: 'Error: ' + err.message })
       );
-    debugger;
   };
 
-  const handleLogin = (e: React.MouseEvent) => {
+  const handleLogin = (email: string, password: string) => (
+    e: React.MouseEvent
+  ) => {
     e.preventDefault();
     dispatch({ type: 'updateMessage', payload: '' });
-    load(loginUser(state.email, state.password, true))
+    load(loginUser(email, password, true))
       .then(user => {
         console.log('Success! Logged in', user);
-        // Close the modal?
+        onClose();
       })
       .catch(
         err =>
@@ -114,7 +116,7 @@ export const LoginForm: React.FC<ILoginFormProps> = ({
 
       <div>
         <button
-          onClick={handleLogin}
+          onClick={handleLogin(state.email, state.password)}
           className={isLoading ? 'btn saving' : 'btn'}
         >
           Log in
