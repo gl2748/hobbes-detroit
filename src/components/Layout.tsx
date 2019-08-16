@@ -1,13 +1,10 @@
-import React, { ReactPortal, ReactChildren, useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import { Helmet } from 'react-helmet';
 import { Footer } from './Footer';
 import { Navbar } from './Navbar';
-import { IdentityForm } from './IdentityForm';
 import './all.sass';
 import { useSiteMetadata } from './SiteMetadata';
-import IdentityModal, {
-  useIdentityContext,
-} from 'react-netlify-identity-widget';
+import { useIdentityContext } from 'react-netlify-identity-widget';
 import { LoginForm } from './LoginForm';
 import { LogoutForm } from './LogoutForm';
 import { Panel } from './Panel';
