@@ -51,7 +51,18 @@ module.exports = {
       options: { prefixes: [`/protected/*`] } // See gatsby-node.js where project posts with the protectedProject flag are put on the /protectedProject/ route
     },
     {
-      resolve: "gatsby-plugin-purgecss", // purges all unused/unreferenced css rules
+      resolve: `gatsby-transformer-uploadcare`,
+      options: {
+        publicKey: '7b969f8af066608712d4',
+        name: 'uploadcareMeta',
+        url: 'https://upload.uploadcare.com/info/',
+        path: `${__dirname}/src/data/uploadcare`,
+        verboseOutput: true,
+        skipCreateNode: false,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
       options: {
         develop: true, // Activates purging in npm run develop
         purgeOnly: ["/main.css"] // applies purging only on the bulma css file
