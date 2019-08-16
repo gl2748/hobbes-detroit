@@ -5,7 +5,11 @@ date: 2019-07-06T16:56:48.468Z
 description: Hello!
 protectedProject: false
 featured: false
+<<<<<<< HEAD
 featuredImage: "https://ucarecdn.com/0632de8d-b900-479d-a6da-9a9360f252c7/"
+=======
+featuredImage: 'https://ucarecdn.com/df8f2b0d-8905-4f77-ac9a-fe25f0506d4f/'
+>>>>>>> use valid uploadcare urls for testing
 tags:
   - Cool
   - fun
