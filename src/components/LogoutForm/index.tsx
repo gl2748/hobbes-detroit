@@ -2,7 +2,13 @@ import React from 'react';
 import { useIdentityContext } from 'react-netlify-identity';
 import useLoading from '../../higherOrderComponents/useLoading';
 
-export const LogoutForm = () => {
+export interface ILogoutFormProps {
+  onClose: () => void;
+}
+
+export const LogoutForm: React.FC<ILogoutFormProps> = ({
+  onClose,
+}: ILogoutFormProps) => {
   const identity = useIdentityContext();
 
   let n = '';
@@ -21,7 +27,11 @@ export const LogoutForm = () => {
   }
 
   const [isLoading, load] = useLoading();
-  const logout = () => load(identity.logoutUser());
+  const logout = (e: React.MouseEvent) => {
+    e.preventDefault();
+    load(identity.logoutUser());
+    onClose();
+  };
 
   return (
     <>

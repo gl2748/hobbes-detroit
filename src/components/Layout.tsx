@@ -53,9 +53,6 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
     n = 'anonymous';
   }
 
-  const closePanel = () => {
-    dispatch({ type: 'togglePanel', payload: false });
-  };
   return (
     <div>
       <Helmet>
@@ -97,7 +94,19 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
         isVisible={state.showPanel}
       >
         <div>
-          {isLoggedIn ? <LogoutForm /> : <LoginForm onClose={()=>null}/>}
+          {isLoggedIn ? (
+            <LogoutForm
+              onClose={() => {
+                dispatch({ type: 'togglePanel', payload: false });
+              }}
+            />
+          ) : (
+            <LoginForm
+              onClose={() => {
+                dispatch({ type: 'togglePanel', payload: false });
+              }}
+            />
+          )}
         </div>
       </Panel>
       <nav>
@@ -113,7 +122,6 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
         ) : (
           <div
             onClick={() => {
-              console.log('Login Clicked');
               dispatch({ type: 'togglePanel', payload: true });
             }}
           >
