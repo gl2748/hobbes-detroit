@@ -34,6 +34,7 @@ module.exports = {
     {
       resolve: "gatsby-transformer-remark"
     },
+
     {
       resolve: "gatsby-plugin-netlify-cms",
       options: {
@@ -51,10 +52,17 @@ module.exports = {
       options: { prefixes: [`/protected/*`] } // See gatsby-node.js where project posts with the protectedProject flag are put on the /protectedProject/ route
     },
     {
+      resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
+      options: {
+        develop: true, // Activates purging in npm run develop
+        purgeOnly: ['/all.sass'], // applies purging only on the bulma css file
+      },
+    }, // must be after other CSS plugins
+    {
       resolve: `gatsby-transformer-uploadcare`,
       options: {
         publicKey: '7b969f8af066608712d4',
-        name: 'uploadcareMeta',
+        name: 'meta',
         url: 'https://upload.uploadcare.com/info/',
         path: `${__dirname}/src/data/uploadcare`,
         verboseOutput: true,

@@ -5,11 +5,7 @@ date: 2019-07-26T21:33:22.713Z
 description: ghgh
 protectedProject: true
 featured: true
-<<<<<<< HEAD
-featuredImage: "https://ucarecdn.com/8ed8d734-c834-4a92-913b-cc8720084bee/"
-=======
 featuredImage: 'https://ucarecdn.com/0632de8d-b900-479d-a6da-9a9360f252c7/'
->>>>>>> use valid uploadcare urls for testing
 tags:
   - google
   - "2018"

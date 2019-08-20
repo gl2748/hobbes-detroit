@@ -4,7 +4,6 @@ import {
   standardizeKeys,
   createEntityType,
   createGatsbyIds,
-  createNodesFromEntities,
 } from './normalize';
 
 export interface IGatsbyTransformerUploadcareOptions {
@@ -45,7 +44,14 @@ const myReducer: (acc: string[], curr: string) => string[] = (acc, curr) => {
 };
 
 export const onCreateNode: GatsbyNode['onCreateNode'] = async (
-  { node, loadNodeContent, actions, createNodeId, reporter },
+  {
+    node,
+    loadNodeContent,
+    actions,
+    createNodeId,
+    reporter,
+    createContentDigest,
+  },
   {
     url,
     publicKey,
@@ -59,17 +65,18 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async (
     verboseOutput = false,
   }: PluginOptions
 ) => {
-  const { createNode } = actions;
+  const { createNode, createParentChildLink, createNodeField } = actions;
   let entityType = `${typePrefix}${name}`;
 
   if (
     node.internal.type === 'MarkdownRemark' &&
     node.frontmatter !== undefined
   ) {
+    const c = await loadNodeContent(node);
     const fields: any[] = objToArr(node.frontmatter); // Convert to array.
     const uploadCareUrls: string[] = fields.reduce(myReducer, []); // Reduce (has a recursion).
 
-    // For each uploadCareUrl fetch its data, and create a node that is related to the current node for that file meta data.
+    // For each uploadCareUrl fetch its data, and create a node.
     uploadCareUrls
       .map(upUrl => {
         return upUrl.split('/')[3];
@@ -112,25 +119,29 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async (
         entities = createEntityType(entityType, entities);
 
         // Create a unique id for gatsby
-        entities = createGatsbyIds(
-          createNodeId,
-          idField as string,
-          entities,
-          reporter
-        );
+        entities = createGatsbyIds(createNodeId, entities);
 
         // Generate the nodes
-        createNodesFromEntities({
-          entities,
-          createNode: createNode,
-          reporter,
-          parentNodeId: node.id,
+        entities.forEach(e => {
+          let { __type, ...entity } = e;
+          let uploadcareNode = {
+            ...entity,
+            id: entity.id,
+            parent: null,
+            children: [],
+            mediaType: 'uploadcareMetaData',
+            internal: {
+              type: `transformerUploadcareMeta`,
+              contentDigest: createContentDigest(e),
+              description: `some kind of uploadcarefile`,
+              content: JSON.stringify(entity),
+            },
+          };
+          console.log('creating node!: ', uploadcareNode);
+          createNode(uploadcareNode);
+          createParentChildLink({ parent: node, child: uploadcareNode });
+          return uploadcareNode;
         });
-
-        // We're done, return.
-        return;
       });
-    return;
   }
-  return;
 };

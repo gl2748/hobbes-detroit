@@ -3,7 +3,7 @@ import stringify from 'json-stringify-safe';
 import deepMapKeys from 'deep-map-keys';
 import nanoid from 'nanoid';
 import chalk from 'chalk';
-import { NodeInput, Reporter } from 'gatsby';
+import { NodeInput, Reporter, Node, Actions } from 'gatsby';
 
 const log = console.log;
 
@@ -25,33 +25,13 @@ const restrictedNodeFields = [`id`, `children`, `parent`, `fields`, `internal`];
 
 export interface ICreateNodesFromEntitiesParams {
   entities: any[];
-  createNode: (node: NodeInput) => void;
+  createNode: Actions['createNode'];
   reporter: Reporter;
   parentNodeId: string;
+  parentNode: Node;
+  createParentChildLink: Actions['createParentChildLink'];
+  createNodeField: Actions['createNodeField'];
 }
-
-// Create nodes from entities
-export const createNodesFromEntities = ({
-  entities,
-  createNode,
-  reporter,
-  parentNodeId,
-}: ICreateNodesFromEntitiesParams) => {
-  entities.forEach(e => {
-    let { __type, ...entity } = e;
-    let node = {
-      ...entity,
-      parent: parentNodeId,
-      children: [],
-      mediaType: 'application/json',
-      internal: {
-        type: e.__type,
-        contentDigest: digest(JSON.stringify(e)),
-      },
-    };
-    createNode(node);
-  });
-};
 
 /**
  * Validate the GraphQL naming convetions & protect specific fields.
@@ -100,20 +80,16 @@ export const standardizeKeys = (entities: any[]) =>
   );
 
 // Generate a unique id for each entity
-export const createGatsbyIds = (
-  createNodeId: any,
-  idField: string,
-  entities: any[],
-  reporter: Reporter
-) =>
+export const createGatsbyIds = (createNodeId: any, entities: any[]) =>
   entities.map(e => {
     e.id = createNodeId(`${nanoid()}`);
     return e;
   });
 
 // Add entity type to each entity
-export const createEntityType = (entityType: string, entities: any[]) =>
-  entities.map(e => {
+export const createEntityType = (entityType: string, entities: any[]) => {
+  return entities.map(e => {
     e.__type = entityType;
     return e;
   });
+};
