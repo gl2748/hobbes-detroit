@@ -60,6 +60,7 @@
     "build:lambda": "netlify-lambda build src/lambda",
     "build": "run-p build:**",
     "develop": "npm run clean && gatsby develop",
+    "debug": "node --nolazy --inspect-brk node_modules/.bin/gatsby develop",
     "serve": "gatsby serve",
     "format": "prettier --write '{src,test}/**/*.{ts,tsx,css,md}' '*.js'",
     "lint:fix": "tslint --fix src/**/*.{ts,tsx}",
