@@ -8,4 +8,4 @@ require('ts-node').register({
   },
 });
 
-exports.onCreateNode = require('./onCreateNode').onCreateNode;
+exports.sourceNodes = require('./sourceNodes').sourceNodes;
