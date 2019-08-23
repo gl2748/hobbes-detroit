@@ -4,4 +4,11 @@
 :root {
   --hob-font--regular: GT Haptik;
   --hob-font--medium: GT Haptik Medium;
+
+  --hob-color--dark: #000;
+  --hob-color--light: #e6e6e6;
+}
+
+body {
+  background-color: var(--hob-color--light);
 }
