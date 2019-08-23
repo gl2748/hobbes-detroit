@@ -1,6 +1,6 @@
-import React from 'react';
-import { graphql, StaticQuery } from 'gatsby';
-import { ProjectRoll, IProjectProps } from '../components/ProjectRoll';
+import React from "react";
+import { graphql, StaticQuery } from "gatsby";
+import { ProjectRoll, IProjectProps } from "../components/ProjectRoll";
 
 export const ProjectRollContainer: React.FC = () => (
   <StaticQuery

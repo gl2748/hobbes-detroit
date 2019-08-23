@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export interface ILegalProps {
   title: string;
@@ -7,7 +7,7 @@ export interface ILegalProps {
 
 export const Legal: React.FC<ILegalProps> = ({
   title,
-  description,
+  description
 }: ILegalProps) => {
   return (
     <div>

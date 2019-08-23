@@ -1,7 +1,7 @@
-import React, { ReactNode, ReactElement } from 'react';
-import { kebabCase } from 'lodash';
-import { Content, HTMLContent } from '../components/Content';
-import { Link } from 'gatsby';
+import React, { ReactNode, ReactElement } from "react";
+import { kebabCase } from "lodash";
+import { Content, HTMLContent } from "../components/Content";
+import { Link } from "gatsby";
 
 export interface IProjectProps {
   content: ReactNode;
@@ -22,13 +22,13 @@ export const Project: React.FC<IProjectProps> = ({
   title,
   helmet,
   featured,
-  protectedProject,
+  protectedProject
 }: IProjectProps) => {
   const PostContent = contentComponent || Content;
 
   return (
     <section>
-      {helmet || ''}
+      {helmet || ""}
       <div>
         <div>
           <div>

@@ -1,7 +1,7 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import { StaticQuery } from 'gatsby';
-import { Cookie } from '../components/Cookie';
+import React from "react";
+import { graphql } from "gatsby";
+import { StaticQuery } from "gatsby";
+import { Cookie } from "../components/Cookie";
 
 export const CookieContainer = () => (
   <StaticQuery
@@ -24,7 +24,7 @@ export const CookieContainer = () => (
     render={data => {
       const {
         title,
-        description,
+        description
       } = data.allMarkdownRemark.edges[0].node.frontmatter;
       return <Cookie title={title} description={description} />;
     }}

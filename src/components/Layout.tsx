@@ -1,26 +1,26 @@
-import React, { useReducer } from 'react';
-import { Helmet } from 'react-helmet';
-import { Footer } from './Footer';
-import { Navbar } from './Navbar';
-import './all.sass';
-import { useSiteMetadata } from './SiteMetadata';
-import { useIdentityContext } from 'react-netlify-identity-widget';
-import { LoginForm } from './LoginForm';
-import { LogoutForm } from './LogoutForm';
-import { Panel } from './Panel';
+import React, { useReducer } from "react";
+import { Helmet } from "react-helmet";
+import { Footer } from "./Footer";
+import { Navbar } from "./Navbar";
+import "./all.sass";
+import { useSiteMetadata } from "./SiteMetadata";
+import { useIdentityContext } from "react-netlify-identity-widget";
+import { LoginForm } from "./LoginForm";
+import { LogoutForm } from "./LogoutForm";
+import { Panel } from "./Panel";
 
 export interface ILayoutProps {}
 export interface ILayoutState {
   showPanel: boolean;
 }
 export interface ILayoutActions {
-  type: 'togglePanel';
+  type: "togglePanel";
   payload: boolean;
 }
 
 const layoutReducer = (state: ILayoutState, action: ILayoutActions) => {
   switch (action.type) {
-    case 'togglePanel':
+    case "togglePanel":
       return { ...state, showPanel: action.payload };
     default:
       return state;
@@ -30,12 +30,12 @@ const layoutReducer = (state: ILayoutState, action: ILayoutActions) => {
 export const Layout: React.FC<ILayoutProps> = ({ children }) => {
   const { title, description } = useSiteMetadata();
   const initialState: ILayoutState = {
-    showPanel: false,
+    showPanel: false
   };
   const [state, dispatch] = useReducer(layoutReducer, initialState);
 
   const identity = useIdentityContext();
-  let n = '';
+  let n = "";
   const isLoggedIn = identity && identity.isLoggedIn;
   if (
     identity &&
@@ -47,71 +47,71 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
   } else if (isLoggedIn && identity.user) {
     n = identity.user.email;
   } else {
-    n = 'anonymous';
+    n = "anonymous";
   }
 
   return (
     <div>
       <Helmet>
-        <html lang='en' />
+        <html lang="en" />
         <title>{title}</title>
-        <meta name='description' content={description} />
+        <meta name="description" content={description} />
         <link
-          rel='apple-touch-icon'
-          sizes='180x180'
-          href='/img/apple-touch-icon.png'
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/img/apple-touch-icon.png"
         />
         <link
-          rel='icon'
-          type='image/png'
-          href='/img/favicon-32x32.png'
-          sizes='32x32'
+          rel="icon"
+          type="image/png"
+          href="/img/favicon-32x32.png"
+          sizes="32x32"
         />
         <link
-          rel='icon'
-          type='image/png'
-          href='/img/favicon-16x16.png'
-          sizes='16x16'
+          rel="icon"
+          type="image/png"
+          href="/img/favicon-16x16.png"
+          sizes="16x16"
         />
 
         <link
-          rel='mask-icon'
-          href='/img/safari-pinned-tab.svg'
-          color='#ff4400'
+          rel="mask-icon"
+          href="/img/safari-pinned-tab.svg"
+          color="#ff4400"
         />
-        <meta name='theme-color' content='#fff' />
-        <meta property='og:type' content='business.business' />
-        <meta property='og:title' content={title} />
-        <meta property='og:url' content='/' />
-        <meta property='og:image' content='/img/og-image.jpg' />
+        <meta name="theme-color" content="#fff" />
+        <meta property="og:type" content="business.business" />
+        <meta property="og:title" content={title} />
+        <meta property="og:url" content="/" />
+        <meta property="og:image" content="/img/og-image.jpg" />
       </Helmet>
       <Navbar />
       <Panel
-        onClose={() => dispatch({ type: 'togglePanel', payload: false })}
+        onClose={() => dispatch({ type: "togglePanel", payload: false })}
         isVisible={state.showPanel}
       >
         <div>
           {isLoggedIn ? (
             <LogoutForm
               onClose={() => {
-                dispatch({ type: 'togglePanel', payload: false });
+                dispatch({ type: "togglePanel", payload: false });
               }}
             />
           ) : (
             <LoginForm
               onClose={() => {
-                dispatch({ type: 'togglePanel', payload: false });
+                dispatch({ type: "togglePanel", payload: false });
               }}
             />
           )}
         </div>
       </Panel>
       <nav>
-        {' '}
+        {" "}
         {isLoggedIn ? (
           <div
             onClick={() => {
-              dispatch({ type: 'togglePanel', payload: true });
+              dispatch({ type: "togglePanel", payload: true });
             }}
           >
             Sign Out
@@ -119,7 +119,7 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
         ) : (
           <div
             onClick={() => {
-              dispatch({ type: 'togglePanel', payload: true });
+              dispatch({ type: "togglePanel", payload: true });
             }}
           >
             Sign In

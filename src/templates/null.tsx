@@ -1,8 +1,5 @@
-import React from 'react';
-
+import React from "react";
 
 export default () => {
-    return (
-        <div>null page</div>
-    )
-}
+  return <div>null page</div>;
+};

@@ -1,7 +1,7 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import { Layout } from '../components/Layout';
-import { Tag } from '../components/Tag';
+import React from "react";
+import { graphql } from "gatsby";
+import { Layout } from "../components/Layout";
+import { Tag } from "../components/Tag";
 
 export interface ITagTemplateProps {
   pageContext: {

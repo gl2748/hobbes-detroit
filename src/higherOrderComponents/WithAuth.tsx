@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import {
-  useIdentityContext,
-} from 'react-netlify-identity-widget';
+import React, { useState } from "react";
+import { useIdentityContext } from "react-netlify-identity-widget";
 
 export const WithAuth = <P extends object>(
   Component: React.ComponentType<P>

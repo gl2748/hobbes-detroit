@@ -1,7 +1,7 @@
-const _ = require('lodash');
-const path = require('path');
-const { createFilePath } = require('gatsby-source-filesystem');
-const { fmImagesToRelative } = require('gatsby-remark-relative-images');
+const _ = require("lodash");
+const path = require("path");
+const { createFilePath } = require("gatsby-source-filesystem");
+const { fmImagesToRelative } = require("gatsby-remark-relative-images");
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
@@ -36,14 +36,14 @@ exports.createPages = ({ actions, graphql }) => {
       const id = edge.node.id;
       let newPost = {};
       // Template key null Guard.
-      if (String(edge.node.frontmatter.templateKey) === 'null') {
+      if (String(edge.node.frontmatter.templateKey) === "null") {
         console.log(
-          'It looks like you have a markdown file with improperly formatted or absent front matter, in this case the template key field is missing, consider either hand-coding a markdown file with the correct front matter or else deploying your latest changes to the netlify branch and using the CMS to create a new page / piece of content. Note: once you have done that in the CMS you will need to pull down the changes.'
+          "It looks like you have a markdown file with improperly formatted or absent front matter, in this case the template key field is missing, consider either hand-coding a markdown file with the correct front matter or else deploying your latest changes to the netlify branch and using the CMS to create a new page / piece of content. Note: once you have done that in the CMS you will need to pull down the changes."
         );
         return;
       }
       // Project Posts
-      if (String(edge.node.frontmatter.templateKey) === 'project-post') {
+      if (String(edge.node.frontmatter.templateKey) === "project-post") {
         // If this is a protectedProject project...create a post at the /protectedProject path.
         // See the gatsby-plugin-create-client-paths plugin in the gatsby config.
         let p = `${edge.node.fields.slug}`;
@@ -59,13 +59,13 @@ exports.createPages = ({ actions, graphql }) => {
           // additional data can be passed via context.
           // Available via graphql pageQuery in component defined above.
           context: {
-            id,
-          },
+            id
+          }
         };
         createPage(newPost);
       }
       // Everything else
-      if (String(edge.node.frontmatter.templateKey) !== 'project-post') {
+      if (String(edge.node.frontmatter.templateKey) !== "project-post") {
         newPost = {
           path: edge.node.fields.slug,
           tags: edge.node.frontmatter.tags,
@@ -75,8 +75,8 @@ exports.createPages = ({ actions, graphql }) => {
           // additional data can be passed via context.
           // Available via graphql pageQuery in component defined above.
           context: {
-            id,
-          },
+            id
+          }
         };
         createPage(newPost);
       }
@@ -101,8 +101,8 @@ exports.createPages = ({ actions, graphql }) => {
         path: tagPath,
         component: path.resolve(`src/templates/tags.tsx`),
         context: {
-          tag,
-        },
+          tag
+        }
       });
     });
   });
@@ -117,7 +117,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `slug`,
       node,
-      value,
+      value
     });
   }
 };

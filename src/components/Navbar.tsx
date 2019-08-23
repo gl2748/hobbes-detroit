@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from "react";
+import { Link } from "gatsby";
 
 export const Navbar: React.FC = () => {
   return (
@@ -17,5 +17,5 @@ export const Navbar: React.FC = () => {
         <Link to="/tags">Tags</Link>
       </div>
     </div>
-  )
-}
+  );
+};
