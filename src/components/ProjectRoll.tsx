@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "gatsby";
 
 export interface IProjectProps {
   title: string;
@@ -26,11 +26,11 @@ export interface IProjectRollProps {
 }
 
 export const ProjectRoll: React.FC<IProjectRollProps> = ({
-  data,
+  data
 }: IProjectRollProps) => {
   const { edges: posts } = data.allMarkdownRemark;
   const tempImageStyle = {
-    maxWidth: '300px',
+    maxWidth: "300px"
   };
   return (
     <div>
@@ -38,7 +38,7 @@ export const ProjectRoll: React.FC<IProjectRollProps> = ({
         posts.map(({ node: post }: { node: IProjectProps }) => (
           <div key={post.id}>
             <article
-              className={`${post.frontmatter.featured ? 'is-featured' : ''}`}
+              className={`${post.frontmatter.featured ? "is-featured" : ""}`}
             >
               <header>
                 <p>

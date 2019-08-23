@@ -9,4 +9,3 @@ description: |-
 
   Treat others as you'd like to be treated.
 ---
-

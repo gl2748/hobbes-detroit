@@ -1,7 +1,7 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import { StaticQuery } from 'gatsby'
-import { Legal } from '../components/Legal'
+import React from "react";
+import { graphql } from "gatsby";
+import { StaticQuery } from "gatsby";
+import { Legal } from "../components/Legal";
 
 export const LegalContainer: React.FC = () => (
   <StaticQuery
@@ -24,9 +24,9 @@ export const LegalContainer: React.FC = () => (
     render={data => {
       const {
         title,
-        description,
-      } = data.allMarkdownRemark.edges[0].node.frontmatter
-      return <Legal title={title} description={description} />
+        description
+      } = data.allMarkdownRemark.edges[0].node.frontmatter;
+      return <Legal title={title} description={description} />;
     }}
   />
-)
+);

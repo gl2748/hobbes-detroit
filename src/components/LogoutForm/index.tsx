@@ -1,17 +1,17 @@
-import React from 'react';
-import { useIdentityContext } from 'react-netlify-identity';
-import useLoading from '../../higherOrderComponents/useLoading';
+import React from "react";
+import { useIdentityContext } from "react-netlify-identity";
+import useLoading from "../../higherOrderComponents/useLoading";
 
 export interface ILogoutFormProps {
   onClose: () => void;
 }
 
 export const LogoutForm: React.FC<ILogoutFormProps> = ({
-  onClose,
+  onClose
 }: ILogoutFormProps) => {
   const identity = useIdentityContext();
 
-  let n = '';
+  let n = "";
   const isLoggedIn = identity && identity.isLoggedIn;
   if (
     identity &&
@@ -23,7 +23,7 @@ export const LogoutForm: React.FC<ILogoutFormProps> = ({
   } else if (isLoggedIn && identity.user) {
     n = identity.user.email;
   } else {
-    n = 'anonymous';
+    n = "anonymous";
   }
 
   const [isLoading, load] = useLoading();
@@ -35,17 +35,17 @@ export const LogoutForm: React.FC<ILogoutFormProps> = ({
 
   return (
     <>
-      <div className='header'>
-        <button className='btn btnHeader active'>Logged in</button>
+      <div className="header">
+        <button className="btn btnHeader active">Logged in</button>
       </div>
-      <form className='form '>
-        <p className='infoText'>
+      <form className="form ">
+        <p className="infoText">
           Logged in as <br />
-          <span className='infoTextEmail'>{n}</span>
+          <span className="infoTextEmail">{n}</span>
         </p>
         <button
-          type='submit'
-          className={isLoading ? 'btn saving' : 'btn'}
+          type="submit"
+          className={isLoading ? "btn saving" : "btn"}
           onClick={logout}
         >
           Log out

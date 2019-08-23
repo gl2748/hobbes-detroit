@@ -1,10 +1,10 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import { graphql } from 'gatsby';
-import { Layout } from '../components/Layout';
-import { HTMLContent } from '../components/Content';
-import { Project } from '../components/Project';
-import { WithAuth } from '../higherOrderComponents/WithAuth';
+import React from "react";
+import Helmet from "react-helmet";
+import { graphql } from "gatsby";
+import { Layout } from "../components/Layout";
+import { HTMLContent } from "../components/Content";
+import { Project } from "../components/Project";
+import { WithAuth } from "../higherOrderComponents/WithAuth";
 
 export interface IProjectPostProps {
   data: {
@@ -22,7 +22,7 @@ export interface IProjectPostProps {
 }
 
 const ProjectPost: React.FC<IProjectPostProps> = ({
-  data,
+  data
 }: IProjectPostProps) => {
   const { markdownRemark: post } = data;
 
@@ -36,10 +36,10 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
         helmet={
-          <Helmet titleTemplate='%s | Blog'>
+          <Helmet titleTemplate="%s | Blog">
             <title>{`${post.frontmatter.title}`}</title>
             <meta
-              name='description'
+              name="description"
               content={`${post.frontmatter.description}`}
             />
           </Helmet>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 // Stolen from here: https://github.com/sw-yx/react-netlify-identity-widget/blob/master/src/useLoading.tsx
 
