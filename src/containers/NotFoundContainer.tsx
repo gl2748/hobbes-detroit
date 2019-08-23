@@ -1,7 +1,7 @@
-import { graphql, StaticQuery } from "gatsby"
-import React from "react"
-import { Cookie, ICookieProps } from "../components/Cookie"
-import { IAllMarkdownRemark, IFrontmatter } from "./interfaces"
+import { graphql, StaticQuery } from "gatsby";
+import React from "react";
+import { Cookie, ICookieProps } from "../components/Cookie";
+import { IAllMarkdownRemark, IFrontmatter } from "./interfaces";
 
 export const NotFoundContainer = () => {
   const render = (data: IAllMarkdownRemark<IFrontmatter<ICookieProps>>) => {
@@ -9,10 +9,10 @@ export const NotFoundContainer = () => {
     const {
       title,
       description
-    } = data.allMarkdownRemark.edges[0].node.frontmatter
+    } = data.allMarkdownRemark.edges[0].node.frontmatter;
     // debugger
-    return <Cookie title={title} description={description} />
-  }
+    return <Cookie title={title} description={description} />;
+  };
   return (
     <StaticQuery
       query={graphql`
@@ -33,5 +33,5 @@ export const NotFoundContainer = () => {
       `}
       render={render}
     />
-  )
-}
+  );
+};

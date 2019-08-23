@@ -1,7 +1,7 @@
-import { graphql, StaticQuery } from "gatsby"
-import React from "react"
-import { IStudioProps, Studio } from "../components/Studio"
-import { IAllMarkdownRemark } from "./interfaces"
+import { graphql, StaticQuery } from "gatsby";
+import React from "react";
+import { IStudioProps, Studio } from "../components/Studio";
+import { IAllMarkdownRemark } from "./interfaces";
 
 export const StudioContainer = () => {
   const render = (data: IAllMarkdownRemark<IStudioProps>) => {
@@ -12,7 +12,7 @@ export const StudioContainer = () => {
       phone,
       email,
       social
-    } = data.allMarkdownRemark.edges[0].node.frontmatter
+    } = data.allMarkdownRemark.edges[0].node.frontmatter;
     return (
       <Studio
         title={title}
@@ -22,8 +22,8 @@ export const StudioContainer = () => {
         email={email}
         social={social}
       />
-    )
-  }
+    );
+  };
   return (
     <StaticQuery
       query={graphql`
@@ -51,5 +51,5 @@ export const StudioContainer = () => {
       `}
       render={render}
     />
-  )
-}
+  );
+};

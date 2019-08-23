@@ -1,10 +1,10 @@
-import { graphql } from "gatsby"
-import React from "react"
-import Helmet from "react-helmet"
-import { HTMLContent } from "../components/Content"
-import { Layout } from "../components/Layout"
-import { Project } from "../components/Project"
-import { WithAuth } from "../higherOrderComponents/WithAuth"
+import { graphql } from "gatsby";
+import React from "react";
+import Helmet from "react-helmet";
+import { HTMLContent } from "../components/Content";
+import { Layout } from "../components/Layout";
+import { Project } from "../components/Project";
+import { WithAuth } from "../higherOrderComponents/WithAuth";
 
 export interface IProjectPostProps {
   data: {
@@ -18,17 +18,17 @@ export interface IProjectPostProps {
         featured: boolean;
       };
     };
-  }
+  };
 }
 
 const ProjectPost: React.FC<IProjectPostProps> = ({
   data
 }: IProjectPostProps) => {
-  const { markdownRemark: post } = data
+  const { markdownRemark: post } = data;
 
   const EnhancedProjectComponent = post.frontmatter.protectedProject
     ? WithAuth(Project)
-    : Project
+    : Project;
   return (
     <Layout>
       <EnhancedProjectComponent
@@ -50,10 +50,10 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
         featured={post.frontmatter.featured}
       />
     </Layout>
-  )
-}
+  );
+};
 
-export default ProjectPost
+export default ProjectPost;
 
 // The $id param here comes from gatsby-node.js createPage method with a context property in the first argument.
 export const pageQuery = graphql`
@@ -70,4 +70,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

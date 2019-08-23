@@ -3,12 +3,12 @@ export interface IGraphQLList<T> {
     {
       node: T;
     }
-  ]
+  ];
 }
 export interface IFrontmatter<T> {
-  frontmatter: T
+  frontmatter: T;
 }
 
 export interface IAllMarkdownRemark<T> {
-  allMarkdownRemark: IGraphQLList<T>
+  allMarkdownRemark: IGraphQLList<T>;
 }

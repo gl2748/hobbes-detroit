@@ -1,17 +1,17 @@
-import { Link } from "gatsby"
-import { kebabCase } from "lodash"
-import React, { ReactElement, ReactNode } from "react"
-import { Content, HTMLContent } from "../components/Content"
+import { Link } from "gatsby";
+import { kebabCase } from "lodash";
+import React, { ReactElement, ReactNode } from "react";
+import { Content, HTMLContent } from "../components/Content";
 
 export interface IProjectProps {
-  content: ReactNode
-  contentComponent: HTMLContent
-  description: string
-  tags: string[]
-  title: string
-  helmet: ReactElement
-  featured: boolean
-  protectedProject: boolean
+  content: ReactNode;
+  contentComponent: HTMLContent;
+  description: string;
+  tags: string[];
+  title: string;
+  helmet: ReactElement;
+  featured: boolean;
+  protectedProject: boolean;
 }
 
 export const Project: React.FC<IProjectProps> = ({
@@ -24,7 +24,7 @@ export const Project: React.FC<IProjectProps> = ({
   featured,
   protectedProject
 }: IProjectProps) => {
-  const PostContent = contentComponent || Content
+  const PostContent = contentComponent || Content;
 
   return (
     <section>
@@ -51,5 +51,5 @@ export const Project: React.FC<IProjectProps> = ({
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

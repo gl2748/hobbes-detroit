@@ -1,59 +1,59 @@
-import React, { ReactNode, useReducer } from "react"
-import { Helmet } from "react-helmet"
-import { useIdentityContext } from "react-netlify-identity-widget"
-import { Footer } from "./Footer"
-import { LoginForm } from "./LoginForm"
-import { LogoutForm } from "./LogoutForm"
-import "./main.css"
-import { Navbar } from "./Navbar"
-import { Panel } from "./Panel"
-import { useSiteMetadata } from "./SiteMetadata"
+import React, { ReactNode, useReducer } from "react";
+import { Helmet } from "react-helmet";
+import { useIdentityContext } from "react-netlify-identity-widget";
+import { Footer } from "./Footer";
+import { LoginForm } from "./LoginForm";
+import { LogoutForm } from "./LogoutForm";
+import "./main.css";
+import { Navbar } from "./Navbar";
+import { Panel } from "./Panel";
+import { useSiteMetadata } from "./SiteMetadata";
 
 export interface ILayoutProps {
-  children: ReactNode
+  children: ReactNode;
 }
 export interface ILayoutState {
-  showPanel: boolean
+  showPanel: boolean;
 }
 export interface ILayoutActions {
-  type: "togglePanel"
-  payload: boolean
+  type: "togglePanel";
+  payload: boolean;
 }
 
 const layoutReducer = (state: ILayoutState, action: ILayoutActions) => {
   switch (action.type) {
     case "togglePanel":
-      return { ...state, showPanel: action.payload }
+      return { ...state, showPanel: action.payload };
     default:
-      return state
+      return state;
   }
-}
+};
 
 export const Layout: React.FC<ILayoutProps> = ({ children }) => {
-  const { title, description } = useSiteMetadata()
+  const { title, description } = useSiteMetadata();
   const initialState: ILayoutState = {
     showPanel: false
-  }
-  const [state, dispatch] = useReducer(layoutReducer, initialState)
+  };
+  const [state, dispatch] = useReducer(layoutReducer, initialState);
 
-  const identity = useIdentityContext()
-  let n = ""
-  const isLoggedIn = identity && identity.isLoggedIn
+  const identity = useIdentityContext();
+  let n = "";
+  const isLoggedIn = identity && identity.isLoggedIn;
   if (
     identity &&
     identity.user &&
     identity.user.user_metadata &&
     identity.user.user_metadata.full_name
   ) {
-    n = identity.user.user_metadata.full_name
+    n = identity.user.user_metadata.full_name;
   } else if (isLoggedIn && identity.user) {
-    n = identity.user.email
+    n = identity.user.email;
   } else {
-    n = "anonymous"
+    n = "anonymous";
   }
 
   const togglePanel = (payload: boolean) => () =>
-    dispatch({ type: "togglePanel", payload })
+    dispatch({ type: "togglePanel", payload });
 
   return (
     <div>
@@ -111,5 +111,5 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
       <div>{children}</div>
       <Footer />
     </div>
-  )
-}
+  );
+};

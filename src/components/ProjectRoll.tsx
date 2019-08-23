@@ -1,20 +1,20 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+import { Link } from "gatsby";
+import PropTypes from "prop-types";
+import React from "react";
 
 export interface IProjectProps {
-  title: string
-  id: number
+  title: string;
+  id: number;
   fields: {
     slug: string;
-  }
+  };
   frontmatter: {
     featured: {};
     protectedProject: boolean;
     featuredImage: {};
     date: string;
     title: string;
-  }
+  };
 }
 
 export interface IProjectRollProps {
@@ -22,16 +22,16 @@ export interface IProjectRollProps {
     allMarkdownRemark: {
       edges: [{ node: IProjectProps }];
     };
-  }
+  };
 }
 
 export const ProjectRoll: React.FC<IProjectRollProps> = ({
   data
 }: IProjectRollProps) => {
-  const { edges: posts } = data.allMarkdownRemark
+  const { edges: posts } = data.allMarkdownRemark;
   const tempImageStyle = {
     maxWidth: "300px"
-  }
+  };
   return (
     <div>
       {posts &&
@@ -60,5 +60,5 @@ export const ProjectRoll: React.FC<IProjectRollProps> = ({
           </div>
         ))}
     </div>
-  )
-}
+  );
+};
