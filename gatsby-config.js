@@ -8,7 +8,6 @@ module.exports = {
   plugins: [
     "gatsby-plugin-typescript",
     "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sass",
     "gatsby-remark-relative-images",
     {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
@@ -55,7 +54,7 @@ module.exports = {
       resolve: "gatsby-plugin-purgecss", // purges all unused/unreferenced css rules
       options: {
         develop: true, // Activates purging in npm run develop
-        purgeOnly: ["/all.sass"] // applies purging only on the bulma css file
+        purgeOnly: ["/main.css"] // applies purging only on the bulma css file
       }
     }, // must be after other CSS plugins
     "gatsby-plugin-netlify" // make sure to keep it last in the array, for plugin settings see netlify.toml
