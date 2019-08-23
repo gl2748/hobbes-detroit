@@ -1,9 +1,9 @@
-import React, { ReactNode, useReducer } from 'react';
+import React, { ReactNode } from "react"
 
 export interface IPanelProps {
-  isVisible: boolean;
-  children: ReactNode;
-  onClose: () => void;
+  isVisible: boolean
+  children: ReactNode
+  onClose: () => void
 }
 
 export const Panel: React.FC<IPanelProps> = ({
@@ -17,8 +17,8 @@ export const Panel: React.FC<IPanelProps> = ({
         {children}
         <div onClick={onClose}>CLOSE</div>
       </div>
-    );
+    )
   } else {
-    return null;
+    return null
   }
-};
+}
