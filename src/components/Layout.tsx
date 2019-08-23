@@ -1,54 +1,59 @@
-import React, { useReducer } from "react";
-import { Helmet } from "react-helmet";
-import { Footer } from "./Footer";
-import { Navbar } from "./Navbar";
-import "./all.sass";
-import { useSiteMetadata } from "./SiteMetadata";
-import { useIdentityContext } from "react-netlify-identity-widget";
-import { LoginForm } from "./LoginForm";
-import { LogoutForm } from "./LogoutForm";
-import { Panel } from "./Panel";
+import React, { ReactNode, useReducer } from "react"
+import { Helmet } from "react-helmet"
+import { useIdentityContext } from "react-netlify-identity-widget"
+import "./all.sass"
+import { Footer } from "./Footer"
+import { LoginForm } from "./LoginForm"
+import { LogoutForm } from "./LogoutForm"
+import { Navbar } from "./Navbar"
+import { Panel } from "./Panel"
+import { useSiteMetadata } from "./SiteMetadata"
 
-export interface ILayoutProps {}
+export interface ILayoutProps {
+  children: ReactNode
+}
 export interface ILayoutState {
-  showPanel: boolean;
+  showPanel: boolean
 }
 export interface ILayoutActions {
-  type: "togglePanel";
-  payload: boolean;
+  type: "togglePanel"
+  payload: boolean
 }
 
 const layoutReducer = (state: ILayoutState, action: ILayoutActions) => {
   switch (action.type) {
     case "togglePanel":
-      return { ...state, showPanel: action.payload };
+      return { ...state, showPanel: action.payload }
     default:
-      return state;
+      return state
   }
-};
+}
 
 export const Layout: React.FC<ILayoutProps> = ({ children }) => {
-  const { title, description } = useSiteMetadata();
+  const { title, description } = useSiteMetadata()
   const initialState: ILayoutState = {
     showPanel: false
-  };
-  const [state, dispatch] = useReducer(layoutReducer, initialState);
+  }
+  const [state, dispatch] = useReducer(layoutReducer, initialState)
 
-  const identity = useIdentityContext();
-  let n = "";
-  const isLoggedIn = identity && identity.isLoggedIn;
+  const identity = useIdentityContext()
+  let n = ""
+  const isLoggedIn = identity && identity.isLoggedIn
   if (
     identity &&
     identity.user &&
     identity.user.user_metadata &&
     identity.user.user_metadata.full_name
   ) {
-    n = identity.user.user_metadata.full_name;
+    n = identity.user.user_metadata.full_name
   } else if (isLoggedIn && identity.user) {
-    n = identity.user.email;
+    n = identity.user.email
   } else {
-    n = "anonymous";
+    n = "anonymous"
   }
+
+  const togglePanel = (payload: boolean) => () =>
+    dispatch({ type: "togglePanel", payload })
 
   return (
     <div>
@@ -86,48 +91,25 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
         <meta property="og:image" content="/img/og-image.jpg" />
       </Helmet>
       <Navbar />
-      <Panel
-        onClose={() => dispatch({ type: "togglePanel", payload: false })}
-        isVisible={state.showPanel}
-      >
+      <Panel onClose={togglePanel(false)} isVisible={state.showPanel}>
         <div>
           {isLoggedIn ? (
-            <LogoutForm
-              onClose={() => {
-                dispatch({ type: "togglePanel", payload: false });
-              }}
-            />
+            <LogoutForm onClose={togglePanel(false)} />
           ) : (
-            <LoginForm
-              onClose={() => {
-                dispatch({ type: "togglePanel", payload: false });
-              }}
-            />
+            <LoginForm onClose={togglePanel(false)} />
           )}
         </div>
       </Panel>
       <nav>
         {" "}
         {isLoggedIn ? (
-          <div
-            onClick={() => {
-              dispatch({ type: "togglePanel", payload: true });
-            }}
-          >
-            Sign Out
-          </div>
+          <div onClick={togglePanel(true)}>Sign Out</div>
         ) : (
-          <div
-            onClick={() => {
-              dispatch({ type: "togglePanel", payload: true });
-            }}
-          >
-            Sign In
-          </div>
+          <div onClick={togglePanel(true)}>Sign In</div>
         )}
       </nav>
       <div>{children}</div>
       <Footer />
     </div>
-  );
-};
+  )
+}

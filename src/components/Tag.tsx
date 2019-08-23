@@ -1,12 +1,12 @@
-import React from "react";
-import Helmet from "react-helmet";
-import { Link, graphql } from "gatsby";
-import { Layout } from "../components/Layout";
+import { graphql, Link } from "gatsby"
+import React from "react"
+import Helmet from "react-helmet"
+import { Layout } from "../components/Layout"
 
 export interface ITagProps {
-  totalCount: number;
-  title: string;
-  tag: string;
+  totalCount: number
+  title: string
+  tag: string
   posts: [
     {
       node: {
@@ -19,7 +19,7 @@ export interface ITagProps {
         };
       };
     }
-  ];
+  ]
 }
 
 export const Tag: React.FC<ITagProps> = ({
@@ -28,7 +28,7 @@ export const Tag: React.FC<ITagProps> = ({
   title,
   totalCount
 }: ITagProps) => {
-  debugger;
+  // debugger
   const postLinks = posts.map(post => (
     <li key={post.node.fields.slug}>
       <Link
@@ -41,10 +41,10 @@ export const Tag: React.FC<ITagProps> = ({
         <h2>{post.node.frontmatter.title} elll!</h2>
       </Link>
     </li>
-  ));
+  ))
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? "" : "s"
-  } tagged with “${tag}”`;
+  } tagged with “${tag}”`
 
   return (
     <section>
@@ -61,5 +61,5 @@ export const Tag: React.FC<ITagProps> = ({
         </div>
       </div>
     </section>
-  );
-};
+  )
+}

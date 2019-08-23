@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"
+import React from "react"
 export interface IStudioProps {
-  description: string;
-  title: string;
-  phone: string;
-  email: string;
-  address: string;
-  social: { title: string; url: string }[];
+  description: string
+  title: string
+  phone: string
+  email: string
+  address: string
+  social: Array<{ title: string; url: string }>
 }
 export const Studio: React.FC<IStudioProps> = ({
   title,
@@ -26,5 +26,5 @@ export const Studio: React.FC<IStudioProps> = ({
       <p>{social[0].title}</p>
       <p>{social[0].url}</p>
     </div>
-  );
-};
+  )
+}

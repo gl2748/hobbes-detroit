@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "gatsby";
+import { Link } from "gatsby"
+import React from "react"
 
 export const Footer: React.FC = () => {
   return (
@@ -14,5 +14,5 @@ export const Footer: React.FC = () => {
         <Link to="/cookie">Cookie Policy</Link>
       </li>
     </ul>
-  );
-};
+  )
+}
