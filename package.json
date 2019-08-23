@@ -55,6 +55,7 @@
     "develop": "npm run clean && gatsby develop",
     "serve": "gatsby serve",
     "format": "prettier --write '{src,test}/**/*.{ts,tsx,css,md}' '*.js'",
+    "lint:fix": "tslint --fix src/**/*.{ts,tsx}",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -85,7 +86,12 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts,tsx,css,md}": [
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "tslint --fix",
+      "git add"
+    ],
+    "*.{js,css,md}": [
       "prettier --write",
       "git add"
     ]
