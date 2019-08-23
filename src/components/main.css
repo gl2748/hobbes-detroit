@@ -1,2 +1,7 @@
-@import 'reset.css';
-@import 'typography.css';
+@import "reset.css";
+@import "typography.css";
+
+:root {
+  --hob-font--regular: GT Haptik;
+  --hob-font--medium: GT Haptik Medium;
+}

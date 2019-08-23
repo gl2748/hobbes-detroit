@@ -2,3 +2,8 @@
   font-family: "GT Haptik";
   src: url("../fonts/GT-Haptik-Regular.ttf");
 }
+
+@font-face {
+  font-family: "GT Haptik Medium";
+  src: url("../fonts/GT-Haptik-Medium.ttf");
+}
