@@ -36,7 +36,10 @@ export const HobIcon: React.FC<IHobIconProps> = ({
   const Svg = Icons[name];
 
   return (
-    <SvgContainer size={size}>
+    <SvgContainer
+      size={size}
+      className={`hob-icon hob-icon--${name} hob-icon--${size}`}
+    >
       <Svg color={color} />
     </SvgContainer>
   );
