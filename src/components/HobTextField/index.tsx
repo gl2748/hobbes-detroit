@@ -11,7 +11,7 @@ const TextField = styled.input`
   padding: 1rem;
   font-size: 28px;
   font-family: GT Haptik;
-  border: 1px solid var(--hob-color--dark);
+  border: var(--hob-border);
   width: 100%;
   background-color: transparent;
   ::placeholder {
