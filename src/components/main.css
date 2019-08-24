@@ -7,6 +7,17 @@
 
   --hob-color--dark: #000;
   --hob-color--light: #e6e6e6;
+  --hob-color--primary: var(--hob-color--dark);
+  --hob-color--primary--1: var(--hob-color--dark);
+  --hob-color-alt--primary: var(--hob-color--light);
+  --hob-color--secondary: var(--hob-color--light);
+  --hob-color-alt--secondary: var(--hob-color--dark);
+
+  --hob-border-color: var(--hob-color--dark);
+  --hob-border-width: 1px;
+  --hob-border-style: solid;
+  --hob-border: var(--hob-border-width) var(--hob-border-style)
+    var(--hob-border-color);
 }
 
 body {
