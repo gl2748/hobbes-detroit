@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import React, { ChangeEvent } from "react";
 export interface IHobTextFieldProps {
+  required?: boolean;
+  type?: "password" | "email" | "text";
   value: string;
   placeholder?: string;
   onChange: (x: ChangeEvent<HTMLInputElement>) => void;
@@ -22,11 +24,14 @@ const TextField = styled.input`
 export const HobTextField: React.FC<IHobTextFieldProps> = ({
   value,
   onChange,
-  placeholder
+  placeholder,
+  type = "text",
+  required
 }: IHobTextFieldProps) => {
   return (
     <TextField
-      type="text"
+      type={type}
+      required={required}
       className="hob-text-field"
       value={value}
       onChange={onChange}
