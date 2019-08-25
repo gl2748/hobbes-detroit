@@ -16,6 +16,11 @@ const Container = styled.div`
   }
 `;
 
+const Flex = styled.div`
+  display: flex;
+  align-items: baseline;
+`;
+
 const LightBg = styled.div`
   border: var(--hob-border);
   padding: 1rem;
@@ -30,22 +35,55 @@ export const basic = () => {
   return (
     <Container>
       <LightBg>
-        <HobIconButton
-          variant="text"
-          onClick={action("clicked")}
-          color="primary"
-          name="lock"
-          size="sm"
-        />
+        <Flex>
+          <HobIconButton
+            variant="text"
+            onClick={action("clicked")}
+            color="primary"
+            name="lock"
+            size="sm"
+          />
+          <HobIconButton
+            variant="text"
+            onClick={action("clicked")}
+            color="primary"
+            name="lock"
+            size="md"
+          />
+          <HobIconButton
+            variant="text"
+            onClick={action("clicked")}
+            color="primary"
+            name="lock"
+            size="lg"
+          />
+        </Flex>
       </LightBg>
+
       <DarkBg>
-        <HobIconButton
-          variant="text"
-          onClick={action("clicked")}
-          color="secondary"
-          name="lock"
-          size="sm"
-        />
+        <Flex>
+          <HobIconButton
+            variant="text"
+            onClick={action("clicked")}
+            color="secondary"
+            name="close"
+            size="sm"
+          />
+          <HobIconButton
+            variant="text"
+            onClick={action("clicked")}
+            color="secondary"
+            name="close"
+            size="md"
+          />
+          <HobIconButton
+            variant="text"
+            onClick={action("clicked")}
+            color="secondary"
+            name="close"
+            size="lg"
+          />
+        </Flex>
       </DarkBg>
     </Container>
   );
