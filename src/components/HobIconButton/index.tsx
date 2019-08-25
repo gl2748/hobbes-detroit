@@ -10,6 +10,7 @@ export interface IHobIconButtonProps {
   color: "primary" | "secondary";
   name: "lock" | "close";
   onClick: (x: MouseEvent<HTMLButtonElement>) => void;
+  className?: string;
 }
 
 const shared = css`
@@ -42,14 +43,17 @@ export const HobIconButton: React.FC<IHobIconButtonProps> = ({
   color,
   name,
   onClick,
-  size
+  size,
+  className
 }) => {
   const Button = {
     text: TextButton
   }[variant];
   return (
     <Button
-      className={`hob-icon-button hob-icon-button--${color} hob-icon-button--${size}  hob-icon-button--${name} hob-icon-button--${variant}`}
+      className={`${
+        className ? className : ""
+      } hob-icon-button hob-icon-button--${color} hob-icon-button--${size}  hob-icon-button--${name} hob-icon-button--${variant}`}
       onClick={onClick}
       color={color}
       variant={variant}
