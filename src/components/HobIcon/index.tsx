@@ -17,7 +17,7 @@ export interface IHobIconProps {
 const SIZES = {
   lg: "3rem",
   md: "1.5rem",
-  sm: "0.75rem"
+  sm: "1.125rem"
 };
 interface ISvgProps {
   size: "sm" | "md" | "lg";
