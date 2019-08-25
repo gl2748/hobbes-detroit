@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { string } from "prop-types";
 import React from "react";
 import { Close, Lock } from "./icons";
 
@@ -23,13 +24,15 @@ interface ISvgProps {
 }
 const SvgContainer = styled.div<ISvgProps>`
   width: ${({ size }) => SIZES[size]};
+  height: ${({ size }) => SIZES[size]};
   svg {
     width: 100%;
+    height: 100%;
   }
 `;
 
 export const HobIcon: React.FC<IHobIconProps> = ({
-  color = "var(--hob-color--dark)",
+  color = "primary",
   name,
   size
 }) => {

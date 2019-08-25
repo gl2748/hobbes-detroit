@@ -1,11 +1,13 @@
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import React, { MouseEvent, ReactNode } from "react";
+import { HobButtonBase } from "../HobButtonBase";
 import { HobTypography } from "../HobTypography";
 export interface IHobButtonProps {
   variant: "text" | "outlined" | "contained";
   color: "primary" | "secondary";
   children: ReactNode;
+  className?: string;
   onClick: (x: MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -26,7 +28,7 @@ const shared = css`
   }
 `;
 
-const TextButton = styled.button`
+const TextButton = styled(HobButtonBase)`
   ${shared}
   border: var(--hob-border);
   border-color: transparent;
@@ -39,7 +41,7 @@ const TextButton = styled.button`
   }
 `;
 
-const OutlinedButton = styled.button`
+const OutlinedButton = styled(HobButtonBase)`
   ${shared}
   border: var(--hob-border);
   border-color: ${({ color }) => `var(--hob-color--${color})`};
@@ -53,7 +55,7 @@ const OutlinedButton = styled.button`
   }
 `;
 
-const ContainedButton = styled.button`
+const ContainedButton = styled(HobButtonBase)`
   ${shared}
   background-color: ${({ color }) => `var(--hob-color--${color})`};
   color: ${({ color }) => `var(--hob-color-alt--${color})`};
@@ -68,7 +70,8 @@ export const HobButton: React.FC<IHobButtonProps> = ({
   variant,
   color,
   onClick,
-  children
+  children,
+  className
 }: IHobButtonProps) => {
   const Button = {
     contained: ContainedButton,
