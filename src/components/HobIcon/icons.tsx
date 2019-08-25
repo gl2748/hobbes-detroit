@@ -16,17 +16,17 @@ export const Lock: React.FC<IIconProps> = ({
     <path
       d="M15 9H1V19H15V9Z"
       stroke="black"
-      stroke-width="2"
-      stroke-miterlimit="10"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M3 9V6C3 3.24 5.24 1 8 1C10.76 1 13 3.24 13 6V9"
-      stroke-width="2"
-      stroke-miterlimit="10"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeMiterlimit="10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
