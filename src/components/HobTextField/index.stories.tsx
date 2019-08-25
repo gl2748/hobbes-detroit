@@ -4,7 +4,7 @@ import React, { ChangeEvent, useState } from "react";
 import { HobTextField } from ".";
 
 export default {
-  title: "HobTextField"
+  title: "TextField"
 };
 
 const Container = styled.div`
