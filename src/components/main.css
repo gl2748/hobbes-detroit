@@ -18,6 +18,12 @@
   --hob-border-style: solid;
   --hob-border: var(--hob-border-width) var(--hob-border-style)
     var(--hob-border-color);
+
+  --hob-transition-duration: 300ms;
+  --hob-transition-timing-function: linear;
+  --hob-transition-delay: 0;
+  --hob-transition: var(--hob-transition-duration)
+    var(--hob-transition-timing-function) var(--hob-transition-delay);
 }
 
 body,

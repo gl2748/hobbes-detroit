@@ -15,7 +15,7 @@ const Drawer = styled.div`
   z-index: 100;
   left: -100%;
   top: 0;
-  transition: left 300ms ease;
+  transition: left var(--hob-transition-duration);
   background-color: var(--hob-color--light);
   width: 447px;
   &.hob-drawer--visible {

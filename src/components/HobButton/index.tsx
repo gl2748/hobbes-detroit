@@ -17,7 +17,10 @@ const shared = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: color 300ms, background-color 300ms, opacity 300ms, border 300ms;
+  transition: color var(--hob-transition-duration),
+    background-color var(--hob-transition-duration),
+    opacity var(--hob-transition-duration),
+    border var(--hob-transition-duration);
 
   :hover {
     cursor: pointer;
