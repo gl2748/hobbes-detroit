@@ -22,7 +22,8 @@ export interface IHobTypographyProps {
 
 const VARIANTS = {
   body1: styled("p")`
-    line-height: 1.1em;
+    font-size: 18px;
+    line-height: 1.278em;
   `,
   body2: styled("p")`
     font-size: 14px;
