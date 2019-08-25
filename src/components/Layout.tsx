@@ -2,28 +2,28 @@ import React, { ReactNode, useReducer } from "react";
 import { Helmet } from "react-helmet";
 import { useIdentityContext } from "react-netlify-identity-widget";
 import { Footer } from "./Footer";
+import { HobDrawer } from "./HobDrawer";
 import { LoginForm } from "./LoginForm";
 import { LogoutForm } from "./LogoutForm";
 import "./main.css";
 import { Navbar } from "./Navbar";
-import { Panel } from "./Panel";
 import { useSiteMetadata } from "./SiteMetadata";
 
 export interface ILayoutProps {
   children: ReactNode;
 }
 export interface ILayoutState {
-  showPanel: boolean;
+  showDrawer: boolean;
 }
 export interface ILayoutActions {
-  type: "togglePanel";
+  type: "toggleDrawer";
   payload: boolean;
 }
 
 const layoutReducer = (state: ILayoutState, action: ILayoutActions) => {
   switch (action.type) {
-    case "togglePanel":
-      return { ...state, showPanel: action.payload };
+    case "toggleDrawer":
+      return { ...state, showDrawer: action.payload };
     default:
       return state;
   }
@@ -32,7 +32,7 @@ const layoutReducer = (state: ILayoutState, action: ILayoutActions) => {
 export const Layout: React.FC<ILayoutProps> = ({ children }) => {
   const { title, description } = useSiteMetadata();
   const initialState: ILayoutState = {
-    showPanel: false
+    showDrawer: false
   };
   const [state, dispatch] = useReducer(layoutReducer, initialState);
 
@@ -52,8 +52,8 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
     n = "anonymous";
   }
 
-  const togglePanel = (payload: boolean) => () =>
-    dispatch({ type: "togglePanel", payload });
+  const toggleDrawer = (payload: boolean) => () =>
+    dispatch({ type: "toggleDrawer", payload });
 
   return (
     <div>
@@ -91,21 +91,21 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
         <meta property="og:image" content="/img/og-image.jpg" />
       </Helmet>
       <Navbar />
-      <Panel onClose={togglePanel(false)} isVisible={state.showPanel}>
+      <HobDrawer onClose={toggleDrawer(false)} isVisible={state.showDrawer}>
         <div>
           {isLoggedIn ? (
-            <LogoutForm onClose={togglePanel(false)} />
+            <LogoutForm onClose={toggleDrawer(false)} />
           ) : (
-            <LoginForm onClose={togglePanel(false)} />
+            <LoginForm onClose={toggleDrawer(false)} />
           )}
         </div>
-      </Panel>
+      </HobDrawer>
       <nav>
         {" "}
         {isLoggedIn ? (
-          <div onClick={togglePanel(true)}>Sign Out</div>
+          <div onClick={toggleDrawer(true)}>Sign Out</div>
         ) : (
-          <div onClick={togglePanel(true)}>Sign In</div>
+          <div onClick={toggleDrawer(true)}>Sign In</div>
         )}
       </nav>
       <div>{children}</div>
