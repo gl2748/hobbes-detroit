@@ -13,6 +13,7 @@ export interface IHobTypographyProps {
     | "h4"
     | "h5"
     | "h6"
+    | "link"
     | "overline"
     | "subtitle1"
     | "subtitle2";
@@ -53,6 +54,10 @@ const VARIANTS = {
   h6: styled("h6")`
     font-size: 20px;
     font-family: var(--hob-font--medium);
+  `,
+  link: styled.span`
+    font-size: 18px;
+    line-height: 1.278em;
   `,
   overline: styled("span")`
     font-size: 10px;
