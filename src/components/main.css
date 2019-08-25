@@ -20,6 +20,8 @@
     var(--hob-border-color);
 }
 
-body {
+body,
+button {
   background-color: var(--hob-color--light);
+  font-family: var(--hob-font--regular);
 }
