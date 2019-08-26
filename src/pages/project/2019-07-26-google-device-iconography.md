@@ -21,11 +21,7 @@ modules:
           First we animated the set of icons given to us, then we built out the
           rest of the set.
     type: textArea
-<<<<<<< HEAD
-  - projectBannerMedia: "https://ucarecdn.com/cd1d2539-32b1-4f1f-93d5-a87053e181bb/"
-=======
   - projectBannerMedia: 'https://ucarecdn.com/0632de8d-b900-479d-a6da-9a9360f252c7/'
->>>>>>> use valid uploadcare urls for testing
     type: projectBanner
   - textColumns:
       - column: >-
