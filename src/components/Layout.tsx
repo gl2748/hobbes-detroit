@@ -1,6 +1,8 @@
 import React, { ReactNode, useReducer } from "react";
 import { Helmet } from "react-helmet";
-import { useIdentityContext } from "react-netlify-identity-widget";
+import IdentityModal, {
+  useIdentityContext
+} from "react-netlify-identity-widget";
 import { Footer } from "./Footer";
 import { HobDrawer } from "./HobDrawer";
 import { LoginForm } from "./LoginForm";
@@ -55,6 +57,8 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
   const toggleDrawer = (payload: boolean) => () =>
     dispatch({ type: "toggleDrawer", payload });
 
+  const onCloseModal = () => null;
+
   return (
     <div>
       <Helmet>
@@ -90,6 +94,7 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
         <meta property="og:url" content="/" />
         <meta property="og:image" content="/img/og-image.jpg" />
       </Helmet>
+      <IdentityModal showDialog={false} onCloseDialog={onCloseModal} />
       <Navbar />
       <HobDrawer onClose={toggleDrawer(false)} isVisible={state.showDrawer}>
         <div>
