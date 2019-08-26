@@ -11,7 +11,7 @@ export interface IHobTextFieldProps {
 const TextField = styled.input`
   height: 4rem;
   padding: 1rem;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-family: GT Haptik;
   border: var(--hob-border);
   width: 100%;

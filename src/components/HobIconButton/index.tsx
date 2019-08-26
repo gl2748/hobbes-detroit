@@ -15,7 +15,7 @@ export interface IHobIconButtonProps {
 
 const shared = css`
   padding: 0.8rem;
-  border-radius: 50px;
+  border-radius: 3.125rem;
   display: flex;
   justify-content: center;
   align-items: center;

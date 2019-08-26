@@ -34,8 +34,8 @@ const Drawer = styled.div`
   width: 447px;
   .hob-icon-button--close {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 0.5rem;
+    right: 0.5rem;
   }
 `;
 

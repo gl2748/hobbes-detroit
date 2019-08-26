@@ -9,8 +9,8 @@ export interface IHobLettersProps {
 
 const SIZES = {
   lg: "203px",
-  md: "100px",
-  sm: "50px"
+  md: "6.25rem",
+  sm: "3.125rem"
 };
 interface ISvgProps {
   size: "sm" | "md" | "lg";

@@ -27,7 +27,7 @@ const shared = css`
   }
 
   .hob-typography--button {
-    font-size: 28px;
+    font-size: 1.75rem;
   }
 `;
 
