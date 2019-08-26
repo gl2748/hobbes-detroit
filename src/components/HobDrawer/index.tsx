@@ -32,6 +32,11 @@ const Drawer = styled.div`
   transition: left var(--hob-transition-duration);
   background-color: var(--hob-color--light);
   width: 447px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+
   .hob-icon-button--close {
     position: absolute;
     top: 0.5rem;
