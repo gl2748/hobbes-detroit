@@ -58,7 +58,7 @@ export const standardizeKeys = (entities: any[]) => () =>
   );
 
 // Generate a unique id for each entity
-export const createGatsbyIds = (createNodeId: (arg0: string) => void) => (entities: any[]) => 
+export const createGatsbyIds = (createNodeId: Function) => (entities: any[]) => 
   entities.map(e => {
     e.id = createNodeId(`${nanoid()}`);
     return e;
