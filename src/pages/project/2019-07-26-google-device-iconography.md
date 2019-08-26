@@ -35,11 +35,7 @@ modules:
           veritatis et quasi architecto beatae vitae dicta sunt explicabo.
     type: textArea
   - images:
-<<<<<<< HEAD
-      - image: "https://ucarecdn.com/fd5463d2-37e2-42c3-800d-7796d6097164/"
-=======
       - image: 'https://ucarecdn.com/df8f2b0d-8905-4f77-ac9a-fe25f0506d4f/'
->>>>>>> use valid uploadcare urls for testing
     type: imageGrid
   - textColumns:
       - column: >-
@@ -48,10 +44,6 @@ modules:
     type: textArea
   - bleed: true
     caption: sdgfsgf
-<<<<<<< HEAD
-    image: "https://ucarecdn.com/fad64e77-d7bc-4dc6-a707-2bde48598026/"
-=======
     image: 'https://ucarecdn.com/df8f2b0d-8905-4f77-ac9a-fe25f0506d4f/'
->>>>>>> use valid uploadcare urls for testing
     type: largeImage
 ---
