@@ -54,16 +54,14 @@ module.exports = {
     {
       resolve: `gatsby-transformer-uploadcare`,
       options: {
-        publicKey: '7b969f8af066608712d4',
-        name: 'meta',
-        url: 'https://upload.uploadcare.com/info/',
-        path: `${__dirname}/src/data/uploadcare`,
-        verboseOutput: true,
-        skipCreateNode: false,
-      },
+        publicKey: "7b969f8af066608712d4",
+        name: "meta",
+        url: "https://upload.uploadcare.com/info/",
+        searchTerm: "ucarecdn"
+      }
     },
     {
-      resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
+      resolve: "gatsby-plugin-purgecss", // purges all unused/unreferenced css rules
       options: {
         develop: true, // Activates purging in npm run develop
         purgeOnly: ["/main.css"] // applies purging only on the bulma css file
