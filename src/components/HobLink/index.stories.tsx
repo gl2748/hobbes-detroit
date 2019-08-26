@@ -30,12 +30,12 @@ export const basic = () => {
   return (
     <Container>
       <LightBg>
-        <HobLink href="www.google.com" color="primary" target="_blank">
+        <HobLink href="https://www.google.com" color="primary" target="_blank">
           Text
         </HobLink>
       </LightBg>
       <DarkBg>
-        <HobLink color="secondary" href="www.google.com">
+        <HobLink color="secondary" href="https://www.google.com">
           Open in same tab
         </HobLink>
       </DarkBg>
