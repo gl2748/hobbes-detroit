@@ -1,6 +1,6 @@
-import deepMapKeys from 'deep-map-keys';
-import nanoid from 'nanoid';
-import chalk from 'chalk';
+import chalk from "chalk";
+import deepMapKeys from "deep-map-keys";
+import nanoid from "nanoid";
 
 const log = console.log;
 
@@ -18,7 +18,7 @@ const restrictedNodeFields = [`id`, `children`, `parent`, `fields`, `internal`];
  */
 export const getValidKey = ({
   key,
-  verbose = false,
+  verbose = false
 }: {
   key: string;
   verbose?: boolean;
@@ -40,10 +40,11 @@ export const getValidKey = ({
     changed = true;
     nkey = `${conflictFieldPrefix}${nkey}`.replace(/-|__|:|\.|\s/g, `_`);
   }
-  if (changed && verbose)
+  if (changed && verbose) {
     log(
       chalk`{bgCyan ThirdParty} Object with key "${key}" breaks GraphQL naming convention. Renamed to "${nkey}"`
     );
+  }
 
   return nkey;
 };
@@ -57,7 +58,7 @@ export const standardizeKeys = (entities: any[]) => () =>
   );
 
 // Generate a unique id for each entity
-export const createGatsbyIds = (createNodeId: Function) => (entities: any[]) =>
+export const createGatsbyIds = (createNodeId: (arg0: string) => void) => (entities: any[]) => 
   entities.map(e => {
     e.id = createNodeId(`${nanoid()}`);
     return e;

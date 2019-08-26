@@ -1,12 +1,12 @@
-import chalk from 'chalk';
-import { Reporter } from 'gatsby';
-import { AxiosError } from 'axios';
+import { AxiosError } from "axios";
+import chalk from "chalk";
+import { Reporter } from "gatsby";
 const log = console.log;
 
 export const httpExceptionHandler = (e: AxiosError, reporter: Reporter) => {
   const { response, code } = e;
 
-  const c = code !== undefined ? code : 'undefined error code';
+  const c = code !== undefined ? code : "undefined error code";
   if (!response) {
     log(chalk`{bgRed ThirdParty} The request failed. Error Code: ${c}`);
     return reporter.panic(
@@ -18,7 +18,7 @@ export const httpExceptionHandler = (e: AxiosError, reporter: Reporter) => {
     const {
       status,
       statusText,
-      data: { message },
+      data: { message }
     } = e.response;
     log(
       chalk`{bgRed ThirdParty} The server response was "${status.toString()} ${statusText}"`
