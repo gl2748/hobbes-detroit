@@ -61,7 +61,6 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
 
   return (
     <div>
-      <></>
       <Helmet>
         <html lang="en" />
         <title>{title}</title>
