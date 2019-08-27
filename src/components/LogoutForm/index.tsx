@@ -11,6 +11,15 @@ export interface ILogoutFormProps {
 
 const LoggedInText = styled(HobTypography)`
   margin-bottom: 1rem;
+  font-size: 1.75rem;
+
+  :nth-of-type(2) {
+    margin-bottom: 2rem;
+  }
+`;
+
+const LogOutButton = styled(HobButton)`
+  margin-bottom: 3rem;
 `;
 
 export const LogoutForm: React.FC<ILogoutFormProps> = ({
@@ -42,10 +51,9 @@ export const LogoutForm: React.FC<ILogoutFormProps> = ({
 
   return (
     <form className="form">
-      <LoggedInText variant="body1">
-        Logged in as: <HobTypography variant="caption">{n}</HobTypography>
-      </LoggedInText>
-      <HobButton
+      <LoggedInText variant="body1">Logged in as:</LoggedInText>
+      <LoggedInText variant="body1">{n}</LoggedInText>
+      <LogOutButton
         type="submit"
         color="primary"
         variant="outlined"
@@ -53,7 +61,7 @@ export const LogoutForm: React.FC<ILogoutFormProps> = ({
         onClick={logout}
       >
         Log out
-      </HobButton>
+      </LogOutButton>
     </form>
   );
 };
