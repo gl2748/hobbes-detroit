@@ -13,6 +13,7 @@ export interface IHobTypographyProps {
     | "h4"
     | "h5"
     | "h6"
+    | "link"
     | "overline"
     | "subtitle1"
     | "subtitle2";
@@ -22,46 +23,51 @@ export interface IHobTypographyProps {
 
 const VARIANTS = {
   body1: styled("p")`
-    line-height: 1.1em;
+    font-size: 1.125rem;
+    line-height: 1.278em;
   `,
   body2: styled("p")`
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.1em;
   `,
   button: styled("span")`
-    font-size: 14px;
+    font-size: 0.875rem;
   `,
   caption: styled("span")`
-    font-size: 12px;
+    font-size: 0.75rem;
   `,
   h1: styled("h1")`
-    font-size: 96px;
+    font-size: 6rem;
   `,
   h2: styled("h2")`
-    font-size: 60px;
+    font-size: 3.75rem;
   `,
   h3: styled("h3")`
-    font-size: 48px;
+    font-size: 3rem;
   `,
   h4: styled("h4")`
-    font-size: 34px;
+    font-size: 2.125rem;
   `,
   h5: styled("h5")`
-    font-size: 24px;
+    font-size: 1.5rem;
   `,
   h6: styled("h6")`
-    font-size: 20px;
+    font-size: 1.25rem;
     font-family: var(--hob-font--medium);
   `,
+  link: styled.span`
+    font-size: 1.125rem;
+    line-height: 1.278em;
+  `,
   overline: styled("span")`
-    font-size: 10px;
+    font-size: 0.625rem;
     text-transform: uppercase;
   `,
   subtitle1: styled("h6")`
-    font-size: 16px;
+    font-size: 1rem;
   `,
   subtitle2: styled("h6")`
-    font-size: 14px;
+    font-size: 0.875rem;
     font-family: var(--hob-font--medium);
   `
 };

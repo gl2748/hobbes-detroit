@@ -46,12 +46,12 @@ export const demo = () => (
 
     <Flex>
       <HobTypography variant="caption">Less Big</HobTypography>
-      <HobLogo width="100px" />
+      <HobLogo width="3rem" />
     </Flex>
 
     <Flex>
       <HobTypography variant="caption">Small</HobTypography>
-      <HobLogo width="20px" />
+      <HobLogo width="1rem" />
     </Flex>
 
     <Flex>

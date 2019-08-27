@@ -1,15 +1,10 @@
 import styled from "@emotion/styled";
-import React, { ChangeEvent } from "react";
-export interface IHobTextFieldProps {
-  value: string;
-  placeholder?: string;
-  onChange: (x: ChangeEvent<HTMLInputElement>) => void;
-}
+import React, { ChangeEvent, HTMLProps } from "react";
 
 const TextField = styled.input`
   height: 4rem;
   padding: 1rem;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-family: GT Haptik;
   border: var(--hob-border);
   width: 100%;
@@ -19,18 +14,9 @@ const TextField = styled.input`
   }
 `;
 
-export const HobTextField: React.FC<IHobTextFieldProps> = ({
-  value,
-  onChange,
-  placeholder
-}: IHobTextFieldProps) => {
-  return (
-    <TextField
-      type="text"
-      className="hob-text-field"
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-    />
-  );
+export const HobTextField: React.FC<HTMLProps<HTMLInputElement>> = ({
+  className = "",
+  ...props
+}) => {
+  return <TextField className={`hob-text-field ${className}`} {...props} />;
 };

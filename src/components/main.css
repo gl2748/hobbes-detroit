@@ -20,6 +20,7 @@
   --hob-color-alt--primary: var(--hob-color--light);
   --hob-color--secondary: var(--hob-color--light);
   --hob-color-alt--secondary: var(--hob-color--dark);
+  --hob-color--error: #fa4236;
 
   --hob-border-color: var(--hob-color--dark);
   --hob-border-width: 1px;

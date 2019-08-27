@@ -1,6 +1,10 @@
+import styled from "@emotion/styled";
 import React, { useReducer } from "react";
 import { useIdentityContext } from "react-netlify-identity";
 import useLoading from "../../higherOrderComponents/useLoading";
+import { HobButton } from "../HobButton";
+import { HobTextField } from "../HobTextField";
+import { HobTypography } from "../HobTypography";
 
 export interface ILoginFormProps {
   onClose: () => void;
@@ -33,13 +37,39 @@ const loginFormReducer = (
   }
 };
 
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+
+  .hob-text-field {
+    margin-bottom: 1.25rem;
+
+    &:last-of-type {
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  .hob-button {
+    margin-bottom: 3rem;
+  }
+
+  .error {
+    color: var(--hob-color--error);
+    margin: 1rem 0;
+    display: block;
+  }
+`;
+
 export const LoginForm: React.FC<ILoginFormProps> = ({
   onClose
 }: ILoginFormProps) => {
   const initialState = {
     email: "",
-    password: "",
-    message: ""
+    message: "",
+    password: ""
   };
   const { loginUser, requestPasswordRecovery } = useIdentityContext();
   const [isLoading, load] = useLoading();
@@ -77,59 +107,45 @@ export const LoginForm: React.FC<ILoginFormProps> = ({
           dispatch({ type: "updateMessage", payload: "Error: " + err.message })
       );
   };
-  return (
-    <form className="form">
-      <div className="formGroup" key="email">
-        <label>
-          <input
-            className="formControl"
-            type="email"
-            name="email"
-            placeholder="Email"
-            autoCapitalize="off"
-            required={true}
-            onChange={(e: React.FormEvent<HTMLInputElement>) => {
-              dispatch({ type: "updateEmail", payload: e.currentTarget.value });
-            }}
-          />
-          <div className="inputFieldIcon inputFieldEmail" />
-        </label>
-      </div>
-      <div className="formGroup" key="password">
-        <label>
-          <input
-            className="formControl"
-            type="password"
-            name="password"
-            placeholder="Password"
-            required={true}
-            onChange={(e: React.FormEvent<HTMLInputElement>) => {
-              dispatch({
-                type: "updatePassword",
-                payload: e.currentTarget.value
-              });
-            }}
-          />
-          <div className="inputFieldIcon inputFieldPassword" />
-        </label>
-      </div>
 
-      <div>
-        <button
-          onClick={handleLogin(state.email, state.password)}
-          className={isLoading ? "btn saving" : "btn"}
-        >
-          Log in
-        </button>
-        {state.message.length > 0 && <pre>{state.message}</pre>}
-      </div>
-      <button
-        type="button"
-        onClick={handlePasswordRecover}
-        className="btnLink forgotPasswordLink"
+  const changeEmail = (e: React.FormEvent<HTMLInputElement>) => {
+    dispatch({ type: "updateEmail", payload: e.currentTarget.value });
+  };
+  const changePassword = (e: React.FormEvent<HTMLInputElement>) => {
+    dispatch({ type: "updatePassword", payload: e.currentTarget.value });
+  };
+  return (
+    <Form className="form">
+      <HobTextField
+        placeholder="Client ID"
+        value={state.email}
+        name="email"
+        type="email"
+        required={true}
+        onChange={changeEmail}
+      />
+      <HobTextField
+        placeholder="Password"
+        value={state.password}
+        name="password"
+        type="password"
+        required={true}
+        onChange={changePassword}
+      />
+      {state.message.length > 0 && (
+        <HobTypography variant="caption" className="error">
+          {state.message}
+        </HobTypography>
+      )}
+      <HobButton
+        type="submit"
+        onClick={handleLogin(state.email, state.password)}
+        variant="outlined"
+        color="primary"
+        className={isLoading ? "btn saving" : "btn"}
       >
-        Recover password?
-      </button>
-    </form>
+        Sign In
+      </HobButton>
+    </Form>
   );
 };

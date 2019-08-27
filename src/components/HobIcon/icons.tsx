@@ -2,10 +2,15 @@ import React from "react";
 
 export interface IIconProps {
   color?: string;
+  size: "sm" | "md" | "lg";
 }
 
-export const Lock: React.FC<IIconProps> = ({ color = "primary" }) => (
+export const Lock: React.FC<React.SVGProps<SVGElement> & IIconProps> = ({
+  color = "primary",
+  className
+}) => (
   <svg
+    className={className}
     viewBox="0 0 16 20"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -28,8 +33,12 @@ export const Lock: React.FC<IIconProps> = ({ color = "primary" }) => (
   </svg>
 );
 
-export const Close: React.FC<IIconProps> = ({ color = "primary" }) => (
+export const Close: React.FC<React.SVGProps<SVGElement> & IIconProps> = ({
+  color = "primary",
+  className
+}) => (
   <svg
+    className={className}
     viewBox="0 0 14 14"
     xmlns="http://www.w3.org/2000/svg"
     fill={`var(--hob-color--${color})`}

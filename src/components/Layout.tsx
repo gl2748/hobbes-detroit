@@ -1,17 +1,35 @@
+import styled from "@emotion/styled";
 import React, { ReactNode, useReducer } from "react";
 import { Helmet } from "react-helmet";
 import { useIdentityContext } from "react-netlify-identity-widget";
 import { Footer } from "./Footer";
-import { HobDrawer } from "./HobDrawer";
+import { HobIcon } from "./HobIcon";
+import { HobLink } from "./HobLink";
+import { HobTypography } from "./HobTypography";
 import { LoginForm } from "./LoginForm";
 import { LogoutForm } from "./LogoutForm";
 import "./main.css";
 import { Navbar } from "./Navbar";
+import { Portal } from "./Portal";
 import { useSiteMetadata } from "./SiteMetadata";
 
 export interface ILayoutProps {
   children: ReactNode;
+  portalLinks: [{ label: string; href: string }];
+  portalCopy: string;
 }
+const defaultLinks = [
+  {
+    href: "#todo",
+    label: "NDA PDF"
+  },
+  {
+    href: "#todo",
+    label: "Click here to Contact"
+  }
+];
+const defaultPortalCopy =
+  "Nam turpis nunc, condimentum in ullamcorper et, molestie at justo. Proin tempus turpis sed felis fringilla, et facilisis justo . Nunc id elit ut sapien feugiat pretium. Proin interdum tristique nibh eget volutpat.";
 export interface ILayoutState {
   showDrawer: boolean;
 }
@@ -29,7 +47,23 @@ const layoutReducer = (state: ILayoutState, action: ILayoutActions) => {
   }
 };
 
-export const Layout: React.FC<ILayoutProps> = ({ children }) => {
+const PortalLegal = styled.div`
+  flex: 1;
+`;
+const Lock = styled(HobIcon)`
+  flex: 1;
+  margin-bottom: 1.5rem;
+`;
+const FinePrint = styled(HobTypography)`
+  flex: 1;
+  margin-bottom: 1.5rem;
+`;
+
+export const Layout: React.FC<ILayoutProps> = ({
+  children,
+  portalCopy = defaultPortalCopy,
+  portalLinks = defaultLinks
+}) => {
   const { title, description } = useSiteMetadata();
   const initialState: ILayoutState = {
     showDrawer: false
@@ -91,17 +125,25 @@ export const Layout: React.FC<ILayoutProps> = ({ children }) => {
         <meta property="og:image" content="/img/og-image.jpg" />
       </Helmet>
       <Navbar />
-      <HobDrawer onClose={toggleDrawer(false)} isVisible={state.showDrawer}>
-        <div>
-          {isLoggedIn ? (
-            <LogoutForm onClose={toggleDrawer(false)} />
-          ) : (
-            <LoginForm onClose={toggleDrawer(false)} />
-          )}
-        </div>
-      </HobDrawer>
+      <Portal onClose={toggleDrawer(false)} isVisible={state.showDrawer}>
+        {isLoggedIn ? (
+          <LogoutForm onClose={toggleDrawer(false)} />
+        ) : (
+          <LoginForm onClose={toggleDrawer(false)} />
+        )}
+        <PortalLegal>
+          <Lock size="sm" color="primary" name="lock" />
+          <FinePrint variant="body1">{portalCopy}</FinePrint>
+          {portalLinks.map(({ href, label }) => (
+            <div key={label}>
+              <HobLink href={href} target="blank" color="primary">
+                {label}
+              </HobLink>
+            </div>
+          ))}
+        </PortalLegal>
+      </Portal>
       <nav>
-        {" "}
         {isLoggedIn ? (
           <div onClick={toggleDrawer(true)}>Sign Out</div>
         ) : (
