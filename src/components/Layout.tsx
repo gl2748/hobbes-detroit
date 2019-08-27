@@ -3,7 +3,7 @@ import React, { ReactNode, useReducer } from "react";
 import { Helmet } from "react-helmet";
 import { useIdentityContext } from "react-netlify-identity-widget";
 import { Footer } from "./Footer";
-import { HobIconButton } from "./HobIconButton";
+import { HobIcon } from "./HobIcon";
 import { HobLink } from "./HobLink";
 import { HobTypography } from "./HobTypography";
 import { LoginForm } from "./LoginForm";
@@ -50,14 +50,13 @@ const layoutReducer = (state: ILayoutState, action: ILayoutActions) => {
 const PortalLegal = styled.div`
   flex: 1;
 `;
-const LockButton = styled(HobIconButton)`
-  margin-left: -1rem;
+const Lock = styled(HobIcon)`
   flex: 1;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 `;
 const FinePrint = styled(HobTypography)`
   flex: 1;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 `;
 
 export const Layout: React.FC<ILayoutProps> = ({
@@ -90,9 +89,6 @@ export const Layout: React.FC<ILayoutProps> = ({
   const toggleDrawer = (payload: boolean) => () =>
     dispatch({ type: "toggleDrawer", payload });
 
-  const handleLockClick = () => {
-    console.log("Lock clicked!");
-  };
   return (
     <div>
       <Helmet>
@@ -136,16 +132,10 @@ export const Layout: React.FC<ILayoutProps> = ({
           <LoginForm onClose={toggleDrawer(false)} />
         )}
         <PortalLegal>
-          <LockButton
-            color="primary"
-            name="lock"
-            onClick={handleLockClick}
-            variant="text"
-            size="sm"
-          />
+          <Lock size="sm" color="primary" name="lock" />
           <FinePrint variant="body1">{portalCopy}</FinePrint>
           {portalLinks.map(({ href, label }) => (
-            <div>
+            <div key={label}>
               <HobLink href={href} target="blank" color="primary">
                 {label}
               </HobLink>
@@ -154,7 +144,6 @@ export const Layout: React.FC<ILayoutProps> = ({
         </PortalLegal>
       </Portal>
       <nav>
-        {" "}
         {isLoggedIn ? (
           <div onClick={toggleDrawer(true)}>Sign Out</div>
         ) : (
