@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
-import { string } from "prop-types";
-import React from "react";
+import React, { ReactElement } from "react";
 import { Close, Lock } from "./icons";
 
 const Icons = {
@@ -19,31 +18,23 @@ const SIZES = {
   md: "1.5rem",
   sm: "1.125rem"
 };
-interface ISvgProps {
-  size: "sm" | "md" | "lg";
-}
-const SvgContainer = styled.div<ISvgProps>`
-  width: ${({ size }) => SIZES[size]};
-  height: ${({ size }) => SIZES[size]};
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-`;
 
-export const HobIcon: React.FC<IHobIconProps> = ({
+export const HobIcon: React.FC<React.SVGProps<SVGElement> & IHobIconProps> = ({
   color = "primary",
   name,
-  size
+  size,
+  className = ""
 }) => {
-  const Svg = Icons[name];
+  const Svg = styled(Icons[name])`
+    width: ${({ size: s }) => SIZES[s]};
+    height: ${({ size: s }) => SIZES[s]};
+  `;
 
   return (
-    <SvgContainer
+    <Svg
+      color={color}
       size={size}
-      className={`hob-icon hob-icon--${name} hob-icon--${size}`}
-    >
-      <Svg color={color} />
-    </SvgContainer>
+      className={`hob-icon hob-icon--${name} hob-icon--${size} ${className}`}
+    />
   );
 };
