@@ -43,14 +43,17 @@ const Form = styled.form`
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  flex: 1;
 
   .hob-text-field {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+
+    &:last-of-type {
+      margin-bottom: 2.5rem;
+    }
   }
 
   .hob-button {
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
   }
 
   .error {
