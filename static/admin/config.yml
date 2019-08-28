@@ -43,7 +43,7 @@ collections:
       - {
           label: 'Featured Animation (JSON)',
           name: 'featuredJson',
-          widget: image,
+          widget: file,
           media_library: {
             config: {
               accept: '.json'
@@ -52,7 +52,7 @@ collections:
         }
       - { label: 'Project Index SVG',
           name: 'indexSvg',
-          widget: image,
+          widget: file,
           media_library: {
             config: {
               accept: '.svg'
@@ -96,19 +96,19 @@ collections:
                 name: 'media'
                 widget: 'list'
                 fields:
-                  - { label: 'Image', name: image, widget: file}
-                  - { label: 'Caption', name: 'caption', widget: 'string' }
-          - label: 'Large Image'
-            name: 'largeImage'
+                  - { label: 'Media', name: 'media', widget: file}
+                  - { label: 'Caption', name: 'caption', widget: 'string', required: false }
+          - label: 'Large Media'
+            name: 'largeMedia'
             widget: 'object'
             fields:
-              - { label: 'Caption', name: 'caption', widget: 'string' }
-              - { label: 'Image', name: 'image', widget: 'image' }
+              - { label: 'Media', name: 'media', widget: 'file' }
+              - { label: 'Caption', name: 'caption', widget: 'string', required: false}
               - {
                   label: 'Bleed',
                   name: 'bleed',
                   widget: 'boolean',
-                  hint: 'Display image without margin or padding',
+                  hint: 'Display media without margin or padding',
                 }
           - label: 'Gallery'
             name: 'gallery'
@@ -122,8 +122,8 @@ collections:
                     name: 'slide'
                     widget: 'object'
                     fields:
-                      - { label: 'File', name: 'file', widget: 'file' }
-                      - { label: 'Caption', name: 'caption', widget: 'string' }
+                      - { label: 'Media', name: 'media', widget: 'file' }
+                      - { label: 'Caption', name: 'caption', widget: 'string', required: false }
           - label: 'Mobile Device'
             name: 'mobileDevice'
             widget: 'object'
