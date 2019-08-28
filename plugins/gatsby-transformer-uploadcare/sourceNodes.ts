@@ -1,4 +1,4 @@
-import fp from "lodash/fp";
+import compose from "lodash/fp/compose";
 
 import { GatsbyNode, Node, NodePluginArgs, PluginOptions } from "gatsby";
 import { fetch } from "./fetch";
@@ -89,7 +89,7 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = (
                 reporter,
                 auth: false
               }).then(e => {
-                const n = fp.compose(
+                const n = compose(
                   createEntityType(entityType),
                   createGatsbyIds(createNodeId),
                   standardizeKeys([e])
