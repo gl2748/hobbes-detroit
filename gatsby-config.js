@@ -34,6 +34,7 @@ module.exports = {
     {
       resolve: "gatsby-transformer-remark"
     },
+
     {
       resolve: "gatsby-plugin-netlify-cms",
       options: {
@@ -49,6 +50,15 @@ module.exports = {
     {
       resolve: `gatsby-plugin-create-client-paths`, // https://www.gatsbyjs.org/tutorial/authentication-tutorial/#creating-client-only-routes
       options: { prefixes: [`/protected/*`] } // See gatsby-node.js where project posts with the protectedProject flag are put on the /protectedProject/ route
+    },
+    {
+      resolve: `gatsby-transformer-uploadcare`,
+      options: {
+        publicKey: "7b969f8af066608712d4",
+        name: "meta",
+        url: "https://upload.uploadcare.com/info/",
+        searchTerm: "ucarecdn"
+      }
     },
     {
       resolve: "gatsby-plugin-purgecss", // purges all unused/unreferenced css rules

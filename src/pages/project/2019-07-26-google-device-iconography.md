@@ -5,7 +5,7 @@ date: 2019-07-26T21:33:22.713Z
 description: ghgh
 protectedProject: true
 featured: true
-featuredImage: "https://ucarecdn.com/8ed8d734-c834-4a92-913b-cc8720084bee/"
+featuredImage: 'https://ucarecdn.com/0632de8d-b900-479d-a6da-9a9360f252c7/'
 tags:
   - google
   - "2018"
@@ -21,7 +21,7 @@ modules:
           First we animated the set of icons given to us, then we built out the
           rest of the set.
     type: textArea
-  - projectBannerMedia: "https://ucarecdn.com/cd1d2539-32b1-4f1f-93d5-a87053e181bb/"
+  - projectBannerMedia: 'https://ucarecdn.com/0632de8d-b900-479d-a6da-9a9360f252c7/'
     type: projectBanner
   - textColumns:
       - column: >-
@@ -35,7 +35,7 @@ modules:
           veritatis et quasi architecto beatae vitae dicta sunt explicabo.
     type: textArea
   - images:
-      - image: "https://ucarecdn.com/fd5463d2-37e2-42c3-800d-7796d6097164/"
+      - image: 'https://ucarecdn.com/df8f2b0d-8905-4f77-ac9a-fe25f0506d4f/'
     type: imageGrid
   - textColumns:
       - column: >-
@@ -44,6 +44,6 @@ modules:
     type: textArea
   - bleed: true
     caption: sdgfsgf
-    image: "https://ucarecdn.com/fad64e77-d7bc-4dc6-a707-2bde48598026/"
+    image: 'https://ucarecdn.com/df8f2b0d-8905-4f77-ac9a-fe25f0506d4f/'
     type: largeImage
 ---
