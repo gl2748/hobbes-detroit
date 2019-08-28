@@ -24,10 +24,6 @@ const isMatchingSearchTerm: (
   return url.search(searchTerm) === -1 ? false : true;
 };
 
-const objToArr: (obj: { [k: string]: any }) => any[] = obj => {
-  return Object.keys(obj).map(k => obj[k]);
-};
-
 const searchFields: (
   searchTerm: string
 ) => (acc: string[], curr: { [k: string]: any }) => string[] = searchTerm => (
@@ -40,7 +36,7 @@ const searchFields: (
     const s = curr.reduce(searchFields(searchTerm), []); // Recur.
     return [...acc, ...s];
   } else if (typeof curr === "object") {
-    const arr = objToArr(curr); // Convert to array.
+    const arr = Object.values(curr); // Convert to array.
     const strs = arr.reduce(searchFields(searchTerm), []); // Recur.
     return [...acc, ...strs];
   }
@@ -76,7 +72,7 @@ export const sourceNodes: GatsbyNode["sourceNodes"] = (
         node.internal.type === "MarkdownRemark" &&
         node.frontmatter !== undefined
       ) {
-        newPromises = objToArr(node.frontmatter)
+        newPromises = Object.values(node.frontmatter)
           .reduce(searchFields(searchTerm), [])
           .map((uploadCareAssetUrl: string): string => {
             return uploadCareAssetUrl.split("/")[3]; // Return the uploadcare asset ID from the url.
