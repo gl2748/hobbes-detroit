@@ -2,16 +2,16 @@ import styled from "@emotion/styled";
 import React, { ReactNode, useReducer } from "react";
 import { Helmet } from "react-helmet";
 import { useIdentityContext } from "react-netlify-identity-widget";
-import { Footer } from "./Footer";
-import { HobIcon } from "./HobIcon";
-import { HobLink } from "./HobLink";
-import { HobTypography } from "./HobTypography";
-import { LoginForm } from "./LoginForm";
-import { LogoutForm } from "./LogoutForm";
-import "./main.css";
-import { Navbar } from "./Navbar";
-import { Portal } from "./Portal";
-import { useSiteMetadata } from "./SiteMetadata";
+import { Footer } from "../Footer";
+import { HobIcon } from "../HobIcon";
+import { HobLink } from "../HobLink";
+import { HobTypography } from "../HobTypography";
+import { LoginForm } from "../LoginForm";
+import { LogoutForm } from "../LogoutForm";
+import "../main.css";
+import { Navbar } from "../Navbar";
+import { Portal } from "../Portal";
+import { useSiteMetadata } from "../SiteMetadata";
 
 export interface ILayoutProps {
   children: ReactNode;
