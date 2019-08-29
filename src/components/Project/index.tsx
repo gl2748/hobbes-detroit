@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
 import { kebabCase } from "lodash";
 import React, { ReactElement, ReactNode } from "react";
-import { Content, HTMLContent } from "../components/Content";
+import { Content, HTMLContent } from "../Content";
 
 export interface IProjectProps {
   content: ReactNode;

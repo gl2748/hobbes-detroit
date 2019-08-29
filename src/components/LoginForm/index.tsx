@@ -98,7 +98,6 @@ export const LoginForm: React.FC<ILoginFormProps> = ({
     dispatch({ type: "updateMessage", payload: "" });
     load(loginUser(email, password, true))
       .then(user => {
-        console.log("Success! Logged in", user);
         onClose();
       })
       .catch(

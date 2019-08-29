@@ -32,7 +32,7 @@ export const FeaturedProjectRollContainer: React.FC = () => {
                   templateKey
                   date(formatString: "MMMM DD, YYYY")
                   featured
-                  featuredImage
+                  featuredJson
                 }
               }
             }

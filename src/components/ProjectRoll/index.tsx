@@ -11,7 +11,7 @@ export interface IProjectProps {
   frontmatter: {
     featured: {};
     protectedProject: boolean;
-    featuredImage: {};
+    featuredJson: {};
     date: string;
     title: string;
   };
