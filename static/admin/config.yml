@@ -18,6 +18,8 @@ collections:
     folder: 'src/pages/project'
     create: true
     slug: '{{client}}_{{title}}'
+    editor:
+      preview: false
     fields:
       - {
           label: 'Template Key',
@@ -28,8 +30,8 @@ collections:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Description', name: 'description', widget: 'text' }
-      - { label: 'Primary Color', name: 'primaryColor', widget: 'text', hint: 'Use HEX value from: https://www.google.com/search?q=color+picker' }
-      - { label: 'Secondary Color', name: 'secondaryColor', widget: 'text', hint: 'Use HEX value from: https://www.google.com/search?q=color+picker' }
+      - { label: 'Primary Color', name: 'primaryColor', widget: 'string', hint: 'Use HEX value from: https://www.google.com/search?q=color+picker' }
+      - { label: 'Secondary Color', name: 'secondaryColor', widget: 'string', hint: 'Use HEX value from: https://www.google.com/search?q=color+picker' }
       - {
           label: 'Protected Project',
           name: 'protectedProject',
@@ -94,20 +96,18 @@ collections:
             name: 'mediaGrid'
             widget: 'object'
             fields:
-              - {
-                label: 'Media'
+              - label: 'Media'
                 name: 'media'
                 widget: 'list'
                 fields:
                   - { label: 'Media', name: 'media', widget: file}
                   - { label: 'Caption', name: 'caption', widget: 'string', required: false }
-                }
-              - {
-                  label: 'Hide all captions',
-                  name: 'hideCaptions',
-                  widget: 'boolean',
-                  hint: 'Do not display captions.',
-                }
+              - label: 'Hide all captions'
+                name: 'hideCaptions'
+                widget: 'boolean'
+                default: false
+                required: false
+                hint: 'Do not display captions.'
           - label: 'Large Media'
             name: 'largeMedia'
             widget: 'object'
