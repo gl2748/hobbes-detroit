@@ -14,6 +14,7 @@
   --hob-color--pink: #ffa8f4;
   --hob-color--purple: #7d37a8;
   --hob-color--yellow: #faba05;
+  --hob-color--dark-gray: #8d8d8f;
 
   --hob-color--primary: var(--hob-color--dark);
   --hob-color--primary--1: var(--hob-color--dark);
