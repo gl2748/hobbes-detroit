@@ -143,13 +143,6 @@ export const Layout: React.FC<ILayoutProps> = ({
           ))}
         </PortalLegal>
       </Portal>
-      <nav>
-        {isLoggedIn ? (
-          <div onClick={toggleDrawer(true)}>Sign Out</div>
-        ) : (
-          <div onClick={toggleDrawer(true)}>Sign In</div>
-        )}
-      </nav>
       <div>{children}</div>
       <Footer />
     </div>
