@@ -1,5 +1,5 @@
+import styled from "@emotion/styled";
 import { Link } from "gatsby";
-import PropTypes from "prop-types";
 import React from "react";
 
 export interface IProjectProps {
@@ -25,6 +25,10 @@ export interface IProjectRollProps {
   };
 }
 
+const Container = styled.div`
+  min-height: 100vh;
+`;
+
 export const ProjectRoll: React.FC<IProjectRollProps> = ({
   data
 }: IProjectRollProps) => {
@@ -33,7 +37,7 @@ export const ProjectRoll: React.FC<IProjectRollProps> = ({
     maxWidth: "300px"
   };
   return (
-    <div>
+    <Container id="work">
       {posts &&
         posts.map(({ node: post }: { node: IProjectProps }) => (
           <div key={post.id}>
@@ -59,6 +63,6 @@ export const ProjectRoll: React.FC<IProjectRollProps> = ({
             </article>
           </div>
         ))}
-    </div>
+    </Container>
   );
 };
