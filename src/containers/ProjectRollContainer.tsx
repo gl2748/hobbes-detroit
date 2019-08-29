@@ -28,7 +28,7 @@ export const ProjectRollContainer: React.FC = () => {
                   date(formatString: "MMMM DD, YYYY")
                   featured
                   protectedProject
-                  featuredImage
+                  featuredJson
                 }
               }
             }
