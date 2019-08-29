@@ -40,7 +40,7 @@ collections:
           widget: 'boolean',
           default: false,
         }
-      - { label: 'Featured Image', name: 'featuredImage', widget: image }
+      - { label: 'Featured Json', name: 'featuredJson', widget: image }
       - { label: 'Tags', name: 'tags', widget: 'list' }
       - { label: 'Client', name: 'client', widget: 'string' }
       - label: 'Modules'
