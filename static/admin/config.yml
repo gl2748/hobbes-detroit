@@ -18,6 +18,8 @@ collections:
     folder: 'src/pages/project'
     create: true
     slug: '{{client}}_{{title}}'
+    editor:
+      preview: false
     fields:
       - {
           label: 'Template Key',
@@ -28,6 +30,8 @@ collections:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Description', name: 'description', widget: 'text' }
+      - { label: 'Primary Color', name: 'primaryColor', widget: 'string', hint: 'Use HEX value from: https://www.google.com/search?q=color+picker' }
+      - { label: 'Secondary Color', name: 'secondaryColor', widget: 'string', hint: 'Use HEX value from: https://www.google.com/search?q=color+picker' }
       - {
           label: 'Protected Project',
           name: 'protectedProject',
@@ -40,9 +44,29 @@ collections:
           widget: 'boolean',
           default: false,
         }
-      - { label: 'Featured Json', name: 'featuredJson', widget: image }
+      - {
+          label: 'Featured Animation (JSON)',
+          name: 'featuredJson',
+          widget: file,
+          media_library: {
+            config: {
+              accept: '.json'
+            }
+          }
+        }
+      - { label: 'Project Index SVG',
+          name: 'indexSvg',
+          widget: file,
+          media_library: {
+            config: {
+              accept: '.svg'
+            }
+          }
+        }
       - { label: 'Tags', name: 'tags', widget: 'list' }
       - { label: 'Client', name: 'client', widget: 'string' }
+      - { label: 'Team', name: 'team', widget: 'list' }
+      - { label: 'Press', name: 'press', widget: 'list' }
       - label: 'Modules'
         name: 'modules'
         widget: 'list'
@@ -54,26 +78,6 @@ collections:
               - label: 'Project Banner Media'
                 name: 'projectBannerMedia'
                 widget: 'file'
-                types:
-                  - label: 'Banner Image'
-                    name: 'bannerImage'
-                    widget: 'object'
-                    fields:
-                      - { label: 'Image', name: 'image', widget: 'image' }
-                  - label: 'Banner Video'
-                    name: 'bannerVideo'
-                    widget: 'object'
-                    fields:
-                      - {
-                          label: 'Video URL',
-                          name: 'videoURL',
-                          widget: 'string',
-                        }
-                  - label: 'Banner File'
-                    name: 'bannerFile'
-                    widget: 'object'
-                    fields:
-                      - { label: 'File', name: 'file', widget: 'file' }
           - label: 'Header'
             name: 'header'
             widget: 'object'
@@ -88,26 +92,33 @@ collections:
                 widget: 'list'
                 fields:
                   - { label: 'Column', name: 'column', widget: 'markdown' }
-          - label: 'Image Grid'
-            name: 'imageGrid'
+          - label: 'Media Grid'
+            name: 'mediaGrid'
             widget: 'object'
             fields:
-              - label: 'Images'
-                name: 'images'
+              - label: 'Media'
+                name: 'media'
                 widget: 'list'
                 fields:
-                  - { label: 'Image', name: image, widget: image }
-          - label: 'Large Image'
-            name: 'largeImage'
+                  - { label: 'Media', name: 'media', widget: file}
+                  - { label: 'Caption', name: 'caption', widget: 'string', required: false }
+              - label: 'Hide all captions'
+                name: 'hideCaptions'
+                widget: 'boolean'
+                default: false
+                required: false
+                hint: 'Do not display captions.'
+          - label: 'Large Media'
+            name: 'largeMedia'
             widget: 'object'
             fields:
-              - { label: 'Caption', name: 'caption', widget: 'string' }
-              - { label: 'Image', name: 'image', widget: 'image' }
+              - { label: 'Media', name: 'media', widget: 'file' }
+              - { label: 'Caption', name: 'caption', widget: 'string', required: false}
               - {
                   label: 'Bleed',
                   name: 'bleed',
                   widget: 'boolean',
-                  hint: 'Display image without margin or pagging',
+                  hint: 'Display media without margin or padding',
                 }
           - label: 'Gallery'
             name: 'gallery'
@@ -117,29 +128,26 @@ collections:
                 name: 'slides'
                 widget: 'list'
                 types:
-                  - label: 'Image Slide'
-                    name: 'imageSlide'
+                  - label: 'Slide'
+                    name: 'slide'
                     widget: 'object'
                     fields:
-                      - { label: 'Image', name: 'image', widget: 'image' }
-                      - { label: 'Caption', name: 'caption', widget: 'string' }
-                  - label: 'Video Slide'
-                    name: 'videoSlide'
-                    widget: 'object'
-                    fields:
-                      - {
-                          label: 'Video URL',
-                          name: 'videoURL',
-                          widget: 'string',
-                        }
-                      - { label: 'Caption', name: 'caption', widget: 'string' }
-                  - label: 'File Slide'
-                    name: 'fileSlide'
-                    widget: 'object'
-                    fields:
-                      - { label: 'File', name: 'file', widget: 'file' }
-                      - { label: 'Caption', name: 'caption', widget: 'string' }
-
+                      - { label: 'Media', name: 'media', widget: 'file' }
+                      - { label: 'Caption', name: 'caption', widget: 'string', required: false }
+          - label: 'Mobile Device'
+            name: 'mobileDevice'
+            widget: 'object'
+            fields:
+              - label: 'Mobile Device Media'
+                name: 'mobileDeviceMedia'
+                widget: 'file'
+          - label: 'Tablet Device'
+            name: 'tabletDevice'
+            widget: 'object'
+            fields:
+              - label: 'Tablet Device Media'
+                name: 'tabletDeviceMedia'
+                widget: 'file'
   - name: 'pages'
     label: 'Pages'
     files:
