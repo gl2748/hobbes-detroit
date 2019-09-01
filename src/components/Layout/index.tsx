@@ -1,8 +1,12 @@
 import styled from "@emotion/styled";
-import React, { HTMLProps, ReactNode, useReducer } from "react";
+import { NavigateFn } from "@reach/router";
+import { LocationState } from "history";
+import React, { ReactNode, useEffect, useReducer, HTMLProps } from "react";
 import { Helmet } from "react-helmet";
 import { useIdentityContext } from "react-netlify-identity-widget";
-import breakpoints from "../../breakpoints";
+import useLoading from "../../hooks/useLoading";
+import { withLocation } from "../../higherOrderComponents/withLocation";
+import { ConfirmEmailForm } from "../ConfirmEmailForm";
 import { Footer } from "../Footer";
 import { HobIcon } from "../HobIcon";
 import { HobLink } from "../HobLink";
@@ -10,13 +14,17 @@ import { HobTypography } from "../HobTypography";
 import { LoginForm } from "../LoginForm";
 import { LogoutForm } from "../LogoutForm";
 import "../main.css";
-import { Portal } from "../Portal";
+import { Navbar } from "../Navbar";
+import { Portal, PortalWithLocation } from "../Portal";
 import { useSiteMetadata } from "../SiteMetadata";
+import breakpoints from "../../breakpoints";
 
 export interface ILayoutProps {
   children: ReactNode;
   portalLinks?: [{ label: string; href: string }];
   portalCopy?: string;
+  location?: LocationState;
+  navigate?: NavigateFn;
 }
 const defaultLinks = [
   {
@@ -32,18 +40,29 @@ const defaultPortalCopy =
   "Nam turpis nunc, condimentum in ullamcorper et, molestie at justo. Proin tempus turpis sed felis fringilla, et facilisis justo . Nunc id elit ut sapien feugiat pretium. Proin interdum tristique nibh eget volutpat.";
 export interface ILayoutState {
   showDrawer: boolean;
-}
-export interface ILayoutActions {
-  type: "toggleDrawer";
-  payload: boolean;
+  isLoggedIn: boolean;
+  username: string;
+  confirmEmailToken: string;
 }
 
-const layoutReducer = (state: ILayoutState, action: ILayoutActions) => {
+type TAction =
+  | { type: "toggleDrawer"; payload: boolean }
+  | { type: "updateUsername"; payload: string }
+  | { type: "updateIsLoggedIn"; payload: boolean }
+  | { type: "updateConfirmEmailToken"; payload: string };
+
+const layoutReducer = (state: ILayoutState, action: TAction) => {
   switch (action.type) {
     case "toggleDrawer":
       return { ...state, showDrawer: action.payload };
+    case "updateUsername":
+      return { ...state, username: action.payload };
+    case "updateIsLoggedIn":
+      return { ...state, isLoggedIn: action.payload };
+    case "updateConfirmEmailToken":
+      return { ...state, confirmEmailToken: action.payload };
     default:
-      return state;
+      throw new Error(); // Will give us a Typescript compilation error if we attempt to use an undefined action type.
   }
 };
 const Container = styled.div`
@@ -72,29 +91,32 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
   children,
   className = "",
   portalCopy = defaultPortalCopy,
-  portalLinks = defaultLinks
+  portalLinks = defaultLinks,
+  location,
+  navigate
 }) => {
   const { title, description } = useSiteMetadata();
+  const [isLoading, load] = useLoading();
   const initialState: ILayoutState = {
-    showDrawer: false
+    confirmEmailToken: "",
+    isLoggedIn: false,
+    showDrawer: false,
+    username: ""
   };
   const [state, dispatch] = useReducer(layoutReducer, initialState);
-
   const identity = useIdentityContext();
-  let n = "";
-  const isLoggedIn = identity && identity.isLoggedIn;
-  if (
-    identity &&
-    identity.user &&
-    identity.user.user_metadata &&
-    identity.user.user_metadata.full_name
-  ) {
-    n = identity.user.user_metadata.full_name;
-  } else if (isLoggedIn && identity.user) {
-    n = identity.user.email;
-  } else {
-    n = "anonymous";
-  }
+
+  useEffect(() => {
+    dispatch({ type: "updateIsLoggedIn", payload: identity.isLoggedIn });
+    if (location && location.hash.search("invite_token") > -1) {
+      const inviteToken: string = location.hash.split("=")[1];
+      if (identity.isLoggedIn) {
+        load(identity.logoutUser());
+      }
+      dispatch({ type: "toggleDrawer", payload: true });
+      dispatch({ type: "updateConfirmEmailToken", payload: inviteToken });
+    }
+  }, [identity, location]);
 
   const toggleDrawer = (payload: boolean) => () =>
     dispatch({ type: "toggleDrawer", payload });
@@ -135,12 +157,24 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
         <meta property="og:url" content="/" />
         <meta property="og:image" content="/img/og-image.jpg" />
       </Helmet>
-      <Portal onClose={toggleDrawer(false)} isVisible={state.showDrawer}>
-        {isLoggedIn ? (
+      <Navbar />
+      <PortalWithLocation
+        onClose={toggleDrawer(false)}
+        isVisible={state.showDrawer}
+      >
+        {state.isLoggedIn && state.confirmEmailToken.length === 0 && (
           <LogoutForm onClose={toggleDrawer(false)} />
-        ) : (
+        )}
+        {!state.isLoggedIn && state.confirmEmailToken.length === 0 && (
           <LoginForm onClose={toggleDrawer(false)} />
         )}
+        {state.confirmEmailToken.length > 0 && (
+          <ConfirmEmailForm
+            onClose={toggleDrawer(false)}
+            token={state.confirmEmailToken}
+          />
+        )}
+
         <PortalLegal>
           <Lock size="sm" color="primary" name="lock" />
           <FinePrint variant="body1">{portalCopy}</FinePrint>
@@ -152,9 +186,18 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
             </div>
           ))}
         </PortalLegal>
-      </Portal>
-      {children}
+      </PortalWithLocation>
+      <nav>
+        {state.isLoggedIn ? (
+          <div onClick={toggleDrawer(true)}>Sign Out</div>
+        ) : (
+          <div onClick={toggleDrawer(true)}>Sign In</div>
+        )}
+      </nav>
+      <div>{children}</div>
       <Footer />
     </Container>
   );
 };
+
+export const LayoutWithLocation = withLocation(Layout);
