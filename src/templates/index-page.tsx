@@ -2,14 +2,14 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { HobLetters } from "../components/HobLetters";
 import { HobLogo } from "../components/HobLogo";
-import { Layout } from "../components/Layout";
 import { Navbar } from "../components/Navbar";
+import { Layout, LayoutWithLocation } from "../components/Layout";
 import { FeaturedProjectRollContainer } from "../containers/FeaturedProjectRollContainer";
 import { ProjectRollContainer } from "../containers/ProjectRollContainer";
 import { StudioContainer } from "../containers/StudioContainer";
 import { useScrollPosition } from "../hooks/useScrollPosition";
 
-const Container = styled(Layout)`
+const Container = styled(LayoutWithLocation)`
   --mb: 1.5rem;
   --fs: 1.75rem;
 

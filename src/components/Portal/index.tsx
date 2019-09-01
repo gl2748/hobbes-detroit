@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React, { ReactNode, useState } from "react";
+import { withLocation } from "../../higherOrderComponents/withLocation";
 import { HobDrawer } from "../HobDrawer";
 import { HobLetters } from "../HobLetters";
 import { HobLogo } from "../HobLogo";
@@ -8,6 +9,9 @@ export interface IDrawerProps {
   isVisible: boolean;
   children: ReactNode;
   onClose: () => void;
+  location?: string;
+  navigation?: string;
+  search?: string;
 }
 
 const PortalDrawer = styled(HobDrawer)`
@@ -29,7 +33,10 @@ const PortalDrawer = styled(HobDrawer)`
 export const Portal: React.FC<IDrawerProps> = ({
   isVisible,
   onClose,
-  children
+  children,
+  location,
+  navigation,
+  search
 }) => {
   return (
     <PortalDrawer onClose={onClose} isVisible={isVisible}>
@@ -45,3 +52,5 @@ export const Portal: React.FC<IDrawerProps> = ({
     </PortalDrawer>
   );
 };
+
+export const PortalWithLocation = withLocation(Portal);

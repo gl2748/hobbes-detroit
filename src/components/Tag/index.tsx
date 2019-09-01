@@ -28,7 +28,6 @@ export const Tag: React.FC<ITagProps> = ({
   title,
   totalCount
 }: ITagProps) => {
-  // debugger
   const postLinks = posts.map(post => (
     <li key={post.node.fields.slug}>
       <Link
