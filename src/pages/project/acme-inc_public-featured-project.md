@@ -14,12 +14,12 @@ description: >-
   non, vestibulum cursus nisi. Sed nulla ex, auctor sit amet sodales eu, congue
   interdum nisi. Ut mattis tincidunt diam eget consectetur. Ut nunc urna,
   rhoncus eget augue nec, auctor iaculis orci.
-primaryColor: '#b89386'
-secondaryColor: '#f5d1c4'
+primaryColor: "#b89386"
+secondaryColor: "#f5d1c4"
 protectedProject: false
 featured: true
-featuredJson: 'https://ucarecdn.com/d36efbfc-b404-4fd4-9708-c37f564ffe9f/'
-indexSvg: 'https://ucarecdn.com/5dc58817-645f-4a84-88ea-bdce5715a696/'
+featuredJson: "https://ucarecdn.com/d36efbfc-b404-4fd4-9708-c37f564ffe9f/"
+indexSvg: "https://ucarecdn.com/5dc58817-645f-4a84-88ea-bdce5715a696/"
 tags:
   - cool
   - fun
@@ -31,7 +31,7 @@ press:
   - The Farming Times
   - Amazing Things I Saw
 modules:
-  - projectBannerMedia: 'https://ucarecdn.com/ab6482b7-6a3d-4a63-8373-02c7049d9038/'
+  - projectBannerMedia: "https://ucarecdn.com/ab6482b7-6a3d-4a63-8373-02c7049d9038/"
     type: projectBanner
   - headerText: Lorem Ipsum
     type: header
@@ -52,21 +52,14 @@ modules:
           commodo tellus eget condimentum. Nunc aliquam hendrerit lorem.
     type: textArea
   - hideCaptions: true
-    media:
-      - caption: 'Etiam feugiat porttitor nibh, non vehicula est lobortis sit amet.'
-        image: 'https://ucarecdn.com/04e1970d-a451-4e79-869d-3598829dbb40/'
-        media: 'https://ucarecdn.com/55a7d419-56ec-4b08-8f0e-27a287f3b44c/'
-      - caption: Nunc aliquam hendrerit lorem.
-        media: 'https://ucarecdn.com/6674ee2b-da9a-4d18-8931-10cfd755930e/'
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/2e345740-ec75-4393-afb1-5d3c0b64c027/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/e9d895db-8cb4-4f32-8924-96a26e86a14e/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/ff298309-2ba1-47ba-bf2b-d08ecc35e9a5/'
+      - mediaGridMediaFile: "https://ucarecdn.com/2e345740-ec75-4393-afb1-5d3c0b64c027/"
+      - mediaGridMediaFile: "https://ucarecdn.com/e9d895db-8cb4-4f32-8924-96a26e86a14e/"
+      - mediaGridMediaFile: "https://ucarecdn.com/ff298309-2ba1-47ba-bf2b-d08ecc35e9a5/"
     type: mediaGrid
   - bleed: true
     caption: Pellentesque lectus urna.
-    largeMediaFile: 'https://ucarecdn.com/c70150d5-b0e0-42b6-9e35-5a0642b83cc2/'
-    media: 'https://ucarecdn.com/8080f4f2-0d6d-4f23-9c2a-baa1673d1d84/'
+    largeMediaFile: "https://ucarecdn.com/c70150d5-b0e0-42b6-9e35-5a0642b83cc2/"
     type: largeMedia
   - textColumns:
       - column: >-
@@ -102,36 +95,30 @@ modules:
     type: textArea
   - slides:
       - caption: This is a lemon slice
-        slideMediaFile: 'https://ucarecdn.com/dfdbd3b4-72b4-4fc3-9ef2-bbadff42a3b1/'
+        slideMediaFile: "https://ucarecdn.com/dfdbd3b4-72b4-4fc3-9ef2-bbadff42a3b1/"
         type: slideMedia
       - caption: That's a weave svg!
-        slideMediaFile: 'https://ucarecdn.com/93c36fca-2e83-4db6-ab34-e41083b800d3/'
+        slideMediaFile: "https://ucarecdn.com/93c36fca-2e83-4db6-ab34-e41083b800d3/"
         type: slideMedia
       - caption: That's a giF!
-        slideMediaFile: 'https://ucarecdn.com/d9469fe7-d62b-4c53-8949-103934cd0e77/'
+        slideMediaFile: "https://ucarecdn.com/d9469fe7-d62b-4c53-8949-103934cd0e77/"
         type: slideMedia
     type: gallery
-  - mobileDeviceMedia: 'https://ucarecdn.com/7073b299-5faf-4704-add1-cbe1dadd2ebe/'
+  - mobileDeviceMedia: "https://ucarecdn.com/7073b299-5faf-4704-add1-cbe1dadd2ebe/"
     type: mobileDevice
-  - tabletDeviceMedia: 'https://ucarecdn.com/1dad581e-662b-4842-b3a5-7a26c7b707f0/'
+  - tabletDeviceMedia: "https://ucarecdn.com/1dad581e-662b-4842-b3a5-7a26c7b707f0/"
     type: tabletDevice
   - hideCaptions: false
-    media:
-      - media: 'https://ucarecdn.com/e10f8454-6e4b-4900-8446-d7ee0016531c/'
-      - media: 'https://ucarecdn.com/99aee763-a774-452e-8c07-c68a8b30e68d/'
-      - media: 'https://ucarecdn.com/7f1fbad0-052d-4130-a2d0-a5fbf0780645/'
-      - media: 'https://ucarecdn.com/cad86c53-f0b8-4379-91cf-9c53d1d3acac/'
-      - media: 'https://ucarecdn.com/6e0d3e23-80dc-4c9d-8609-6e89e7cd02e9/'
     mediaGridMedia:
       - caption: That's a gif in an image grid!
-        mediaGridMediaFile: 'https://ucarecdn.com/fe067327-5297-4491-99e9-8bc9a10fb2d9/'
-      - caption: 'Oh! An SVG! :-)'
-        mediaGridMediaFile: 'https://ucarecdn.com/b72ffdd3-cece-472f-9974-c0db5e3d3f2d/'
-      - caption: 'Oh Joy, a red square.'
-        mediaGridMediaFile: 'https://ucarecdn.com/1d56b7fb-fb7b-4755-b7d7-cec50177e385/'
+        mediaGridMediaFile: "https://ucarecdn.com/fe067327-5297-4491-99e9-8bc9a10fb2d9/"
+      - caption: "Oh! An SVG! :-)"
+        mediaGridMediaFile: "https://ucarecdn.com/b72ffdd3-cece-472f-9974-c0db5e3d3f2d/"
+      - caption: "Oh Joy, a red square."
+        mediaGridMediaFile: "https://ucarecdn.com/1d56b7fb-fb7b-4755-b7d7-cec50177e385/"
       - caption: JSON TIME!
-        mediaGridMediaFile: 'https://ucarecdn.com/0cf7e4c8-d212-4def-9e84-b5df4b4e6131/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/4fd97bb2-513c-432a-a8d2-20249459df9f/'
+        mediaGridMediaFile: "https://ucarecdn.com/0cf7e4c8-d212-4def-9e84-b5df4b4e6131/"
+      - mediaGridMediaFile: "https://ucarecdn.com/4fd97bb2-513c-432a-a8d2-20249459df9f/"
     type: mediaGrid
   - textColumns:
       - column: >-
@@ -168,4 +155,3 @@ modules:
           aliquet mi.
     type: textArea
 ---
-
