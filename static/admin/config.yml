@@ -97,10 +97,10 @@ collections:
             widget: 'object'
             fields:
               - label: 'Media'
-                name: 'media'
+                name: 'mediaGridMedia'
                 widget: 'list'
                 fields:
-                  - { label: 'Media', name: 'media', widget: file}
+                  - { label: 'Media', name: 'mediaGridMediaFile', widget: file}
                   - { label: 'Caption', name: 'caption', widget: 'string', required: false }
               - label: 'Hide all captions'
                 name: 'hideCaptions'
@@ -112,7 +112,7 @@ collections:
             name: 'largeMedia'
             widget: 'object'
             fields:
-              - { label: 'Media', name: 'media', widget: 'file' }
+              - { label: 'Media', name: 'largeMediaFile', widget: 'file' }
               - { label: 'Caption', name: 'caption', widget: 'string', required: false}
               - {
                   label: 'Bleed',
@@ -129,10 +129,10 @@ collections:
                 widget: 'list'
                 types:
                   - label: 'Slide'
-                    name: 'slide'
+                    name: 'slideMedia'
                     widget: 'object'
                     fields:
-                      - { label: 'Media', name: 'media', widget: 'file' }
+                      - { label: 'Media', name: 'slideMediaFile', widget: 'file' }
                       - { label: 'Caption', name: 'caption', widget: 'string', required: false }
           - label: 'Mobile Device'
             name: 'mobileDevice'
