@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
+import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { HobLink as Link } from "../HobLink";
 
 const Nav = styled.div`
@@ -28,26 +29,18 @@ const OnDark = styled.div<IBlad>``;
 const OnLight = styled.div<IBlad>``;
 
 export const Navbar: React.FC = () => {
-  const {
-    scrollingElement,
-    documentElement: { clientHeight }
-  } = document;
-  const { innerHeight } = window;
-  const [offset, setOffset] = useState(
-    (scrollingElement || { scrollTop: 0 }).scrollTop
-  );
-  const checkScroll = ({ target }: Event) => {
-    if (target) {
-      setOffset(target.scrollingElement.scrollTop);
-    }
-  };
+  const [offset, setOffset] = useState(0);
 
-  useEffect(() => {
-    window.addEventListener("scroll", checkScroll);
-    return () => {
-      window.removeEventListener("scroll", checkScroll);
-    };
-  });
+  useScrollPosition(
+    ({ prevPos, currPos }) => {
+      setOffset(currPos.y * -1);
+    },
+    [],
+    undefined,
+    false,
+    300
+  );
+
   return (
     <Nav>
       <OnDark offset={offset}>
