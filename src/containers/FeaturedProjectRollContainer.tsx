@@ -1,8 +1,7 @@
 import { graphql, StaticQuery } from "gatsby";
 import React from "react";
+import { GatsbyLink } from "../components/GatsbyLink";
 import { HeroCarousel } from "../components/HeroCarousel";
-import { HobLink } from "../components/HobLink";
-import { HobTypography } from "../components/HobTypography";
 import { IProjectProps } from "../components/ProjectRoll";
 import { IAllMarkdownRemark } from "./interfaces";
 
@@ -17,7 +16,7 @@ export const FeaturedProjectRollContainer: React.FC = () => {
             key={post.id}
             className={`${post.frontmatter.featured ? "is-featured" : ""}`}
           >
-            <HobLink
+            <GatsbyLink
               color="dark-gray"
               to={
                 post.frontmatter.protectedProject
@@ -26,7 +25,7 @@ export const FeaturedProjectRollContainer: React.FC = () => {
               }
             >
               {post.frontmatter.title}
-            </HobLink>
+            </GatsbyLink>
           </div>
         ))}
       </HeroCarousel>
