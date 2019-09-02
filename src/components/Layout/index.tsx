@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import { useIdentityContext } from "react-netlify-identity-widget";
 import { Footer } from "../Footer";
 import { HobIcon } from "../HobIcon";
+import { HobLetters } from "../HobLetters";
 import { HobLink } from "../HobLink";
 import { HobTypography } from "../HobTypography";
 import { LoginForm } from "../LoginForm";
@@ -15,8 +16,8 @@ import { useSiteMetadata } from "../SiteMetadata";
 
 export interface ILayoutProps {
   children: ReactNode;
-  portalLinks: [{ label: string; href: string }];
-  portalCopy: string;
+  portalLinks?: [{ label: string; href: string }];
+  portalCopy?: string;
 }
 const defaultLinks = [
   {
@@ -46,6 +47,18 @@ const layoutReducer = (state: ILayoutState, action: ILayoutActions) => {
       return state;
   }
 };
+const Container = styled.div`
+  position: relative;
+
+  .hob-letters {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    margin-left: 1.25rem;
+    margin-top: 1.25rem;
+  }
+`;
 
 const PortalLegal = styled.div`
   flex: 1;
@@ -90,7 +103,7 @@ export const Layout: React.FC<ILayoutProps> = ({
     dispatch({ type: "toggleDrawer", payload });
 
   return (
-    <div>
+    <Container>
       <Helmet>
         <html lang="en" />
         <title>{title}</title>
@@ -125,6 +138,7 @@ export const Layout: React.FC<ILayoutProps> = ({
         <meta property="og:image" content="/img/og-image.jpg" />
       </Helmet>
       <Navbar />
+      <HobLetters size="lg" color="var(--hob-color--light)" />
       <Portal onClose={toggleDrawer(false)} isVisible={state.showDrawer}>
         {isLoggedIn ? (
           <LogoutForm onClose={toggleDrawer(false)} />
@@ -143,15 +157,8 @@ export const Layout: React.FC<ILayoutProps> = ({
           ))}
         </PortalLegal>
       </Portal>
-      <nav>
-        {isLoggedIn ? (
-          <div onClick={toggleDrawer(true)}>Sign Out</div>
-        ) : (
-          <div onClick={toggleDrawer(true)}>Sign In</div>
-        )}
-      </nav>
       <div>{children}</div>
       <Footer />
-    </div>
+    </Container>
   );
 };

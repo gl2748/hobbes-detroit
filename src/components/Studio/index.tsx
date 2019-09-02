@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import PropTypes from "prop-types";
 import React from "react";
 export interface IStudioProps {
@@ -8,6 +9,11 @@ export interface IStudioProps {
   address: string;
   social: Array<{ title: string; url: string }>;
 }
+
+const Container = styled.div`
+  min-height: 100vh;
+`;
+
 export const Studio: React.FC<IStudioProps> = ({
   title,
   description,
@@ -17,7 +23,7 @@ export const Studio: React.FC<IStudioProps> = ({
   social
 }: IStudioProps) => {
   return (
-    <div>
+    <Container id="studio">
       <h1>{title}</h1>
       <p>{description}</p>
       <p>{address}</p>
@@ -25,6 +31,6 @@ export const Studio: React.FC<IStudioProps> = ({
       <p>{email}</p>
       <p>{social[0].title}</p>
       <p>{social[0].url}</p>
-    </div>
+    </Container>
   );
 };
