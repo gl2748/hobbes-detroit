@@ -52,7 +52,7 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     setWindowHeight(window.innerHeight);
-  }, [window]);
+  }, []);
 
   useScrollPosition(
     ({ prevPos, currPos }) => {
