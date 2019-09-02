@@ -6,6 +6,7 @@ import { Footer } from "../Footer";
 import { HobIcon } from "../HobIcon";
 import { HobLetters } from "../HobLetters";
 import { HobLink } from "../HobLink";
+import { HobLogo } from "../HobLogo";
 import { HobTypography } from "../HobTypography";
 import { LoginForm } from "../LoginForm";
 import { LogoutForm } from "../LogoutForm";
@@ -57,6 +58,15 @@ const Container = styled.div`
     left: 0;
     margin-left: 1.25rem;
     margin-top: 1.25rem;
+  }
+
+  > .hob-logo {
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    margin-left: 1.25rem;
+    margin-bottom: 1.25rem;
   }
 `;
 
@@ -139,6 +149,7 @@ export const Layout: React.FC<ILayoutProps> = ({
       </Helmet>
       <Navbar />
       <HobLetters size="lg" color="var(--hob-color--light)" />
+      <HobLogo fill="var(--hob-color--secondary)" width="2.25rem" />
       <Portal onClose={toggleDrawer(false)} isVisible={state.showDrawer}>
         {isLoggedIn ? (
           <LogoutForm onClose={toggleDrawer(false)} />
