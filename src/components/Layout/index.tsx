@@ -50,6 +50,7 @@ const layoutReducer = (state: ILayoutState, action: ILayoutActions) => {
 };
 const Container = styled.div`
   position: relative;
+  overflow-x: hidden;
 
   .hob-letters {
     position: absolute;
@@ -118,6 +119,7 @@ export const Layout: React.FC<ILayoutProps> = ({
         <html lang="en" />
         <title>{title}</title>
         <meta name="description" content={description} />
+
         <link
           rel="apple-touch-icon"
           sizes="180x180"
