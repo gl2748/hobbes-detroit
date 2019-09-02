@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { graphql, StaticQuery } from "gatsby";
 import React from "react";
+import breakpoints from "../breakpoints";
 import { GatsbyLink } from "../components/GatsbyLink";
 import { HeroCarousel } from "../components/HeroCarousel";
 import { HobTypography } from "../components/HobTypography";
@@ -19,6 +20,9 @@ const ProjectContainer = styled.div`
     position: absolute;
     bottom: 0;
     text-align: center;
+    ${breakpoints.mobile} {
+      bottom: 3rem;
+    }
   }
 `;
 
@@ -46,6 +50,7 @@ export const FeaturedProjectRollContainer: React.FC = () => {
                 {post.frontmatter.featuredJson}
               </HobTypography>
             </ProjectGraphic>
+
             <GatsbyLink
               color="dark-gray"
               to={
