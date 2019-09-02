@@ -50,7 +50,6 @@ const layoutReducer = (state: ILayoutState, action: ILayoutActions) => {
 };
 const Container = styled.div`
   position: relative;
-  overflow-x: hidden;
 
   .hob-letters {
     position: absolute;

@@ -58,6 +58,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 body,
 button {
   background-color: var(--hob-color--light);
