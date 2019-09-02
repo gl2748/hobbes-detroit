@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { HTMLProps, ReactElement, useEffect, useState } from "react";
 import breakpoints from "../../breakpoints";
 import { GatsbyLink as Link } from "../GatsbyLink";
+import { HobIcon } from "../HobIcon";
 import { HobLogo } from "../HobLogo";
 import { HobTypography } from "../HobTypography";
 
@@ -47,9 +48,17 @@ const Container = styled.div`
 
 const Graphic = styled.div`
   margin-bottom: 0.625rem;
+  position: relative;
   width: 100%;
+
   img {
     width: 100%;
+  }
+
+  .hob-icon--lock {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
   }
 `;
 
@@ -138,6 +147,9 @@ export const ProjectRollItem = ({
           <HobTypography variant="caption">Loading...</HobTypography>
         ) : (
           <Component {...Media.props} />
+        )}
+        {protectedProject && (
+          <HobIcon name="lock" fill="none" color="secondary" size="sm" />
         )}
       </Graphic>
 
