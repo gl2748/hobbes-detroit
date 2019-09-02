@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React, { ReactNode } from "react";
+import breakpoints from "../../breakpoints";
 
 export interface IHobTypographyProps {
   variant:
@@ -38,6 +39,9 @@ const VARIANTS = {
   `,
   h1: styled("h1")`
     font-size: 6rem;
+    ${breakpoints.mobile} {
+      font-size: 3rem;
+    }
   `,
   h2: styled("h2")`
     font-size: 3.75rem;
