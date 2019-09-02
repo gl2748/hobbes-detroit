@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React, { ReactNode, useState } from "react";
+import breakpoints from "../../breakpoints";
 import { HobButton } from "../HobButton";
 import { HobTypography } from "../HobTypography";
 
@@ -31,6 +32,14 @@ const Carousel = styled.div`
 
       &--right {
         order: 1;
+      }
+    }
+  }
+
+  ${breakpoints.mobile} {
+    .hob-carousel {
+      &__nav {
+        display: none;
       }
     }
   }
@@ -79,13 +88,12 @@ const Horses = styled.div`
 
     &--left {
       left: -100%;
+      width: 0;
     }
 
     &--right {
       right: -100%;
-    }
-
-    &--current {
+      width: 0;
     }
   }
 `;
@@ -102,7 +110,12 @@ export const HobCarousel: React.FC<ICarouselProps> = ({ children }) => {
 
   return (
     <Carousel className="hob-carousel">
-      <Page className="hob-carousel__page">
+      <Page
+        className="hob-carousel__page"
+        onClick={changeCurrent(1)}
+        role="button"
+        tabIndex={0}
+      >
         <CurrentPage variant="body1">{currentIndex + 1}</CurrentPage>
         <HobTypography variant="body1">{length}</HobTypography>
       </Page>
