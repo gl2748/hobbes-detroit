@@ -24,8 +24,8 @@ const SvgContainer = styled.div<ISvgProps>`
 export const HobLogo: React.FC<IHobLogoProps> = ({
   fill = "#000",
   stroke,
-  height,
-  width = "4rem"
+  width = "var(--hob-logo-size--md)",
+  height = width
 }) => {
   return (
     <SvgContainer height={height} width={width} className="hob-logo">

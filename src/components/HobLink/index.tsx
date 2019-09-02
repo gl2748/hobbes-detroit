@@ -11,12 +11,22 @@ export interface IHobLinkProps {
 // https://github.com/storybookjs/storybook/issues/7884
 const StyledLink = styled.a`
   text-decoration: underline;
-  color: ${({ color }) => `var(--hob-color--${color})`};
+  .hob-typography {
+    color: ${({ color }) => `var(--hob-color--${color})`};
+  }
+
+  :visited {
+    text-decoration-color: ${({ color }) => `var(--hob-color--${color})`};
+  }
 
   :hover,
   :focus {
-    background-color: ${({ color }) => `var(--hob-color--${color})`};
-    color: ${({ color }) => `var(--hob-color-alt--${color})`};
+    .hob-typography {
+      background-color: ${({ color }) => `var(--hob-color--${color})`};
+      color: ${({ color }) => `var(--hob-color-alt--${color})`};
+      text-decoration-color: ${({ color }) => `var(--hob-color-alt--${color})`};
+      text-decoration: underline;
+    }
   }
 `;
 

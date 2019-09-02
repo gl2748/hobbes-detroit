@@ -8,13 +8,21 @@ export interface IGatsbyLinkProps {
   to: string;
 }
 const StyledGatsbyLink = styled(Link)`
-  text-decoration: underline;
-  color: ${({ color }) => `var(--hob-color--${color})`};
+  text-decoration: none;
+  .hob-typography {
+    color: ${({ color }) => `var(--hob-color--${color})`};
+  }
+
+  :visited {
+    text-decoration-color: ${({ color }) => `var(--hob-color--${color})`};
+  }
 
   :hover,
   :focus {
-    background-color: ${({ color }) => `var(--hob-color--${color})`};
-    color: ${({ color }) => `var(--hob-color-alt--${color})`};
+    .hob-typography {
+      background-color: ${({ color }) => `var(--hob-color--${color})`};
+      color: ${({ color }) => `var(--hob-color-alt--${color})`};
+    }
   }
 `;
 export const GatsbyLink: React.FC<
