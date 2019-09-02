@@ -36,6 +36,22 @@
   --hob-transition-delay: 0;
   --hob-transition: var(--hob-transition-duration)
     var(--hob-transition-timing-function) var(--hob-transition-delay);
+
+  --hob-letters-size--sm: 3.125rem;
+  --hob-letters-size--md: 6.25rem;
+  --hob-letters-size--lg: 12.6875rem;
+
+  --hob-logo-size--md: 4rem;
+}
+
+@media (max-width: 414px) {
+  :root {
+    --hob-letters-size--sm: 1.5rem;
+    --hob-letters-size--md: 3rem;
+    --hob-letters-size--lg: 5.9375rem;
+
+    --hob-logo-size--md: 2.25rem;
+  }
 }
 
 html {
