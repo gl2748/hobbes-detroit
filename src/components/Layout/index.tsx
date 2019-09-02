@@ -118,6 +118,7 @@ export const Layout: React.FC<ILayoutProps> = ({
         <html lang="en" />
         <title>{title}</title>
         <meta name="description" content={description} />
+
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -149,7 +150,7 @@ export const Layout: React.FC<ILayoutProps> = ({
       </Helmet>
       <Navbar />
       <HobLetters size="lg" color="var(--hob-color--light)" />
-      <HobLogo fill="var(--hob-color--secondary)" width="2.25rem" />
+      <HobLogo fill="var(--hob-color--secondary)" />
       <Portal onClose={toggleDrawer(false)} isVisible={state.showDrawer}>
         {isLoggedIn ? (
           <LogoutForm onClose={toggleDrawer(false)} />
@@ -168,7 +169,7 @@ export const Layout: React.FC<ILayoutProps> = ({
           ))}
         </PortalLegal>
       </Portal>
-      <div>{children}</div>
+      {children}
       <Footer />
     </Container>
   );

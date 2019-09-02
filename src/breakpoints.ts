@@ -1,4 +1,4 @@
 const breakpoints: { mobile: string } = {
-  mobile: `@media (max-width: ${414}px)`
+  mobile: `@media (max-width: ${667}px)`
 };
 export default breakpoints;

@@ -44,7 +44,7 @@
   --hob-logo-size--md: 4rem;
 }
 
-@media (max-width: 414px) {
+@media (max-width: 667px) {
   :root {
     --hob-letters-size--sm: 1.5rem;
     --hob-letters-size--md: 3rem;
@@ -56,6 +56,10 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 body,

@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
+import axios from "axios";
 import { graphql, StaticQuery } from "gatsby";
-import React from "react";
+import React, { useState } from "react";
+import Lottie from "react-lottie";
 import breakpoints from "../breakpoints";
 import { GatsbyLink } from "../components/GatsbyLink";
 import { HeroCarousel } from "../components/HeroCarousel";
-import { HobTypography } from "../components/HobTypography";
-import { IProjectProps } from "../components/ProjectRoll";
+import { IProjectProps } from "../components/ProjectRollItem";
 import { IAllMarkdownRemark } from "./interfaces";
 
 const ProjectContainer = styled.div`
@@ -32,6 +33,45 @@ const ProjectGraphic = styled.div`
   }
 `;
 
+const Project = ({ post }: { post: IProjectProps }) => {
+  const [animationData, setAnimationData] = useState<{
+    [key: string]: any;
+  } | null>(null);
+
+  axios.get(post.frontmatter.featuredJson).then(({ data }) => {
+    setAnimationData(data);
+  });
+
+  const defaultOptions = {
+    animationData,
+    autoplay: true,
+    loop: true
+  };
+  return (
+    <ProjectContainer
+      className={`hero-carousel__project ${
+        post.frontmatter.featured ? "is-featured" : ""
+      }`}
+    >
+      <ProjectGraphic className="hero-carousel__project-graphic">
+        {animationData && (
+          <Lottie options={defaultOptions} height={400} width={400} />
+        )}
+      </ProjectGraphic>
+
+      <GatsbyLink
+        color="dark-gray"
+        to={
+          post.frontmatter.protectedProject
+            ? `/protected${post.fields.slug}`
+            : post.fields.slug
+        }
+      >
+        {post.frontmatter.title}
+      </GatsbyLink>
+    </ProjectContainer>
+  );
+};
 export const FeaturedProjectRollContainer: React.FC = () => {
   const render = (data: IAllMarkdownRemark<IProjectProps>): React.ReactNode => {
     const { edges: posts } = data.allMarkdownRemark;
@@ -39,29 +79,7 @@ export const FeaturedProjectRollContainer: React.FC = () => {
     return (
       <HeroCarousel>
         {posts.map(({ node: post }: { node: IProjectProps }) => (
-          <ProjectContainer
-            key={post.id}
-            className={`hero-carousel__project ${
-              post.frontmatter.featured ? "is-featured" : ""
-            }`}
-          >
-            <ProjectGraphic className="hero-carousel__project-graphic">
-              <HobTypography variant="body1">
-                {post.frontmatter.featuredJson}
-              </HobTypography>
-            </ProjectGraphic>
-
-            <GatsbyLink
-              color="dark-gray"
-              to={
-                post.frontmatter.protectedProject
-                  ? `/protected${post.fields.slug}`
-                  : post.fields.slug
-              }
-            >
-              {post.frontmatter.title}
-            </GatsbyLink>
-          </ProjectContainer>
+          <Project key={post.id} post={post} />
         ))}
       </HeroCarousel>
     );

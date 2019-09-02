@@ -12,6 +12,7 @@ export interface IStudioProps {
 
 const Container = styled.div`
   min-height: 100vh;
+  background-color: var(--hob-color--secondary);
 `;
 
 export const Studio: React.FC<IStudioProps> = ({

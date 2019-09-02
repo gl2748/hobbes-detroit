@@ -4,32 +4,55 @@ import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { HobLink as Link } from "../HobLink";
 
 const Nav = styled.div`
-  position: fixed;
-  z-index: 1;
+  --mb: 1.5rem;
+  --fs: 1.75rem;
+
+  z-index: 3;
   display: flex;
-  bottom: 0;
   right: 0;
-  margin-bottom: 1.5rem;
   margin-right: 1.25rem;
+  background-color: var(--hob-color--primary);
+
+  &.nav {
+    &--fixed {
+      position: fixed;
+    }
+
+    &--absolute {
+      position: absolute;
+    }
+
+    &--top {
+      top: 0;
+      margin-top: var(--mb);
+    }
+
+    &--bottom {
+      top: calc(100vh - var(--mb) - var(--fs));
+      margin-bottom: var(--mb);
+    }
+  }
 
   .hob-link {
     margin-right: 1rem;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
     &,
     .hob-typography--link {
-      font-size: 1.75rem;
+      font-size: var(--fs);
     }
   }
 `;
 
-interface IBlad {
-  offset: number;
-}
-const OnDark = styled.div<IBlad>``;
-
-// const OnLight = styled.div<IBlad>``;
-
 export const Navbar: React.FC = () => {
   const [offset, setOffset] = useState(0);
+  const [windowHeight, setWindowHeight] = useState(0);
+
+  useEffect(() => {
+    setWindowHeight(window.innerHeight);
+  }, []);
 
   useScrollPosition(
     ({ prevPos, currPos }) => {
@@ -41,25 +64,23 @@ export const Navbar: React.FC = () => {
     300
   );
 
-  return (
-    <Nav>
-      <OnDark offset={offset}>
-        <Link color="secondary" href="#work">
-          Work
-        </Link>
-        <Link color="secondary" href="#studio">
-          Studio
-        </Link>
-      </OnDark>
+  // relative to margin and bottom/top values in css
+  const atTop = offset >= windowHeight - 1.5 * 16 - 2 * (1.75 * 16);
+  const modifiers = Object.entries({
+    fixed: { test: atTop, whenFalse: "absolute" },
+    top: { test: atTop, whenFalse: "bottom" }
+  })
+    .map(([key, { test, whenFalse }]) => `nav--${test ? key : whenFalse}`)
+    .join(" ");
 
-      {/* <OnLight offset={offset}>
-        <Link color="primary" href="#work">
-          Work
-        </Link>
-        <Link color="primary" href="#studio">
-          Studio
-        </Link>
-      </OnLight> */}
+  return (
+    <Nav className={`nav ${modifiers}`}>
+      <Link color="secondary" href="#work">
+        Work
+      </Link>
+      <Link color="secondary" href="#studio">
+        Studio
+      </Link>
     </Nav>
   );
 };

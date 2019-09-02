@@ -1,6 +1,7 @@
 import { graphql, StaticQuery } from "gatsby";
 import React from "react";
-import { IProjectProps, ProjectRoll } from "../components/ProjectRoll";
+import { ProjectRoll } from "../components/ProjectRoll";
+import { IProjectProps } from "../components/ProjectRollItem";
 import { IAllMarkdownRemark } from "./interfaces";
 
 export const ProjectRollContainer: React.FC = () => {
@@ -29,6 +30,9 @@ export const ProjectRollContainer: React.FC = () => {
                   featured
                   protectedProject
                   featuredJson
+                  indexSvg
+                  primaryColor
+                  secondaryColor
                 }
               }
             }
