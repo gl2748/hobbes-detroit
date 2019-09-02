@@ -7,16 +7,11 @@ export interface IHobLettersProps {
   size: "sm" | "md" | "lg";
 }
 
-const SIZES = {
-  lg: "203px",
-  md: "6.25rem",
-  sm: "3.125rem"
-};
 interface ISvgProps {
   size: "sm" | "md" | "lg";
 }
 const Svg = styled.svg<ISvgProps>`
-  width: ${({ size }) => SIZES[size]};
+  width: ${({ size }) => `var(--hob-letters-size--${size})`};
 `;
 
 export const HobLetters: React.FC<IHobLettersProps> = ({
