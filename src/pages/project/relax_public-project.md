@@ -12,12 +12,12 @@ description: >-
   risus, hendrerit posuere lacus id, congue efficitur lectus. Nullam venenatis
   urna vitae finibus aliquam. Sed sagittis ultrices ipsum eu elementum. Proin
   porttitor a enim sit amet mattis.
-primaryColor: '#344ceb'
-secondaryColor: '#d6d6d6'
+primaryColor: "#344ceb"
+secondaryColor: "#d6d6d6"
 protectedProject: false
 featured: false
-featuredJson: 'https://ucarecdn.com/2adf2305-b935-49ac-b6ec-b0ec4e4c52a7/'
-indexSvg: 'https://ucarecdn.com/d14e5d42-ed79-453f-915c-b6049f6e0c91/'
+featuredJson: "https://ucarecdn.com/2adf2305-b935-49ac-b6ec-b0ec4e4c52a7/"
+indexSvg: "https://ucarecdn.com/d14e5d42-ed79-453f-915c-b6049f6e0c91/"
 tags:
   - maybe
   - not-yes-not-no
@@ -31,7 +31,7 @@ press:
   - A Magazine U Like
   - The Local News
 modules:
-  - projectBannerMedia: 'https://ucarecdn.com/735ba58c-cc8b-496c-96d3-8592a6477c30/'
+  - projectBannerMedia: "https://ucarecdn.com/735ba58c-cc8b-496c-96d3-8592a6477c30/"
     type: projectBanner
   - textColumns:
       - column: >-
@@ -52,7 +52,6 @@ modules:
     type: textArea
   - hideCaptions: true
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/81e4cbbf-39e9-47ea-96e6-a30dce602253/'
+      - mediaGridMediaFile: "https://ucarecdn.com/81e4cbbf-39e9-47ea-96e6-a30dce602253/"
     type: mediaGrid
 ---
-
