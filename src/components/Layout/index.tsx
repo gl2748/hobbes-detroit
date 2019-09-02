@@ -151,7 +151,7 @@ export const Layout: React.FC<ILayoutProps> = ({
       </Helmet>
       <Navbar />
       <HobLetters size="lg" color="var(--hob-color--light)" />
-      <HobLogo fill="var(--hob-color--secondary)" width="2.25rem" />
+      <HobLogo fill="var(--hob-color--secondary)" />
       <Portal onClose={toggleDrawer(false)} isVisible={state.showDrawer}>
         {isLoggedIn ? (
           <LogoutForm onClose={toggleDrawer(false)} />
