@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import breakpoints from "../../breakpoints";
 import { GatsbyLink as Link } from "../GatsbyLink";
 import { HobLogo } from "../HobLogo";
 import { HobTypography } from "../HobTypography";
@@ -9,11 +10,20 @@ const Container = styled.div`
   z-index: 2;
   display: flex;
   padding: 0 2.5rem 1.8125rem;
+
+  ${breakpoints.mobile} {
+    flex-direction: column;
+    padding: 0 1.125rem 2rem;
+  }
 `;
 
 const Logo = styled.div`
   flex: 2;
   margin-right: 1rem;
+
+  ${breakpoints.mobile} {
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const Copyright = styled.div`
@@ -27,6 +37,10 @@ const Links = styled.div`
 
   .hob-link {
     margin-bottom: 0.375rem;
+
+    ${breakpoints.mobile} {
+      margin-bottom: 0;
+    }
   }
 `;
 
