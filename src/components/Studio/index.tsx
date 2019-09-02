@@ -19,11 +19,12 @@ const Container = styled.div`
   background-color: var(--hob-color--secondary);
   position: relative;
   padding: 1.5rem 1.25rem;
+  z-index: 2;
 `;
 
 const Description = styled(HobTypography)`
-  flex: 1;
-  margin-right: 7.3125rem;
+  flex: 2;
+  margin-right: 1rem;
 
   ${breakpoints.mobile} {
     flex: unset;
@@ -124,11 +125,11 @@ export const Studio: React.FC<IStudioProps> = ({
           <Field>
             <HobTypography variant="caption">Follow us</HobTypography>
             {social.map(({ title: label, url }) => (
-              <>
+              <div key={title}>
                 <HobLink color="primary" href={url}>
                   {label}
                 </HobLink>
-              </>
+              </div>
             ))}
           </Field>
         </Contact>
