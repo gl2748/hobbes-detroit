@@ -29,6 +29,9 @@ export const ProjectRollContainer: React.FC = () => {
                   featured
                   protectedProject
                   featuredJson
+                  indexSvg
+                  primaryColor
+                  secondaryColor
                 }
               }
             }

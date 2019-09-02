@@ -1,21 +1,6 @@
 import styled from "@emotion/styled";
-import { Link } from "gatsby";
 import React from "react";
-
-export interface IProjectProps {
-  title: string;
-  id: number;
-  fields: {
-    slug: string;
-  };
-  frontmatter: {
-    featured: {};
-    protectedProject: boolean;
-    featuredJson: {};
-    date: string;
-    title: string;
-  };
-}
+import { IProjectProps, ProjectRollItem } from "../ProjectRollItem";
 
 export interface IProjectRollProps {
   data: {
@@ -27,41 +12,23 @@ export interface IProjectRollProps {
 
 const Container = styled.div`
   min-height: 100vh;
+  background-color: var(--hob-color--dark);
+  padding: 6rem 1.25rem 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
 `;
 
 export const ProjectRoll: React.FC<IProjectRollProps> = ({
   data
 }: IProjectRollProps) => {
   const { edges: posts } = data.allMarkdownRemark;
-  const tempImageStyle = {
-    maxWidth: "300px"
-  };
+
   return (
     <Container id="work">
       {posts &&
-        posts.map(({ node: post }: { node: IProjectProps }) => (
-          <div key={post.id}>
-            <article
-              className={`${post.frontmatter.featured ? "is-featured" : ""}`}
-            >
-              <header>
-                <p>
-                  <Link
-                    to={
-                      post.frontmatter.protectedProject
-                        ? `/protected${post.fields.slug}`
-                        : post.fields.slug
-                    }
-                  >
-                    {post.frontmatter.title}
-                  </Link>
-                </p>
-                <p>
-                  <span>{post.frontmatter.date}</span>
-                </p>
-              </header>
-            </article>
-          </div>
+        posts.map(({ node: post }: { node: IProjectProps }, index: number) => (
+          <ProjectRollItem post={post} key={post.id} index={index} />
         ))}
     </Container>
   );
