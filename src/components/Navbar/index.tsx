@@ -7,7 +7,7 @@ const Nav = styled.div`
   --mb: 1.5rem;
   --fs: 1.75rem;
 
-  z-index: 1;
+  z-index: 3;
   display: flex;
   right: 0;
   margin-right: 1.25rem;

@@ -169,7 +169,7 @@ export const Layout: React.FC<ILayoutProps> = ({
           ))}
         </PortalLegal>
       </Portal>
-      <div>{children}</div>
+      {children}
       <Footer />
     </Container>
   );
