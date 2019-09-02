@@ -26,7 +26,7 @@ interface IBlad {
 }
 const OnDark = styled.div<IBlad>``;
 
-const OnLight = styled.div<IBlad>``;
+// const OnLight = styled.div<IBlad>``;
 
 export const Navbar: React.FC = () => {
   const [offset, setOffset] = useState(0);
@@ -52,14 +52,14 @@ export const Navbar: React.FC = () => {
         </Link>
       </OnDark>
 
-      <OnLight offset={offset}>
+      {/* <OnLight offset={offset}>
         <Link color="primary" href="#work">
           Work
         </Link>
         <Link color="primary" href="#studio">
           Studio
         </Link>
-      </OnLight>
+      </OnLight> */}
     </Nav>
   );
 };
