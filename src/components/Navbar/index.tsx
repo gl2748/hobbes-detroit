@@ -75,10 +75,10 @@ export const Navbar: React.FC = () => {
 
   return (
     <Nav className={`nav ${modifiers}`}>
-      <Link color="secondary" href="#work">
+      <Link color="secondary" href="/#work">
         Work
       </Link>
-      <Link color="secondary" href="#studio">
+      <Link color="secondary" href="/#studio">
         Studio
       </Link>
     </Nav>
