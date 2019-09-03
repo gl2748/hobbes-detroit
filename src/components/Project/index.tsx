@@ -3,6 +3,21 @@ import { kebabCase } from "lodash";
 import React, { ReactElement, ReactNode } from "react";
 import { Content, HTMLContent } from "../Content";
 
+export interface IModuleProps {
+  textColumns: Array<{ column: string }>;
+  bleed: boolean;
+  caption: string;
+  headerText: string;
+  hideCaptions: boolean;
+  mediaGridMedia: Array<{ caption: string; mediaGridMediaFile: string }>;
+  largeMediaFile: string;
+  mobileDeviceMedia: string;
+  projectBannerMedia: string;
+  tabletDeviceMedia: string;
+  type: string;
+  slides: Array<{ caption: string; slideMediaFile: string; type: string }>;
+}
+
 export interface IProjectProps {
   content: ReactNode;
   contentComponent: HTMLContent;
@@ -12,6 +27,7 @@ export interface IProjectProps {
   helmet: ReactElement;
   featured: boolean;
   protectedProject: boolean;
+  modules?: IModuleProps[];
 }
 
 export const Project: React.FC<IProjectProps> = ({
