@@ -32,7 +32,40 @@ exports.createPages = ({ actions, graphql }) => {
 
     const posts = result.data.allMarkdownRemark.edges;
 
-    posts.forEach(edge => {
+    const [projects, rest] = _.partition(
+      posts,
+      edge => edge.node.frontmatter.templateKey === "project-post"
+    );
+
+    projects.forEach((edge, index) => {
+      const id = edge.node.id;
+      let newPost = {};
+
+      // If this is a protectedProject project...create a post at the /protectedProject path.
+      // See the gatsby-plugin-create-client-paths plugin in the gatsby config.
+      let p = `${edge.node.fields.slug}`;
+      if (_.get(edge, `node.frontmatter.protectedProject`)) {
+        p = `/protected${edge.node.fields.slug}`;
+      }
+      newPost = {
+        path: p,
+        tags: edge.node.frontmatter.tags,
+        component: path.resolve(
+          `src/templates/${String(edge.node.frontmatter.templateKey)}.tsx`
+        ),
+        // additional data can be passed via context.
+        // Available via graphql pageQuery in component defined above.
+        context: {
+          id,
+          prevId:
+            projects[index - 1 < 0 ? projects.length - 1 : index - 1].node.id,
+          nextId: projects[(index + 1) % projects.length].node.id
+        }
+      };
+      createPage(newPost);
+    });
+
+    rest.forEach(edge => {
       const id = edge.node.id;
       let newPost = {};
       // Template key null Guard.
@@ -42,28 +75,7 @@ exports.createPages = ({ actions, graphql }) => {
         );
         return;
       }
-      // Project Posts
-      if (String(edge.node.frontmatter.templateKey) === "project-post") {
-        // If this is a protectedProject project...create a post at the /protectedProject path.
-        // See the gatsby-plugin-create-client-paths plugin in the gatsby config.
-        let p = `${edge.node.fields.slug}`;
-        if (_.get(edge, `node.frontmatter.protectedProject`)) {
-          p = `/protected${edge.node.fields.slug}`;
-        }
-        newPost = {
-          path: p,
-          tags: edge.node.frontmatter.tags,
-          component: path.resolve(
-            `src/templates/${String(edge.node.frontmatter.templateKey)}.tsx`
-          ),
-          // additional data can be passed via context.
-          // Available via graphql pageQuery in component defined above.
-          context: {
-            id
-          }
-        };
-        createPage(newPost);
-      }
+
       // Everything else
       if (String(edge.node.frontmatter.templateKey) !== "project-post") {
         newPost = {
