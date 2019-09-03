@@ -1,17 +1,14 @@
 import styled from "@emotion/styled";
-import React, { ReactNode, useReducer } from "react";
+import React, { HTMLProps, ReactNode, useReducer } from "react";
 import { Helmet } from "react-helmet";
 import { useIdentityContext } from "react-netlify-identity-widget";
 import { Footer } from "../Footer";
 import { HobIcon } from "../HobIcon";
-import { HobLetters } from "../HobLetters";
 import { HobLink } from "../HobLink";
-import { HobLogo } from "../HobLogo";
 import { HobTypography } from "../HobTypography";
 import { LoginForm } from "../LoginForm";
 import { LogoutForm } from "../LogoutForm";
 import "../main.css";
-import { Navbar } from "../Navbar";
 import { Portal } from "../Portal";
 import { useSiteMetadata } from "../SiteMetadata";
 
@@ -82,8 +79,9 @@ const FinePrint = styled(HobTypography)`
   margin-bottom: 1.5rem;
 `;
 
-export const Layout: React.FC<ILayoutProps> = ({
+export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
   children,
+  className = "",
   portalCopy = defaultPortalCopy,
   portalLinks = defaultLinks
 }) => {
@@ -113,7 +111,7 @@ export const Layout: React.FC<ILayoutProps> = ({
     dispatch({ type: "toggleDrawer", payload });
 
   return (
-    <Container>
+    <Container className={className}>
       <Helmet>
         <html lang="en" />
         <title>{title}</title>
@@ -148,9 +146,6 @@ export const Layout: React.FC<ILayoutProps> = ({
         <meta property="og:url" content="/" />
         <meta property="og:image" content="/img/og-image.jpg" />
       </Helmet>
-      <Navbar />
-      <HobLetters size="lg" color="var(--hob-color--light)" />
-      <HobLogo fill="var(--hob-color--secondary)" />
       <Portal onClose={toggleDrawer(false)} isVisible={state.showDrawer}>
         {isLoggedIn ? (
           <LogoutForm onClose={toggleDrawer(false)} />
