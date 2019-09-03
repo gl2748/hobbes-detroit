@@ -4,6 +4,7 @@ import { HobTypography } from "../HobTypography";
 
 export interface IHobLinkProps {
   color: "primary" | "secondary" | "dark-gray";
+  unsetTypography?: boolean;
 }
 
 // any styling changes should be duplicated in components/GatsbyLink
@@ -32,14 +33,24 @@ const StyledLink = styled.a`
 
 export const HobLink: React.FC<
   IHobLinkProps & HTMLProps<HTMLAnchorElement>
-> = ({ color, children, className = "", ...props }) => {
+> = ({
+  color,
+  children,
+  className = "",
+  unsetTypography = false,
+  ...props
+}) => {
   return (
     <StyledLink
       className={`hob-link hob-link--${color} ${className}`}
       color={color}
       {...props}
     >
-      <HobTypography variant="link">{children}</HobTypography>
+      {unsetTypography ? (
+        children
+      ) : (
+        <HobTypography variant="link">{children}</HobTypography>
+      )}
     </StyledLink>
   );
 };

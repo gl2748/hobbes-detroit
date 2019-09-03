@@ -6,6 +6,7 @@ import { HobTypography } from "../HobTypography";
 export interface IGatsbyLinkProps {
   color: "primary" | "secondary" | "dark-gray";
   to: string;
+  unsetTypography?: boolean;
 }
 const StyledGatsbyLink = styled(Link)`
   text-decoration: none;
@@ -27,14 +28,18 @@ const StyledGatsbyLink = styled(Link)`
 `;
 export const GatsbyLink: React.FC<
   IGatsbyLinkProps & HTMLProps<HTMLAnchorElement>
-> = ({ color, children, to, className = "" }) => {
+> = ({ color, children, to, className = "", unsetTypography = false }) => {
   return (
     <StyledGatsbyLink
       className={`hob-link hob-link--${color} ${className}`}
       color={color}
       to={to}
     >
-      <HobTypography variant="link">{children}</HobTypography>
+      {unsetTypography ? (
+        children
+      ) : (
+        <HobTypography variant="link">{children}</HobTypography>
+      )}
     </StyledGatsbyLink>
   );
 };
