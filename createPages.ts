@@ -47,8 +47,6 @@ export const createPages: GatsbyNode["createPages"] = ({
       }
     }
   `).then((result: { errors?: any; data?: {} | undefined }) => {
-    // (value: { errors?: any; data?: {} | undefined; }) => PromiseLike<never>'
-    // Todo: Type the result
     if (result.errors) {
       result.errors.forEach((e: Error) => console.error(e.toString()));
       return Promise.reject(result.errors);
@@ -80,8 +78,7 @@ export const createPages: GatsbyNode["createPages"] = ({
           component: resolve(
             `src/templates/${String(edge.node.frontmatter.templateKey)}.tsx`
           ),
-          // additional data can be passed via context.
-          // Available via graphql pageQuery in component defined above.
+          // Additional data can be passed via context and will be available via graphql pageQuery in component defined above.
           context: {
             id,
             nextId: projects[(index + 1) % projects.length].node.id,
