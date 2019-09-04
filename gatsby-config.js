@@ -3,14 +3,14 @@ var proxy = require("http-proxy-middleware");
 module.exports = {
   siteMetadata: {
     title: "Hobbes",
-    description: "Hobbes Detroit, design"
+    description: "Hobbes Detroit"
   },
   plugins: [
     "gatsby-plugin-typescript",
     "gatsby-plugin-react-helmet",
     "gatsby-remark-relative-images",
     {
-      // keep as first gatsby-source-filesystem plugin for gatsby image support
+      // keep as first gatsby-source-filesystem plugin for gatsby image support https://github.com/danielmahon/gatsby-remark-relative-images#how-to-use.
       resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/static/img`,

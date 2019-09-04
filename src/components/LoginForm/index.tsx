@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useReducer } from "react";
 import { useIdentityContext } from "react-netlify-identity";
-import useLoading from "../../higherOrderComponents/useLoading";
+import useLoading from "../../hooks/useLoading";
 import { HobButton } from "../HobButton";
 import { HobTextField } from "../HobTextField";
 import { HobTypography } from "../HobTypography";
