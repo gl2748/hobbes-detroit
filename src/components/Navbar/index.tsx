@@ -10,6 +10,7 @@ const Nav = styled.div`
   right: 1.5rem;
   top: 1.5rem;
   background-color: var(--hob-color--primary);
+  position: fixed;
 
   .hob-link {
     margin-right: 1rem;
