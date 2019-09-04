@@ -2,12 +2,19 @@ import styled from "@emotion/styled";
 import axios from "axios";
 import { Link } from "gatsby";
 import { kebabCase } from "lodash";
-import React, { ReactElement, ReactNode, useEffect, useState } from "react";
+import React, {
+  HTMLProps,
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useState
+} from "react";
 import Lottie from "react-lottie";
+import ReactMarkdown from "react-markdown";
 import { Content, HTMLContent } from "../Content";
 import { HobGrid } from "../HobGrid";
 import { HobLogo } from "../HobLogo";
-import { HobTypography } from "../HobTypography";
+import { HobTypography, IHobTypographyProps } from "../HobTypography";
 
 enum MediaType {
   PNG = "image/png",
@@ -71,7 +78,12 @@ const Header = styled.div`
 const TextArea = styled(HobGrid)`
   padding: 1.25rem 6.625rem;
 
-  .hob-typography {
+  h1.markdown {
+    margin-bottom: 3rem;
+    font-size: 2.8125rem;
+  }
+
+  p.markdown {
     font-size: 1.75rem;
   }
 
@@ -188,9 +200,31 @@ const CMSModule = (props: IModuleProps): ReactElement => {
           }`}
         >
           {props.textColumns.map(({ column }) => (
-            <HobTypography variant="body1" key={column.slice(0, 50)}>
-              {column}
-            </HobTypography>
+            <ReactMarkdown
+              source={column}
+              key={column.slice(0, 50)}
+              renderers={{
+                heading: ({
+                  children,
+                  level
+                }: IHobTypographyProps & HTMLProps<HTMLHeadingElement>) => {
+                  return (
+                    <HobTypography
+                      variant={`h${level}`}
+                      className="markdown"
+                      children={children}
+                    />
+                  );
+                },
+                paragraph: ({ children }) => (
+                  <HobTypography variant="body1" className="markdown">
+                    {children}
+                  </HobTypography>
+                )
+              }}
+            />
+            // <HobTypography variant="body1" key={column.slice(0, 50)}>
+            // </HobTypography>
           ))}
         </TextArea>
       );
