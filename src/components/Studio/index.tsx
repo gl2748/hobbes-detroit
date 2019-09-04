@@ -24,7 +24,9 @@ const Container = styled.div`
 
 const Description = styled(HobTypography)`
   flex: 2;
-  margin-right: 1rem;
+  min-width: 300px;
+  margin-right: 1.25rem;
+  margin-bottom: 1.25rem;
 
   ${breakpoints.mobile} {
     flex: unset;
@@ -85,6 +87,13 @@ const Field = styled.div`
   }
 `;
 
+const Address = styled.div`
+  flex: 1;
+  display: flex;
+  margin-right: 1.25rem;
+  min-width: 300px;
+`;
+
 const Contact = styled.div`
   flex: 1;
   display: flex;
@@ -106,10 +115,12 @@ export const Studio: React.FC<IStudioProps> = ({
 
         <Description variant="body1">{description}</Description>
 
-        <Field>
-          <HobTypography variant="caption">Address</HobTypography>
-          <HobTypography variant="body1">{address}</HobTypography>
-        </Field>
+        <Address>
+          <Field>
+            <HobTypography variant="caption">Address</HobTypography>
+            <HobTypography variant="body1">{address}</HobTypography>
+          </Field>
+        </Address>
 
         <Contact>
           <Field>

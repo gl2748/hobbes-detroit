@@ -5,9 +5,11 @@ import Helmet from "react-helmet";
 import breakpoints from "../breakpoints";
 import { HTMLContent } from "../components/Content";
 import { GatsbyLink as Link } from "../components/GatsbyLink";
+import { HobLetters } from "../components/HobLetters";
 import { HobTypography } from "../components/HobTypography";
 import { Layout } from "../components/Layout";
-import { Project } from "../components/Project";
+import { Navbar } from "../components/Navbar";
+import { IModuleProps, Project } from "../components/Project";
 import { WithAuth } from "../higherOrderComponents/WithAuth";
 
 interface SideLink {
@@ -29,6 +31,8 @@ export interface IProjectPostProps {
         tags: string[];
         protectedProject: boolean;
         featured: boolean;
+        featuredJson: string;
+        modules: IModuleProps[];
       };
     };
     prev: SideLink;
@@ -142,6 +146,19 @@ const SidePagination = ({
   );
 };
 
+const Container = styled(Layout)`
+  .nav {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background-color: transparent;
+
+    & .hob-typography {
+      color: var(--hob-color--primary);
+    }
+  }
+`;
+
 const ProjectPost: React.FC<IProjectPostProps> = ({
   data
 }: IProjectPostProps) => {
@@ -155,9 +172,12 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
     ? WithAuth(Project)
     : Project;
   return (
-    <Layout>
+    <Container>
       <SidePagination prev={toProps(prev)} next={toProps(next)} />
+      <Navbar className={`nav`} />
       <EnhancedProjectComponent
+        featuredJson={post.frontmatter.featuredJson}
+        modules={post.frontmatter.modules}
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
@@ -175,7 +195,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
         protectedProject={post.frontmatter.protectedProject}
         featured={post.frontmatter.featured}
       />
-    </Layout>
+    </Container>
   );
 };
 
@@ -193,6 +213,30 @@ export const pageQuery = graphql`
         description
         tags
         protectedProject
+        featuredJson
+        modules {
+          headerText
+          type
+          projectBannerMedia
+          hideCaptions
+          bleed
+          caption
+          largeMediaFile
+          mobileDeviceMedia
+          tabletDeviceMedia
+          textColumns {
+            column
+          }
+          slides {
+            caption
+            slideMediaFile
+            type
+          }
+          mediaGridMedia {
+            caption
+            mediaGridMediaFile
+          }
+        }
       }
     }
     prev: markdownRemark(id: { eq: $prevId }) {
