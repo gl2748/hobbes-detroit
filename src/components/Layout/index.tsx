@@ -48,24 +48,6 @@ const layoutReducer = (state: ILayoutState, action: ILayoutActions) => {
 const Container = styled.div`
   position: relative;
   min-height: 100vh;
-
-  .hob-letters {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    margin-left: 1.25rem;
-    margin-top: 1.25rem;
-  }
-
-  > .hob-logo {
-    position: fixed;
-    z-index: 1;
-    bottom: 0;
-    left: 0;
-    margin-left: 1.25rem;
-    margin-bottom: 1.25rem;
-  }
 `;
 
 const PortalLegal = styled.div`

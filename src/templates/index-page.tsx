@@ -13,6 +13,24 @@ const Container = styled(Layout)`
   --mb: 1.5rem;
   --fs: 1.75rem;
 
+  .hob-letters {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    margin-left: 1.25rem;
+    margin-top: 1.25rem;
+  }
+
+  > .hob-logo {
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    margin-left: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
   .nav {
     z-index: 3;
     display: flex;
