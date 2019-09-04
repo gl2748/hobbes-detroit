@@ -11,7 +11,9 @@ import { HobTypography } from "../HobTypography";
 
 enum MediaType {
   PNG = "image/png",
-  SVG = "image/svg+xml"
+  SVG = "image/svg+xml",
+  GIF = "image/gif",
+  LOTTIE = "application/json"
 }
 
 export interface IModuleProps {
@@ -30,12 +32,9 @@ export interface IModuleProps {
     | "header"
     | "largeMedia"
     | "mediaGrid"
-    | "mediaGrid"
     | "mobileDevice"
     | "projectBanner"
     | "tabletDevice"
-    | "textArea"
-    | "textArea"
     | "textArea";
   slides: Array<{ caption: string; slideMediaFile: string; type: string }>;
 }
@@ -43,10 +42,6 @@ export interface IModuleProps {
 const ModulesContainer = styled.div`
   > * {
     margin-bottom: 1.5rem;
-
-    &:last-of-type {
-      margin-bottom: 0;
-    }
   }
 `;
 
@@ -83,6 +78,10 @@ const TextArea = styled(HobGrid)`
   &.module-text-area {
     &--one {
       padding: 4.125rem 0;
+      .hob-grid__item {
+        width: unset;
+        height: unset;
+      }
       .hob-typography {
         width: 50%;
         margin: 0 auto;
@@ -93,6 +92,21 @@ const TextArea = styled(HobGrid)`
 
 const MediaGrid = styled(HobGrid)`
   padding: 1.25rem 6.625rem;
+`;
+
+const MediaGridItem = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--hob-color--white);
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+
+  img,
+  svg {
+    width: 100%;
+  }
 
   .module-media-grid__item {
     img&,
@@ -102,12 +116,23 @@ const MediaGrid = styled(HobGrid)`
   }
 `;
 
+const TwoThree = styled.div`
+  .hob-grid {
+    &:first-of-type {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+`;
+
 const CMSModule = (props: IModuleProps): ReactElement => {
-  const [media, setMedia] = useState<Array<{
-    data: any;
-    type: MediaType;
-    url?: string;
-  }> | null>(null);
+  const [media, setMedia] = useState<
+    Array<{
+      data: any;
+      type: MediaType;
+      url?: string;
+    }>
+  >([]);
 
   switch (props.type) {
     case "projectBanner":
@@ -118,25 +143,23 @@ const CMSModule = (props: IModuleProps): ReactElement => {
       }, []);
       return (
         <Hero>
-          {media &&
-            media.map(({ data, type }, i) => {
-              switch (type) {
-                case MediaType.PNG:
-                  return (
-                    <img
-                      key={`${data}:${i}`}
-                      src={props.projectBannerMedia}
-                      alt="banner media"
-                    />
-                  );
+          {media.map(({ data, type }, i) => {
+            switch (type) {
+              case MediaType.PNG:
+                return (
+                  <img
+                    key={`${data}:${i}`}
+                    src={props.projectBannerMedia}
+                    alt="banner media"
+                  />
+                );
 
-                default:
-                  return <div key={`${data}:${i}`}>{type}</div>;
-              }
-            })}
+              default:
+                return <div key={`${data}:${i}`}>{type}</div>;
+            }
+          })}
         </Hero>
       );
-      break;
 
     case "header":
       return (
@@ -145,11 +168,11 @@ const CMSModule = (props: IModuleProps): ReactElement => {
           <HobTypography variant="h2">{props.headerText}</HobTypography>
         </Header>
       );
-      break;
 
     case "textArea":
       return (
         <TextArea
+          padding={6.625}
           className={`module-text-area module-text-area--${
             props.textColumns.length === 1 ? "one" : "many"
           }`}
@@ -161,9 +184,53 @@ const CMSModule = (props: IModuleProps): ReactElement => {
           ))}
         </TextArea>
       );
-      break;
 
-    case "mediaGrid":
+    case "mediaGrid": {
+      const makeMediaGridItem = (key: string) => (
+        { data, type, url = "" },
+        i
+      ) => {
+        switch (type) {
+          case MediaType.PNG:
+          case MediaType.GIF: {
+            return (
+              <MediaGridItem key={`${url}:${key}`}>
+                <img
+                  className="module-media-grid__item"
+                  src={url}
+                  alt="module media grid item"
+                />
+              </MediaGridItem>
+            );
+          }
+
+          case MediaType.SVG: {
+            return (
+              <MediaGridItem key={`${key}:svg:${i}`}>
+                <div dangerouslySetInnerHTML={{ __html: data }} />
+              </MediaGridItem>
+            );
+          }
+
+          case MediaType.LOTTIE: {
+            const defaultOptions = {
+              animationData: data,
+              autoplay: true,
+              loop: true
+            };
+
+            return (
+              <MediaGridItem key={`${key}:lottie:${i}`}>
+                <Lottie options={defaultOptions} height={400} width={400} />
+              </MediaGridItem>
+            );
+          }
+
+          default:
+            return <div key={`${type}:${i}:${key}`}>{type}</div>;
+        }
+      };
+
       useEffect(() => {
         Promise.all(
           props.mediaGridMedia.map(({ mediaGridMediaFile }) => {
@@ -179,29 +246,27 @@ const CMSModule = (props: IModuleProps): ReactElement => {
           );
         });
       }, []);
-      return (
-        <MediaGrid className="module-media-grid">
-          {media &&
-            media.map(({ data, type, url = "" }, i) => {
-              switch (type) {
-                case MediaType.PNG: {
-                  return (
-                    <img
-                      className="module-media-grid__item"
-                      key={url}
-                      src={url}
-                      alt="module media grid item"
-                    />
-                  );
-                }
 
-                default:
-                  return <div key={`${type}:${i}`}>{type}</div>;
-              }
-            })}
-        </MediaGrid>
+      return (
+        <>
+          {media.length < 4 ? (
+            <MediaGrid className="module-media-grid" padding={6.625}>
+              {media.map(makeMediaGridItem("row1"))}
+            </MediaGrid>
+          ) : (
+            <TwoThree>
+              <MediaGrid className="module-media-grid" padding={6.625}>
+                {media.slice(0, 2).map(makeMediaGridItem("row1"))}
+              </MediaGrid>
+
+              <MediaGrid className="module-media-grid" padding={6.625}>
+                {media.slice(2).map(makeMediaGridItem("row2"))}
+              </MediaGrid>
+            </TwoThree>
+          )}
+        </>
       );
-      break;
+    }
 
     default:
       return (
@@ -209,7 +274,6 @@ const CMSModule = (props: IModuleProps): ReactElement => {
           Unable to render module type {props.type}
         </HobTypography>
       );
-      break;
   }
 };
 
@@ -226,7 +290,9 @@ export interface IProjectProps {
   featuredJson: string;
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  padding-bottom: 3rem;
+`;
 
 export const Project: React.FC<IProjectProps> = ({
   content,
@@ -272,7 +338,7 @@ export const Project: React.FC<IProjectProps> = ({
             }
           />
         ))}
-        <PostContent content={content} />
+        {content && <PostContent content={content} />}
         {tags && tags.length ? (
           <div style={{ marginTop: `4rem` }}>
             <h4>Tags</h4>
