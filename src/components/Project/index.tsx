@@ -278,6 +278,8 @@ const CMSModule = (props: IModuleProps): ReactElement => {
         </TwoThree>
       );
     }
+    case "gallery":
+      return <div>GALLERY COMPONENT TIME!</div>;
 
     default:
       return (
