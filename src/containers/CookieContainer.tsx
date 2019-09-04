@@ -1,6 +1,6 @@
+import { Cookie, ICookieProps } from "@components/Cookie";
 import { graphql, StaticQuery } from "gatsby";
 import React from "react";
-import { Cookie, ICookieProps } from "../components/Cookie";
 import { IAllMarkdownRemark, IFrontmatter } from "./interfaces";
 
 export const CookieContainer = () => {

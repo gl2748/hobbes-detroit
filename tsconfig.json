@@ -20,12 +20,12 @@
     "skipLibCheck": true,
     "baseUrl": "src",
     "paths": {
-      "components/*": ["components/*"],
-      "containers/*": ["containers/*"],
-      "higherOrderComponents/*": ["higherOrderComponents/*"],
-      "hooks/*": ["hooks/*"],
-      "pages/*": ["pages/*"],
-      "templates/*": ["templates/*"],
+      "@components/*": ["components/*"],
+      "@containers/*": ["containers/*"],
+      "@higherOrderComponents/*": ["higherOrderComponents/*"],
+      "@hooks/*": ["hooks/*"],
+      "@pages/*": ["pages/*"],
+      "@templates/*": ["templates/*"],
     }
   }
 }
