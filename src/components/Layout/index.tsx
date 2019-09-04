@@ -47,6 +47,7 @@ const layoutReducer = (state: ILayoutState, action: ILayoutActions) => {
 };
 const Container = styled.div`
   position: relative;
+  min-height: 100vh;
 
   .hob-letters {
     position: absolute;
