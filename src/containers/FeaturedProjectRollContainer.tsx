@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import axios from "axios";
 import { graphql, StaticQuery } from "gatsby";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import breakpoints from "../breakpoints";
 import { GatsbyLink } from "../components/GatsbyLink";
@@ -38,9 +38,11 @@ const Project = ({ post }: { post: IProjectProps }) => {
     [key: string]: any;
   } | null>(null);
 
-  axios.get(post.frontmatter.featuredJson).then(({ data }) => {
-    setAnimationData(data);
-  });
+  useEffect(() => {
+    axios.get(post.frontmatter.featuredJson).then(({ data }) => {
+      setAnimationData(data);
+    });
+  }, []);
 
   const defaultOptions = {
     animationData,
