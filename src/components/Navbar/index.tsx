@@ -11,6 +11,7 @@ const Nav = styled.div`
   top: 1.5rem;
   background-color: var(--hob-color--primary);
   position: fixed;
+  z-index: 5;
 
   .hob-link {
     margin-right: 1rem;
