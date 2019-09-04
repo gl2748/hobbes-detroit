@@ -215,15 +215,27 @@ export const pageQuery = graphql`
         protectedProject
         featuredJson
         modules {
-          projectBannerMedia
-          type
-          hideCaptions
           headerText
+          type
+          projectBannerMedia
+          hideCaptions
           bleed
           caption
           largeMediaFile
           mobileDeviceMedia
           tabletDeviceMedia
+          textColumns {
+            column
+          }
+          slides {
+            caption
+            slideMediaFile
+            type
+          }
+          mediaGridMedia {
+            caption
+            mediaGridMediaFile
+          }
         }
       }
     }
