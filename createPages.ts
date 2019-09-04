@@ -146,6 +146,8 @@ export const createPages: GatsbyNode["createPages"] = ({
         });
       });
     }
-    return new Promise((resolvePromise, reject) => resolvePromise("DONE!"));
+    return new Promise((resolvePromise, reject) =>
+      resolvePromise("Hobbes Pages Created!")
+    );
   });
 };
