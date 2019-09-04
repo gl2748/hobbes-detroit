@@ -79,11 +79,8 @@ const TextArea = styled(HobGrid)`
     &--one {
       padding: 4.125rem 0;
       .hob-grid__item {
-        width: unset;
-        height: unset;
-      }
-      .hob-typography {
-        width: 50%;
+        width: 50vw;
+        height: auto;
         margin: 0 auto;
       }
     }
@@ -92,6 +89,19 @@ const TextArea = styled(HobGrid)`
 
 const MediaGrid = styled(HobGrid)`
   padding: 1.25rem 6.625rem;
+
+  &.module-media-grid {
+    &--one {
+      .hob-grid__item {
+        width: 50vw;
+        height: 50vw;
+        margin: 0 auto;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
 `;
 
 const MediaGridItem = styled.div`
@@ -247,24 +257,25 @@ const CMSModule = (props: IModuleProps): ReactElement => {
         });
       }, []);
 
-      return (
-        <>
-          {media.length < 4 ? (
-            <MediaGrid className="module-media-grid" padding={6.625}>
-              {media.map(makeMediaGridItem("row1"))}
-            </MediaGrid>
-          ) : (
-            <TwoThree>
-              <MediaGrid className="module-media-grid" padding={6.625}>
-                {media.slice(0, 2).map(makeMediaGridItem("row1"))}
-              </MediaGrid>
+      return media.length < 4 ? (
+        <MediaGrid
+          padding={6.625}
+          className={`module-media-grid module-media-grid--${
+            media.length === 1 ? "one" : "many"
+          }`}
+        >
+          {media.map(makeMediaGridItem("row1"))}
+        </MediaGrid>
+      ) : (
+        <TwoThree>
+          <MediaGrid className="module-media-grid" padding={6.625}>
+            {media.slice(0, 2).map(makeMediaGridItem("row1"))}
+          </MediaGrid>
 
-              <MediaGrid className="module-media-grid" padding={6.625}>
-                {media.slice(2).map(makeMediaGridItem("row2"))}
-              </MediaGrid>
-            </TwoThree>
-          )}
-        </>
+          <MediaGrid className="module-media-grid" padding={6.625}>
+            {media.slice(2).map(makeMediaGridItem("row2"))}
+          </MediaGrid>
+        </TwoThree>
       );
     }
 
