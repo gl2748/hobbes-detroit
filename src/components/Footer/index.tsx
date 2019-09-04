@@ -6,7 +6,9 @@ import { HobLogo } from "../HobLogo";
 import { HobTypography } from "../HobTypography";
 
 const Container = styled.div`
-  position: relative;
+  position: absolute;
+  width: 100vw;
+  bottom: 0;
   z-index: 2;
   display: flex;
   padding: 0 2.5rem 1.8125rem;
