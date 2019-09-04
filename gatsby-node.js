@@ -3,6 +3,16 @@ const path = require("path");
 const { createFilePath } = require("gatsby-source-filesystem");
 const { fmImagesToRelative } = require("gatsby-remark-relative-images");
 
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      plugins: [new TsconfigPathsPlugin()]
+    }
+  });
+};
+
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
 
@@ -40,7 +50,6 @@ exports.createPages = ({ actions, graphql }) => {
     projects.forEach((edge, index) => {
       const id = edge.node.id;
       let newPost = {};
-
       // If this is a protectedProject project...create a post at the /protectedProject path.
       // See the gatsby-plugin-create-client-paths plugin in the gatsby config.
       let p = `${edge.node.fields.slug}`;
