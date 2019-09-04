@@ -37,7 +37,6 @@ export interface IModuleProps {
     | "textArea"
     | "textArea"
     | "textArea";
-
   slides: Array<{ caption: string; slideMediaFile: string; type: string }>;
 }
 
@@ -92,10 +91,22 @@ const TextArea = styled(HobGrid)`
   }
 `;
 
+const MediaGrid = styled(HobGrid)`
+  padding: 1.25rem 6.625rem;
+
+  .module-media-grid__item {
+    img&,
+    & img {
+      width: 100%;
+    }
+  }
+`;
+
 const CMSModule = (props: IModuleProps): ReactElement => {
   const [media, setMedia] = useState<Array<{
     data: any;
     type: MediaType;
+    url?: string;
   }> | null>(null);
 
   switch (props.type) {
@@ -118,11 +129,9 @@ const CMSModule = (props: IModuleProps): ReactElement => {
                       alt="banner media"
                     />
                   );
-                  break;
 
                 default:
-                  return <div key={`${data}:${i}`}>{data}</div>;
-                  break;
+                  return <div key={`${data}:${i}`}>{type}</div>;
               }
             })}
         </Hero>
@@ -151,6 +160,46 @@ const CMSModule = (props: IModuleProps): ReactElement => {
             </HobTypography>
           ))}
         </TextArea>
+      );
+      break;
+
+    case "mediaGrid":
+      useEffect(() => {
+        Promise.all(
+          props.mediaGridMedia.map(({ mediaGridMediaFile }) => {
+            return axios.get(mediaGridMediaFile);
+          })
+        ).then(responses => {
+          setMedia(
+            responses.map(({ data, headers, request }) => ({
+              data,
+              type: headers["content-type"],
+              url: request.responseURL
+            }))
+          );
+        });
+      }, []);
+      return (
+        <MediaGrid className="module-media-grid">
+          {media &&
+            media.map(({ data, type, url = "" }, i) => {
+              switch (type) {
+                case MediaType.PNG: {
+                  return (
+                    <img
+                      className="module-media-grid__item"
+                      key={url}
+                      src={url}
+                      alt="module media grid item"
+                    />
+                  );
+                }
+
+                default:
+                  return <div key={`${type}:${i}`}>{type}</div>;
+              }
+            })}
+        </MediaGrid>
       );
       break;
 
