@@ -33,10 +33,17 @@ function getScrollPosition({
 
 export function useScrollPosition(
   effect: TEffect,
-  deps?: any[],
-  element?: React.RefObject<any>,
-  useWindow?: boolean,
-  wait?: number
+  {
+    deps,
+    element,
+    useWindow,
+    wait
+  }: {
+    deps?: any[];
+    element?: React.RefObject<any>;
+    useWindow?: boolean;
+    wait?: number;
+  } = {}
 ) {
   const position = useRef(getScrollPosition({ element, useWindow }));
 

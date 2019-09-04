@@ -72,15 +72,9 @@ const IndexPage = () => {
     setWindowHeight(window.innerHeight);
   }, []);
 
-  useScrollPosition(
-    ({ prevPos, currPos }) => {
-      setOffset(currPos.y * -1);
-    },
-    [],
-    undefined,
-    false,
-    300
-  );
+  useScrollPosition(({ prevPos, currPos }) => {
+    setOffset(currPos.y * -1);
+  });
 
   // relative to margin and bottom/top values in css
   const atTop = offset >= windowHeight - 1.5 * 16 - 2 * (1.75 * 16);
