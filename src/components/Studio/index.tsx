@@ -100,7 +100,7 @@ export const Studio: React.FC<IStudioProps> = ({
   social
 }: IStudioProps) => {
   return (
-    <Container>
+    <Container id="studio">
       <Inner>
         <HobTypography variant="h1">{title}</HobTypography>
 
