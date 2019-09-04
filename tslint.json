@@ -10,7 +10,7 @@
     "no-console": [false],
     "no-var-requires": true,
     "quotemark": [true, "double", "jsx-double"],
-    "no-implicit-dependencies": [true, "dev", ["src", "@components"]],
+    "no-implicit-dependencies": [true, "dev", ["src", "@components", "@containers", "@higherOrderComponents", "@hooks", "@pages", "@templates"]],
     "prettier": true
   },
   "rulesDirectory": []
