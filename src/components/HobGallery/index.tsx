@@ -41,14 +41,13 @@ export const HobGallery: React.FC<
   });
 
   return (
-    <div className={className}>
-      <EmblaCarouselReact
-        htmlTagName="div"
-        emblaRef={setEmbla}
-        options={{ loop: false }}
-      >
-        <div style={{ display: "flex" }}>{gallerySlides}</div>
-      </EmblaCarouselReact>
-    </div>
+    <EmblaCarouselReact
+      htmlTagName="div"
+      emblaRef={setEmbla}
+      options={{ loop: false }}
+      className={className as string}
+    >
+      <div style={{ display: "flex" }}>{gallerySlides}</div>
+    </EmblaCarouselReact>
   );
 };

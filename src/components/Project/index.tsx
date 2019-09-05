@@ -137,6 +137,7 @@ const TwoThree = styled.div`
 `;
 
 const MediaSlide = styled.div`
+  position: relative;
   height: 100%;
   width: 100%;
   display: flex;
@@ -151,7 +152,14 @@ const MediaSlide = styled.div`
   .hob-typography {
     color: var(--hob-color--);
     font-size: 1.75rem;
+    position: absolute;
+    bottom: -2.25rem;
+    left: 0;
   }
+`;
+
+const MediaSlideMedia = styled.div`
+  background-color: var(--hob-color--white);
 `;
 
 const CMSModule = (props: IModuleProps): ReactElement => {
@@ -315,11 +323,14 @@ const CMSModule = (props: IModuleProps): ReactElement => {
           case MediaType.GIF: {
             return (
               <MediaSlide key={`${url}`}>
-                <img
-                  className="module-media-grid__item"
-                  src={url}
-                  alt="module media grid item"
-                />
+                <MediaSlideMedia>
+                  <img
+                    className="module-media-grid__item"
+                    src={url}
+                    alt="module media grid item"
+                  />
+                </MediaSlideMedia>
+                <HobTypography variant="body1">Test Caption</HobTypography>
               </MediaSlide>
             );
           }
@@ -368,7 +379,10 @@ const CMSModule = (props: IModuleProps): ReactElement => {
 
       const gallerySlides = media.map(makeGallerySlide);
 
-      const GalleryContainer = styled(HobGallery)``;
+      const GalleryContainer = styled(HobGallery)`
+        overflow: visible !important;
+        padding: 0 0 8.375rem 0;
+      `;
 
       return <GalleryContainer>{gallerySlides}</GalleryContainer>;
 
