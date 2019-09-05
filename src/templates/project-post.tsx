@@ -6,8 +6,9 @@ import { Navbar } from "@components/Navbar";
 import { IModuleProps, Project } from "@components/Project";
 import styled from "@emotion/styled";
 import { WithAuth } from "@higherOrderComponents/WithAuth";
+import { useScrollPosition } from "@hooks/useScrollPosition";
 import { graphql } from "gatsby";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Helmet from "react-helmet";
 import breakpoints from "../breakpoints";
 
@@ -39,18 +40,31 @@ export interface IProjectPostProps {
   };
 }
 
-const PaginationContainer = styled.div`
+const PaginationContainer = styled.div<{ scrollDirection: "north" | "south" }>`
   position: fixed;
   right: 0;
-  top: 0;
+  bottom: 0;
   height: 100vh;
   width: 0.625rem;
-  transition: width var(--hob-transition-duration);
-  z-index: 4;
+  transition: width var(--hob-transition-duration),
+    height var(--hob-transition-duration);
+  z-index: 10;
 
-  ${breakpoints.mobile} {
-    bottom: 0;
-    height: 0;
+  &.side-pagination {
+    ${breakpoints.mobile} {
+      left: 0;
+      height: ${({ scrollDirection }) =>
+        scrollDirection === "north" ? 2 : 0}rem;
+      overflow: hidden;
+      width: 100%;
+      display: flex;
+    }
+
+    &--northbound {
+      ${breakpoints.mobile} {
+        height: 3rem;
+      }
+    }
   }
 
   &:hover,
@@ -63,6 +77,10 @@ const PaginationContainer = styled.div`
       position: absolute;
       left: 0.5rem;
       font-size: 1.3rem;
+
+      ${breakpoints.mobile} {
+        position: unset;
+      }
     }
 
     &__link {
@@ -70,6 +88,31 @@ const PaginationContainer = styled.div`
       height: 50%;
       right: 0;
       width: 100%;
+      text-decoration: none;
+
+      ${breakpoints.mobile} {
+        width: 50%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &--top {
+          order: 1;
+          flex-direction: row-reverse;
+
+          > * {
+            margin-left: 1rem;
+          }
+        }
+
+        &--bottom {
+          > * {
+            margin-right: 1rem;
+          }
+        }
+      }
 
       .hob-typography {
         display: block;
@@ -78,6 +121,15 @@ const PaginationContainer = styled.div`
         white-space: nowrap;
         position: absolute;
         left: 0.5rem;
+
+        ${breakpoints.mobile} {
+          transform: rotate(0deg);
+          position: unset;
+          flex: 2;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
       }
 
       &--top {
@@ -120,8 +172,20 @@ const SidePagination = ({
   prev: ISideLink;
   next: ISideLink;
 }) => {
+  const [scrollDirection, setScrollDirection] = useState<"north" | "south">(
+    "south"
+  );
+
+  useScrollPosition(({ prevPos: { y: prevY }, currPos: { y: currY } }) => {
+    console.log({ prevY, currY });
+    setScrollDirection(prevY < 0 && prevY < currY ? "north" : "south");
+  });
+
   return (
-    <PaginationContainer className="side-pagination">
+    <PaginationContainer
+      scrollDirection={scrollDirection}
+      className={`side-pagination side-pagination--${scrollDirection}bound`}
+    >
       <Link
         to={next.to}
         color="primary"
@@ -146,6 +210,7 @@ const SidePagination = ({
 };
 
 const Container = styled(Layout)`
+  overflow-x: hidden;
   .nav {
     position: absolute;
     top: 1.25rem;
