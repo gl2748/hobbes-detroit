@@ -1,12 +1,12 @@
+import { HeroCarousel } from "@components/HeroCarousel";
+import { HobLink } from "@components/HobLink";
+import { IProjectProps } from "@components/ProjectRollItem";
 import styled from "@emotion/styled";
 import axios from "axios";
 import { graphql, StaticQuery } from "gatsby";
 import React, { useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import breakpoints from "../breakpoints";
-import { GatsbyLink } from "../components/GatsbyLink";
-import { HeroCarousel } from "../components/HeroCarousel";
-import { IProjectProps } from "../components/ProjectRollItem";
 import { IAllMarkdownRemark } from "./interfaces";
 
 const ProjectContainer = styled.div`
@@ -61,7 +61,7 @@ const Project = ({ post }: { post: IProjectProps }) => {
         )}
       </ProjectGraphic>
 
-      <GatsbyLink
+      <HobLink
         color="dark-gray"
         to={
           post.frontmatter.protectedProject
@@ -70,7 +70,7 @@ const Project = ({ post }: { post: IProjectProps }) => {
         }
       >
         {post.frontmatter.title}
-      </GatsbyLink>
+      </HobLink>
     </ProjectContainer>
   );
 };

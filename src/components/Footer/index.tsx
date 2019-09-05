@@ -1,9 +1,9 @@
+import { HobLink as Link } from "@components/HobLink";
+import { HobLogo } from "@components/HobLogo";
+import { HobTypography } from "@components/HobTypography";
 import styled from "@emotion/styled";
 import React from "react";
 import breakpoints from "../../breakpoints";
-import { GatsbyLink as Link } from "../GatsbyLink";
-import { HobLogo } from "../HobLogo";
-import { HobTypography } from "../HobTypography";
 
 const Container = styled.div`
   position: absolute;

@@ -1,16 +1,15 @@
+import { HTMLContent } from "@components/Content";
+import { HobLink as Link } from "@components/HobLink";
+import { HobTypography } from "@components/HobTypography";
+import { Layout } from "@components/Layout";
+import { Navbar } from "@components/Navbar";
+import { IModuleProps, Project } from "@components/Project";
 import styled from "@emotion/styled";
+import { WithAuth } from "@higherOrderComponents/WithAuth";
 import { graphql } from "gatsby";
 import React from "react";
 import Helmet from "react-helmet";
 import breakpoints from "../breakpoints";
-import { HTMLContent } from "../components/Content";
-import { GatsbyLink as Link } from "../components/GatsbyLink";
-import { HobLetters } from "../components/HobLetters";
-import { HobTypography } from "../components/HobTypography";
-import { Layout } from "../components/Layout";
-import { Navbar } from "../components/Navbar";
-import { IModuleProps, Project } from "../components/Project";
-import { WithAuth } from "../higherOrderComponents/WithAuth";
 
 interface SideLink {
   frontmatter: {

@@ -68,18 +68,6 @@ const Container = styled(Layout)`
       }
     }
   }
-
-  .hob-link {
-    margin-right: 1rem;
-
-    &:last-of-type {
-      margin-right: 0;
-    }
-    &,
-    .hob-typography--link {
-      font-size: var(--fs);
-    }
-  }
 `;
 
 const IndexPage = () => {
