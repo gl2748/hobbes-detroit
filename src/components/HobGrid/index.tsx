@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React, { HTMLProps, ReactElement, ReactNode } from "react";
+import breakpoints from "../../breakpoints";
 
 export interface IGridProps {
   children: ReactNode;
@@ -26,6 +27,12 @@ export const HobGrid = ({
 
           &:last-of-type {
             border-right: 0;
+          }
+
+          ${breakpoints.mobile} {
+            width: 100%;
+            border-right: none;
+            border-bottom: 1.25rem solid transparent;
           }
         `;
         return (

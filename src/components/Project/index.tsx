@@ -10,7 +10,7 @@ import { Link } from "gatsby";
 import { kebabCase } from "lodash";
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import Lottie from "react-lottie";
-import ReactMarkdown from "react-markdown";
+import breakpoints from "../../breakpoints";
 
 enum MediaType {
   PNG = "image/png",
@@ -52,6 +52,10 @@ const Hero = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: var(--hob-color--white);
+
+  img {
+    max-width: 100%;
+  }
 `;
 
 const Header = styled.div`
@@ -59,10 +63,6 @@ const Header = styled.div`
   position: relative;
   align-items: center;
   height: 4rem;
-
-  img {
-    max-width: 100%;
-  }
 
   .hob-logo {
     position: absolute;
@@ -78,13 +78,26 @@ const Header = styled.div`
 const TextArea = styled(HobGrid)`
   padding: 1.25rem 6.625rem;
 
+  ${breakpoints.mobile} {
+    padding: 1.25rem;
+  }
+
   &.module-text-area {
     &--one {
       padding: 4.125rem 0;
+      ${breakpoints.mobile} {
+        padding: 0;
+      }
       .hob-grid__item {
         width: 50vw;
         height: auto;
         margin: 0 auto;
+
+        ${breakpoints.mobile} {
+          width: 100%;
+          height: 100%;
+          padding: 1.25rem;
+        }
       }
     }
   }
@@ -93,13 +106,23 @@ const TextArea = styled(HobGrid)`
 const MediaGrid = styled(HobGrid)`
   padding: 1.25rem 6.625rem;
 
+  ${breakpoints.mobile} {
+    padding: 1.25rem;
+  }
+
   &.module-media-grid {
     &--one {
       .hob-grid__item {
         width: 50vw;
         height: 50vw;
         margin: 0 auto;
+
+        ${breakpoints.mobile} {
+          width: 100%;
+          height: 100%;
+        }
       }
+
       img {
         width: 100%;
       }
@@ -134,6 +157,14 @@ const TwoThree = styled.div`
     &:first-of-type {
       padding-bottom: 0;
       margin-bottom: 0;
+    }
+    ${breakpoints.mobile} {
+      &:nth-of-type(1) {
+        padding-bottom: 0;
+      }
+      &:nth-of-type(2) {
+        padding-top: 0;
+      }
     }
   }
 `;
@@ -429,6 +460,10 @@ export interface IProjectProps {
 
 const Container = styled.div`
   padding-bottom: 3rem;
+
+  ${breakpoints.mobile} {
+    padding-bottom: 10rem;
+  }
 `;
 
 export const Project: React.FC<IProjectProps> = ({
@@ -476,7 +511,7 @@ export const Project: React.FC<IProjectProps> = ({
           />
         ))}
         {content && <PostContent content={content} />}
-        {tags && tags.length ? (
+        {/* {tags && tags.length ? (
           <div style={{ marginTop: `4rem` }}>
             <h4>Tags</h4>
             <ul>
@@ -487,7 +522,7 @@ export const Project: React.FC<IProjectProps> = ({
               ))}
             </ul>
           </div>
-        ) : null}
+        ) : null} */}
       </ModulesContainer>
     </Container>
   );
