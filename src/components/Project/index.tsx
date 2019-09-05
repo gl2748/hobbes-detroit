@@ -310,7 +310,7 @@ const CMSModule = (props: IModuleProps): ReactElement => {
       );
     }
     case "gallery":
-      const makeGallerySlide = (
+      const makeGallerySlide = (slides: IModuleProps["slides"]) => (
         {
           data,
           type,
@@ -330,7 +330,12 @@ const CMSModule = (props: IModuleProps): ReactElement => {
                     alt="module media grid item"
                   />
                 </MediaSlideMedia>
-                <HobTypography variant="body1">Test Caption</HobTypography>
+                <HobTypography variant="body1">
+                  {
+                    slides.filter(slide => slide.slideMediaFile === url)[0]
+                      .caption
+                  }
+                </HobTypography>
               </MediaSlide>
             );
           }
@@ -338,7 +343,15 @@ const CMSModule = (props: IModuleProps): ReactElement => {
           case MediaType.SVG: {
             return (
               <MediaSlide key={`svg:${i}`}>
-                <div dangerouslySetInnerHTML={{ __html: data }} />
+                <MediaSlideMedia>
+                  <div dangerouslySetInnerHTML={{ __html: data }} />
+                </MediaSlideMedia>
+                <HobTypography variant="body1">
+                  {
+                    slides.filter(slide => slide.slideMediaFile === url)[0]
+                      .caption
+                  }
+                </HobTypography>
               </MediaSlide>
             );
           }
@@ -352,7 +365,15 @@ const CMSModule = (props: IModuleProps): ReactElement => {
 
             return (
               <MediaSlide key={`lottie:${i}`}>
-                <Lottie options={defaultOptions} height={400} width={400} />
+                <MediaSlideMedia>
+                  <Lottie options={defaultOptions} height={400} width={400} />
+                </MediaSlideMedia>
+                <HobTypography variant="body1">
+                  {
+                    slides.filter(slide => slide.slideMediaFile === url)[0]
+                      .caption
+                  }
+                </HobTypography>
               </MediaSlide>
             );
           }
@@ -377,7 +398,7 @@ const CMSModule = (props: IModuleProps): ReactElement => {
         });
       }, []);
 
-      const gallerySlides = media.map(makeGallerySlide);
+      const gallerySlides = media.map(makeGallerySlide(props.slides));
 
       const GalleryContainer = styled(HobGallery)`
         overflow: visible !important;
