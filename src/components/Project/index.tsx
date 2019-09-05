@@ -194,7 +194,6 @@ const CMSModule = (props: IModuleProps): ReactElement => {
     case "textArea":
       return (
         <TextArea
-          padding={6.625}
           className={`module-text-area module-text-area--${
             props.textColumns.length === 1 ? "one" : "many"
           }`}
@@ -302,7 +301,6 @@ const CMSModule = (props: IModuleProps): ReactElement => {
 
       return media.length < 4 ? (
         <MediaGrid
-          padding={6.625}
           className={`module-media-grid module-media-grid--${
             media.length === 1 ? "one" : "many"
           }`}
@@ -311,11 +309,11 @@ const CMSModule = (props: IModuleProps): ReactElement => {
         </MediaGrid>
       ) : (
         <TwoThree>
-          <MediaGrid className="module-media-grid" padding={6.625}>
+          <MediaGrid className="module-media-grid">
             {media.slice(0, 2).map(makeMediaGridItem("row1"))}
           </MediaGrid>
 
-          <MediaGrid className="module-media-grid" padding={6.625}>
+          <MediaGrid className="module-media-grid">
             {media.slice(2).map(makeMediaGridItem("row2"))}
           </MediaGrid>
         </TwoThree>

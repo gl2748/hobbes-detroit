@@ -3,7 +3,6 @@ import React, { HTMLProps, ReactElement, ReactNode } from "react";
 
 export interface IGridProps {
   children: ReactNode;
-  padding?: number;
 }
 
 const Container = styled.div`
@@ -14,29 +13,19 @@ const Container = styled.div`
 
 export const HobGrid = ({
   children,
-  className = "",
-  padding = 0
+  className = ""
 }: IGridProps & HTMLProps<HTMLDivElement>): ReactElement => {
   const columns: ReactNode[] = Array.isArray(children) ? children : [children];
 
   return (
     <Container className={`hob-grid ${className}`}>
       {columns.map((C, index: number) => {
-        const marginOffset = (1.25 * (columns.length - 1)) / columns.length;
-        const proportion = 100 / columns.length;
         const Wrapper = styled.div`
-          width: calc(
-            (${proportion}vw) - (${marginOffset}rem) -
-              (${padding * (2 / columns.length)}rem)
-          );
-          height: calc(
-            (${proportion}vw) - (${marginOffset}rem) -
-              (${padding * ((columns.length - 1) / columns.length)}rem)
-          );
-          margin-right: 1.25rem;
+          width: ${100 / columns.length}%;
+          border-right: 1.25rem solid transparent;
 
           &:last-of-type {
-            margin-right: 0;
+            border-right: 0;
           }
         `;
         return (
