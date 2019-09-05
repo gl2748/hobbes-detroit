@@ -192,7 +192,9 @@ const MediaSlide = styled.div`
 `;
 
 const MediaSlideMedia = styled.div`
-  background-color: var(--hob-color--white);
+  .module-gallery-slide {
+    max-width: 60vw;
+  }
 `;
 
 const CMSModule = (props: IModuleProps): ReactElement => {
@@ -354,7 +356,7 @@ const CMSModule = (props: IModuleProps): ReactElement => {
               <MediaSlide key={`${url}`}>
                 <MediaSlideMedia>
                   <img
-                    className="module-media-grid__item"
+                    className="module-gallery-slide"
                     src={url}
                     alt="module media grid item"
                   />
