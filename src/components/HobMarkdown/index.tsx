@@ -2,10 +2,14 @@ import { HobTypography, IHobTypographyProps } from "@components/HobTypography";
 import styled from "@emotion/styled";
 import React, { HTMLProps } from "react";
 import ReactMarkdown, { ReactMarkdownProps } from "react-markdown";
+import breakpoints from "../../breakpoints";
 
 const Heading = styled(HobTypography)`
   margin-bottom: 3rem;
   font-size: 2.8125rem;
+  ${breakpoints.mobile} {
+    font-size: 1.75rem;
+  }
 
   * + & {
     margin-top: 3rem;
@@ -13,6 +17,10 @@ const Heading = styled(HobTypography)`
 `;
 const Paragraph = styled(HobTypography)`
   font-size: 1.75rem;
+
+  ${breakpoints.mobile} {
+    font-size: 1.125rem;
+  }
 `;
 
 const HobMarkdownHeading = ({
