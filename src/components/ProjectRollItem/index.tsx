@@ -1,11 +1,11 @@
-import { HobIcon } from "@components/HobIcon";
-import { HobLink as Link } from "@components/HobLink";
-import { HobLogo } from "@components/HobLogo";
-import { HobTypography } from "@components/HobTypography";
 import styled from "@emotion/styled";
 import axios from "axios";
 import React, { HTMLProps, ReactElement, useEffect, useState } from "react";
 import breakpoints from "../../breakpoints";
+import { HobIcon } from "../HobIcon";
+import { HobLink as Link } from "../HobLink";
+import { HobLogo } from "../HobLogo";
+import { HobTypography } from "../HobTypography";
 
 export interface IProjectProps {
   title: string;
