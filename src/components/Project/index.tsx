@@ -8,6 +8,7 @@ import { Content, HTMLContent } from "../Content";
 import { HobGrid } from "../HobGrid";
 import { HobLogo } from "../HobLogo";
 import { HobTypography } from "../HobTypography";
+import { HobGallery } from "@components/HobGallery";
 
 enum MediaType {
   PNG = "image/png",
@@ -277,9 +278,25 @@ const CMSModule = (props: IModuleProps): ReactElement => {
           </MediaGrid>
         </TwoThree>
       );
-    }
+    };
     case "gallery":
-      return <div>GALLERY COMPONENT TIME!</div>;
+        debugger
+
+        const gallerySlides = props.slides.map((slide) => {
+            
+
+
+
+            
+        })
+      return (
+        <div>
+          IAIN WAS HERE
+          <HobGallery>
+              {gallerySlides}
+          </HobGallery>
+        </div>
+      );
 
     default:
       return (
