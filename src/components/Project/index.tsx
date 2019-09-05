@@ -460,13 +460,7 @@ export interface IProjectProps {
   featuredJson: string;
 }
 
-const Container = styled.div`
-  padding-bottom: 3rem;
-
-  ${breakpoints.mobile} {
-    padding-bottom: 10rem;
-  }
-`;
+const Container = styled.div``;
 
 export const Project: React.FC<IProjectProps> = ({
   content,

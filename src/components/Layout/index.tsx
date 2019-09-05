@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import React, { HTMLProps, ReactNode, useReducer } from "react";
 import { Helmet } from "react-helmet";
 import { useIdentityContext } from "react-netlify-identity-widget";
+import breakpoints from "../../breakpoints";
 import { Footer } from "../Footer";
 import { HobIcon } from "../HobIcon";
 import { HobLink } from "../HobLink";
@@ -48,6 +49,11 @@ const layoutReducer = (state: ILayoutState, action: ILayoutActions) => {
 const Container = styled.div`
   position: relative;
   min-height: 100vh;
+  padding-bottom: 3rem;
+
+  ${breakpoints.mobile} {
+    padding-bottom: 10rem;
+  }
 `;
 
 const PortalLegal = styled.div`
