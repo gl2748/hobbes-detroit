@@ -11,6 +11,7 @@ export interface IHobLinkProps {
 
 const withStyle = C => styled(C)`
   text-decoration: underline;
+  color: ${({ color }) => `var(--hob-color--${color})`};
   .hob-typography {
     color: ${({ color }) => `var(--hob-color--${color})`};
   }
