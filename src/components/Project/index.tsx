@@ -59,6 +59,10 @@ const Header = styled.div`
   align-items: center;
   height: 4rem;
 
+  img {
+    max-width: 100%;
+  }
+
   .hob-logo {
     position: absolute;
     left: 0;
