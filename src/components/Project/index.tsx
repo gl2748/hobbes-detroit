@@ -136,6 +136,24 @@ const TwoThree = styled.div`
   }
 `;
 
+const MediaSlide = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--hob-color--white);
+  .hob-logo {
+    width: 100px;
+    height: 100px;
+  }
+  .hob-typography {
+    color: var(--hob-color--);
+    font-size: 1.75rem;
+  }
+`;
+
 const CMSModule = (props: IModuleProps): ReactElement => {
   const [media, setMedia] = useState<
     Array<{
@@ -198,8 +216,12 @@ const CMSModule = (props: IModuleProps): ReactElement => {
 
     case "mediaGrid": {
       const makeMediaGridItem = (key: string) => (
-        { data, type, url = "" },
-        i
+        {
+          data,
+          type,
+          url = ""
+        }: { data: any; type: MediaType; url?: string | undefined },
+        i: number
       ) => {
         switch (type) {
           case MediaType.PNG:
@@ -280,12 +302,74 @@ const CMSModule = (props: IModuleProps): ReactElement => {
       );
     }
     case "gallery":
-      debugger;
+      const makeGallerySlide = (
+        {
+          data,
+          type,
+          url = ""
+        }: { data: any; type: MediaType; url?: string | undefined },
+        i: number
+      ) => {
+        switch (type) {
+          case MediaType.PNG:
+          case MediaType.GIF: {
+            return (
+              <MediaSlide key={`${url}`}>
+                <img
+                  className="module-media-grid__item"
+                  src={url}
+                  alt="module media grid item"
+                />
+              </MediaSlide>
+            );
+          }
 
-      const gallerySlides = props.slides.map(slide => {});
+          case MediaType.SVG: {
+            return (
+              <MediaSlide key={`svg:${i}`}>
+                <div dangerouslySetInnerHTML={{ __html: data }} />
+              </MediaSlide>
+            );
+          }
+
+          case MediaType.LOTTIE: {
+            const defaultOptions = {
+              animationData: data,
+              autoplay: true,
+              loop: true
+            };
+
+            return (
+              <MediaSlide key={`lottie:${i}`}>
+                <Lottie options={defaultOptions} height={400} width={400} />
+              </MediaSlide>
+            );
+          }
+
+          default:
+            return <div key={`${type}:${i}`}>{type}</div>;
+        }
+      };
+      useEffect(() => {
+        Promise.all(
+          props.slides.map(({ slideMediaFile }) => {
+            return axios.get(slideMediaFile);
+          })
+        ).then(responses => {
+          setMedia(
+            responses.map(({ data, headers, request }) => ({
+              data,
+              type: headers["content-type"],
+              url: request.responseURL
+            }))
+          );
+        });
+      }, []);
+
+      const gallerySlides = media.map(makeGallerySlide);
+
       return (
         <div>
-          IAIN WAS HERE
           <HobGallery>{gallerySlides}</HobGallery>
         </div>
       );
