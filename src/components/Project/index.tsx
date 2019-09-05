@@ -186,8 +186,8 @@ const MediaSlide = styled.div`
     color: var(--hob-color--);
     font-size: 1.75rem;
     position: absolute;
-    bottom: -2.25rem;
     left: 0;
+    top: 100%;
   }
 `;
 
