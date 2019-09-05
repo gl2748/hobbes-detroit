@@ -1,3 +1,4 @@
+import { HobGallery } from "@components/HobGallery";
 import styled from "@emotion/styled";
 import axios from "axios";
 import { Link } from "gatsby";
@@ -8,7 +9,6 @@ import { Content, HTMLContent } from "../Content";
 import { HobGrid } from "../HobGrid";
 import { HobLogo } from "../HobLogo";
 import { HobTypography } from "../HobTypography";
-import { HobGallery } from "@components/HobGallery";
 
 enum MediaType {
   PNG = "image/png",
@@ -278,23 +278,15 @@ const CMSModule = (props: IModuleProps): ReactElement => {
           </MediaGrid>
         </TwoThree>
       );
-    };
+    }
     case "gallery":
-        debugger
+      debugger;
 
-        const gallerySlides = props.slides.map((slide) => {
-            
-
-
-
-            
-        })
+      const gallerySlides = props.slides.map(slide => {});
       return (
         <div>
           IAIN WAS HERE
-          <HobGallery>
-              {gallerySlides}
-          </HobGallery>
+          <HobGallery>{gallerySlides}</HobGallery>
         </div>
       );
 
