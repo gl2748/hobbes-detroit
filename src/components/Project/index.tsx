@@ -1,4 +1,5 @@
 import { Content } from "@components/Content";
+import { HobGallery } from "@components/HobGallery";
 import { HobGrid } from "@components/HobGrid";
 import { HobLogo } from "@components/HobLogo";
 import { HobMarkdown } from "@components/HobMarkdown";
@@ -135,6 +136,32 @@ const TwoThree = styled.div`
       margin-bottom: 0;
     }
   }
+`;
+
+const MediaSlide = styled.div`
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--hob-color--white);
+  .hob-logo {
+    width: 100px;
+    height: 100px;
+  }
+  .hob-typography {
+    color: var(--hob-color--);
+    font-size: 1.75rem;
+    position: absolute;
+    bottom: -2.25rem;
+    left: 0;
+  }
+`;
+
+const MediaSlideMedia = styled.div`
+  background-color: var(--hob-color--white);
 `;
 
 const CMSModule = (props: IModuleProps): ReactElement => {
@@ -284,6 +311,99 @@ const CMSModule = (props: IModuleProps): ReactElement => {
         </TwoThree>
       );
     }
+    case "gallery":
+      const makeGallerySlide = (slides: IModuleProps["slides"]) => (
+        { data, type, url = "" }: { data: any; type: MediaType; url?: string },
+        i: number
+      ) => {
+        switch (type) {
+          case MediaType.PNG:
+          case MediaType.GIF: {
+            return (
+              <MediaSlide key={`${url}`}>
+                <MediaSlideMedia>
+                  <img
+                    className="module-media-grid__item"
+                    src={url}
+                    alt="module media grid item"
+                  />
+                </MediaSlideMedia>
+                <HobTypography variant="body1">
+                  {
+                    slides.filter(slide => slide.slideMediaFile === url)[0]
+                      .caption
+                  }
+                </HobTypography>
+              </MediaSlide>
+            );
+          }
+
+          case MediaType.SVG: {
+            return (
+              <MediaSlide key={`svg:${i}`}>
+                <MediaSlideMedia>
+                  <div dangerouslySetInnerHTML={{ __html: data }} />
+                </MediaSlideMedia>
+                <HobTypography variant="body1">
+                  {
+                    slides.filter(slide => slide.slideMediaFile === url)[0]
+                      .caption
+                  }
+                </HobTypography>
+              </MediaSlide>
+            );
+          }
+
+          case MediaType.LOTTIE: {
+            const defaultOptions = {
+              animationData: data,
+              autoplay: true,
+              loop: true
+            };
+
+            return (
+              <MediaSlide key={`lottie:${i}`}>
+                <MediaSlideMedia>
+                  <Lottie options={defaultOptions} height={400} width={400} />
+                </MediaSlideMedia>
+                <HobTypography variant="body1">
+                  {
+                    slides.filter(slide => slide.slideMediaFile === url)[0]
+                      .caption
+                  }
+                </HobTypography>
+              </MediaSlide>
+            );
+          }
+
+          default:
+            return <div key={`${type}:${i}`}>{type}</div>;
+        }
+      };
+      useEffect(() => {
+        Promise.all(
+          props.slides.map(({ slideMediaFile }) => {
+            return axios.get(slideMediaFile);
+          })
+        ).then(responses => {
+          setMedia(
+            responses.map(({ data, headers, request }) => ({
+              data,
+              type: headers["content-type"],
+              url: request.responseURL
+            }))
+          );
+        });
+      }, []);
+
+      const gallerySlides = media.map(makeGallerySlide(props.slides));
+
+      const GalleryContainer = styled(HobGallery)`
+        overflow: visible !important;
+        padding: 0 0 8.375rem 0;
+      `;
+
+      return <GalleryContainer>{gallerySlides}</GalleryContainer>;
 
     default:
       return (
