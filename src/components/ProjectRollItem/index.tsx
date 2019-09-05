@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import axios from "axios";
 import React, { HTMLProps, ReactElement, useEffect, useState } from "react";
 import breakpoints from "../../breakpoints";
-import { GatsbyLink as Link } from "../GatsbyLink";
 import { HobIcon } from "../HobIcon";
+import { HobLink as Link } from "../HobLink";
 import { HobLogo } from "../HobLogo";
 import { HobTypography } from "../HobTypography";
 

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { ReactNode } from "react";
+import React, { HTMLProps, ReactNode } from "react";
 import breakpoints from "../../breakpoints";
 
 export interface IHobTypographyProps {
@@ -19,7 +19,6 @@ export interface IHobTypographyProps {
     | "subtitle1"
     | "subtitle2";
   children: ReactNode;
-  className?: string;
 }
 
 const VARIANTS = {
@@ -76,16 +75,12 @@ const VARIANTS = {
   `
 };
 
-export const HobTypography: React.FC<IHobTypographyProps> = ({
-  variant,
-  children,
-  className
-}: IHobTypographyProps) => {
+export const HobTypography: React.FC<
+  IHobTypographyProps & HTMLProps<HTMLHeadingElement>
+> = ({ variant, children, className = "" }) => {
   const Tag = VARIANTS[variant];
   const classNameDefault = `hob-typography hob-typography--${variant}`;
   return (
-    <Tag className={`${classNameDefault} ${className ? className : ""}`.trim()}>
-      {children}
-    </Tag>
+    <Tag className={`${classNameDefault} ${className}`.trim()}>{children}</Tag>
   );
 };

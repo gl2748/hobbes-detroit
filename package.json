@@ -45,6 +45,7 @@
     "react-dom": "^16.8.4",
     "react-helmet": "^5.2.0",
     "react-lottie": "^1.2.3",
+    "react-markdown": "^4.2.2",
     "react-netlify-identity": "^0.1.9",
     "react-netlify-identity-widget": "^0.1.4",
     "react-visibility-sensor": "^5.1.1",

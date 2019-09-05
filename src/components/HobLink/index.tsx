@@ -1,16 +1,15 @@
 import styled from "@emotion/styled";
+import { Link } from "gatsby";
 import React, { HTMLProps } from "react";
 import { HobTypography } from "../HobTypography";
 
 export interface IHobLinkProps {
   color: "primary" | "secondary" | "dark-gray";
+  to?: string;
   unsetTypography?: boolean;
 }
 
-// any styling changes should be duplicated in components/GatsbyLink
-// There is an issue with loadingi { Link } in storybook
-// https://github.com/storybookjs/storybook/issues/7884
-const StyledLink = styled.a`
+const withStyle = C => styled(C)`
   text-decoration: underline;
   .hob-typography {
     color: ${({ color }) => `var(--hob-color--${color})`};
@@ -37,13 +36,16 @@ export const HobLink: React.FC<
   color,
   children,
   className = "",
+  to,
   unsetTypography = false,
   ...props
 }) => {
+  const StyledLink = withStyle(to ? Link : "a");
   return (
     <StyledLink
       className={`hob-link hob-link--${color} ${className}`}
       color={color}
+      {...(to ? { to } : {})}
       {...props}
     >
       {unsetTypography ? (

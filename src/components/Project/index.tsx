@@ -1,14 +1,17 @@
+
 import { HobGallery } from "@components/HobGallery";
+import { Content } from "@components/Content";
+import { HobGrid } from "@components/HobGrid";
+import { HobLogo } from "@components/HobLogo";
+import { HobMarkdown } from "@components/HobMarkdown";
+import { HobTypography } from "@components/HobTypography";
 import styled from "@emotion/styled";
 import axios from "axios";
 import { Link } from "gatsby";
 import { kebabCase } from "lodash";
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import Lottie from "react-lottie";
-import { Content, HTMLContent } from "../Content";
-import { HobGrid } from "../HobGrid";
-import { HobLogo } from "../HobLogo";
-import { HobTypography } from "../HobTypography";
+import ReactMarkdown from "react-markdown";
 
 enum MediaType {
   PNG = "image/png",
@@ -58,6 +61,10 @@ const Header = styled.div`
   align-items: center;
   height: 4rem;
 
+  img {
+    max-width: 100%;
+  }
+
   .hob-logo {
     position: absolute;
     left: 0;
@@ -71,10 +78,6 @@ const Header = styled.div`
 
 const TextArea = styled(HobGrid)`
   padding: 1.25rem 6.625rem;
-
-  .hob-typography {
-    font-size: 1.75rem;
-  }
 
   &.module-text-area {
     &--one {
@@ -209,15 +212,12 @@ const CMSModule = (props: IModuleProps): ReactElement => {
     case "textArea":
       return (
         <TextArea
-          padding={6.625}
           className={`module-text-area module-text-area--${
             props.textColumns.length === 1 ? "one" : "many"
           }`}
         >
           {props.textColumns.map(({ column }) => (
-            <HobTypography variant="body1" key={column.slice(0, 50)}>
-              {column}
-            </HobTypography>
+            <HobMarkdown source={column} key={column.slice(0, 50)} />
           ))}
         </TextArea>
       );
@@ -228,7 +228,11 @@ const CMSModule = (props: IModuleProps): ReactElement => {
           data,
           type,
           url = ""
-        }: { data: any; type: MediaType; url?: string | undefined },
+        }: {
+          data: any;
+          type: MediaType;
+          url?: string;
+        },
         i: number
       ) => {
         switch (type) {
@@ -248,7 +252,7 @@ const CMSModule = (props: IModuleProps): ReactElement => {
           case MediaType.SVG: {
             return (
               <MediaGridItem key={`${key}:svg:${i}`}>
-                <div dangerouslySetInnerHTML={{ __html: data }} />
+                <div dangerouslySetInnerHTML={{ __html: data as string }} />
               </MediaGridItem>
             );
           }
@@ -290,7 +294,6 @@ const CMSModule = (props: IModuleProps): ReactElement => {
 
       return media.length < 4 ? (
         <MediaGrid
-          padding={6.625}
           className={`module-media-grid module-media-grid--${
             media.length === 1 ? "one" : "many"
           }`}
@@ -299,11 +302,11 @@ const CMSModule = (props: IModuleProps): ReactElement => {
         </MediaGrid>
       ) : (
         <TwoThree>
-          <MediaGrid className="module-media-grid" padding={6.625}>
+          <MediaGrid className="module-media-grid">
             {media.slice(0, 2).map(makeMediaGridItem("row1"))}
           </MediaGrid>
 
-          <MediaGrid className="module-media-grid" padding={6.625}>
+          <MediaGrid className="module-media-grid">
             {media.slice(2).map(makeMediaGridItem("row2"))}
           </MediaGrid>
         </TwoThree>
