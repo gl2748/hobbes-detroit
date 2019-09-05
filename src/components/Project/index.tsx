@@ -1,6 +1,5 @@
-
-import { HobGallery } from "@components/HobGallery";
 import { Content } from "@components/Content";
+import { HobGallery } from "@components/HobGallery";
 import { HobGrid } from "@components/HobGrid";
 import { HobLogo } from "@components/HobLogo";
 import { HobMarkdown } from "@components/HobMarkdown";
@@ -314,11 +313,7 @@ const CMSModule = (props: IModuleProps): ReactElement => {
     }
     case "gallery":
       const makeGallerySlide = (slides: IModuleProps["slides"]) => (
-        {
-          data,
-          type,
-          url = ""
-        }: { data: any; type: MediaType; url?: string | undefined },
+        { data, type, url = "" }: { data: any; type: MediaType; url?: string },
         i: number
       ) => {
         switch (type) {

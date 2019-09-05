@@ -14,22 +14,8 @@ export interface IGalleryProps {
 
 export const HobGallery: React.FC<
   IGalleryProps & HTMLProps<HTMLDivElement>
-> = ({
-  children,
-  className = ""
-}: {
-  children: any[];
-  className?: string | null;
-}) => {
+> = ({ children, className = "" }) => {
   const [embla, setEmbla] = useState(null);
-
-  useEffect(() => {
-    if (embla) {
-      embla.on("select", () => {
-        console.log(`Current index is ${embla.selectedScrollSnap()}`);
-      });
-    }
-  }, [embla]);
 
   const GallerySlide = styled.div`
     min-width: 66vw;
