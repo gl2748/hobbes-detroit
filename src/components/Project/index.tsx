@@ -368,11 +368,9 @@ const CMSModule = (props: IModuleProps): ReactElement => {
 
       const gallerySlides = media.map(makeGallerySlide);
 
-      return (
-        <div>
-          <HobGallery>{gallerySlides}</HobGallery>
-        </div>
-      );
+      const GalleryContainer = styled(HobGallery)``;
+
+      return <GalleryContainer>{gallerySlides}</GalleryContainer>;
 
     default:
       return (
