@@ -207,10 +207,13 @@ const CMSModule = (props: IModuleProps): ReactElement => {
                 heading: ({
                   children,
                   level
-                }: IHobTypographyProps & HTMLProps<HTMLHeadingElement>) => {
+                }: {
+                  level: "1" | "2" | "3" | "4" | "5" | "6";
+                } & HTMLProps<HTMLHeadingElement>) => {
+                  const variant = `h${level}` as IHobTypographyProps["variant"];
                   return (
                     <HobTypography
-                      variant={`h${level}`}
+                      variant={variant}
                       className="markdown"
                       children={children}
                     />
@@ -223,16 +226,22 @@ const CMSModule = (props: IModuleProps): ReactElement => {
                 )
               }}
             />
-            // <HobTypography variant="body1" key={column.slice(0, 50)}>
-            // </HobTypography>
           ))}
         </TextArea>
       );
 
     case "mediaGrid": {
       const makeMediaGridItem = (key: string) => (
-        { data, type, url = "" },
-        i
+        {
+          data,
+          type,
+          url = ""
+        }: {
+          data: any;
+          type: MediaType;
+          url?: string;
+        },
+        i: number
       ) => {
         switch (type) {
           case MediaType.PNG:
@@ -251,7 +260,7 @@ const CMSModule = (props: IModuleProps): ReactElement => {
           case MediaType.SVG: {
             return (
               <MediaGridItem key={`${key}:svg:${i}`}>
-                <div dangerouslySetInnerHTML={{ __html: data }} />
+                <div dangerouslySetInnerHTML={{ __html: data as string }} />
               </MediaGridItem>
             );
           }
