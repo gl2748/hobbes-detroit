@@ -1,20 +1,15 @@
+import { Content } from "@components/Content";
+import { HobGrid } from "@components/HobGrid";
+import { HobLogo } from "@components/HobLogo";
+import { HobMarkdown } from "@components/HobMarkdown";
+import { HobTypography } from "@components/HobTypography";
 import styled from "@emotion/styled";
 import axios from "axios";
 import { Link } from "gatsby";
 import { kebabCase } from "lodash";
-import React, {
-  HTMLProps,
-  ReactElement,
-  ReactNode,
-  useEffect,
-  useState
-} from "react";
+import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import ReactMarkdown from "react-markdown";
-import { Content, HTMLContent } from "../Content";
-import { HobGrid } from "../HobGrid";
-import { HobLogo } from "../HobLogo";
-import { HobTypography, IHobTypographyProps } from "../HobTypography";
 
 enum MediaType {
   PNG = "image/png",
@@ -77,15 +72,6 @@ const Header = styled.div`
 
 const TextArea = styled(HobGrid)`
   padding: 1.25rem 6.625rem;
-
-  h1.markdown {
-    margin-bottom: 3rem;
-    font-size: 2.8125rem;
-  }
-
-  p.markdown {
-    font-size: 1.75rem;
-  }
 
   &.module-text-area {
     &--one {
@@ -199,32 +185,7 @@ const CMSModule = (props: IModuleProps): ReactElement => {
           }`}
         >
           {props.textColumns.map(({ column }) => (
-            <ReactMarkdown
-              source={column}
-              key={column.slice(0, 50)}
-              renderers={{
-                heading: ({
-                  children,
-                  level
-                }: {
-                  level: "1" | "2" | "3" | "4" | "5" | "6";
-                } & HTMLProps<HTMLHeadingElement>) => {
-                  const variant = `h${level}` as IHobTypographyProps["variant"];
-                  return (
-                    <HobTypography
-                      variant={variant}
-                      className="markdown"
-                      children={children}
-                    />
-                  );
-                },
-                paragraph: ({ children }) => (
-                  <HobTypography variant="body1" className="markdown">
-                    {children}
-                  </HobTypography>
-                )
-              }}
-            />
+            <HobMarkdown source={column} key={column.slice(0, 50)} />
           ))}
         </TextArea>
       );
