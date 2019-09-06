@@ -45,5 +45,11 @@ modules:
           designs beyond information displays and into something that  could
           function as pieces of home decor.
     type: textArea
+  - hideCaptions: false
+    mediaGridMedia:
+      - mediaGridMediaFile: 'https://ucarecdn.com/145a0b6c-e78e-4440-bc6a-d7a8c998efef/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/3f8a103e-7dbe-448c-9b90-c7ba96b171ff/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/616b361f-6254-4327-9287-083fa9f66a67/'
+    type: mediaGrid
 ---
 
