@@ -51,7 +51,7 @@ const PaginationContainer = styled.div<{ scrollDirection: "north" | "south" }>`
   z-index: 10;
 
   &.side-pagination {
-    ${breakpoints.mobile} {
+    ${breakpoints.mobile}, ${breakpoints.noHover} {
       left: 0;
       height: ${({ scrollDirection }) =>
         scrollDirection === "north" ? 2 : 0}rem;
@@ -61,7 +61,7 @@ const PaginationContainer = styled.div<{ scrollDirection: "north" | "south" }>`
     }
 
     &--northbound {
-      ${breakpoints.mobile} {
+      ${breakpoints.mobile}, ${breakpoints.noHover} {
         height: 3rem;
       }
     }
@@ -78,7 +78,7 @@ const PaginationContainer = styled.div<{ scrollDirection: "north" | "south" }>`
       left: 0.5rem;
       font-size: 1.3rem;
 
-      ${breakpoints.mobile} {
+      ${breakpoints.mobile}, ${breakpoints.noHover} {
         position: unset;
       }
     }
@@ -90,7 +90,7 @@ const PaginationContainer = styled.div<{ scrollDirection: "north" | "south" }>`
       width: 100%;
       text-decoration: none;
 
-      ${breakpoints.mobile} {
+      ${breakpoints.mobile}, ${breakpoints.noHover} {
         width: 50%;
         height: 100%;
         position: relative;
@@ -122,7 +122,7 @@ const PaginationContainer = styled.div<{ scrollDirection: "north" | "south" }>`
         position: absolute;
         left: 0.5rem;
 
-        ${breakpoints.mobile} {
+        ${breakpoints.mobile}, ${breakpoints.noHover} {
           transform: rotate(0deg);
           position: unset;
           flex: 2;
