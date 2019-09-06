@@ -1,25 +1,40 @@
+import css from "@emotion/css";
 import styled from "@emotion/styled";
 import React, { ReactNode, useState } from "react";
 
 export interface ILargeMediaProps {
-  children: ReactNode[];
+  children: ReactNode[] | ReactNode;
+  bleed?: boolean;
 }
 
-const LargeMedia = styled.div`
-  background-color: var(--hob-color--dark);
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 1.875rem;
-  overflow-x: hidden;
-  height: 100vh;
+export interface TLargeMediaStyles {
+  bleed?: boolean;
+}
 
-  .hob-typography {
-    color: var(--hob-color--light);
+const LargeMedia = styled.div<TLargeMediaStyles>`
+  width: 100vw;
+  position: relative;
+  padding: 1.25rem 6.625rem; // Default
+  img {
+    max-width: 100%;
   }
+  ${props =>
+    props.bleed
+      ? css`
+          padding: 1.25rem 0;
+        `
+      : css`
+          padding: 1.25rem 6.625rem;
+        `}
 `;
 
-export const HobLargeMedia: React.FC<ILargeMediaProps> = ({ children }) => {
-  return <LargeMedia className="hob-large-media">{children}</LargeMedia>;
+export const HobLargeMedia: React.FC<ILargeMediaProps> = ({
+  children,
+  bleed = false
+}) => {
+  return (
+    <LargeMedia bleed={bleed} className="hob-large-media">
+      {children}
+    </LargeMedia>
+  );
 };
