@@ -51,5 +51,17 @@ modules:
       - mediaGridMediaFile: 'https://ucarecdn.com/3f8a103e-7dbe-448c-9b90-c7ba96b171ff/'
       - mediaGridMediaFile: 'https://ucarecdn.com/616b361f-6254-4327-9287-083fa9f66a67/'
     type: mediaGrid
+  - textColumns:
+      - column: >-
+          How might we create a piece of artwork that tells the time? Hobbes
+          loves clocks. After months of discussing how we could do something new
+          with a clock, Google SUMUX happened to asked us help create clock
+          faces for their Smart Displays. We went a little crazy.
+    type: textArea
+  - hideCaptions: false
+    mediaGridMedia:
+      - mediaGridMediaFile: 'https://ucarecdn.com/b987dca6-91e5-444f-a4b9-986296a09b46/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/1fee5a03-4211-4556-a923-5896cd461dfd/'
+    type: mediaGrid
 ---
 
