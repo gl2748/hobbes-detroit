@@ -359,16 +359,26 @@ const CMSModule = (props: IModuleProps): ReactElement => {
               case MediaType.PNG:
               case MediaType.GIF: {
                 return (
-                  <img
-                    key={`${data}:${i}`}
-                    src={props.largeMediaFile}
-                    alt="banner media"
-                  />
+                  <>
+                    <img
+                      key={`${data}:${i}`}
+                      src={props.largeMediaFile}
+                      alt="banner media"
+                    />
+                    <HobTypography variant="body1">
+                      {props.caption}
+                    </HobTypography>
+                  </>
                 );
               }
               case MediaType.SVG: {
                 return (
-                  <div dangerouslySetInnerHTML={{ __html: data as string }} />
+                  <>
+                    <div dangerouslySetInnerHTML={{ __html: data as string }} />
+                    <HobTypography variant="body1">
+                      {props.caption}
+                    </HobTypography>
+                  </>
                 );
               }
 
@@ -380,7 +390,12 @@ const CMSModule = (props: IModuleProps): ReactElement => {
                 };
 
                 return (
-                  <Lottie options={defaultOptions} height={400} width={400} />
+                  <>
+                    <Lottie options={defaultOptions} height={400} width={400} />
+                    <HobTypography variant="body1">
+                      {props.caption}
+                    </HobTypography>
+                  </>
                 );
               }
               default:
