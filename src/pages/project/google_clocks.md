@@ -70,5 +70,16 @@ modules:
       - mediaGridMediaFile: 'https://ucarecdn.com/3c0f4b71-3163-4ad1-a4d8-b2d3a36af5ad/'
       - mediaGridMediaFile: 'https://ucarecdn.com/731548f3-0cc5-4f85-92da-152fbc18d0a8/'
     type: mediaGrid
+  - textColumns:
+      - column: >-
+          The result of this collaboration are delightfully clever designs that,
+          at first glance, might look like a piece of artwork in the drawing
+          room, but upon closer examination -- change throughout the day to tell
+          the time.
+    type: textArea
+  - hideCaptions: false
+    mediaGridMedia:
+      - mediaGridMediaFile: 'https://ucarecdn.com/2d4f7758-02a0-400c-a744-e3b97350d289/'
+    type: mediaGrid
 ---
 
