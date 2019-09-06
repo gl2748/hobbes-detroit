@@ -33,5 +33,17 @@ modules:
           creating slow, meaningful motion systems punctuated by moments of
           small delight on the minute.
     type: textArea
+  - hideCaptions: false
+    mediaGridMedia:
+      - mediaGridMediaFile: 'https://ucarecdn.com/c82e5ff6-69c1-410d-898c-d1f07182ca9a/'
+    type: mediaGrid
+  - textColumns:
+      - column: >-
+          We also spent time considering the real world context around these
+          clocks. GoogleSmart Displays are placed on end tables in living rooms
+          or on counters in kitchens. So we tasked ourselves to stretch our
+          designs beyond information displays and into something that  could
+          function as pieces of home decor.
+    type: textArea
 ---
 
