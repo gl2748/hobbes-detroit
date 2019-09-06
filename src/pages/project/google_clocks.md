@@ -3,12 +3,12 @@ templateKey: project-post
 title: Clocks
 date: 2019-09-06T18:39:28.904Z
 description: 'A project with a bunch of clocks. '
-primaryColor: DC6F62
+primaryColor: '#DC6F62'
 secondaryColor: dfdfd
 protectedProject: false
 featured: true
 featuredJson: 'https://ucarecdn.com/495bb2c6-19a4-41c2-b266-dd0ea65fdb49/'
-indexSvg: 'https://ucarecdn.com/19517fa0-2a7a-4a0d-8aba-5af6a3501a04/'
+indexSvg: 'https://ucarecdn.com/7eb2e2f0-9106-45fe-8dac-de84aac61d42/'
 tags:
   - google
   - clocks
