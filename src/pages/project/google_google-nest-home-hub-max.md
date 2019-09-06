@@ -23,13 +23,5 @@ press:
 modules:
   - projectBannerMedia: 'https://ucarecdn.com/13d5110a-1e23-43c4-b231-cdf990cd9cac/'
     type: projectBanner
-  - hideCaptions: false
-    mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/d361ae2f-d32e-4ec5-938e-e439d30549ce/'
-    type: mediaGrid
-  - hideCaptions: false
-    mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/0d76f97a-6d34-4ce5-b549-e6433f5c7b1f/'
-    type: mediaGrid
 ---
 
