@@ -21,5 +21,8 @@ team:
   - eddy
 press:
   - fdfdf
+modules:
+  - projectBannerMedia: 'https://ucarecdn.com/7b0c6643-c9a0-48cd-848b-611f01b58a44/'
+    type: projectBanner
 ---
 
