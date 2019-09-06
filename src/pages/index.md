@@ -15,7 +15,7 @@ description: >-
   quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
   quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
   dolores eos qui ratione voluptatem sequi nesciunt.
-address: Somewhere near here
+address: "2020 14th St #206 \LDetroit, MI 48216"
 phone: +1 (313) 453-4512
 email: info@hobbes.work
 social:
