@@ -7,7 +7,7 @@ primaryColor: '#DC6F62'
 secondaryColor: dfdfd
 protectedProject: false
 featured: true
-featuredJson: 'https://ucarecdn.com/495bb2c6-19a4-41c2-b266-dd0ea65fdb49/'
+featuredJson: 'https://ucarecdn.com/6f3a1f07-8ff3-46a3-8ff4-35083b04f804/'
 indexSvg: 'https://ucarecdn.com/7eb2e2f0-9106-45fe-8dac-de84aac61d42/'
 tags:
   - google
