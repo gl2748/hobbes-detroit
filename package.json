@@ -5,6 +5,7 @@
   "author": "iain maitland, mike schutte",
   "dependencies": {
     "@emotion/core": "^10.0.16",
+    "@emotion/css": "^10.0.14",
     "@emotion/styled": "^10.0.15",
     "@reach/dialog": "^0.2.9",
     "@reach/tabs": "^0.1.6",

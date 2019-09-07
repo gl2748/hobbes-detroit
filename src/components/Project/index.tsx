@@ -1,6 +1,7 @@
 import { Content } from "@components/Content";
 import { HobGallery } from "@components/HobGallery";
 import { HobGrid } from "@components/HobGrid";
+import { HobLargeMedia } from "@components/HobLargeMedia";
 import { HobLogo } from "@components/HobLogo";
 import { HobMarkdown } from "@components/HobMarkdown";
 import { HobTypography } from "@components/HobTypography";
@@ -344,6 +345,65 @@ const CMSModule = (props: IModuleProps): ReactElement => {
         </TwoThree>
       );
     }
+
+    case "largeMedia":
+      useEffect(() => {
+        axios.get(props.largeMediaFile).then(({ data, headers }) => {
+          setMedia([{ data, type: headers["content-type"] }]);
+        });
+      }, []);
+      return (
+        <HobLargeMedia bleed={props.bleed}>
+          {media.map(({ data, type }, i) => {
+            switch (type) {
+              case MediaType.PNG:
+              case MediaType.GIF: {
+                return (
+                  <>
+                    <img
+                      key={`${data}:${i}`}
+                      src={props.largeMediaFile}
+                      alt="banner media"
+                    />
+                    <HobTypography variant="body1">
+                      {props.caption}
+                    </HobTypography>
+                  </>
+                );
+              }
+              case MediaType.SVG: {
+                return (
+                  <>
+                    <div dangerouslySetInnerHTML={{ __html: data as string }} />
+                    <HobTypography variant="body1">
+                      {props.caption}
+                    </HobTypography>
+                  </>
+                );
+              }
+
+              case MediaType.LOTTIE: {
+                const defaultOptions = {
+                  animationData: data,
+                  autoplay: true,
+                  loop: true
+                };
+
+                return (
+                  <>
+                    <Lottie options={defaultOptions} height={400} width={400} />
+                    <HobTypography variant="body1">
+                      {props.caption}
+                    </HobTypography>
+                  </>
+                );
+              }
+              default:
+                return <div key={`${data}:${i}`}>{type}</div>;
+            }
+          })}
+        </HobLargeMedia>
+      );
     case "gallery":
       const makeGallerySlide = (slides: IModuleProps["slides"]) => (
         { data, type, url = "" }: { data: any; type: MediaType; url?: string },
@@ -433,7 +493,8 @@ const CMSModule = (props: IModuleProps): ReactElement => {
 
       const GalleryContainer = styled(HobGallery)`
         overflow: visible !important;
-        padding: 0 0 8.375rem 0;
+        padding: 1.25rem 0 1.25rem 0;
+        margin-bottom: 1.5rem;
       `;
 
       return <GalleryContainer>{gallerySlides}</GalleryContainer>;

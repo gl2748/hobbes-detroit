@@ -5,12 +5,10 @@ import { IAllMarkdownRemark, IFrontmatter } from "./interfaces";
 
 export const NotFoundContainer = () => {
   const render = (data: IAllMarkdownRemark<IFrontmatter<ICookieProps>>) => {
-    // debugger
     const {
       title,
       description
     } = data.allMarkdownRemark.edges[0].node.frontmatter;
-    // debugger
     return <Cookie title={title} description={description} />;
   };
   return (
