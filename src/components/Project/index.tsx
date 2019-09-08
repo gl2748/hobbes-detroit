@@ -1,4 +1,4 @@
-import { Content } from "@components/Content";
+import { Content, IContentProps } from "@components/Content";
 import { HobGallery } from "@components/HobGallery";
 import { HobGrid } from "@components/HobGrid";
 import { HobLargeMedia } from "@components/HobLargeMedia";
@@ -519,8 +519,8 @@ const CMSModule = (props: IModuleProps): ReactElement => {
 };
 
 export interface IProjectProps {
-  content: ReactNode;
-  contentComponent: HTMLContent;
+  content: string;
+  contentComponent?: React.FC<IContentProps>;
   description: string;
   tags: string[];
   title: string;
@@ -535,7 +535,7 @@ const Container = styled.div``;
 
 export const Project: React.FC<IProjectProps> = ({
   content,
-  contentComponent,
+  contentComponent: PostContent = Content,
   description,
   tags,
   title,
@@ -545,8 +545,6 @@ export const Project: React.FC<IProjectProps> = ({
   protectedProject,
   modules = []
 }: IProjectProps) => {
-  const PostContent = contentComponent || Content;
-
   const [animationData, setAnimationData] = useState<{
     [key: string]: any;
   } | null>(null);
@@ -597,7 +595,7 @@ export const Project: React.FC<IProjectProps> = ({
         {modules.map((module, i) => (
           <CMSModule {...module} key={getKey(module)} />
         ))}
-        {content && <PostContent content={content} />}
+        {content && <PostContent content={content} className="post-content" />}
         {/* {tags && tags.length ? (
           <div style={{ marginTop: `4rem` }}>
             <h4>Tags</h4>
