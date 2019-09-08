@@ -138,7 +138,6 @@ const MediaGridItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--hob-color--white);
   height: 100%;
   width: 100%;
   padding: 1rem;
