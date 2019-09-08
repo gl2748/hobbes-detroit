@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { navigate } from "gatsby";
 import React, { useReducer } from "react";
 import { useIdentityContext } from "react-netlify-identity";
 import useLoading from "../../hooks/useLoading";
@@ -8,7 +9,7 @@ import { HobTypography } from "../HobTypography";
 
 export interface IConfirmEmailFormProps {
   onClose: () => void;
-  confirmationToken: string;
+  token: string;
 }
 
 export interface IConfirmEmailFormState {
@@ -63,18 +64,18 @@ const Form = styled.form`
 
 export const ConfirmEmailForm: React.FC<IConfirmEmailFormProps> = ({
   onClose,
-  confirmationToken
+  token
 }: IConfirmEmailFormProps) => {
   const initialState = {
     message: "",
     password: ""
   };
-  const { _goTrueInstance } = useIdentityContext();
+  const { _goTrueInstance, setUser } = useIdentityContext();
   const [isLoading, load] = useLoading();
   const [state, dispatch] = useReducer(loginFormReducer, initialState);
 
+  console.log("PROPS", token);
   const clearMessage = () => dispatch({ type: "updateMessage", payload: "" });
-
   const handleConfirmEmail = (confirmToken: string, password: string) => (
     e: React.MouseEvent
   ) => {
@@ -82,6 +83,8 @@ export const ConfirmEmailForm: React.FC<IConfirmEmailFormProps> = ({
     dispatch({ type: "updateMessage", payload: "" });
     load(_goTrueInstance.acceptInvite(confirmToken, password, true))
       .then(user => {
+        setUser(user);
+        navigate("/");
         onClose();
       })
       .catch(
@@ -111,7 +114,7 @@ export const ConfirmEmailForm: React.FC<IConfirmEmailFormProps> = ({
       )}
       <HobButton
         type="submit"
-        onClick={handleConfirmEmail(confirmationToken, state.password)}
+        onClick={handleConfirmEmail(token, state.password)}
         variant="outlined"
         color="primary"
         className={isLoading ? "btn saving" : "btn"}

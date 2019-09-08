@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
 import { NavigateFn } from "@reach/router";
 import { LocationState } from "history";
-import React, { ReactNode, useEffect, useReducer, HTMLProps } from "react";
+import React, { HTMLProps, ReactNode, useEffect, useReducer } from "react";
 import { Helmet } from "react-helmet";
 import { useIdentityContext } from "react-netlify-identity-widget";
-import useLoading from "../../hooks/useLoading";
+import breakpoints from "../../breakpoints";
 import { withLocation } from "../../higherOrderComponents/withLocation";
+import useLoading from "../../hooks/useLoading";
 import { ConfirmEmailForm } from "../ConfirmEmailForm";
 import { Footer } from "../Footer";
 import { HobIcon } from "../HobIcon";
@@ -17,7 +18,6 @@ import "../main.css";
 import { Navbar } from "../Navbar";
 import { Portal, PortalWithLocation } from "../Portal";
 import { useSiteMetadata } from "../SiteMetadata";
-import breakpoints from "../../breakpoints";
 
 export interface ILayoutProps {
   children: ReactNode;
@@ -120,7 +120,6 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
 
   const toggleDrawer = (payload: boolean) => () =>
     dispatch({ type: "toggleDrawer", payload });
-
   return (
     <Container className={className}>
       <Helmet>
