@@ -14,6 +14,8 @@ import breakpoints from "../../breakpoints";
 
 enum MediaType {
   PNG = "image/png",
+  JPEG = "image/jpeg",
+  JPG = "image/jpg",
   SVG = "image/svg+xml",
   GIF = "image/gif",
   LOTTIE = "application/json"
@@ -234,7 +236,8 @@ const Tags = styled.ul`
 `;
 
 const MainTextArea = styled.div`
-  .module-text-area {
+  .module-text-area,
+  .module-text-area--one {
     padding-top: 1.25rem;
     ${breakpoints.mobile} {
       padding-top: 0;
@@ -274,6 +277,9 @@ const CMSModule = (
         <Hero>
           {media.map(({ data, type }, i) => {
             switch (type) {
+              case MediaType.JPG:
+              case MediaType.JPEG:
+              case MediaType.GIF:
               case MediaType.PNG:
                 return (
                   <img
@@ -343,6 +349,20 @@ const CMSModule = (
       ) => {
         const components = {
           [MediaType.PNG]: () => (
+            <img
+              className="module-media-grid__item"
+              src={url}
+              alt="module media grid item"
+            />
+          ),
+          [MediaType.JPG]: () => (
+            <img
+              className="module-media-grid__item"
+              src={url}
+              alt="module media grid item"
+            />
+          ),
+          [MediaType.JPEG]: () => (
             <img
               className="module-media-grid__item"
               src={url}
@@ -438,6 +458,8 @@ const CMSModule = (
           {media.map(({ data, type }, i) => {
             switch (type) {
               case MediaType.PNG:
+              case MediaType.JPEG:
+              case MediaType.JPG:
               case MediaType.GIF: {
                 return (
                   <div key={props.largeMediaFile}>
@@ -488,6 +510,8 @@ const CMSModule = (
       ) => {
         switch (type) {
           case MediaType.PNG:
+          case MediaType.JPEG:
+          case MediaType.JPG:
           case MediaType.GIF: {
             return (
               <MediaSlide key={`${url}`}>
