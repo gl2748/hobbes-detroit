@@ -7,6 +7,7 @@ import { HobMarkdown } from "@components/HobMarkdown";
 import { HobTypography } from "@components/HobTypography";
 import styled from "@emotion/styled";
 import axios from "axios";
+import { kebabCase } from "lodash";
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import breakpoints from "../../breakpoints";
@@ -51,6 +52,9 @@ const Hero = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: var(--hob-color--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   img {
     max-width: 100%;
@@ -204,7 +208,48 @@ const MediaSlideMedia = styled.div`
   }
 `;
 
-const CMSModule = (props: IModuleProps): ReactElement => {
+const Tags = styled.ul`
+  display: flex;
+
+  li {
+    border-bottom: 1px solid var(--hob-color--primary);
+    padding-bottom: 0.375rem;
+    .hob-typography {
+      font-size: 0.875rem;
+    }
+  }
+
+  > * {
+    margin-right: 0.5rem;
+
+    &:last-of-type {
+      margin-right: none;
+    }
+  }
+`;
+
+const MainTextArea = styled.div`
+  .module-text-area {
+    padding-top: 1.25rem;
+    ${breakpoints.mobile} {
+      padding-top: 0;
+    }
+  }
+  .main-text-area__tags {
+    width: 50vw;
+    margin: 0 auto;
+
+    ${breakpoints.mobile} {
+      width: 100%;
+      height: 100%;
+      padding: 0 1.25rem;
+    }
+  }
+`;
+
+const CMSModule = (
+  props: IModuleProps & { index: number; tags?: string[] }
+): ReactElement => {
   const [media, setMedia] = useState<
     Array<{
       data: any;
@@ -249,7 +294,8 @@ const CMSModule = (props: IModuleProps): ReactElement => {
       );
 
     case "textArea":
-      return (
+      const { index, tags } = props;
+      const text = (
         <TextArea
           className={`module-text-area module-text-area--${
             props.textColumns.length === 1 ? "one" : "many"
@@ -259,6 +305,22 @@ const CMSModule = (props: IModuleProps): ReactElement => {
             <HobMarkdown source={column} key={column.slice(0, 50)} />
           ))}
         </TextArea>
+      );
+      return index < 3 && tags && tags.length ? (
+        <MainTextArea className="main-text-area">
+          <Tags className="main-text-area__tags">
+            {tags.map(tag => (
+              <li key={tag + `tag`}>
+                <HobTypography variant="caption">
+                  {kebabCase(tag)}
+                </HobTypography>
+              </li>
+            ))}
+          </Tags>
+          {text}
+        </MainTextArea>
+      ) : (
+        text
       );
 
     case "mediaGrid": {
@@ -522,7 +584,7 @@ export interface IProjectProps {
   content: string;
   contentComponent?: React.FC<IContentProps>;
   description: string;
-  tags: string[];
+  tags?: string[];
   title: string;
   helmet: ReactElement;
   featured: boolean;
@@ -592,22 +654,15 @@ export const Project: React.FC<IProjectProps> = ({
     <Container>
       {helmet || ""}
       <ModulesContainer>
-        {modules.map((module, i) => (
-          <CMSModule {...module} key={getKey(module)} />
+        {modules.map((module, index) => (
+          <CMSModule
+            {...module}
+            key={getKey(module)}
+            index={index}
+            tags={tags}
+          />
         ))}
         {content && <PostContent content={content} className="post-content" />}
-        {/* {tags && tags.length ? (
-          <div style={{ marginTop: `4rem` }}>
-            <h4>Tags</h4>
-            <ul>
-              {tags.map(tag => (
-                <li key={tag + `tag`}>
-                  <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null} */}
       </ModulesContainer>
     </Container>
   );
