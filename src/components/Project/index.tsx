@@ -6,6 +6,7 @@ import { HobLogo } from "@components/HobLogo";
 import { HobMarkdown } from "@components/HobMarkdown";
 import { HobTypography } from "@components/HobTypography";
 import styled from "@emotion/styled";
+import { ITransformerUploadcareMeta } from "@templates/project-post";
 import axios from "axios";
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import Lottie from "react-lottie";
@@ -529,6 +530,7 @@ export interface IProjectProps {
   protectedProject: boolean;
   modules?: IModuleProps[];
   featuredJson: string;
+  mediaMetadata: ITransformerUploadcareMeta[];
 }
 
 const Container = styled.div``;
@@ -543,7 +545,8 @@ export const Project: React.FC<IProjectProps> = ({
   featured,
   featuredJson,
   protectedProject,
-  modules = []
+  modules = [],
+  mediaMetadata
 }: IProjectProps) => {
   const [animationData, setAnimationData] = useState<{
     [key: string]: any;
