@@ -15,7 +15,6 @@ import { HobTypography } from "../HobTypography";
 import { LoginForm } from "../LoginForm";
 import { LogoutForm } from "../LogoutForm";
 import "../main.css";
-import { Navbar } from "../Navbar";
 import { Portal, PortalWithLocation } from "../Portal";
 import { useSiteMetadata } from "../SiteMetadata";
 
@@ -156,7 +155,6 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
         <meta property="og:url" content="/" />
         <meta property="og:image" content="/img/og-image.jpg" />
       </Helmet>
-      <Navbar />
       <PortalWithLocation
         onClose={toggleDrawer(false)}
         isVisible={state.showDrawer}
@@ -186,14 +184,7 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
           ))}
         </PortalLegal>
       </PortalWithLocation>
-      <nav>
-        {state.isLoggedIn ? (
-          <div onClick={toggleDrawer(true)}>Sign Out</div>
-        ) : (
-          <div onClick={toggleDrawer(true)}>Sign In</div>
-        )}
-      </nav>
-      <div>{children}</div>
+      {children}
       <Footer />
     </Container>
   );
