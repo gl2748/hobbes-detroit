@@ -1,25 +1,42 @@
-import { Content, IContentProps } from "@components/Content";
-import { HobGallery } from "@components/HobGallery";
-import { HobGrid } from "@components/HobGrid";
-import { HobLargeMedia } from "@components/HobLargeMedia";
-import { HobLogo } from "@components/HobLogo";
-import { HobMarkdown } from "@components/HobMarkdown";
-import { HobTypography } from "@components/HobTypography";
-import styled from "@emotion/styled";
-import { ITransformerUploadcareMeta } from "@templates/project-post";
-import axios from "axios";
-import { kebabCase } from "lodash";
-import React, { ReactElement, ReactNode, useEffect, useState } from "react";
-import Lottie from "react-lottie";
-import breakpoints from "../../breakpoints";
+import compose from 'lodash/fp/compose';
+import { Content, IContentProps } from '@components/Content';
+import { HobGallery } from '@components/HobGallery';
+import { HobGrid } from '@components/HobGrid';
+import { HobLargeMedia } from '@components/HobLargeMedia';
+import { HobLogo } from '@components/HobLogo';
+import { HobMarkdown } from '@components/HobMarkdown';
+import { HobTypography } from '@components/HobTypography';
+import styled from '@emotion/styled';
+import { ITransformerUploadcareMeta } from '@templates/project-post';
+import axios from 'axios';
+import React, { ReactElement, ReactNode, useEffect, useState } from 'react';
+import Lottie from 'react-lottie';
+import breakpoints from '../../breakpoints';
 
-enum MediaType {
-  PNG = "image/png",
-  JPEG = "image/jpeg",
-  JPG = "image/jpg",
-  SVG = "image/svg+xml",
-  GIF = "image/gif",
-  LOTTIE = "application/json"
+const getUploadcareUUID = (url: string): string => {
+  return url.split('https://ucarecdn.com/')[1].split('/')[0];
+};
+
+const getMediaMetadata = (haystack: ITransformerUploadcareMeta[]) => (
+  needle: string
+) => {
+  return haystack.filter(bushel => {
+    return bushel.uuid === needle;
+  });
+};
+
+const getMetadata = (allMetadata: ITransformerUploadcareMeta[]) =>
+  compose(
+    getMediaMetadata(allMetadata),
+    getUploadcareUUID
+  );
+
+export enum MediaType {
+  PNG = 'image/png',
+  SVG = 'image/svg+xml',
+  JPEG = 'image/jpeg',
+  GIF = 'image/gif',
+  LOTTIE = 'application/json',
 }
 
 export interface IModuleProps {
@@ -34,15 +51,16 @@ export interface IModuleProps {
   projectBannerMedia: string;
   tabletDeviceMedia: string;
   type:
-    | "gallery"
-    | "header"
-    | "largeMedia"
-    | "mediaGrid"
-    | "mobileDevice"
-    | "projectBanner"
-    | "tabletDevice"
-    | "textArea";
+    | 'gallery'
+    | 'header'
+    | 'largeMedia'
+    | 'mediaGrid'
+    | 'mobileDevice'
+    | 'projectBanner'
+    | 'tabletDevice'
+    | 'textArea';
   slides: Array<{ caption: string; slideMediaFile: string; type: string }>;
+  mediaMetadata: ITransformerUploadcareMeta[];
 }
 
 const ModulesContainer = styled.div`
@@ -267,12 +285,19 @@ const CMSModule = (
     }>
   >([]);
 
+  const metaDataGetter = getMetadata(props.mediaMetadata);
+
   switch (props.type) {
-    case "projectBanner":
+    case 'projectBanner':
+      const meta = metaDataGetter(props.projectBannerMedia);
       useEffect(() => {
-        axios.get(props.projectBannerMedia).then(({ data, headers }) => {
-          setMedia([{ data, type: headers["content-type"] }]);
-        });
+        setMedia([
+          {
+            data: null,
+            type: meta[0].mime_type,
+            url: props.projectBannerMedia,
+          },
+        ]);
       }, []);
       return (
         <Hero>
@@ -286,7 +311,7 @@ const CMSModule = (
                   <img
                     key={props.projectBannerMedia}
                     src={props.projectBannerMedia}
-                    alt="banner media"
+                    alt='banner media'
                   />
                 );
 
@@ -297,11 +322,11 @@ const CMSModule = (
         </Hero>
       );
 
-    case "header":
+    case 'header':
       return (
         <Header>
           <HobLogo />
-          <HobTypography variant="h2">{props.headerText}</HobTypography>
+          <HobTypography variant='h2'>{props.headerText}</HobTypography>
         </Header>
       );
 
@@ -310,7 +335,7 @@ const CMSModule = (
       const text = (
         <TextArea
           className={`module-text-area module-text-area--${
-            props.textColumns.length === 1 ? "one" : "many"
+            props.textColumns.length === 1 ? 'one' : 'many'
           }`}
         >
           {props.textColumns.map(({ column }) => (
@@ -335,12 +360,12 @@ const CMSModule = (
         text
       );
 
-    case "mediaGrid": {
+    case 'mediaGrid': {
       const makeMediaGridItem = (
         {
           data,
           type,
-          url = ""
+          url = '',
         }: {
           data: any;
           type: MediaType;
@@ -351,9 +376,16 @@ const CMSModule = (
         const components = {
           [MediaType.PNG]: () => (
             <img
-              className="module-media-grid__item"
+              className='module-media-grid__item'
               src={url}
-              alt="module media grid item"
+              alt='module media grid item'
+            />
+          ),
+          [MediaType.JPEG]: () => (
+            <img
+              className='module-media-grid__item'
+              src={url}
+              alt='module media grid item'
             />
           ),
           [MediaType.JPG]: () => (
@@ -372,12 +404,11 @@ const CMSModule = (
           ),
           [MediaType.GIF]: () => (
             <img
-              className="module-media-grid__item"
+              className='module-media-grid__item'
               src={url}
-              alt="module media grid item"
+              alt='module media grid item'
             />
           ),
-
           [MediaType.SVG]: () => (
             <div dangerouslySetInnerHTML={{ __html: data as string }} />
           ),
@@ -386,11 +417,11 @@ const CMSModule = (
             const defaultOptions = {
               animationData: data,
               autoplay: true,
-              loop: true
+              loop: true,
             };
 
             return <Lottie options={defaultOptions} height={400} width={400} />;
-          }
+          },
         };
 
         const Component =
@@ -403,7 +434,7 @@ const CMSModule = (
           <MediaGridItem key={props.mediaGridMedia[i].mediaGridMediaFile}>
             <Component />
             {!props.hideCaptions && (
-              <HobTypography variant="caption">
+              <HobTypography variant='caption'>
                 {props.mediaGridMedia[i].caption}
               </HobTypography>
             )}
@@ -412,46 +443,53 @@ const CMSModule = (
       };
 
       useEffect(() => {
-        Promise.all(
-          props.mediaGridMedia.map(({ mediaGridMediaFile }) => {
-            return axios.get(mediaGridMediaFile);
-          })
-        ).then(responses => {
-          setMedia(
-            responses.map(({ data, headers, request }) => ({
-              data,
-              type: headers["content-type"],
-              url: request.responseURL
-            }))
-          );
+        let m: { data: any; type: MediaType; url?: string }[] = [];
+        const gridMedia = props.mediaGridMedia.map(({ mediaGridMediaFile }) => {
+          const meta = metaDataGetter(mediaGridMediaFile);
+          if (meta[0].mime_type === MediaType.LOTTIE) {
+            axios.get(mediaGridMediaFile).then(({ data, headers }) => {
+              debugger
+              //setMedia([ { data, type: headers['content-type'] }]);
+              m.push({ data, type: headers['content-type'] });
+            });
+          } else {
+            debugger
+            m.push({
+              data: null,
+              type: meta[0].mime_type,
+              url: mediaGridMediaFile,
+            });
+          }
         });
+        setMedia(m);
       }, []);
+
 
       return media.length < 4 ? (
         <MediaGrid
           className={`module-media-grid module-media-grid--${
-            media.length === 1 ? "one" : "many"
+            media.length === 1 ? 'one' : 'many'
           }`}
         >
           {media.map(makeMediaGridItem)}
         </MediaGrid>
       ) : (
         <TwoThree>
-          <MediaGrid className="module-media-grid">
+          <MediaGrid className='module-media-grid'>
             {media.slice(0, 2).map(makeMediaGridItem)}
           </MediaGrid>
 
-          <MediaGrid className="module-media-grid">
+          <MediaGrid className='module-media-grid'>
             {media.slice(2).map(makeMediaGridItem)}
           </MediaGrid>
         </TwoThree>
       );
     }
 
-    case "largeMedia":
+    case 'largeMedia':
       useEffect(() => {
         axios.get(props.largeMediaFile).then(({ data, headers }) => {
-          setMedia([{ data, type: headers["content-type"] }]);
+          setMedia([{ data, type: headers['content-type'] }]);
         });
       }, []);
       return (
@@ -464,8 +502,8 @@ const CMSModule = (
               case MediaType.GIF: {
                 return (
                   <div key={props.largeMediaFile}>
-                    <img src={props.largeMediaFile} alt="banner media" />
-                    <HobTypography variant="body1">
+                    <img src={props.largeMediaFile} alt='banner media' />
+                    <HobTypography variant='body1'>
                       {props.caption}
                     </HobTypography>
                   </div>
@@ -475,7 +513,7 @@ const CMSModule = (
                 return (
                   <div key={props.largeMediaFile}>
                     <div dangerouslySetInnerHTML={{ __html: data as string }} />
-                    <HobTypography variant="body1">
+                    <HobTypography variant='body1'>
                       {props.caption}
                     </HobTypography>
                   </div>
@@ -486,13 +524,13 @@ const CMSModule = (
                 const defaultOptions = {
                   animationData: data,
                   autoplay: true,
-                  loop: true
+                  loop: true,
                 };
 
                 return (
                   <div key={props.largeMediaFile}>
                     <Lottie options={defaultOptions} height={400} width={400} />
-                    <HobTypography variant="body1">
+                    <HobTypography variant='body1'>
                       {props.caption}
                     </HobTypography>
                   </div>
@@ -504,9 +542,9 @@ const CMSModule = (
           })}
         </HobLargeMedia>
       );
-    case "gallery":
-      const makeGallerySlide = (slides: IModuleProps["slides"]) => (
-        { data, type, url = "" }: { data: any; type: MediaType; url?: string },
+    case 'gallery':
+      const makeGallerySlide = (slides: IModuleProps['slides']) => (
+        { data, type, url = '' }: { data: any; type: MediaType; url?: string },
         i: number
       ) => {
         switch (type) {
@@ -518,12 +556,12 @@ const CMSModule = (
               <MediaSlide key={`${url}`}>
                 <MediaSlideMedia>
                   <img
-                    className="module-gallery-slide"
+                    className='module-gallery-slide'
                     src={url}
-                    alt="module media grid item"
+                    alt='module media grid item'
                   />
                 </MediaSlideMedia>
-                <HobTypography variant="body1">
+                <HobTypography variant='body1'>
                   {
                     slides.filter(slide => slide.slideMediaFile === url)[0]
                       .caption
@@ -539,7 +577,7 @@ const CMSModule = (
                 <MediaSlideMedia>
                   <div dangerouslySetInnerHTML={{ __html: data }} />
                 </MediaSlideMedia>
-                <HobTypography variant="body1">
+                <HobTypography variant='body1'>
                   {
                     slides.filter(slide => slide.slideMediaFile === url)[0]
                       .caption
@@ -553,7 +591,7 @@ const CMSModule = (
             const defaultOptions = {
               animationData: data,
               autoplay: true,
-              loop: true
+              loop: true,
             };
 
             return (
@@ -561,7 +599,7 @@ const CMSModule = (
                 <MediaSlideMedia>
                   <Lottie options={defaultOptions} height={400} width={400} />
                 </MediaSlideMedia>
-                <HobTypography variant="body1">
+                <HobTypography variant='body1'>
                   {
                     slides.filter(slide => slide.slideMediaFile === url)[0]
                       .caption
@@ -584,8 +622,8 @@ const CMSModule = (
           setMedia(
             responses.map(({ data, headers, request }) => ({
               data,
-              type: headers["content-type"],
-              url: request.responseURL
+              type: headers['content-type'],
+              url: request.responseURL,
             }))
           );
         });
@@ -603,7 +641,7 @@ const CMSModule = (
 
     default:
       return (
-        <HobTypography variant="h4">
+        <HobTypography variant='h4'>
           Unable to render module type {props.type}
         </HobTypography>
       );
@@ -637,7 +675,7 @@ export const Project: React.FC<IProjectProps> = ({
   featuredJson,
   protectedProject,
   modules = [],
-  mediaMetadata
+  mediaMetadata,
 }: IProjectProps) => {
   const [animationData, setAnimationData] = useState<{
     [key: string]: any;
@@ -652,39 +690,39 @@ export const Project: React.FC<IProjectProps> = ({
   const defaultOptions = {
     animationData,
     autoplay: true,
-    loop: true
+    loop: true,
   };
 
   const getKey = ({ type, ...module }: IModuleProps) => {
     switch (type) {
-      case "header":
+      case 'header':
         return module.headerText;
 
-      case "gallery":
-        return module.slides.map(tc => tc.slideMediaFile).join(":");
+      case 'gallery':
+        return module.slides.map(tc => tc.slideMediaFile).join(':');
 
-      case "textArea":
-        return module.textColumns.map(tc => tc.column.slice(0, 20)).join(":");
+      case 'textArea':
+        return module.textColumns.map(tc => tc.column.slice(0, 20)).join(':');
 
-      case "projectBanner":
+      case 'projectBanner':
         return module.projectBannerMedia;
 
-      case "largeMedia":
+      case 'largeMedia':
         return module.largeMediaFile;
 
-      case "mediaGrid":
-        return module.mediaGridMedia.map(m => m.mediaGridMediaFile).join(":");
+      case 'mediaGrid':
+        return module.mediaGridMedia.map(m => m.mediaGridMediaFile).join(':');
 
       default:
         return Object.values(module)
           .filter(Boolean)
-          .join(":");
+          .join(':');
     }
   };
 
   return (
     <Container>
-      {helmet || ""}
+      {helmet || ''}
       <ModulesContainer>
         {modules.map((module, index) => (
           <CMSModule

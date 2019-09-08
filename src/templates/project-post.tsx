@@ -3,8 +3,8 @@ import { HobLink as Link } from "@components/HobLink";
 import { HobTypography } from "@components/HobTypography";
 import { Layout } from "@components/Layout";
 import { Navbar } from "@components/Navbar";
-import { IModuleProps, Project } from "@components/Project";
 import { StudioContainer } from "@containers/StudioContainer";
+import { IModuleProps, Project, MediaType } from "@components/Project";
 import styled from "@emotion/styled";
 import { WithAuth } from "@higherOrderComponents/WithAuth";
 import { useScrollPosition } from "@hooks/useScrollPosition";
@@ -30,6 +30,7 @@ export type TMimeType =
   | "image/gif"
   | "application/json"
   | "image/jpeg";
+
 export interface IImageInfo {
   color_mode: string;
   dpi: [number, number];
@@ -40,7 +41,7 @@ export interface IImageInfo {
 }
 
 export interface ITransformerUploadcareMeta {
-  mime_type: TMimeType;
+  mime_type: MediaType;
   uuid: string;
   image_info: null | IImageInfo;
   original_filename: string;
