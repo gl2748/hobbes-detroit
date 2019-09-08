@@ -46,7 +46,15 @@ const Links = styled.div`
   }
 `;
 
-export const Footer: React.FC = () => {
+interface Props {
+  toggleDrawer: () => void;
+}
+
+export const Footer: React.FC<Props> = ({ toggleDrawer }) => {
+  const handleDrawerClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    toggleDrawer();
+  };
   return (
     <Container>
       <Logo>
@@ -61,8 +69,13 @@ export const Footer: React.FC = () => {
         <Link to="/legal" color="primary">
           Legal Information
         </Link>
+
         <Link to="/cookie" color="primary">
           Cookie Policy
+        </Link>
+
+        <Link onClick={handleDrawerClick} color="primary">
+          Client Portal
         </Link>
       </Links>
     </Container>

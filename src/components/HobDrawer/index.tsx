@@ -11,7 +11,7 @@ export interface IDrawerProps {
 
 const Container = styled.div`
   width: 0;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   overflow: hidden;
