@@ -4,27 +4,26 @@ import React, { useReducer } from "react";
 import { useIdentityContext } from "react-netlify-identity";
 import useLoading from "../../hooks/useLoading";
 import { HobButton } from "../HobButton";
-import { HobTextField } from "../HobTextField";
 import { HobTypography } from "../HobTypography";
 
-export interface IConfirmEmailFormProps {
+export interface IRecoverAccountFormProps {
   onClose: () => void;
   token: string;
 }
 
-export interface IConfirmEmailFormState {
+export interface IRecoverAccountFormState {
   password: string;
   message: string;
 }
 
-export interface IConfirmEmailFormActions {
+export interface IRecoverAccountFormActions {
   type: "updatePassword" | "updateMessage";
   payload: string;
 }
 
-const confirmEmailReducer = (
-  state: IConfirmEmailFormState,
-  action: IConfirmEmailFormActions
+const recoverAccountReducer = (
+  state: IRecoverAccountFormState,
+  action: IRecoverAccountFormActions
 ) => {
   switch (action.type) {
     case "updatePassword":
@@ -62,25 +61,24 @@ const Form = styled.form`
   }
 `;
 
-export const ConfirmEmailForm: React.FC<IConfirmEmailFormProps> = ({
+export const RecoverAccountForm: React.FC<IRecoverAccountFormProps> = ({
   onClose,
   token
-}: IConfirmEmailFormProps) => {
+}: IRecoverAccountFormProps) => {
   const initialState = {
     message: "",
     password: ""
   };
   const { _goTrueInstance, setUser } = useIdentityContext();
   const [isLoading, load] = useLoading();
-  const [state, dispatch] = useReducer(confirmEmailReducer, initialState);
+  const [state, dispatch] = useReducer(recoverAccountReducer, initialState);
 
-  const clearMessage = () => dispatch({ type: "updateMessage", payload: "" });
-  const handleConfirmEmail = (confirmToken: string, password: string) => (
+  const handleRecoverAccount = (recoverToken: string, password: string) => (
     e: React.MouseEvent
   ) => {
     e.preventDefault();
     dispatch({ type: "updateMessage", payload: "" });
-    load(_goTrueInstance.acceptInvite(confirmToken, password, true))
+    load(_goTrueInstance.recover(recoverToken, true))
       .then(user => {
         setUser(user);
         navigate("/");
@@ -93,19 +91,8 @@ export const ConfirmEmailForm: React.FC<IConfirmEmailFormProps> = ({
       );
   };
 
-  const changePassword = (e: React.FormEvent<HTMLInputElement>) => {
-    dispatch({ type: "updatePassword", payload: e.currentTarget.value });
-  };
   return (
     <Form className="form">
-      <HobTextField
-        placeholder="Password"
-        value={state.password}
-        name="password"
-        type="password"
-        required={true}
-        onChange={changePassword}
-      />
       {state.message.length > 0 && (
         <HobTypography variant="caption" className="error">
           {state.message}
@@ -113,12 +100,12 @@ export const ConfirmEmailForm: React.FC<IConfirmEmailFormProps> = ({
       )}
       <HobButton
         type="submit"
-        onClick={handleConfirmEmail(token, state.password)}
+        onClick={handleRecoverAccount(token, state.password)}
         variant="outlined"
         color="primary"
         className={isLoading ? "btn saving" : "btn"}
       >
-        Sign In
+        Recover Account
       </HobButton>
     </Form>
   );

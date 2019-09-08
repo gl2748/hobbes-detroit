@@ -1,3 +1,4 @@
+import { RecoverAccountForm } from "@components/RecoverAccountForm";
 import styled from "@emotion/styled";
 import { NavigateFn } from "@reach/router";
 import { LocationState } from "history";
@@ -42,13 +43,15 @@ export interface ILayoutState {
   isLoggedIn: boolean;
   username: string;
   confirmEmailToken: string;
+  recoveryToken: string;
 }
 
 type TAction =
   | { type: "toggleDrawer"; payload: boolean }
   | { type: "updateUsername"; payload: string }
   | { type: "updateIsLoggedIn"; payload: boolean }
-  | { type: "updateConfirmEmailToken"; payload: string };
+  | { type: "updateConfirmEmailToken"; payload: string }
+  | { type: "updateRecoveryToken"; payload: string };
 
 const layoutReducer = (state: ILayoutState, action: TAction) => {
   switch (action.type) {
@@ -60,6 +63,8 @@ const layoutReducer = (state: ILayoutState, action: TAction) => {
       return { ...state, isLoggedIn: action.payload };
     case "updateConfirmEmailToken":
       return { ...state, confirmEmailToken: action.payload };
+    case "updateRecoveryToken":
+      return { ...state, recoveryToken: action.payload };
     default:
       throw new Error(); // Will give us a Typescript compilation error if we attempt to use an undefined action type.
   }
@@ -99,6 +104,7 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
   const initialState: ILayoutState = {
     confirmEmailToken: "",
     isLoggedIn: false,
+    recoveryToken: "",
     showDrawer: false,
     username: ""
   };
@@ -109,11 +115,21 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
     dispatch({ type: "updateIsLoggedIn", payload: identity.isLoggedIn });
     if (location && location.hash.search("invite_token") > -1) {
       const inviteToken: string = location.hash.split("=")[1];
+      // Logout the currently logged in user.
       if (identity.isLoggedIn) {
         load(identity.logoutUser());
       }
       dispatch({ type: "toggleDrawer", payload: true });
       dispatch({ type: "updateConfirmEmailToken", payload: inviteToken });
+    }
+    if (location && location.hash.search("recovery_token") > -1) {
+      const recoveryToken: string = location.hash.split("=")[1];
+      // Logout the currently logged in user.
+      if (identity.isLoggedIn) {
+        load(identity.logoutUser());
+      }
+      dispatch({ type: "toggleDrawer", payload: true });
+      dispatch({ type: "updateRecoveryToken", payload: recoveryToken });
     }
   }, [identity, location]);
 
@@ -162,13 +178,21 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
         {state.isLoggedIn && state.confirmEmailToken.length === 0 && (
           <LogoutForm onClose={toggleDrawer(false)} />
         )}
-        {!state.isLoggedIn && state.confirmEmailToken.length === 0 && (
-          <LoginForm onClose={toggleDrawer(false)} />
-        )}
+        {!state.isLoggedIn &&
+          state.confirmEmailToken.length === 0 &&
+          state.recoveryToken.length === 0 && (
+            <LoginForm onClose={toggleDrawer(false)} />
+          )}
         {state.confirmEmailToken.length > 0 && (
           <ConfirmEmailForm
             onClose={toggleDrawer(false)}
             token={state.confirmEmailToken}
+          />
+        )}
+        {state.recoveryToken.length > 0 && (
+          <RecoverAccountForm
+            onClose={toggleDrawer(false)}
+            token={state.recoveryToken}
           />
         )}
 
