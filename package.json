@@ -24,6 +24,7 @@
     "embla-carousel-react": "^1.0.3",
     "gatsby": "^2.1.34",
     "gatsby-image": "^2.0.23",
+    "gatsby-link": "^2.2.12",
     "gatsby-plugin-eslint": "^2.0.5",
     "gatsby-plugin-netlify": "^2.0.6",
     "gatsby-plugin-netlify-cms": "^4.0.0",
