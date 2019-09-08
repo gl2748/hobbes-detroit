@@ -22,8 +22,10 @@ export const HobGrid = ({
     <Container className={`hob-grid ${className}`}>
       {columns.map((C, index: number) => {
         const Wrapper = styled.div`
+          position: relative;
           width: ${100 / columns.length}%;
           border-right: 1.25rem solid transparent;
+          border-bottom: 1.25rem solid transparent;
 
           &:last-of-type {
             border-right: 0;

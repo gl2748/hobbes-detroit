@@ -177,7 +177,6 @@ const SidePagination = ({
   );
 
   useScrollPosition(({ prevPos: { y: prevY }, currPos: { y: currY } }) => {
-    console.log({ prevY, currY });
     setScrollDirection(prevY < 0 && prevY < currY ? "north" : "south");
   });
 

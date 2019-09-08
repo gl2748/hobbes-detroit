@@ -7,8 +7,6 @@ import { HobMarkdown } from "@components/HobMarkdown";
 import { HobTypography } from "@components/HobTypography";
 import styled from "@emotion/styled";
 import axios from "axios";
-import { Link } from "gatsby";
-import { kebabCase } from "lodash";
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import breakpoints from "../../breakpoints";
@@ -105,7 +103,7 @@ const TextArea = styled(HobGrid)`
 `;
 
 const MediaGrid = styled(HobGrid)`
-  padding: 1.25rem 6.625rem;
+  padding: 1.25rem 6.625rem 0;
 
   ${breakpoints.mobile} {
     padding: 1.25rem;
@@ -145,6 +143,12 @@ const MediaGridItem = styled.div`
     width: 100%;
   }
 
+  .hob-typography {
+    position: absolute;
+    left: 0;
+    bottom: -1rem;
+  }
+
   .module-media-grid__item {
     img&,
     & img {
@@ -156,8 +160,10 @@ const MediaGridItem = styled.div`
 const TwoThree = styled.div`
   .hob-grid {
     &:first-of-type {
-      padding-bottom: 0;
       margin-bottom: 0;
+    }
+    &:last-of-type {
+      padding-top: 0;
     }
     ${breakpoints.mobile} {
       &:nth-of-type(1) {
@@ -221,7 +227,7 @@ const CMSModule = (props: IModuleProps): ReactElement => {
               case MediaType.PNG:
                 return (
                   <img
-                    key={`${data}:${i}`}
+                    key={props.projectBannerMedia}
                     src={props.projectBannerMedia}
                     alt="banner media"
                   />
@@ -256,7 +262,7 @@ const CMSModule = (props: IModuleProps): ReactElement => {
       );
 
     case "mediaGrid": {
-      const makeMediaGridItem = (key: string) => (
+      const makeMediaGridItem = (
         {
           data,
           type,
@@ -268,45 +274,53 @@ const CMSModule = (props: IModuleProps): ReactElement => {
         },
         i: number
       ) => {
-        switch (type) {
-          case MediaType.PNG:
-          case MediaType.GIF: {
-            return (
-              <MediaGridItem key={`${url}:${key}`}>
-                <img
-                  className="module-media-grid__item"
-                  src={url}
-                  alt="module media grid item"
-                />
-              </MediaGridItem>
-            );
-          }
+        const components = {
+          [MediaType.PNG]: () => (
+            <img
+              className="module-media-grid__item"
+              src={url}
+              alt="module media grid item"
+            />
+          ),
+          [MediaType.GIF]: () => (
+            <img
+              className="module-media-grid__item"
+              src={url}
+              alt="module media grid item"
+            />
+          ),
 
-          case MediaType.SVG: {
-            return (
-              <MediaGridItem key={`${key}:svg:${i}`}>
-                <div dangerouslySetInnerHTML={{ __html: data as string }} />
-              </MediaGridItem>
-            );
-          }
+          [MediaType.SVG]: () => (
+            <div dangerouslySetInnerHTML={{ __html: data as string }} />
+          ),
 
-          case MediaType.LOTTIE: {
+          [MediaType.LOTTIE]: () => {
             const defaultOptions = {
               animationData: data,
               autoplay: true,
               loop: true
             };
 
-            return (
-              <MediaGridItem key={`${key}:lottie:${i}`}>
-                <Lottie options={defaultOptions} height={400} width={400} />
-              </MediaGridItem>
-            );
+            return <Lottie options={defaultOptions} height={400} width={400} />;
           }
+        };
 
-          default:
-            return <div key={`${type}:${i}:${key}`}>{type}</div>;
-        }
+        const Component =
+          components[type] ||
+          (() => (
+            <div key={props.mediaGridMedia[i].mediaGridMediaFile}>{type}</div>
+          ));
+
+        return (
+          <MediaGridItem key={props.mediaGridMedia[i].mediaGridMediaFile}>
+            <Component />
+            {!props.hideCaptions && (
+              <HobTypography variant="caption">
+                {props.mediaGridMedia[i].caption}
+              </HobTypography>
+            )}
+          </MediaGridItem>
+        );
       };
 
       useEffect(() => {
@@ -331,16 +345,16 @@ const CMSModule = (props: IModuleProps): ReactElement => {
             media.length === 1 ? "one" : "many"
           }`}
         >
-          {media.map(makeMediaGridItem("row1"))}
+          {media.map(makeMediaGridItem)}
         </MediaGrid>
       ) : (
         <TwoThree>
           <MediaGrid className="module-media-grid">
-            {media.slice(0, 2).map(makeMediaGridItem("row1"))}
+            {media.slice(0, 2).map(makeMediaGridItem)}
           </MediaGrid>
 
           <MediaGrid className="module-media-grid">
-            {media.slice(2).map(makeMediaGridItem("row2"))}
+            {media.slice(2).map(makeMediaGridItem)}
           </MediaGrid>
         </TwoThree>
       );
@@ -359,26 +373,22 @@ const CMSModule = (props: IModuleProps): ReactElement => {
               case MediaType.PNG:
               case MediaType.GIF: {
                 return (
-                  <>
-                    <img
-                      key={`${data}:${i}`}
-                      src={props.largeMediaFile}
-                      alt="banner media"
-                    />
+                  <div key={props.largeMediaFile}>
+                    <img src={props.largeMediaFile} alt="banner media" />
                     <HobTypography variant="body1">
                       {props.caption}
                     </HobTypography>
-                  </>
+                  </div>
                 );
               }
               case MediaType.SVG: {
                 return (
-                  <>
+                  <div key={props.largeMediaFile}>
                     <div dangerouslySetInnerHTML={{ __html: data as string }} />
                     <HobTypography variant="body1">
                       {props.caption}
                     </HobTypography>
-                  </>
+                  </div>
                 );
               }
 
@@ -390,16 +400,16 @@ const CMSModule = (props: IModuleProps): ReactElement => {
                 };
 
                 return (
-                  <>
+                  <div key={props.largeMediaFile}>
                     <Lottie options={defaultOptions} height={400} width={400} />
                     <HobTypography variant="body1">
                       {props.caption}
                     </HobTypography>
-                  </>
+                  </div>
                 );
               }
               default:
-                return <div key={`${data}:${i}`}>{type}</div>;
+                return <div key={props.largeMediaFile}>{type}</div>;
             }
           })}
         </HobLargeMedia>
@@ -553,19 +563,39 @@ export const Project: React.FC<IProjectProps> = ({
     loop: true
   };
 
+  const getKey = ({ type, ...module }: IModuleProps) => {
+    switch (type) {
+      case "header":
+        return module.headerText;
+
+      case "gallery":
+        return module.slides.map(tc => tc.slideMediaFile).join(":");
+
+      case "textArea":
+        return module.textColumns.map(tc => tc.column.slice(0, 20)).join(":");
+
+      case "projectBanner":
+        return module.projectBannerMedia;
+
+      case "largeMedia":
+        return module.largeMediaFile;
+
+      case "mediaGrid":
+        return module.mediaGridMedia.map(m => m.mediaGridMediaFile).join(":");
+
+      default:
+        return Object.values(module)
+          .filter(Boolean)
+          .join(":");
+    }
+  };
+
   return (
     <Container>
       {helmet || ""}
       <ModulesContainer>
         {modules.map((module, i) => (
-          <CMSModule
-            {...module}
-            key={
-              Object.values(module)
-                .filter(Boolean)
-                .join(":") + String(i)
-            }
-          />
+          <CMSModule {...module} key={getKey(module)} />
         ))}
         {content && <PostContent content={content} />}
         {/* {tags && tags.length ? (
