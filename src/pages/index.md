@@ -9,6 +9,7 @@ description: >-
   odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
   sequi nesciunt.
 
+  <br />
 
   Perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
   laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
@@ -20,5 +21,6 @@ phone: +1 (313) 453-4512
 email: info@hobbes.work
 social:
   - title: Instagram
-    url: "https://www.instagram.com/hobbes/"
+    url: 'https://www.instagram.com/hobbes/'
 ---
+
