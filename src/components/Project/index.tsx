@@ -110,15 +110,21 @@ const TextArea = styled(HobGrid)`
 const MediaGrid = styled(HobGrid)`
   padding: 1.25rem 6.625rem 0;
 
+  & + & {
+    padding-bottom: 1rem;
+    padding-top: 0;
+    margin-bottom: 0;
+    margin-top: -1.5rem;
+  }
+
   ${breakpoints.mobile} {
-    padding: 1.25rem;
+    padding: 0 1.25rem;
   }
 
   &.module-media-grid {
     &--one {
       .hob-grid__item {
         width: 50vw;
-        height: 50vw;
         margin: 0 auto;
 
         ${breakpoints.mobile} {
@@ -140,7 +146,6 @@ const MediaGridItem = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-  padding: 1rem;
 
   img,
   svg {
