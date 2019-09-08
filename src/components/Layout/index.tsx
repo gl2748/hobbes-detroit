@@ -47,7 +47,7 @@ export interface ILayoutState {
 }
 
 type TAction =
-  | { type: "toggleDrawer"; payload: boolean }
+  | { type: "toggleDrawer"; payload?: boolean }
   | { type: "updateUsername"; payload: string }
   | { type: "updateIsLoggedIn"; payload: boolean }
   | { type: "updateConfirmEmailToken"; payload: string }
@@ -56,7 +56,11 @@ type TAction =
 const layoutReducer = (state: ILayoutState, action: TAction) => {
   switch (action.type) {
     case "toggleDrawer":
-      return { ...state, showDrawer: action.payload };
+      return {
+        ...state,
+        showDrawer:
+          action.payload === undefined ? !state.showDrawer : action.payload
+      };
     case "updateUsername":
       return { ...state, username: action.payload };
     case "updateIsLoggedIn":
@@ -133,7 +137,7 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
     }
   }, [identity, location]);
 
-  const toggleDrawer = (payload: boolean) => () =>
+  const toggleDrawer = (payload?: boolean) => () =>
     dispatch({ type: "toggleDrawer", payload });
   return (
     <Container className={className}>
@@ -209,7 +213,7 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
         </PortalLegal>
       </PortalWithLocation>
       {children}
-      <Footer />
+      <Footer toggleDrawer={toggleDrawer()} />
     </Container>
   );
 };
