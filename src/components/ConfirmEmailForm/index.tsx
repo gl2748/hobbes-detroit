@@ -99,7 +99,7 @@ export const ConfirmEmailForm: React.FC<IConfirmEmailFormProps> = ({
   return (
     <Form className="form">
       <HobTextField
-        placeholder="Password"
+        placeholder="Create Password"
         value={state.password}
         name="password"
         type="password"
@@ -118,7 +118,7 @@ export const ConfirmEmailForm: React.FC<IConfirmEmailFormProps> = ({
         color="primary"
         className={isLoading ? "btn saving" : "btn"}
       >
-        Sign In
+        Confirm Account
       </HobButton>
     </Form>
   );
