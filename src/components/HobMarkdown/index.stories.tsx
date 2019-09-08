@@ -5,6 +5,20 @@ export default {
   title: "Markdown"
 };
 
+const broken = `
+
+body2:
+
+tnahoeutnsha
+
+
+atnoheusntao
+
+
+
+thaosetnuhsatnoehu
+`;
+
 export const demo = () => (
   <>
     <HobMarkdown source="# H1" />
@@ -14,5 +28,7 @@ export const demo = () => (
     <HobMarkdown source="# H5" />
     <HobMarkdown source="# H6" />
     <HobMarkdown source="body1: Just some good ole boys" />
+    <HobMarkdown source={broken} />
+    <HobMarkdown source="[Link](https://www.google.com)" />
   </>
 );
