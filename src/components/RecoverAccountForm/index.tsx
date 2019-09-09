@@ -1,3 +1,4 @@
+import { HobTextField } from "@components/HobTextField";
 import styled from "@emotion/styled";
 import { navigate } from "gatsby";
 import React, { useReducer } from "react";
@@ -69,7 +70,7 @@ export const RecoverAccountForm: React.FC<IRecoverAccountFormProps> = ({
     message: "",
     password: ""
   };
-  const { _goTrueInstance, setUser } = useIdentityContext();
+  const { _goTrueInstance, setUser, updateUser, user } = useIdentityContext();
   const [isLoading, load] = useLoading();
   const [state, dispatch] = useReducer(recoverAccountReducer, initialState);
 
@@ -77,22 +78,56 @@ export const RecoverAccountForm: React.FC<IRecoverAccountFormProps> = ({
     e: React.MouseEvent
   ) => {
     e.preventDefault();
-    dispatch({ type: "updateMessage", payload: "" });
-    load(_goTrueInstance.recover(recoverToken, true))
-      .then(user => {
-        setUser(user);
-        navigate("/");
-        onClose();
-      })
-      .catch(
-        err =>
-          void console.error(err) ||
-          dispatch({ type: "updateMessage", payload: "Error: " + err.message })
-      );
+    if (state.password.length <= 5) {
+      dispatch({
+        payload: "Please enter a longer password!",
+        type: "updateMessage"
+      });
+      return;
+    } else {
+      dispatch({ type: "updateMessage", payload: "" });
+      load(_goTrueInstance.recover(recoverToken, true))
+        .then(recoveredUser => {
+          console.log("User recovered", recoveredUser);
+          setUser(recoveredUser);
+          if (user !== undefined) {
+            load(
+              user.update({
+                email: recoveredUser.email,
+                password: state.password
+              })
+            ).then(() => {
+              console.log("User updated", user);
+              navigate("/");
+              onClose();
+            });
+          }
+        })
+        .catch(
+          err =>
+            void console.error(err) ||
+            dispatch({
+              payload: "Error: " + err.message,
+              type: "updateMessage"
+            })
+        );
+    }
+  };
+
+  const changePassword = (e: React.FormEvent<HTMLInputElement>) => {
+    dispatch({ type: "updatePassword", payload: e.currentTarget.value });
   };
 
   return (
     <Form className="form">
+      <HobTextField
+        placeholder="New Password"
+        value={state.password}
+        name="password"
+        type="password"
+        required={true}
+        onChange={changePassword}
+      />
       {state.message.length > 0 && (
         <HobTypography variant="caption" className="error">
           {state.message}
