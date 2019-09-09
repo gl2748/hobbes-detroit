@@ -45,10 +45,9 @@ modules:
           designs beyond information displays and into something that  could
           function as pieces of home decor.
     type: textArea
-  - hideCaptions: false
-    mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/1dd45a69-d644-4599-badd-e7697eb4569b/'
-    type: mediaGrid
+  - bleed: true
+    largeMediaFile: 'https://ucarecdn.com/a4a15940-3ed3-4567-91c3-8b96614524db/'
+    type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
       - mediaGridMediaFile: 'https://ucarecdn.com/408ac7f9-4ade-4af5-97b5-173660f20caa/'
@@ -61,10 +60,9 @@ modules:
           with a clock, Google SUMUX happened to asked us help create clock
           faces for their Smart Displays. We went a little crazy.
     type: textArea
-  - hideCaptions: false
-    mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/b987dca6-91e5-444f-a4b9-986296a09b46/'
-    type: mediaGrid
+  - bleed: true
+    largeMediaFile: 'https://ucarecdn.com/6e8dd95f-f30a-4c1f-b85d-01a6fb564de7/'
+    type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
       - mediaGridMediaFile: 'https://ucarecdn.com/3c0f4b71-3163-4ad1-a4d8-b2d3a36af5ad/'
