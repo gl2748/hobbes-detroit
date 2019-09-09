@@ -35,7 +35,7 @@ export const Navbar: React.FC<HTMLProps<HTMLDivElement>> = ({
       <Link color="secondary" href="/#work">
         Work
       </Link>
-      <Link color="secondary" href="/#studio">
+      <Link color="secondary" href="#studio">
         Studio
       </Link>
     </Nav>

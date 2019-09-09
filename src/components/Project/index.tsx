@@ -33,6 +33,8 @@ const getMetadata = (allMetadata: ITransformerUploadcareMeta[]) =>
 
 export enum MediaType {
   PNG = "image/png",
+  JPEG = "image/jpeg",
+  JPG = "image/jpg",
   SVG = "image/svg+xml",
   JPEG = "image/jpeg",
   GIF = "image/gif",
@@ -73,6 +75,10 @@ const Hero = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: var(--hob-color--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 
   img {
     max-width: 100%;
@@ -127,15 +133,21 @@ const TextArea = styled(HobGrid)`
 const MediaGrid = styled(HobGrid)`
   padding: 1.25rem 6.625rem 0;
 
+  & + & {
+    padding-bottom: 1rem;
+    padding-top: 0;
+    margin-bottom: 0;
+    margin-top: -1.5rem;
+  }
+
   ${breakpoints.mobile} {
-    padding: 1.25rem;
+    padding: 0 1.25rem;
   }
 
   &.module-media-grid {
     &--one {
       .hob-grid__item {
         width: 50vw;
-        height: 50vw;
         margin: 0 auto;
 
         ${breakpoints.mobile} {
@@ -155,10 +167,8 @@ const MediaGridItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--hob-color--white);
   height: 100%;
   width: 100%;
-  padding: 1rem;
 
   img,
   svg {
@@ -226,7 +236,49 @@ const MediaSlideMedia = styled.div`
   }
 `;
 
-const CMSModule = (props: IModuleProps): ReactElement => {
+const Tags = styled.ul`
+  display: flex;
+
+  li {
+    border-bottom: 1px solid var(--hob-color--primary);
+    padding-bottom: 0.375rem;
+    .hob-typography {
+      font-size: 0.875rem;
+    }
+  }
+
+  > * {
+    margin-right: 0.5rem;
+
+    &:last-of-type {
+      margin-right: none;
+    }
+  }
+`;
+
+const MainTextArea = styled.div`
+  .module-text-area,
+  .module-text-area--one {
+    padding-top: 1.25rem;
+    ${breakpoints.mobile} {
+      padding-top: 0;
+    }
+  }
+  .main-text-area__tags {
+    width: 50vw;
+    margin: 0 auto;
+
+    ${breakpoints.mobile} {
+      width: 100%;
+      height: 100%;
+      padding: 0 1.25rem;
+    }
+  }
+`;
+
+const CMSModule = (
+  props: IModuleProps & { index: number; tags?: string[] }
+): ReactElement => {
   const [media, setMedia] = useState<
     Array<{
       data: any;
@@ -253,6 +305,9 @@ const CMSModule = (props: IModuleProps): ReactElement => {
         <Hero>
           {media.map(({ data, type }, i) => {
             switch (type) {
+              case MediaType.JPG:
+              case MediaType.JPEG:
+              case MediaType.GIF:
               case MediaType.PNG:
                 return (
                   <img
@@ -278,7 +333,8 @@ const CMSModule = (props: IModuleProps): ReactElement => {
       );
 
     case "textArea":
-      return (
+      const { index, tags } = props;
+      const text = (
         <TextArea
           className={`module-text-area module-text-area--${
             props.textColumns.length === 1 ? "one" : "many"
@@ -288,6 +344,22 @@ const CMSModule = (props: IModuleProps): ReactElement => {
             <HobMarkdown source={column} key={column.slice(0, 50)} />
           ))}
         </TextArea>
+      );
+      return index < 3 && tags && tags.length ? (
+        <MainTextArea className="main-text-area">
+          <Tags className="main-text-area__tags">
+            {tags.map(tag => (
+              <li key={tag + `tag`}>
+                <HobTypography variant="caption">
+                  {_.kebabCase(tag)}
+                </HobTypography>
+              </li>
+            ))}
+          </Tags>
+          {text}
+        </MainTextArea>
+      ) : (
+        text
       );
 
     case "mediaGrid": {
@@ -305,6 +377,13 @@ const CMSModule = (props: IModuleProps): ReactElement => {
       ) => {
         const components = {
           [MediaType.PNG]: () => (
+            <img
+              className="module-media-grid__item"
+              src={url}
+              alt="module media grid item"
+            />
+          ),
+          [MediaType.JPG]: () => (
             <img
               className="module-media-grid__item"
               src={url}
@@ -409,6 +488,8 @@ const CMSModule = (props: IModuleProps): ReactElement => {
           {media.map(({ data, type }, i) => {
             switch (type) {
               case MediaType.PNG:
+              case MediaType.JPEG:
+              case MediaType.JPG:
               case MediaType.GIF: {
                 return (
                   <div key={props.largeMediaFile}>
@@ -459,6 +540,8 @@ const CMSModule = (props: IModuleProps): ReactElement => {
       ) => {
         switch (type) {
           case MediaType.PNG:
+          case MediaType.JPEG:
+          case MediaType.JPG:
           case MediaType.GIF: {
             return (
               <MediaSlide key={`${url}`}>
@@ -560,7 +643,7 @@ export interface IProjectProps {
   content: string;
   contentComponent?: React.FC<IContentProps>;
   description: string;
-  tags: string[];
+  tags?: string[];
   title: string;
   helmet: ReactElement;
   featured: boolean;
@@ -632,26 +715,17 @@ export const Project: React.FC<IProjectProps> = ({
     <Container>
       {helmet || ""}
       <ModulesContainer>
-        {modules.map((module, i) => (
+        {modules.map((module, index) => (
           <CMSModule
             {...module}
             key={getKey(module)}
+            index={index}
+            tags={tags}
             mediaMetadata={mediaMetadata}
+
           />
         ))}
         {content && <PostContent content={content} className="post-content" />}
-        {/* {tags && tags.length ? (
-          <div style={{ marginTop: `4rem` }}>
-            <h4>Tags</h4>
-            <ul>
-              {tags.map(tag => (
-                <li key={tag + `tag`}>
-                  <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null} */}
       </ModulesContainer>
     </Container>
   );

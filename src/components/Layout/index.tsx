@@ -1,8 +1,14 @@
+import { RecoverAccountForm } from "@components/RecoverAccountForm";
 import styled from "@emotion/styled";
-import React, { HTMLProps, ReactNode, useReducer } from "react";
+import { NavigateFn } from "@reach/router";
+import { LocationState } from "history";
+import React, { HTMLProps, ReactNode, useEffect, useReducer } from "react";
 import { Helmet } from "react-helmet";
 import { useIdentityContext } from "react-netlify-identity-widget";
 import breakpoints from "../../breakpoints";
+import { withLocation } from "../../higherOrderComponents/withLocation";
+import useLoading from "../../hooks/useLoading";
+import { ConfirmEmailForm } from "../ConfirmEmailForm";
 import { Footer } from "../Footer";
 import { HobIcon } from "../HobIcon";
 import { HobLink } from "../HobLink";
@@ -10,13 +16,15 @@ import { HobTypography } from "../HobTypography";
 import { LoginForm } from "../LoginForm";
 import { LogoutForm } from "../LogoutForm";
 import "../main.css";
-import { Portal } from "../Portal";
+import { Portal, PortalWithLocation } from "../Portal";
 import { useSiteMetadata } from "../SiteMetadata";
 
 export interface ILayoutProps {
   children: ReactNode;
   portalLinks?: [{ label: string; href: string }];
   portalCopy?: string;
+  location?: LocationState;
+  navigate?: NavigateFn;
 }
 const defaultLinks = [
   {
@@ -32,18 +40,37 @@ const defaultPortalCopy =
   "Nam turpis nunc, condimentum in ullamcorper et, molestie at justo. Proin tempus turpis sed felis fringilla, et facilisis justo . Nunc id elit ut sapien feugiat pretium. Proin interdum tristique nibh eget volutpat.";
 export interface ILayoutState {
   showDrawer: boolean;
-}
-export interface ILayoutActions {
-  type: "toggleDrawer";
-  payload: boolean;
+  isLoggedIn: boolean;
+  username: string;
+  confirmEmailToken: string;
+  recoveryToken: string;
 }
 
-const layoutReducer = (state: ILayoutState, action: ILayoutActions) => {
+type TAction =
+  | { type: "toggleDrawer"; payload?: boolean }
+  | { type: "updateUsername"; payload: string }
+  | { type: "updateIsLoggedIn"; payload: boolean }
+  | { type: "updateConfirmEmailToken"; payload: string }
+  | { type: "updateRecoveryToken"; payload: string };
+
+const layoutReducer = (state: ILayoutState, action: TAction) => {
   switch (action.type) {
     case "toggleDrawer":
-      return { ...state, showDrawer: action.payload };
+      return {
+        ...state,
+        showDrawer:
+          action.payload === undefined ? !state.showDrawer : action.payload
+      };
+    case "updateUsername":
+      return { ...state, username: action.payload };
+    case "updateIsLoggedIn":
+      return { ...state, isLoggedIn: action.payload };
+    case "updateConfirmEmailToken":
+      return { ...state, confirmEmailToken: action.payload };
+    case "updateRecoveryToken":
+      return { ...state, recoveryToken: action.payload };
     default:
-      return state;
+      throw new Error(); // Will give us a Typescript compilation error if we attempt to use an undefined action type.
   }
 };
 const Container = styled.div`
@@ -72,33 +99,46 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
   children,
   className = "",
   portalCopy = defaultPortalCopy,
-  portalLinks = defaultLinks
+  portalLinks = defaultLinks,
+  location,
+  navigate
 }) => {
   const { title, description } = useSiteMetadata();
+  const [isLoading, load] = useLoading();
   const initialState: ILayoutState = {
-    showDrawer: false
+    confirmEmailToken: "",
+    isLoggedIn: false,
+    recoveryToken: "",
+    showDrawer: false,
+    username: ""
   };
   const [state, dispatch] = useReducer(layoutReducer, initialState);
-
   const identity = useIdentityContext();
-  let n = "";
-  const isLoggedIn = identity && identity.isLoggedIn;
-  if (
-    identity &&
-    identity.user &&
-    identity.user.user_metadata &&
-    identity.user.user_metadata.full_name
-  ) {
-    n = identity.user.user_metadata.full_name;
-  } else if (isLoggedIn && identity.user) {
-    n = identity.user.email;
-  } else {
-    n = "anonymous";
-  }
 
-  const toggleDrawer = (payload: boolean) => () =>
+  useEffect(() => {
+    dispatch({ type: "updateIsLoggedIn", payload: identity.isLoggedIn });
+    if (location && location.hash.search("invite_token") > -1) {
+      const inviteToken: string = location.hash.split("=")[1];
+      // Logout the currently logged in user.
+      if (identity.isLoggedIn) {
+        load(identity.logoutUser());
+      }
+      dispatch({ type: "toggleDrawer", payload: true });
+      dispatch({ type: "updateConfirmEmailToken", payload: inviteToken });
+    }
+    if (location && location.hash.search("recovery_token") > -1) {
+      const recoveryToken: string = location.hash.split("=")[1];
+      // Logout the currently logged in user.
+      if (identity.isLoggedIn) {
+        load(identity.logoutUser());
+      }
+      dispatch({ type: "toggleDrawer", payload: true });
+      dispatch({ type: "updateRecoveryToken", payload: recoveryToken });
+    }
+  }, [identity, location]);
+
+  const toggleDrawer = (payload?: boolean) => () =>
     dispatch({ type: "toggleDrawer", payload });
-
   return (
     <Container className={className}>
       <Helmet>
@@ -135,12 +175,33 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
         <meta property="og:url" content="/" />
         <meta property="og:image" content="/img/og-image.jpg" />
       </Helmet>
-      <Portal onClose={toggleDrawer(false)} isVisible={state.showDrawer}>
-        {isLoggedIn ? (
-          <LogoutForm onClose={toggleDrawer(false)} />
-        ) : (
-          <LoginForm onClose={toggleDrawer(false)} />
+      <PortalWithLocation
+        onClose={toggleDrawer(false)}
+        isVisible={state.showDrawer}
+      >
+        {state.isLoggedIn &&
+          state.confirmEmailToken.length === 0 &&
+          state.recoveryToken.length === 0 && (
+            <LogoutForm onClose={toggleDrawer(false)} />
+          )}
+        {!state.isLoggedIn &&
+          state.confirmEmailToken.length === 0 &&
+          state.recoveryToken.length === 0 && (
+            <LoginForm onClose={toggleDrawer(false)} />
+          )}
+        {state.confirmEmailToken.length > 0 && (
+          <ConfirmEmailForm
+            onClose={toggleDrawer(false)}
+            token={state.confirmEmailToken}
+          />
         )}
+        {state.recoveryToken.length > 0 && (
+          <RecoverAccountForm
+            onClose={toggleDrawer(false)}
+            token={state.recoveryToken}
+          />
+        )}
+
         <PortalLegal>
           <Lock size="sm" color="primary" name="lock" />
           <FinePrint variant="body1">{portalCopy}</FinePrint>
@@ -152,9 +213,11 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
             </div>
           ))}
         </PortalLegal>
-      </Portal>
+      </PortalWithLocation>
       {children}
-      <Footer />
+      <Footer toggleDrawer={toggleDrawer()} />
     </Container>
   );
 };
+
+export const LayoutWithLocation = withLocation(Layout);

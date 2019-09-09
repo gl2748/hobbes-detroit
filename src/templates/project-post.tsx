@@ -4,6 +4,7 @@ import { HobTypography } from "@components/HobTypography";
 import { Layout } from "@components/Layout";
 import { Navbar } from "@components/Navbar";
 import { IModuleProps, MediaType, Project } from "@components/Project";
+import { StudioContainer } from "@containers/StudioContainer";
 import styled from "@emotion/styled";
 import { WithAuth } from "@higherOrderComponents/WithAuth";
 import { useScrollPosition } from "@hooks/useScrollPosition";
@@ -235,12 +236,14 @@ const SidePagination = ({
 
 const Container = styled(Layout)`
   overflow-x: hidden;
+
   .nav {
-    position: absolute;
+    position: fixed;
     top: 1.25rem;
     right: 1.25rem;
     background-color: transparent;
 
+    & .hob-link,
     & .hob-typography {
       color: var(--hob-color--primary);
     }
@@ -285,6 +288,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
         featured={post.frontmatter.featured}
         mediaMetadata={post.childrenTransformerUploadcareMeta}
       />
+      <StudioContainer />
     </Container>
   );
 };

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
+import GatsbyLink from "gatsby-link";
 import React, { HTMLProps } from "react";
 import { HobTypography } from "../HobTypography";
 
@@ -9,15 +10,17 @@ export interface IHobLinkProps {
   unsetTypography?: boolean;
 }
 
-const withStyle = C => styled(C)`
+const withStyle = (C: "a" | (typeof GatsbyLink)) => styled<any>(C)<
+  IHobLinkProps & HTMLProps<HTMLAnchorElement>
+>`
   text-decoration: underline;
-  color: ${({ color }) => `var(--hob-color--${color})`};
+  color: ${({ color }: IHobLinkProps) => `var(--hob-color--${color})`};
   .hob-typography {
     color: ${({ color }) => `var(--hob-color--${color})`};
   }
 
   :visited {
-    text-decoration-color: ${({ color }) => `var(--hob-color--${color})`};
+    color: ${({ color }) => `var(--hob-color--${color})`};
   }
 
   :hover,
@@ -25,7 +28,6 @@ const withStyle = C => styled(C)`
     .hob-typography {
       background-color: ${({ color }) => `var(--hob-color--${color})`};
       color: ${({ color }) => `var(--hob-color-alt--${color})`};
-      text-decoration-color: ${({ color }) => `var(--hob-color-alt--${color})`};
       text-decoration: underline;
     }
   }

@@ -20,5 +20,6 @@ phone: +1 (313) 453-4512
 email: info@hobbes.work
 social:
   - title: Instagram
-    url: "https://www.instagram.com/hobbes/"
+    url: 'https://www.instagram.com/hobbes/'
 ---
+

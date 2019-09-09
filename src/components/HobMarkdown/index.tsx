@@ -1,8 +1,12 @@
+import { HobLink } from "@components/HobLink";
 import { HobTypography, IHobTypographyProps } from "@components/HobTypography";
 import styled from "@emotion/styled";
 import React, { HTMLProps } from "react";
 import ReactMarkdown, { ReactMarkdownProps } from "react-markdown";
+import breaks from "remark-breaks";
 import breakpoints from "../../breakpoints";
+
+declare module "remark-breaks" {}
 
 const Heading = styled(HobTypography)`
   margin-bottom: 3rem;
@@ -13,13 +17,6 @@ const Heading = styled(HobTypography)`
 
   * + & {
     margin-top: 3rem;
-  }
-`;
-const Paragraph = styled(HobTypography)`
-  font-size: 1.75rem;
-
-  ${breakpoints.mobile} {
-    font-size: 1.125rem;
   }
 `;
 
@@ -37,6 +34,17 @@ const HobMarkdownHeading = ({
   );
 };
 
+const Paragraph = styled(HobTypography)`
+  font-size: 1.75rem;
+  * + & {
+    margin-bottom: 1rem;
+  }
+
+  ${breakpoints.mobile} {
+    font-size: 1.125rem;
+  }
+`;
+
 const HobMarkdownParagraph = ({
   children
 }: HTMLProps<HTMLParagraphElement>) => (
@@ -45,11 +53,28 @@ const HobMarkdownParagraph = ({
   </Paragraph>
 );
 
+const Link = styled(HobLink)``;
+
+const HobMarkdownLink = ({
+  children,
+  href,
+  target
+}: HTMLProps<HTMLAnchorElement>) => (
+  <Link color="primary" className="markdown" {...{ href, target }}>
+    {children}
+  </Link>
+);
 const renderers = {
   heading: HobMarkdownHeading,
+  link: HobMarkdownLink,
   paragraph: HobMarkdownParagraph
 };
 
 export const HobMarkdown = ({ source }: ReactMarkdownProps) => (
-  <ReactMarkdown source={source} renderers={renderers} />
+  <ReactMarkdown
+    source={source}
+    renderers={renderers}
+    plugins={[breaks]}
+    linkTarget="_blank"
+  />
 );

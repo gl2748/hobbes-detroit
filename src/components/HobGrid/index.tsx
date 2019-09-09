@@ -25,7 +25,7 @@ export const HobGrid = ({
           position: relative;
           width: ${100 / columns.length}%;
           border-right: 1.25rem solid transparent;
-          border-bottom: 1.25rem solid transparent;
+          border-bottom: 1rem solid transparent;
 
           &:last-of-type {
             border-right: 0;

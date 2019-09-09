@@ -48,6 +48,9 @@ const Inner = styled.div`
     &--body1,
     &--link {
       font-size: 1.75rem;
+      ${breakpoints.mobile} {
+        font-size: 1.125rem;
+      }
     }
 
     &--caption {
