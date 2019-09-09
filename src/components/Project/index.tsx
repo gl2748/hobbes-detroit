@@ -386,6 +386,13 @@ const CMSModule = (
               alt="module media grid item"
             />
           ),
+          [MediaType.JPG]: () => (
+            <img
+              className="module-media-grid__item"
+              src={url}
+              alt="module media grid item"
+            />
+          ),
           [MediaType.JPEG]: () => (
             <img
               className="module-media-grid__item"
@@ -432,27 +439,27 @@ const CMSModule = (
       };
 
       useEffect(() => {
-        const m: Array<{ data: any; type: MediaType; url?: string }> = [];
-        const gridMedia = props.mediaGridMedia.map(({ mediaGridMediaFile }) => {
-          const mediaGridMeta = metaDataGetter(mediaGridMediaFile);
-          if (mediaGridMeta[0].mime_type === MediaType.LOTTIE) {
-            axios.get(mediaGridMediaFile).then(({ data, headers }) => {
-              m.push({
-                data,
-                type: headers["content-type"],
+        Promise.all(
+          props.mediaGridMedia.map(async ({ mediaGridMediaFile }) => {
+            const mediaGridMeta = metaDataGetter(mediaGridMediaFile);
+            if (mediaGridMeta[0].mime_type === MediaType.LOTTIE) {
+              const response = await axios.get(mediaGridMediaFile);
+              return {
+                data: response.data,
+                type: mediaGridMeta[0].mime_type,
                 url: mediaGridMediaFile
-              });
-            });
-          } else {
-            m.push({
-              data: null,
-              type: mediaGridMeta[0].mime_type,
-              url: mediaGridMediaFile
-            });
-          }
+              };
+            } else {
+              return {
+                data: null,
+                type: mediaGridMeta[0].mime_type,
+                url: mediaGridMediaFile
+              };
+            }
+          })
+        ).then(multimedia => {
+          setMedia(multimedia);
         });
-        console.log(m);
-        setMedia(m);
       }, []);
 
       return media.length < 4 ? (
