@@ -486,9 +486,20 @@ const CMSModule = (
 
     case "largeMedia":
       useEffect(() => {
-        axios.get(props.largeMediaFile).then(({ data, headers }) => {
-          setMedia([{ data, type: headers["content-type"] }]);
-        });
+        const largeMediaMetadata = metaDataGetter(props.largeMediaFile);
+        if (largeMediaMetadata[0].mime_type === MediaType.LOTTIE) {
+          axios.get(props.largeMediaFile).then(({ data, headers }) => {
+            setMedia([{ data, type: headers["content-type"] }]);
+          });
+        } else {
+          setMedia([
+            {
+              data: null,
+              type: largeMediaMetadata[0].mime_type,
+              url: props.largeMediaFile
+            }
+          ]);
+        }
       }, []);
       return (
         <HobLargeMedia bleed={props.bleed}>
@@ -510,7 +521,7 @@ const CMSModule = (
               case MediaType.SVG: {
                 return (
                   <div key={props.largeMediaFile}>
-                    <div dangerouslySetInnerHTML={{ __html: data as string }} />
+                    <SVG src={props.largeMediaFile} />
                     <HobTypography variant="body1">
                       {props.caption}
                     </HobTypography>
@@ -573,7 +584,7 @@ const CMSModule = (
             return (
               <MediaSlide key={`svg:${i}`}>
                 <MediaSlideMedia>
-                  <div dangerouslySetInnerHTML={{ __html: data }} />
+                  <SVG src={url} />
                 </MediaSlideMedia>
                 <HobTypography variant="body1">
                   {
@@ -611,6 +622,7 @@ const CMSModule = (
             return <div key={`${type}:${i}`}>{type}</div>;
         }
       };
+
       useEffect(() => {
         Promise.all(
           props.slides.map(({ slideMediaFile }) => {
@@ -624,6 +636,28 @@ const CMSModule = (
               url: request.responseURL
             }))
           );
+        });
+
+        Promise.all(
+          props.slides.map(async ({ slideMediaFile }) => {
+            const slideMeta = metaDataGetter(slideMediaFile);
+            if (slideMeta[0].mime_type === MediaType.LOTTIE) {
+              const response = await axios.get(slideMediaFile);
+              return {
+                data: response.data,
+                type: mediaGridMeta[0].mime_type,
+                url: slideMediaFile
+              };
+            } else {
+              return {
+                data: null,
+                type: slideMeta[0].mime_type,
+                url: slideMediaFile
+              };
+            }
+          })
+        ).then(multimedia => {
+          setMedia(multimedia);
         });
       }, []);
 
