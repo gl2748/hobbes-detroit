@@ -25,16 +25,18 @@ const getMediaMetadata = (haystack: ITransformerUploadcareMeta[]) => (
   });
 };
 
-const getMetadata = (allMetadata: ITransformerUploadcareMeta[]) =>
-  _.flowRight(
+const getMetadata = (allMetadata: ITransformerUploadcareMeta[]) => {
+  return _.flowRight(
     getMediaMetadata(allMetadata),
     getUploadcareUUID
   );
+};
 
 export enum MediaType {
   PNG = "image/png",
-  SVG = "image/svg+xml",
   JPEG = "image/jpeg",
+  JPG = "image/jpg",
+  SVG = "image/svg+xml",
   GIF = "image/gif",
   LOTTIE = "application/json"
 }
@@ -275,7 +277,11 @@ const MainTextArea = styled.div`
 `;
 
 const CMSModule = (
-  props: IModuleProps & { index: number; tags?: string[] }
+  props: IModuleProps & {
+    index: number;
+    tags?: string[];
+    mediaMetadata: ITransformerUploadcareMeta[];
+  }
 ): ReactElement => {
   const [media, setMedia] = useState<
     Array<{
@@ -284,7 +290,6 @@ const CMSModule = (
       url?: string;
     }>
   >([]);
-
   const metaDataGetter = getMetadata(props.mediaMetadata);
 
   switch (props.type) {
@@ -349,7 +354,7 @@ const CMSModule = (
             {tags.map(tag => (
               <li key={tag + `tag`}>
                 <HobTypography variant="caption">
-                  {kebabCase(tag)}
+                  {_.kebabCase(tag)}
                 </HobTypography>
               </li>
             ))}
@@ -388,20 +393,6 @@ const CMSModule = (
               alt="module media grid item"
             />
           ),
-          [MediaType.JPG]: () => (
-            <img
-              className="module-media-grid__item"
-              src={url}
-              alt="module media grid item"
-            />
-          ),
-          [MediaType.JPEG]: () => (
-            <img
-              className="module-media-grid__item"
-              src={url}
-              alt="module media grid item"
-            />
-          ),
           [MediaType.GIF]: () => (
             <img
               className="module-media-grid__item"
@@ -412,7 +403,6 @@ const CMSModule = (
           [MediaType.SVG]: () => (
             <div dangerouslySetInnerHTML={{ __html: data as string }} />
           ),
-
           [MediaType.LOTTIE]: () => {
             const defaultOptions = {
               animationData: data,
@@ -423,7 +413,6 @@ const CMSModule = (
             return <Lottie options={defaultOptions} height={400} width={400} />;
           }
         };
-
         const Component =
           components[type] ||
           (() => (
@@ -448,7 +437,11 @@ const CMSModule = (
           const mediaGridMeta = metaDataGetter(mediaGridMediaFile);
           if (mediaGridMeta[0].mime_type === MediaType.LOTTIE) {
             axios.get(mediaGridMediaFile).then(({ data, headers }) => {
-              m.push({ data, type: headers["content-type"] });
+              m.push({
+                data,
+                type: headers["content-type"],
+                url: mediaGridMediaFile
+              });
             });
           } else {
             m.push({
@@ -458,6 +451,7 @@ const CMSModule = (
             });
           }
         });
+        console.log(m);
         setMedia(m);
       }, []);
 
@@ -726,6 +720,7 @@ export const Project: React.FC<IProjectProps> = ({
             key={getKey(module)}
             index={index}
             tags={tags}
+            mediaMetadata={mediaMetadata}
           />
         ))}
         {content && <PostContent content={content} className="post-content" />}
