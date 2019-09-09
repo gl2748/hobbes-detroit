@@ -8,7 +8,7 @@ import { HobTypography } from "@components/HobTypography";
 import styled from "@emotion/styled";
 import { ITransformerUploadcareMeta } from "@templates/project-post";
 import axios from "axios";
-import lodash from "lodash";
+import _ from "lodash";
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import breakpoints from "../../breakpoints";
@@ -26,7 +26,7 @@ const getMediaMetadata = (haystack: ITransformerUploadcareMeta[]) => (
 };
 
 const getMetadata = (allMetadata: ITransformerUploadcareMeta[]) =>
-  lodash.fp.compose(
+  _.flowRight(
     getMediaMetadata(allMetadata),
     getUploadcareUUID
   );
@@ -453,7 +453,7 @@ const CMSModule = (
           } else {
             m.push({
               data: null,
-              type: meta[0].mime_type,
+              type: mediaGridMeta[0].mime_type,
               url: mediaGridMediaFile
             });
           }
