@@ -10,6 +10,7 @@ import { ITransformerUploadcareMeta } from "@templates/project-post";
 import axios from "axios";
 import _ from "lodash";
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
+import SVG from "react-inlinesvg";
 import Lottie from "react-lottie";
 import breakpoints from "../../breakpoints";
 
@@ -408,7 +409,7 @@ const CMSModule = (
             />
           ),
           [MediaType.SVG]: () => (
-            <div dangerouslySetInnerHTML={{ __html: data as string }} />
+            <SVG className="module-media-grid__item" src={url} />
           ),
           [MediaType.LOTTIE]: () => {
             const defaultOptions = {
