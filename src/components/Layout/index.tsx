@@ -181,8 +181,9 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
       >
         {state.isLoggedIn &&
           state.confirmEmailToken.length === 0 &&
-          state.recoveryToken.length ===
-            0(<LogoutForm onClose={toggleDrawer(false)} />)}
+          state.recoveryToken.length === 0 && (
+            <LogoutForm onClose={toggleDrawer(false)} />
+          )}
         {!state.isLoggedIn &&
           state.confirmEmailToken.length === 0 &&
           state.recoveryToken.length === 0 && (
