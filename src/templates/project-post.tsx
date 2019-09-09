@@ -3,7 +3,7 @@ import { HobLink as Link } from "@components/HobLink";
 import { HobTypography } from "@components/HobTypography";
 import { Layout } from "@components/Layout";
 import { Navbar } from "@components/Navbar";
-import { IModuleProps, Project, MediaType } from "@components/Project";
+import { IModuleProps, MediaType, Project } from "@components/Project";
 import styled from "@emotion/styled";
 import { WithAuth } from "@higherOrderComponents/WithAuth";
 import { useScrollPosition } from "@hooks/useScrollPosition";
