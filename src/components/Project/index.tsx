@@ -191,6 +191,12 @@ const MediaGridItem = styled.div`
 `;
 
 const TwoThree = styled.div`
+  .module-media-grid {
+    & + .module-media-grid {
+      margin-top: 0rem;
+    }
+  }
+
   .hob-grid {
     &:first-of-type {
       margin-bottom: 0;
