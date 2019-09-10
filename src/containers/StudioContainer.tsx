@@ -1,10 +1,14 @@
 import { graphql, StaticQuery } from "gatsby";
 import React from "react";
 import { IStudioProps, Studio } from "../components/Studio";
-import { IAllMarkdownRemark } from "./interfaces";
+import { IAllMarkdownRemark, IFrontmatter } from "./interfaces";
 
-export const StudioContainer = () => {
-  const render = (data: IAllMarkdownRemark<IStudioProps>) => {
+export const StudioContainer = ({
+  forwardedRef
+}: {
+  forwardedRef: React.Ref<HTMLDivElement>;
+}) => {
+  const render = (data: IAllMarkdownRemark<IFrontmatter<IStudioProps>>) => {
     const {
       title,
       description,
@@ -13,8 +17,10 @@ export const StudioContainer = () => {
       email,
       social
     } = data.allMarkdownRemark.edges[0].node.frontmatter;
+
     return (
       <Studio
+        forwardedRef={forwardedRef}
         title={title}
         description={description}
         address={address}

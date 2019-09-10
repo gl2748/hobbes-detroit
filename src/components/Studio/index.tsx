@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import PropTypes from "prop-types";
 import React from "react";
 import breakpoints from "../../breakpoints";
 import { HobLink } from "../HobLink";
@@ -12,6 +11,7 @@ export interface IStudioProps {
   email: string;
   address: string;
   social: Array<{ title: string; url: string }>;
+  forwardedRef?: React.Ref<HTMLDivElement>;
 }
 
 const Container = styled.div`
@@ -103,16 +103,11 @@ const Contact = styled.div`
   flex-direction: column;
 `;
 
-export const Studio: React.FC<IStudioProps> = ({
-  title,
-  description,
-  address,
-  phone,
-  email,
-  social
-}: IStudioProps) => {
+export const Studio: React.FC<
+  IStudioProps & React.HTMLProps<HTMLDivElement>
+> = ({ title, description, address, phone, email, forwardedRef, social }) => {
   return (
-    <Container id="studio">
+    <Container id="studio" ref={forwardedRef}>
       <Inner>
         <HobTypography variant="h1">{title}</HobTypography>
 

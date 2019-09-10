@@ -9,7 +9,6 @@ const Nav = styled.div`
   display: flex;
   right: 1.5rem;
   top: 1.5rem;
-  background-color: var(--hob-color--primary);
   position: fixed;
   z-index: 5;
 
@@ -27,17 +26,23 @@ const Nav = styled.div`
   }
 `;
 
-export const Navbar: React.FC<HTMLProps<HTMLDivElement>> = ({
-  className = ""
-}) => {
+export const Navbar: React.FC<
+  HTMLProps<HTMLDivElement> & {
+    forwardedRef?: React.Ref<HTMLDivElement>;
+  }
+> = ({ className = "", children, forwardedRef }) => {
   return (
-    <Nav className={className}>
-      <Link color="secondary" href="/#work">
-        Work
-      </Link>
-      <Link color="secondary" href="#studio">
-        Studio
-      </Link>
+    <Nav className={className} ref={forwardedRef}>
+      {children || (
+        <>
+          <Link color="secondary" href="/#work">
+            Work
+          </Link>
+          <Link color="secondary" href="#studio">
+            Studio
+          </Link>
+        </>
+      )}
     </Nav>
   );
 };
