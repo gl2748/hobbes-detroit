@@ -6,13 +6,34 @@ import { HobLogo } from "@components/HobLogo";
 import { HobMarkdown } from "@components/HobMarkdown";
 import { HobTypography } from "@components/HobTypography";
 import styled from "@emotion/styled";
+import { ITransformerUploadcareMeta } from "@templates/project-post";
 import axios from "axios";
-import { kebabCase } from "lodash";
+import _ from "lodash";
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
+import SVG from "react-inlinesvg";
 import Lottie from "react-lottie";
 import breakpoints from "../../breakpoints";
 
-enum MediaType {
+const getUploadcareUUID = (url: string): string => {
+  return url.split("https://ucarecdn.com/")[1].split("/")[0];
+};
+
+const getMediaMetadata = (haystack: ITransformerUploadcareMeta[]) => (
+  needle: string
+) => {
+  return haystack.filter(bushel => {
+    return bushel.uuid === needle;
+  });
+};
+
+const getMetadata = (allMetadata: ITransformerUploadcareMeta[]) => {
+  return _.flowRight(
+    getMediaMetadata(allMetadata),
+    getUploadcareUUID
+  );
+};
+
+export enum MediaType {
   PNG = "image/png",
   JPEG = "image/jpeg",
   JPG = "image/jpg",
@@ -42,6 +63,7 @@ export interface IModuleProps {
     | "tabletDevice"
     | "textArea";
   slides: Array<{ caption: string; slideMediaFile: string; type: string }>;
+  mediaMetadata: ITransformerUploadcareMeta[];
 }
 
 const ModulesContainer = styled.div`
@@ -169,6 +191,12 @@ const MediaGridItem = styled.div`
 `;
 
 const TwoThree = styled.div`
+  .module-media-grid {
+    & + .module-media-grid {
+      margin-top: 0rem;
+    }
+  }
+
   .hob-grid {
     &:first-of-type {
       margin-bottom: 0;
@@ -256,7 +284,11 @@ const MainTextArea = styled.div`
 `;
 
 const CMSModule = (
-  props: IModuleProps & { index: number; tags?: string[] }
+  props: IModuleProps & {
+    index: number;
+    tags?: string[];
+    mediaMetadata: ITransformerUploadcareMeta[];
+  }
 ): ReactElement => {
   const [media, setMedia] = useState<
     Array<{
@@ -265,13 +297,19 @@ const CMSModule = (
       url?: string;
     }>
   >([]);
+  const metaDataGetter = getMetadata(props.mediaMetadata);
 
   switch (props.type) {
     case "projectBanner":
+      const meta = metaDataGetter(props.projectBannerMedia);
       useEffect(() => {
-        axios.get(props.projectBannerMedia).then(({ data, headers }) => {
-          setMedia([{ data, type: headers["content-type"] }]);
-        });
+        setMedia([
+          {
+            data: null,
+            type: meta[0].mime_type,
+            url: props.projectBannerMedia
+          }
+        ]);
       }, []);
       return (
         <Hero>
@@ -323,7 +361,7 @@ const CMSModule = (
             {tags.map(tag => (
               <li key={tag + `tag`}>
                 <HobTypography variant="caption">
-                  {kebabCase(tag)}
+                  {_.kebabCase(tag)}
                 </HobTypography>
               </li>
             ))}
@@ -376,11 +414,9 @@ const CMSModule = (
               alt="module media grid item"
             />
           ),
-
           [MediaType.SVG]: () => (
-            <div dangerouslySetInnerHTML={{ __html: data as string }} />
+            <SVG className="module-media-grid__item" src={url} />
           ),
-
           [MediaType.LOTTIE]: () => {
             const defaultOptions = {
               animationData: data,
@@ -391,7 +427,6 @@ const CMSModule = (
             return <Lottie options={defaultOptions} height={400} width={400} />;
           }
         };
-
         const Component =
           components[type] ||
           (() => (
@@ -412,18 +447,24 @@ const CMSModule = (
 
       useEffect(() => {
         Promise.all(
-          props.mediaGridMedia.map(({ mediaGridMediaFile }) => {
-            return axios.get(mediaGridMediaFile);
+          props.mediaGridMedia.map(async ({ mediaGridMediaFile }) => {
+            const mediaGridMeta = metaDataGetter(mediaGridMediaFile);
+            if (mediaGridMeta[0].mime_type === MediaType.LOTTIE) {
+              const response = await axios.get(mediaGridMediaFile);
+              return {
+                data: response.data,
+                type: mediaGridMeta[0].mime_type,
+                url: mediaGridMediaFile
+              };
+            } else {
+              return {
+                data: null,
+                type: mediaGridMeta[0].mime_type,
+                url: mediaGridMediaFile
+              };
+            }
           })
-        ).then(responses => {
-          setMedia(
-            responses.map(({ data, headers, request }) => ({
-              data,
-              type: headers["content-type"],
-              url: request.responseURL
-            }))
-          );
-        });
+        ).then(setMedia);
       }, []);
 
       return media.length < 4 ? (
@@ -449,9 +490,20 @@ const CMSModule = (
 
     case "largeMedia":
       useEffect(() => {
-        axios.get(props.largeMediaFile).then(({ data, headers }) => {
-          setMedia([{ data, type: headers["content-type"] }]);
-        });
+        const largeMediaMetadata = metaDataGetter(props.largeMediaFile);
+        if (largeMediaMetadata[0].mime_type === MediaType.LOTTIE) {
+          axios.get(props.largeMediaFile).then(({ data, headers }) => {
+            setMedia([{ data, type: MediaType.LOTTIE }]);
+          });
+        } else {
+          setMedia([
+            {
+              data: null,
+              type: largeMediaMetadata[0].mime_type,
+              url: props.largeMediaFile
+            }
+          ]);
+        }
       }, []);
       return (
         <HobLargeMedia bleed={props.bleed}>
@@ -473,7 +525,7 @@ const CMSModule = (
               case MediaType.SVG: {
                 return (
                   <div key={props.largeMediaFile}>
-                    <div dangerouslySetInnerHTML={{ __html: data as string }} />
+                    <SVG src={props.largeMediaFile} />
                     <HobTypography variant="body1">
                       {props.caption}
                     </HobTypography>
@@ -536,7 +588,7 @@ const CMSModule = (
             return (
               <MediaSlide key={`svg:${i}`}>
                 <MediaSlideMedia>
-                  <div dangerouslySetInnerHTML={{ __html: data }} />
+                  <SVG src={url} />
                 </MediaSlideMedia>
                 <HobTypography variant="body1">
                   {
@@ -574,6 +626,7 @@ const CMSModule = (
             return <div key={`${type}:${i}`}>{type}</div>;
         }
       };
+
       useEffect(() => {
         Promise.all(
           props.slides.map(({ slideMediaFile }) => {
@@ -588,6 +641,26 @@ const CMSModule = (
             }))
           );
         });
+
+        Promise.all(
+          props.slides.map(async ({ slideMediaFile }) => {
+            const slideMeta = metaDataGetter(slideMediaFile);
+            if (slideMeta[0].mime_type === MediaType.LOTTIE) {
+              const response = await axios.get(slideMediaFile);
+              return {
+                data: response.data,
+                type: mediaGridMeta[0].mime_type,
+                url: slideMediaFile
+              };
+            } else {
+              return {
+                data: null,
+                type: slideMeta[0].mime_type,
+                url: slideMediaFile
+              };
+            }
+          })
+        ).then(setMedia);
       }, []);
 
       const gallerySlides = media.map(makeGallerySlide(props.slides));
@@ -620,6 +693,7 @@ export interface IProjectProps {
   protectedProject: boolean;
   modules?: IModuleProps[];
   featuredJson: string;
+  mediaMetadata: ITransformerUploadcareMeta[];
 }
 
 const Container = styled.div``;
@@ -634,7 +708,8 @@ export const Project: React.FC<IProjectProps> = ({
   featured,
   featuredJson,
   protectedProject,
-  modules = []
+  modules = [],
+  mediaMetadata
 }: IProjectProps) => {
   const [animationData, setAnimationData] = useState<{
     [key: string]: any;
@@ -689,6 +764,7 @@ export const Project: React.FC<IProjectProps> = ({
             key={getKey(module)}
             index={index}
             tags={tags}
+            mediaMetadata={mediaMetadata}
           />
         ))}
         {content && <PostContent content={content} className="post-content" />}

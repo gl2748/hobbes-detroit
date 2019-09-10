@@ -3,13 +3,13 @@ import { HobLink as Link } from "@components/HobLink";
 import { HobTypography } from "@components/HobTypography";
 import { Layout } from "@components/Layout";
 import { Navbar } from "@components/Navbar";
-import { IModuleProps, Project } from "@components/Project";
+import { IModuleProps, MediaType, Project } from "@components/Project";
 import { StudioContainer } from "@containers/StudioContainer";
 import styled from "@emotion/styled";
 import { WithAuth } from "@higherOrderComponents/WithAuth";
 import { useScrollPosition } from "@hooks/useScrollPosition";
 import { graphql } from "gatsby";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Helmet from "react-helmet";
 import breakpoints from "../breakpoints";
 
@@ -21,6 +21,22 @@ interface SideLink {
   fields: {
     slug: string;
   };
+}
+
+export interface IImageInfo {
+  color_mode: string;
+  dpi: [number, number];
+  format: "PNG" | "JPEG" | "GIF";
+  height: number;
+  sequence: boolean;
+  width: number;
+}
+
+export interface ITransformerUploadcareMeta {
+  mime_type: MediaType;
+  uuid: string;
+  image_info?: IImageInfo;
+  original_filename: string;
 }
 export interface IProjectPostProps {
   data: {
@@ -35,6 +51,7 @@ export interface IProjectPostProps {
         featuredJson: string;
         modules: IModuleProps[];
       };
+      childrenTransformerUploadcareMeta: ITransformerUploadcareMeta[];
     };
     prev: SideLink;
     next: SideLink;
@@ -229,6 +246,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
   data
 }: IProjectPostProps) => {
   const { markdownRemark: post, prev, next } = data;
+
   const toProps = (p: SideLink) => ({
     label: p.frontmatter.title,
     to: `${p.frontmatter.protectedProject ? "/protected" : ""}${p.fields.slug}`
@@ -260,6 +278,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
         title={post.frontmatter.title}
         protectedProject={post.frontmatter.protectedProject}
         featured={post.frontmatter.featured}
+        mediaMetadata={post.childrenTransformerUploadcareMeta}
       />
       <StudioContainer />
     </Container>
@@ -304,6 +323,19 @@ export const pageQuery = graphql`
             mediaGridMediaFile
           }
         }
+      }
+      childrenTransformerUploadcareMeta {
+        mime_type
+        uuid
+        image_info {
+          color_mode
+          dpi
+          format
+          height
+          sequence
+          width
+        }
+        original_filename
       }
     }
     prev: markdownRemark(id: { eq: $prevId }) {
