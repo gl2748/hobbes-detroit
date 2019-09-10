@@ -3,13 +3,12 @@ import { HobLink as Link } from "@components/HobLink";
 import { HobTypography } from "@components/HobTypography";
 import { Layout } from "@components/Layout";
 import { Navbar } from "@components/Navbar";
+import { IModuleProps, MediaType, Project } from "@components/Project";
 import { StudioContainer } from "@containers/StudioContainer";
-import { IModuleProps, Project, MediaType } from "@components/Project";
 import styled from "@emotion/styled";
 import { WithAuth } from "@higherOrderComponents/WithAuth";
 import { useScrollPosition } from "@hooks/useScrollPosition";
 import { graphql } from "gatsby";
-import { number, string } from "prop-types";
 import React, { useState } from "react";
 import Helmet from "react-helmet";
 import breakpoints from "../breakpoints";
@@ -24,13 +23,6 @@ interface SideLink {
   };
 }
 
-export type TMimeType =
-  | "image/svg+xml"
-  | "image/png"
-  | "image/gif"
-  | "application/json"
-  | "image/jpeg";
-
 export interface IImageInfo {
   color_mode: string;
   dpi: [number, number];
@@ -43,7 +35,7 @@ export interface IImageInfo {
 export interface ITransformerUploadcareMeta {
   mime_type: MediaType;
   uuid: string;
-  image_info: null | IImageInfo;
+  image_info?: IImageInfo;
   original_filename: string;
 }
 export interface IProjectPostProps {

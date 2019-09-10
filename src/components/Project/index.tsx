@@ -458,9 +458,7 @@ const CMSModule = (
               };
             }
           })
-        ).then(multimedia => {
-          setMedia(multimedia);
-        });
+        ).then(setMedia);
       }, []);
 
       return media.length < 4 ? (
@@ -489,7 +487,7 @@ const CMSModule = (
         const largeMediaMetadata = metaDataGetter(props.largeMediaFile);
         if (largeMediaMetadata[0].mime_type === MediaType.LOTTIE) {
           axios.get(props.largeMediaFile).then(({ data, headers }) => {
-            setMedia([{ data, type: headers["content-type"] }]);
+            setMedia([{ data, type: MediaType.LOTTIE }]);
           });
         } else {
           setMedia([
@@ -656,9 +654,7 @@ const CMSModule = (
               };
             }
           })
-        ).then(multimedia => {
-          setMedia(multimedia);
-        });
+        ).then(setMedia);
       }, []);
 
       const gallerySlides = media.map(makeGallerySlide(props.slides));
