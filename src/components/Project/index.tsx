@@ -264,9 +264,10 @@ const Tags = styled.ul`
 `;
 
 const MainTextArea = styled.div`
-  .module-text-area,
-  .module-text-area--one {
-    padding-top: 1.25rem;
+  padding-top: 2.875rem;
+
+  .module-text-area {
+    padding-top: 1.25rem !important;
     ${breakpoints.mobile} {
       padding-top: 0;
     }
