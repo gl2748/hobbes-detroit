@@ -199,6 +199,7 @@ const MediaGridItem = styled.div`
   img,
   svg {
     width: 100%;
+    height: 100%;
   }
 
   .hob-typography {
