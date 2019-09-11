@@ -97,14 +97,13 @@ const ModulesContainer = styled.div`
   }
 `;
 
-const Hero = styled.div`
+const ProjectBanner = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: var(--hob-color--white);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
 
   img {
     max-width: 100%;
@@ -338,7 +337,7 @@ const CMSModule = (
         ]);
       }, []);
       return (
-        <Hero>
+        <ProjectBanner>
           {media.map(({ data, type }, i) => {
             switch (type) {
               case MediaType.JPG:
@@ -357,7 +356,7 @@ const CMSModule = (
                 return <div key={`${data}:${i}`}>{type}</div>;
             }
           })}
-        </Hero>
+        </ProjectBanner>
       );
 
     case "header":
