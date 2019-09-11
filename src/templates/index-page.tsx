@@ -1,10 +1,11 @@
+import { DynamicGradientSvgText } from "@components/DynamicGradientSvgText";
 import styled from "@emotion/styled";
 import React, { useEffect, useReducer, useRef } from "react";
 import { HobLetters } from "../components/HobLetters";
 import { HobLink as Link } from "../components/HobLink";
 import { HobLogo } from "../components/HobLogo";
+import { LayoutWithLocation } from "../components/Layout";
 import { Navbar } from "../components/Navbar";
-import { Layout, LayoutWithLocation } from "../components/Layout";
 import { FeaturedProjectRollContainer } from "../containers/FeaturedProjectRollContainer";
 import { ProjectRollContainer } from "../containers/ProjectRollContainer";
 import { StudioContainer } from "../containers/StudioContainer";
@@ -204,22 +205,14 @@ const IndexPage = () => {
 
   const link = (href: string, label: string) => (
     <Link color="secondary" href={href} unsetTypography={true}>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
+      <DynamicGradientSvgText
         height={height}
-        width={100}
-        viewBox={`0 0 60 ${height}`}
+        offset={offset}
+        from="var(--hob-color--light)"
+        to="var(--hob-color--dark)"
       >
-        <defs>
-          <linearGradient id="bicolored" y1="0%" y2="100%" x1="100%" x2="100%">
-            <stop offset={`${Math.max(100 - offset, 0)}%`} stopColor="white" />
-            <stop offset="0%" stopColor="black" />
-          </linearGradient>
-        </defs>
-        <text x="0" y={height * 0.9} fill="url(#bicolored)" fontSize={height}>
-          {label}
-        </text>
-      </svg>
+        {label}
+      </DynamicGradientSvgText>
     </Link>
   );
 

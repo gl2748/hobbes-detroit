@@ -1,4 +1,5 @@
 import { HTMLContent } from "@components/Content";
+import { DynamicGradientSvgText } from "@components/DynamicGradientSvgText";
 import { HobLink as Link } from "@components/HobLink";
 import { HobTypography } from "@components/HobTypography";
 import { Layout } from "@components/Layout";
@@ -9,7 +10,7 @@ import styled from "@emotion/styled";
 import { WithAuth } from "@higherOrderComponents/WithAuth";
 import { useScrollPosition } from "@hooks/useScrollPosition";
 import { graphql } from "gatsby";
-import React, { useState } from "react";
+import React, { useReducer, useRef, useState } from "react";
 import Helmet from "react-helmet";
 import breakpoints from "../breakpoints";
 
@@ -240,30 +241,154 @@ const Container = styled(Layout)`
     right: 1.25rem;
     background-color: transparent;
 
-    & .hob-link,
-    & .hob-typography {
-      color: var(--hob-color--primary);
+    a {
+      &:hover,
+      &:focus {
+        opacity: 0.5;
+      }
+
+      svg {
+        text {
+          text-decoration: underline;
+        }
+      }
     }
   }
 `;
+interface Position {
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+}
+
+interface State {
+  scrollY: number;
+  positions: {
+    studio: Position;
+    nav: Position;
+  };
+}
+
+const initialState: State = {
+  positions: {
+    nav: { bottom: 0, top: 0 },
+    studio: { top: 0 }
+  },
+  scrollY: 0
+};
+
+type Action =
+  | { type: "SET_SCROLL_Y"; payload: number }
+  | { type: "SET_WINDOW_HEIGHT"; payload: number }
+  | { type: "SET_POSITIONS"; payload: { [key: string]: Position } };
+
+const reducer = (state: State, action: Action) => {
+  switch (action.type) {
+    case "SET_SCROLL_Y": {
+      return {
+        ...state,
+        scrollY: action.payload
+      };
+    }
+    case "SET_WINDOW_HEIGHT": {
+      return {
+        ...state
+      };
+    }
+    case "SET_POSITIONS": {
+      return {
+        ...state,
+        positions: {
+          ...state.positions,
+          ...action.payload
+        }
+      };
+    }
+    default: {
+      return state;
+    }
+  }
+};
 
 const ProjectPost: React.FC<IProjectPostProps> = ({
   data
 }: IProjectPostProps) => {
+  const [
+    {
+      scrollY,
+      positions: {
+        nav: { bottom: navBottom = 1, top: navTop = 0 },
+        studio: { top: studioTop = 0 }
+      }
+    },
+    dispatch
+  ] = useReducer(reducer, initialState);
+
   const { markdownRemark: post, prev, next } = data;
+  const studioRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLDivElement>(null);
 
   const toProps = (p: SideLink) => ({
     label: p.frontmatter.title,
     to: `${p.frontmatter.protectedProject ? "/protected" : ""}${p.fields.slug}`
   });
 
+  React.useEffect(() => {
+    if (navRef.current === null || studioRef.current === null) {
+      return;
+    }
+    const navRect = navRef.current.getBoundingClientRect();
+    dispatch({
+      payload: {
+        nav: {
+          bottom: navRect.bottom,
+          top: navRect.top
+        },
+        studio: {
+          top: studioRef.current.offsetTop
+        }
+      },
+      type: "SET_POSITIONS"
+    });
+  }, [
+    studioRef.current && studioRef.current.offsetTop,
+    navRef.current && navRef.current.getBoundingClientRect().top
+  ]);
+
+  const offset = Math.max(
+    0,
+    ((scrollY + navBottom - studioTop) / (navBottom - navTop)) * 100 || 0
+  );
+  const height = 28;
+
+  useScrollPosition(({ currPos }) => {
+    dispatch({ type: "SET_SCROLL_Y", payload: currPos.y * -1 });
+  });
+
   const EnhancedProjectComponent = post.frontmatter.protectedProject
     ? WithAuth(Project)
     : Project;
+
+  const link = (href: string, label: string) => (
+    <Link color="secondary" href={href} unsetTypography={true}>
+      <DynamicGradientSvgText
+        height={height}
+        offset={offset}
+        from="var(--hob-color--dark)"
+        to="var(--hob-color--light)"
+      >
+        {label}
+      </DynamicGradientSvgText>
+    </Link>
+  );
   return (
     <Container>
       <SidePagination prev={toProps(prev)} next={toProps(next)} />
-      <Navbar className={`nav`} />
+      <Navbar className={`nav`} forwardedRef={navRef}>
+        {link("/#work", "Work")}
+        {link("#studio", "Studio")}
+      </Navbar>
       <EnhancedProjectComponent
         featuredJson={post.frontmatter.featuredJson}
         modules={post.frontmatter.modules}
@@ -285,7 +410,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
         featured={post.frontmatter.featured}
         mediaMetadata={post.childrenTransformerUploadcareMeta}
       />
-      <StudioContainer />
+      <StudioContainer forwardedRef={studioRef} />
     </Container>
   );
 };

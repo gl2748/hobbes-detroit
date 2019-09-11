@@ -6,7 +6,7 @@ import { IAllMarkdownRemark, IFrontmatter } from "./interfaces";
 export const StudioContainer = ({
   forwardedRef
 }: {
-  forwardedRef: React.Ref<HTMLDivElement>;
+  forwardedRef?: React.Ref<HTMLDivElement>;
 }) => {
   const render = (data: IAllMarkdownRemark<IFrontmatter<IStudioProps>>) => {
     const {
