@@ -1,4 +1,5 @@
 import { Content, IContentProps } from "@components/Content";
+import { HobButton } from "@components/HobButton";
 import { HobGallery } from "@components/HobGallery";
 import { HobGrid } from "@components/HobGrid";
 import { HobLargeMedia } from "@components/HobLargeMedia";
@@ -724,6 +725,18 @@ export interface IProjectProps {
 }
 
 const Container = styled.div``;
+const BackToTop = styled.div`
+  width: 100vw;
+  margin: 7.375rem 0;
+
+  .hob-button {
+    margin: 0 auto;
+  }
+
+  .hob-typography--button {
+    font-size: 1.125rem;
+  }
+`;
 
 export const Project: React.FC<IProjectProps> = ({
   content,
@@ -781,6 +794,10 @@ export const Project: React.FC<IProjectProps> = ({
     }
   };
 
+  const backToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <Container>
       {helmet || ""}
@@ -796,6 +813,12 @@ export const Project: React.FC<IProjectProps> = ({
         ))}
         {content && <PostContent content={content} className="post-content" />}
       </ModulesContainer>
+
+      <BackToTop>
+        <HobButton onClick={backToTop} variant="text" color="primary">
+          ↑ BACK TO TOP
+        </HobButton>
+      </BackToTop>
     </Container>
   );
 };
