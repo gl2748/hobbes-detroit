@@ -229,6 +229,11 @@ const SidePagination = ({
 const Container = styled(Layout)`
   overflow-x: hidden;
 
+  #studio {
+    background-color: var(--hob-color--primary);
+    color: var(--hob-color-alt--primary);
+  }
+
   .nav {
     position: fixed;
     top: 1.25rem;
