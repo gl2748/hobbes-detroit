@@ -158,7 +158,8 @@ const TextArea = styled(HobGrid)`
 const MediaGrid = styled(HobGrid)`
   padding: 1.25rem 6.625rem 0;
 
-  & + & {
+  & + &,
+  .hob-large-media + & {
     padding-bottom: 1rem;
     padding-top: 0;
     margin-bottom: 0;
