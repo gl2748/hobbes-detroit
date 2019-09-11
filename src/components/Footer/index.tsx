@@ -6,12 +6,11 @@ import React from "react";
 import breakpoints from "../../breakpoints";
 
 const Container = styled.div`
-  position: absolute;
+  position: relative;
   width: 100vw;
-  bottom: 0;
   z-index: 2;
   display: flex;
-  padding: 0 2.5rem 1.8125rem;
+  padding: 1.8125rem 2.5rem;
 
   ${breakpoints.mobile} {
     flex-direction: column;

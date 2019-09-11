@@ -76,11 +76,6 @@ const layoutReducer = (state: ILayoutState, action: TAction) => {
 const Container = styled.div`
   position: relative;
   min-height: 100vh;
-  padding-bottom: 3rem;
-
-  ${breakpoints.mobile} {
-    padding-bottom: 10rem;
-  }
 `;
 
 const PortalLegal = styled.div`
