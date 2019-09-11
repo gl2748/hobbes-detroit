@@ -1,6 +1,6 @@
 ---
 templateKey: project-post
-title: Project Template
+title: Project Template Master
 date: 2019-09-09T19:27:10.356Z
 description: Based off the Project Template in Figma
 primaryColor: '#00000'
