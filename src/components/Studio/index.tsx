@@ -106,6 +106,7 @@ const Contact = styled.div`
 export const Studio: React.FC<
   IStudioProps & React.HTMLProps<HTMLDivElement>
 > = ({ title, description, address, phone, email, forwardedRef, social }) => {
+  const [, line1, line2] = address.match(/^(.*)\s(.*,.*)/) || [];
   return (
     <Container id="studio" ref={forwardedRef}>
       <Inner>
@@ -116,7 +117,11 @@ export const Studio: React.FC<
         <Address>
           <Field>
             <HobTypography variant="caption">Address</HobTypography>
-            <HobTypography variant="body1">{address}</HobTypography>
+            <HobTypography variant="body1">
+              {line1}
+              <br />
+              {line2}
+            </HobTypography>
           </Field>
         </Address>
 
