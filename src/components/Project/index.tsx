@@ -98,7 +98,7 @@ const ModulesContainer = styled.div`
 `;
 
 const ProjectBanner = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   background-color: var(--hob-color--white);
   display: flex;
