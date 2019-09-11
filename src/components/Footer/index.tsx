@@ -14,7 +14,7 @@ const Container = styled.div`
 
   ${breakpoints.mobile} {
     flex-direction: column;
-    padding: 0 1.125rem 2rem;
+    padding: 2rem 1.125rem;
   }
 `;
 
