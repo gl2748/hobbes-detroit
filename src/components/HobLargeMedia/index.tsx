@@ -16,7 +16,7 @@ const LargeMedia = styled.div<TLargeMediaStyles>`
   position: relative;
   padding: 1.25rem 6.625rem; // Default
   img {
-    max-width: 100%;
+    width: 100%;
   }
   ${props =>
     props.bleed

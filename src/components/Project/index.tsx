@@ -106,7 +106,7 @@ const ProjectBanner = styled.div`
   justify-content: center;
 
   img {
-    max-width: 100%;
+    width: 100%;
   }
 `;
 
