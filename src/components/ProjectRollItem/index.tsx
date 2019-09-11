@@ -50,6 +50,10 @@ const Graphic = styled.div`
   margin-bottom: 0.625rem;
   position: relative;
   width: 100%;
+  &:hover,
+  &:focus {
+    filter: invert(1);
+  }
 
   img {
     width: 100%;
@@ -142,16 +146,24 @@ export const ProjectRollItem = ({
   const { Component } = Media;
   return (
     <Container className={`${featured ? "is-featured" : ""}`}>
-      <Graphic>
-        {Component === null ? (
-          <HobTypography variant="caption">Loading...</HobTypography>
-        ) : (
-          <Component {...Media.props} />
-        )}
-        {protectedProject && (
-          <HobIcon name="lock" fill="none" color="secondary" size="sm" />
-        )}
-      </Graphic>
+      <Link
+        color="secondary"
+        to={
+          protectedProject ? `/protected${post.fields.slug}` : post.fields.slug
+        }
+        unsetTypography={true}
+      >
+        <Graphic>
+          {Component === null ? (
+            <HobTypography variant="caption">Loading...</HobTypography>
+          ) : (
+            <Component {...Media.props} />
+          )}
+          {protectedProject && (
+            <HobIcon name="lock" fill="none" color="secondary" size="sm" />
+          )}
+        </Graphic>
+      </Link>
 
       <Link
         color="secondary"
