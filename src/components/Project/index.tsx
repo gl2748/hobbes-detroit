@@ -66,6 +66,31 @@ export interface IModuleProps {
   mediaMetadata: ITransformerUploadcareMeta[];
 }
 
+const withDefaultHeader = (
+  ms: IModuleProps[],
+  title: string
+): IModuleProps[] => {
+  if (ms.findIndex(mod => mod.type === "header") === -1) {
+    const header: IModuleProps = {
+      bleed: false,
+      caption: "",
+      headerText: title,
+      hideCaptions: false,
+      largeMediaFile: "",
+      mediaGridMedia: [],
+      mediaMetadata: [],
+      mobileDeviceMedia: "",
+      projectBannerMedia: "",
+      slides: [],
+      tabletDeviceMedia: "",
+      textColumns: [],
+      type: "header"
+    };
+    return [ms[0], header, ...ms.slice(1)];
+  }
+  return ms;
+};
+
 const ModulesContainer = styled.div`
   > * {
     margin-bottom: 1.5rem;
@@ -759,7 +784,7 @@ export const Project: React.FC<IProjectProps> = ({
     <Container>
       {helmet || ""}
       <ModulesContainer>
-        {modules.map((module, index) => (
+        {withDefaultHeader(modules, title).map((module, index) => (
           <CMSModule
             {...module}
             key={getKey(module)}
