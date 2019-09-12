@@ -16,7 +16,7 @@ const ProjectContainer = styled.div`
   justify-content: center;
   height: 100%;
 
-  .hob-link {
+  .hob-link.text {
     width: 100%;
     position: absolute;
     bottom: 0;
@@ -55,13 +55,24 @@ const Project = ({ post }: { post: IProjectProps }) => {
         post.frontmatter.featured ? "is-featured" : ""
       }`}
     >
-      <ProjectGraphic className="hero-carousel__project-graphic">
-        {animationData && (
-          <Lottie options={defaultOptions} height={400} width={400} />
-        )}
-      </ProjectGraphic>
+      <HobLink
+        unsetTypography={true}
+        color="dark-gray"
+        to={
+          post.frontmatter.protectedProject
+            ? `/protected${post.fields.slug}`
+            : post.fields.slug
+        }
+      >
+        <ProjectGraphic className="hero-carousel__project-graphic">
+          {animationData && (
+            <Lottie options={defaultOptions} height={400} width={400} />
+          )}
+        </ProjectGraphic>
+      </HobLink>
 
       <HobLink
+        className="text"
         color="dark-gray"
         to={
           post.frontmatter.protectedProject
