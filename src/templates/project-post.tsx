@@ -1,6 +1,7 @@
 import { HTMLContent } from "@components/Content";
 import { DynamicGradientSvgText } from "@components/DynamicGradientSvgText";
 import { HobLink as Link } from "@components/HobLink";
+import { HobLogo } from "@components/HobLogo";
 import { HobTypography } from "@components/HobTypography";
 import { Layout } from "@components/Layout";
 import { Navbar } from "@components/Navbar";
@@ -231,9 +232,12 @@ const SidePagination = ({
 const Container = styled(Layout)`
   overflow-x: hidden;
 
-  #studio {
+  #studio,
+  .footer {
     background-color: var(--hob-color--primary);
-    color: var(--hob-color-alt--primary);
+    .hob-typography {
+      color: var(--hob-color-alt--primary);
+    }
   }
 
   .nav {
@@ -254,6 +258,13 @@ const Container = styled(Layout)`
         }
       }
     }
+  }
+
+  > .hob-logo {
+    position: fixed;
+    bottom: 1.25rem;
+    left: 1rem;
+    z-index: 2;
   }
 `;
 interface Position {
@@ -390,6 +401,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
         {link("/#work", "Work")}
         {link("#studio", "Studio")}
       </Navbar>
+      <HobLogo fill="var(--hob-color--primary)" />
       <EnhancedProjectComponent
         featuredJson={post.frontmatter.featuredJson}
         modules={post.frontmatter.modules}

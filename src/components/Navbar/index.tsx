@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
-import React, { HTMLProps, useEffect, useState } from "react";
-import { useScrollPosition } from "../../hooks/useScrollPosition";
+import React, { HTMLProps } from "react";
 import { HobLink as Link } from "../HobLink";
 
 const Nav = styled.div`
