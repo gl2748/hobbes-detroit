@@ -3,6 +3,7 @@ templateKey: project-post
 title: Clocks
 date: 2019-09-06T18:39:28.904Z
 description: 'A project with a bunch of clocks. '
+metaImage: 'https://ucarecdn.com/1aa37987-cc37-417e-8c29-3e0b84535f1e/'
 primaryColor: '#DC6F62'
 secondaryColor: dfdfd
 protectedProject: false
@@ -22,7 +23,7 @@ team:
 press:
   - fdfdf
 modules:
-  - projectBannerMedia: 'https://ucarecdn.com/da5efaf1-3ee2-4da6-a2b9-a682bcc5cf65/'
+  - projectBannerMedia: 'https://ucarecdn.com/3ea8275e-e852-4544-9d17-ecd6d2dc918c/'
     type: projectBanner
   - textColumns:
       - column: >-
