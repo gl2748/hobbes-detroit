@@ -170,7 +170,7 @@ const TextArea = styled(HobGrid)`
 `;
 
 const MediaGrid = styled(HobGrid)`
-  padding: 1.25rem 6.625rem 0;
+  padding: 1.25rem 1.25rem 0;
 
   & + &,
   .hob-large-media + & {
@@ -209,6 +209,11 @@ const MediaGridItem = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
+
+  > div {
+    width: 100% !important;
+    height: 100% !important;
+  }
 
   img,
   svg {
