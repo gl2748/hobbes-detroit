@@ -19,7 +19,6 @@ const Container = styled.div`
   background-color: var(--hob-color--secondary);
   position: relative;
   padding: 1.5rem 1.25rem;
-  z-index: 2;
 `;
 
 const Description = styled(HobTypography)`

@@ -12,7 +12,6 @@ export interface IProjectRollProps {
 
 const Container = styled.div`
   position: relative;
-  z-index: 2;
   min-height: 100vh;
   background-color: var(--hob-color--dark);
   padding: 6rem 1.25rem 5rem;

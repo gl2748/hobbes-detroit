@@ -27,10 +27,8 @@ const Container = styled(LayoutWithLocation)`
   > .hob-logo {
     position: fixed;
     z-index: 1;
-    bottom: 0;
-    left: 0;
-    margin-left: 1.25rem;
-    margin-bottom: 1.25rem;
+    left: 1rem;
+    bottom: 1.25rem;
   }
 
   .nav {
