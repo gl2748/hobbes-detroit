@@ -3,7 +3,6 @@ import { HobButton } from "@components/HobButton";
 import { HobGallery } from "@components/HobGallery";
 import { HobGrid } from "@components/HobGrid";
 import { HobLargeMedia } from "@components/HobLargeMedia";
-import { HobLogo } from "@components/HobLogo";
 import { HobMarkdown } from "@components/HobMarkdown";
 import { HobTypography } from "@components/HobTypography";
 import styled from "@emotion/styled";
@@ -98,16 +97,31 @@ const ModulesContainer = styled.div`
   }
 `;
 
-const ProjectBanner = styled.div`
-  min-height: 100vh;
+const ProjectBanner = styled.div<{ image: string }>`
+  height: calc(100vh - 5.25rem);
+  ${breakpoints.mobile} {
+    height: calc(100vh - 3.5rem);
+  }
   width: 100vw;
-  background-color: var(--hob-color--white);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1.25rem;
+  margin-bottom: 0;
 
-  img {
+  :after {
+    content: "";
     width: 100%;
+    height: 100%;
+    display: block;
+    background-image: url(${({ image }) => image});
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    ${breakpoints.mobile} {
+      /* background-size: contain; */
+    }
   }
 `;
 
@@ -116,10 +130,9 @@ const Header = styled.div`
   position: relative;
   align-items: center;
   height: 4rem;
-
-  .hob-logo {
-    position: absolute;
-    left: 0;
+  padding: 0 1.25rem;
+  ${breakpoints.mobile} {
+    height: 2.25rem;
   }
 
   .hob-typography {
@@ -340,32 +353,15 @@ const CMSModule = (
         ]);
       }, []);
       return (
-        <ProjectBanner>
-          {media.map(({ data, type }, i) => {
-            switch (type) {
-              case MediaType.JPG:
-              case MediaType.JPEG:
-              case MediaType.GIF:
-              case MediaType.PNG:
-                return (
-                  <img
-                    key={props.projectBannerMedia}
-                    src={props.projectBannerMedia}
-                    alt="banner media"
-                  />
-                );
-
-              default:
-                return <div key={`${data}:${i}`}>{type}</div>;
-            }
-          })}
-        </ProjectBanner>
+        <ProjectBanner
+          className="media-project-banner"
+          image={props.projectBannerMedia}
+        />
       );
 
     case "header":
       return (
         <Header>
-          <HobLogo />
           <HobTypography variant="h2">{props.headerText}</HobTypography>
         </Header>
       );
