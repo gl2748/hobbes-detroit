@@ -115,12 +115,12 @@ const ProjectBanner = styled.div<{ image: string }>`
     height: 100%;
     display: block;
     background-image: url(${({ image }) => image});
-    background-size: auto 100%;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
     ${breakpoints.mobile} {
-      /* background-size: contain; */
+      background-size: auto 100%;
     }
   }
 `;
