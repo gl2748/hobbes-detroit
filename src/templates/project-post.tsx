@@ -1,6 +1,6 @@
 import { HTMLContent } from "@components/Content";
 import { DynamicGradientSvgText } from "@components/DynamicGradientSvgText";
-import { HobLink as Link } from "@components/HobLink";
+import { HobLink, HobLink as Link } from "@components/HobLink";
 import { HobLogo } from "@components/HobLogo";
 import { HobTypography } from "@components/HobTypography";
 import { Layout } from "@components/Layout";
@@ -260,7 +260,7 @@ const Container = styled(Layout)`
     }
   }
 
-  > .hob-logo {
+  > .logo {
     position: fixed;
     bottom: 1.25rem;
     left: 1rem;
@@ -401,7 +401,11 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
         {link("/#work", "Work")}
         {link("#studio", "Studio")}
       </Navbar>
-      <HobLogo fill="var(--hob-color--primary)" />
+
+      <HobLink className="logo" unsetTypography={true} color="primary" to="/">
+        <HobLogo fill="var(--hob-color--primary)" />
+      </HobLink>
+
       <EnhancedProjectComponent
         featuredJson={post.frontmatter.featuredJson}
         modules={post.frontmatter.modules}

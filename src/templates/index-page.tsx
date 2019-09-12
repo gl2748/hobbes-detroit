@@ -2,7 +2,7 @@ import { DynamicGradientSvgText } from "@components/DynamicGradientSvgText";
 import styled from "@emotion/styled";
 import React, { useEffect, useReducer, useRef } from "react";
 import { HobLetters } from "../components/HobLetters";
-import { HobLink as Link } from "../components/HobLink";
+import { HobLink, HobLink as Link } from "../components/HobLink";
 import { HobLogo } from "../components/HobLogo";
 import { LayoutWithLocation } from "../components/Layout";
 import { Navbar } from "../components/Navbar";
@@ -24,7 +24,7 @@ const Container = styled(LayoutWithLocation)`
     margin-top: 1.25rem;
   }
 
-  > .hob-logo {
+  > .logo {
     position: fixed;
     z-index: 1;
     left: 1rem;
@@ -221,7 +221,9 @@ const IndexPage = () => {
         {link("#studio", "Studio")}
       </Navbar>
       <HobLetters size="lg" color="var(--hob-color--light)" />
-      <HobLogo fill="var(--hob-color--secondary)" />
+      <HobLink className="logo" unsetTypography={true} color="primary" to="/">
+        <HobLogo fill="var(--hob-color--secondary)" />
+      </HobLink>
       <FeaturedProjectRollContainer />
       <ProjectRollContainer />
       <StudioContainer forwardedRef={studioRef} />
