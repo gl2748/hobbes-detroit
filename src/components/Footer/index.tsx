@@ -10,7 +10,7 @@ const Container = styled.div`
   width: 100vw;
   z-index: 2;
   display: flex;
-  padding: 1.8125rem 2.5rem;
+  padding: 1.25rem;
 
   ${breakpoints.mobile} {
     flex-direction: column;
@@ -55,10 +55,8 @@ export const Footer: React.FC<Props> = ({ toggleDrawer }) => {
     toggleDrawer();
   };
   return (
-    <Container>
-      <Logo>
-        <HobLogo />
-      </Logo>
+    <Container className="footer">
+      <Logo />
 
       <Copyright>
         <HobTypography variant="body1">2019 (c) Hobbes</HobTypography>
