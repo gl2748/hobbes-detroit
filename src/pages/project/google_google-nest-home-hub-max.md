@@ -39,7 +39,7 @@ modules:
   - hideCaptions: false
     mediaGridMedia:
       - mediaGridMediaFile: 'https://ucarecdn.com/f7c85738-19f5-42c2-83ca-a413e9cd1fab/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/a4506cba-93c7-43cd-9d7f-53d1e32e692e/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/20608f11-0abe-4e53-aa65-41f7a92c7bc2/'
       - mediaGridMediaFile: 'https://ucarecdn.com/218a726b-2a15-480e-b7b3-07f113815c19/'
     type: mediaGrid
   - hideCaptions: false
