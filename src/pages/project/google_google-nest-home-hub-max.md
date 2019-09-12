@@ -26,70 +26,68 @@ modules:
     type: projectBanner
   - textColumns:
       - column: >-
-          In 2019, many feel cautious about a camera in their living room. When
-          Google asked us to help teach users about the camera on their Nest Hub
-          Max, we knew we needed to be clear about what the camera does and how
-          it’s designed with privacy in mind. 
-
-
-          We created a series of animated illustrations for the Nest Hub Max
-          set-up experience with that goal in mind, but had to design around
-          some difficult constraints -- chiefly, file size and future-proofing.
+          When Google asked us to help teach users about the camera on their
+          Nest Hub Max, we entered a conversation surrounding one of today’s
+          most pressing issues: privacy. We understood why cautious customers
+          might hesitate to install a camera in their living room, but also
+          recognized an opportunity to educate users about their options,
+          empowering them to take control of their privacy.
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
       - mediaGridMediaFile: 'https://ucarecdn.com/f7c85738-19f5-42c2-83ca-a413e9cd1fab/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/a4506cba-93c7-43cd-9d7f-53d1e32e692e/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/218a726b-2a15-480e-b7b3-07f113815c19/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/be0e00d5-88b7-4557-b302-cb7d26afdd83/'
     type: mediaGrid
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/f3889713-02f7-458e-9292-60e35ad4cd22/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/f10a3618-4cc8-4e8c-89db-ac6c82c8b282/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/a62df6b1-9cbe-49a6-9781-d8c1863845c5/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/5d4f1533-aae1-4ee9-b86f-a3e04a37df6f/'
     type: mediaGrid
+  - textColumns:
+      - column: >-
+          We wanted to make sure they truly understood how the camera works—that
+          having it active improves the user experience, but that by enabling
+          privacy mode it can be physically disconnected. To convey these
+          concepts clearly and efficiently, we created a series of animated
+          illustrations for the Nest Hub Max set-up experience. These forced us
+          to design around some difficult constraints..
+    type: textArea
   - mobileDeviceMedia: 'https://ucarecdn.com/1ff14f2e-9971-415c-ae76-3035e82a710d/'
     type: mobileDevice
   - textColumns:
       - column: >-
-          In order to put users at ease, we wanted to make sure they truly
-          understood the way the camera works-- that having it active improves
-          your experience, but that privacy-mode physically disconnects it. The
-          best way to clearly and quickly convey these concepts was through
-          animation, which also adds significant file size to an already large
-          app. To avoid this, we designed and delivered all of our animations as
-          lightweight JSON files. This includes designing the first (that we
-          know of) Lottie-based cel animation.
+          We needed to keep our animations from bloating the file size of an
+          already large app, so we designed and delivered them as lightweight
+          JSON files. In doing so we designed the first (that we know of)
+          Lottie-based cel animation.
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/6b245e92-6bfa-47db-a624-9aa4071c3918/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/7ea7af85-71e9-41bf-9d56-032c8bc3447b/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/0349139e-52b0-4d4c-b7ef-28d8f5e96961/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/0a8e0b22-eab5-4543-b60a-598968cc334a/'
     type: mediaGrid
+  - bleed: true
+    largeMediaFile: 'https://ucarecdn.com/676b4d78-897d-486a-9be2-1c0e50a68dd4/'
+    type: largeMedia
+  - textColumns:
+      - column: >-
+          And while our goal was clarity for the user, we knew that if we
+          depicted the Nest Hub Max interfaces with 100% accuracy, our designs
+          would require constant updating to accommodate every future UI change
+          and localization for every new market. So we future-proofed each
+          design, making it abstract enough to avoid constant updating but
+          literal enough for users to clearly understand the message.
+    type: textArea
   - hideCaptions: false
     mediaGridMedia:
       - mediaGridMediaFile: 'https://ucarecdn.com/eda1e64d-4b55-4b0f-98d6-b52aa19360a4/'
     type: mediaGrid
   - textColumns:
       - column: >-
-          We had a solve for the file size constraint, but still needed to
-          address the issue of products and User Interfaces. Our goal was
-          clarity for the user, but if we depicted the interfaces with 100%
-          accuracy, our designs would have to be constantly updated with every
-          future UI change and localized with every new market. So with each
-          design, we sought out a balance between abstraction and literal
-          representation -- abstract enough to avoid constant updating, but
-          literal enough to users could understand the message.
-    type: textArea
-  - bleed: true
-    largeMediaFile: 'https://ucarecdn.com/676b4d78-897d-486a-9be2-1c0e50a68dd4/'
-    type: largeMedia
-  - textColumns:
-      - column: >-
-          The Nest Hub Max Set Up Experience challenged us to prioritize the
-          clarity for the user. This was essential given the broad feeling of
-          caution around privacy issues today. It also gave us the opportunity
-          to solve some difficult problems in order to avoid compromising clear
-          communication.
+          Each of the problems we solved to create the Nest Hub Max setup
+          experience emerged from the need to create clarity for the user—both
+          now and in the future—and to prioritize addressing the broad feeling
+          of caution that surrounds privacy issues today.
     type: textArea
 ---
 
