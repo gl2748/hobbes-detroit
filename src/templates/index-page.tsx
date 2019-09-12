@@ -14,6 +14,9 @@ import { useScrollPosition } from "../hooks/useScrollPosition";
 const Container = styled(LayoutWithLocation)`
   --mb: 1.5rem;
   --fs: 1.75rem;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  height: 100vh;
 
   > .hob-letters {
     position: absolute;
