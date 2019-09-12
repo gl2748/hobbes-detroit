@@ -3,12 +3,13 @@ templateKey: project-post
 title: Google Nest Home Hub Max
 date: 2019-09-06T21:18:50.099Z
 description: Google Nest Home Hub Max is a project by Hobbes
-primaryColor: "#4385f4"
-secondaryColor: "#4385f4"
+metaImage: 'https://ucarecdn.com/80bb80eb-13ab-4729-a6df-80c5e18fe1d8/'
+primaryColor: '#4385f4'
+secondaryColor: '#4385f4'
 protectedProject: false
 featured: false
-featuredJson: "https://ucarecdn.com/61aa5094-7c9d-4204-b1c1-c18849ba5f8a/"
-indexSvg: "https://ucarecdn.com/719d2e9d-4cc2-4bb2-8fcb-e1394bf9a902/"
+featuredJson: 'https://ucarecdn.com/61aa5094-7c9d-4204-b1c1-c18849ba5f8a/'
+indexSvg: 'https://ucarecdn.com/719d2e9d-4cc2-4bb2-8fcb-e1394bf9a902/'
 tags:
   - google
   - home hub
@@ -21,7 +22,7 @@ team:
 press:
   - none yet
 modules:
-  - projectBannerMedia: "https://ucarecdn.com/69ca6776-fb3c-400f-b4d6-267a6a8d5435/"
+  - projectBannerMedia: 'https://ucarecdn.com/69ca6776-fb3c-400f-b4d6-267a6a8d5435/'
     type: projectBanner
   - textColumns:
       - column: >-
@@ -37,16 +38,16 @@ modules:
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: "https://ucarecdn.com/4cddef8c-9793-4636-bd38-2d803f8f9e56/"
-      - mediaGridMediaFile: "https://ucarecdn.com/52a040b9-0b1c-401a-bf8a-2374aa664917/"
-      - mediaGridMediaFile: "https://ucarecdn.com/cc865a8e-9dc2-42e6-8b45-8fe8eca2e457/"
+      - mediaGridMediaFile: 'https://ucarecdn.com/f7c85738-19f5-42c2-83ca-a413e9cd1fab/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/52a040b9-0b1c-401a-bf8a-2374aa664917/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/cc865a8e-9dc2-42e6-8b45-8fe8eca2e457/'
     type: mediaGrid
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: "https://ucarecdn.com/f3889713-02f7-458e-9292-60e35ad4cd22/"
-      - mediaGridMediaFile: "https://ucarecdn.com/f10a3618-4cc8-4e8c-89db-ac6c82c8b282/"
+      - mediaGridMediaFile: 'https://ucarecdn.com/f3889713-02f7-458e-9292-60e35ad4cd22/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/f10a3618-4cc8-4e8c-89db-ac6c82c8b282/'
     type: mediaGrid
-  - mobileDeviceMedia: "https://ucarecdn.com/1ff14f2e-9971-415c-ae76-3035e82a710d/"
+  - mobileDeviceMedia: 'https://ucarecdn.com/1ff14f2e-9971-415c-ae76-3035e82a710d/'
     type: mobileDevice
   - textColumns:
       - column: >-
@@ -61,12 +62,12 @@ modules:
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: "https://ucarecdn.com/6b245e92-6bfa-47db-a624-9aa4071c3918/"
-      - mediaGridMediaFile: "https://ucarecdn.com/7ea7af85-71e9-41bf-9d56-032c8bc3447b/"
+      - mediaGridMediaFile: 'https://ucarecdn.com/6b245e92-6bfa-47db-a624-9aa4071c3918/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/7ea7af85-71e9-41bf-9d56-032c8bc3447b/'
     type: mediaGrid
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: "https://ucarecdn.com/eda1e64d-4b55-4b0f-98d6-b52aa19360a4/"
+      - mediaGridMediaFile: 'https://ucarecdn.com/eda1e64d-4b55-4b0f-98d6-b52aa19360a4/'
     type: mediaGrid
   - textColumns:
       - column: >-
@@ -80,7 +81,7 @@ modules:
           literal enough to users could understand the message.
     type: textArea
   - bleed: true
-    largeMediaFile: "https://ucarecdn.com/676b4d78-897d-486a-9be2-1c0e50a68dd4/"
+    largeMediaFile: 'https://ucarecdn.com/676b4d78-897d-486a-9be2-1c0e50a68dd4/'
     type: largeMedia
   - textColumns:
       - column: >-
@@ -91,3 +92,4 @@ modules:
           communication.
     type: textArea
 ---
+
