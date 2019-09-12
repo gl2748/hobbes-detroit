@@ -3,6 +3,7 @@ templateKey: project-post
 title: Clocks
 date: 2019-09-06T18:39:28.904Z
 description: 'A project with a bunch of clocks. '
+metaImage: 'https://ucarecdn.com/1aa37987-cc37-417e-8c29-3e0b84535f1e/'
 primaryColor: '#DC6F62'
 secondaryColor: dfdfd
 protectedProject: false
@@ -22,16 +23,14 @@ team:
 press:
   - fdfdf
 modules:
-  - projectBannerMedia: 'https://ucarecdn.com/da5efaf1-3ee2-4da6-a2b9-a682bcc5cf65/'
+  - projectBannerMedia: 'https://ucarecdn.com/3ea8275e-e852-4544-9d17-ecd6d2dc918c/'
     type: projectBanner
   - textColumns:
       - column: >-
-          Motion is an important aspect of clock design, but not the rapid,
-          attention grabbing motion of an animated gif. The movement has to take
-          place over 24 hours and be meaningful at every second. We tried to
-          find a balance between these two motion types in each of our designs,
-          creating slow, meaningful motion systems punctuated by moments of
-          small delight on the minute.
+          Hobbes loves clocks. In fact, we’d already spent months pondering how
+          we might leverage design and animation to reimagine displaying the
+          time when Google SUMUX happened to ask us to create clock faces for
+          their Smart Displays. And when they did, we went a little crazy.
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
@@ -39,11 +38,11 @@ modules:
     type: mediaGrid
   - textColumns:
       - column: >-
-          We also spent time considering the real world context around these
-          clocks. GoogleSmart Displays are placed on end tables in living rooms
-          or on counters in kitchens. So we tasked ourselves to stretch our
-          designs beyond information displays and into something that  could
-          function as pieces of home decor.
+          We recognized that Google Smart Displays live on end tables in living
+          rooms and on counters in kitchens, and that our clock faces would need
+          to suit this real world context. So we set out to make artwork that
+          tells the time, creating designs that transform information displays
+          into pieces of home decor while remaining purposeful at every second.
     type: textArea
   - bleed: false
     largeMediaFile: 'https://ucarecdn.com/a4a15940-3ed3-4567-91c3-8b96614524db/'
@@ -55,12 +54,13 @@ modules:
     type: mediaGrid
   - textColumns:
       - column: >-
-          How might we create a piece of artwork that tells the time? Hobbes
-          loves clocks. After months of discussing how we could do something new
-          with a clock, Google SUMUX happened to asked us help create clock
-          faces for their Smart Displays. We went a little crazy.
+          In order to remain true to the fundamental elements of clock design,
+          our clock faces also needed to incorporate movement. Our challenge was
+          to balance the rapid, eye-catching motion you might find in an
+          animated gif against slow, meaningful motion systems that could span
+          the course of an entire day.
     type: textArea
-  - bleed: true
+  - bleed: false
     largeMediaFile: 'https://ucarecdn.com/6e8dd95f-f30a-4c1f-b85d-01a6fb564de7/'
     type: largeMedia
   - hideCaptions: false
@@ -70,17 +70,13 @@ modules:
     type: mediaGrid
   - textColumns:
       - column: >-
-          The result of this collaboration are delightfully clever designs that,
-          at first glance, might look like a piece of artwork in the drawing
-          room, but upon closer examination -- change throughout the day to tell
-          the time.
+          The result of this collaboration is a set of delightfully clever
+          designs that, at first glance, might look like artwork in the drawing
+          room. On closer examination they change throughout the day, telling
+          the time and punctuating each minute with a moment of small delight.
     type: textArea
-  - hideCaptions: false
-    mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/2d4f7758-02a0-400c-a744-e3b97350d289/'
-    type: mediaGrid
-  - bleed: true
-    largeMediaFile: 'https://ucarecdn.com/2f7fa094-5c0d-439d-8675-bc9843a12135/'
+  - bleed: false
+    largeMediaFile: 'https://ucarecdn.com/4ccbd9c6-cb4e-4127-8bef-23a0d8d1e26f/'
     type: largeMedia
 ---
 
