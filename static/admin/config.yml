@@ -30,8 +30,8 @@ collections:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Description', name: 'description', widget: 'text' }
-      - { label: 'Primary Color', name: 'primaryColor', widget: 'string', hint: 'Use HEX value from: https://www.google.com/search?q=color+picker' }
-      - { label: 'Secondary Color', name: 'secondaryColor', widget: 'string', hint: 'Use HEX value from: https://www.google.com/search?q=color+picker' }
+      - { label: 'Primary Color', name: 'primaryColor', widget: 'string', hint: 'Use HEX value from: https://www.google.com/search?q=color+picker', required: true }
+      - { label: 'Secondary Color', name: 'secondaryColor', widget: 'string', hint: 'Use HEX value from: https://www.google.com/search?q=color+picker', required: false }
       - {
           label: 'Protected Project',
           name: 'protectedProject',
@@ -65,8 +65,8 @@ collections:
         }
       - { label: 'Tags', name: 'tags', widget: 'list' }
       - { label: 'Client', name: 'client', widget: 'string' }
-      - { label: 'Team', name: 'team', widget: 'list' }
-      - { label: 'Press', name: 'press', widget: 'list' }
+      - { label: 'Team', name: 'team', widget: 'list', required: false }
+      - { label: 'Press', name: 'press', widget: 'list', required: false }
       - label: 'Modules'
         name: 'modules'
         widget: 'list'
