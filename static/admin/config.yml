@@ -119,6 +119,8 @@ collections:
                   name: 'bleed',
                   widget: 'boolean',
                   hint: 'Display media without margin or padding',
+                  default: false,
+                  required: false,
                 }
           - label: 'Gallery'
             name: 'gallery'
