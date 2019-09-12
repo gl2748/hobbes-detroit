@@ -46,6 +46,7 @@ export interface IProjectPostProps {
       frontmatter: {
         description: string;
         title: string;
+        imageMeta?: string;
         tags: string[];
         protectedProject: boolean;
         featured: boolean;
@@ -402,6 +403,13 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
               name="description"
               content={`${post.frontmatter.description}`}
             />
+            <html lang="en" />
+            <meta property="og:type" content="business.business" />
+            <meta property="og:title" content={`${post.frontmatter.title}`} />
+            <meta
+              property="og:image"
+              content={`${post.frontmatter.imageMeta}`}
+            />
           </Helmet>
         }
         tags={post.frontmatter.tags}
@@ -427,6 +435,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         title
         description
+        imageMeta
         tags
         protectedProject
         featuredJson

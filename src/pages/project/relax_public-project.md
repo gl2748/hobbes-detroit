@@ -18,6 +18,7 @@ protectedProject: false
 featured: false
 featuredJson: "https://ucarecdn.com/2adf2305-b935-49ac-b6ec-b0ec4e4c52a7/"
 indexSvg: "https://ucarecdn.com/d14e5d42-ed79-453f-915c-b6049f6e0c91/"
+imageMeta: "https://ucarecdn.com/735ba58c-cc8b-496c-96d3-8592a6477c30/"
 tags:
   - maybe
   - not-yes-not-no
