@@ -4,8 +4,8 @@ title: OPAL
 date: 2019-09-12T17:45:20.004Z
 description: Opal is a project by Hobbes
 metaImage: 'https://ucarecdn.com/4eef7d3d-999b-4e83-8eaf-f2e5ecf167a9/'
-primaryColor: '#ffffff'
-secondaryColor: '#ffffff'
+primaryColor: '#00000'
+secondaryColor: '#00000'
 protectedProject: false
 featured: false
 featuredJson: 'https://ucarecdn.com/acab972e-14d0-49f0-aa58-13e59221731b/'
