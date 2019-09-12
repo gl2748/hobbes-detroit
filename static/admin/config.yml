@@ -29,7 +29,8 @@ collections:
         }
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - { label: 'Description', name: 'description', widget: 'text' }
+      - { label: 'Meta Description', name: 'description', widget: 'text', hint: 'Project description for SEO and social-media sharing' }
+      - { label: 'Meta Image', name: 'metaImage', widget: 'image', hint: 'Project image for SEO and social-media sharing' }
       - { label: 'Primary Color', name: 'primaryColor', widget: 'string', hint: 'Use HEX value from: https://www.google.com/search?q=color+picker', required: true }
       - { label: 'Secondary Color', name: 'secondaryColor', widget: 'string', hint: 'Use HEX value from: https://www.google.com/search?q=color+picker', required: false }
       - {
