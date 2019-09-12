@@ -29,6 +29,7 @@ const withStyle = (C: "a" | (typeof GatsbyLink)) => styled<any>(C)<
       background-color: ${({ color }) => `var(--hob-color--${color})`};
       color: ${({ color }) => `var(--hob-color-alt--${color})`};
       text-decoration: underline;
+      cursor: pointer;
     }
   }
 `;
