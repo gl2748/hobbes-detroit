@@ -238,6 +238,11 @@ const Container = styled(Layout)`
     .hob-typography {
       color: var(--hob-color-alt--primary);
     }
+    .hob-letters {
+      path {
+        fill: var(--hob-color-alt--primary);
+      }
+    }
   }
 
   .nav {

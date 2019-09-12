@@ -1,3 +1,4 @@
+import { HobLetters } from "@components/HobLetters";
 import styled from "@emotion/styled";
 import React from "react";
 import breakpoints from "../../breakpoints";
@@ -40,10 +41,6 @@ const Inner = styled.div`
   align-items: flex-start;
 
   .hob-typography {
-    &--h1 {
-      width: 100%;
-      margin-bottom: 4.4375rem;
-    }
     &--body1,
     &--link {
       font-size: 1.75rem;
@@ -102,6 +99,11 @@ const Contact = styled.div`
   flex-direction: column;
 `;
 
+const Letters = styled.div`
+  width: 100%;
+  margin-bottom: 4.4375rem;
+`;
+
 export const Studio: React.FC<
   IStudioProps & React.HTMLProps<HTMLDivElement>
 > = ({ title, description, address, phone, email, forwardedRef, social }) => {
@@ -109,7 +111,9 @@ export const Studio: React.FC<
   return (
     <Container id="studio" ref={forwardedRef}>
       <Inner>
-        <HobTypography variant="h1">{title}</HobTypography>
+        <Letters>
+          <HobLetters size="lg" color="var(--hob-color--dark)" />
+        </Letters>
 
         <Description variant="body1">{description}</Description>
 

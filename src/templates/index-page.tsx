@@ -15,7 +15,7 @@ const Container = styled(LayoutWithLocation)`
   --mb: 1.5rem;
   --fs: 1.75rem;
 
-  .hob-letters {
+  > .hob-letters {
     position: absolute;
     z-index: 1;
     top: 0;
