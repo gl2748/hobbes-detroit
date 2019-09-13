@@ -22,7 +22,7 @@ team:
 press:
   - none yet
 modules:
-  - projectBannerMedia: 'https://ucarecdn.com/69ca6776-fb3c-400f-b4d6-267a6a8d5435/'
+  - projectBannerMedia: 'https://ucarecdn.com/87a83bd4-7cac-4a3e-8979-89c38a6cfd68/'
     type: projectBanner
   - textColumns:
       - column: >-
