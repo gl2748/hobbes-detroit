@@ -9,7 +9,7 @@ import styled from "@emotion/styled";
 import { ITransformerUploadcareMeta } from "@templates/project-post";
 import axios from "axios";
 import _ from "lodash";
-import React, { ReactElement, ReactNode, useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
 import Lottie from "react-lottie";
 import breakpoints from "../../breakpoints";
