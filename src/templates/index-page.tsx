@@ -32,6 +32,19 @@ const Container = styled(LayoutWithLocation)`
     z-index: 1;
     left: 1rem;
     bottom: 1.25rem;
+
+    &--scrolled {
+      svg {
+        fill: none;
+        stroke: var(--hob-color--light);
+      }
+    }
+  }
+
+  #studio .hob-logo {
+    svg {
+      fill: var(--hob-color--dark);
+    }
   }
 
   .nav {
@@ -157,6 +170,7 @@ const IndexPage = () => {
     dispatch
   ] = useReducer(reducer, initialState);
 
+  const scrollRef = useRef<HTMLDivElement>(null);
   const studioRef = useRef<HTMLDivElement>(null);
   const navRef = React.useRef<HTMLDivElement>(null);
 
@@ -192,9 +206,15 @@ const IndexPage = () => {
   );
   const height = 28;
 
-  useScrollPosition(({ currPos }) => {
-    dispatch({ type: "SET_SCROLL_Y", payload: currPos.y * -1 });
-  });
+  useScrollPosition(
+    ({ currPos }) => {
+      dispatch({ type: "SET_SCROLL_Y", payload: currPos.y });
+    },
+    {
+      element: scrollRef,
+      useWindow: false
+    }
+  );
 
   const atTop = scrollY >= windowHeight - 1.5 * 16 - 2 * (1.75 * 16);
   const modifiers = Object.entries({
@@ -218,13 +238,18 @@ const IndexPage = () => {
   );
 
   return (
-    <Container>
+    <Container forwardedRef={scrollRef}>
       <Navbar className={`nav ${modifiers}`} forwardedRef={navRef}>
         {link("/#work", "Work")}
         {link("#studio", "Studio")}
       </Navbar>
       <HobLetters size="lg" color="var(--hob-color--light)" />
-      <HobLink className="logo" unsetTypography={true} color="primary" to="/">
+      <HobLink
+        className={`logo logo--${scrollY > 0 ? "scrolled" : "top"}`}
+        unsetTypography={true}
+        color="primary"
+        to="/"
+      >
         <HobLogo fill="var(--hob-color--secondary)" />
       </HobLink>
       <FeaturedProjectRollContainer />

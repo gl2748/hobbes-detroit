@@ -231,6 +231,9 @@ const SidePagination = ({
 
 const Container = styled(Layout)`
   overflow-x: hidden;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 
   #studio,
   .footer {
@@ -240,6 +243,12 @@ const Container = styled(Layout)`
     }
     .hob-letters {
       path {
+        fill: var(--hob-color-alt--primary);
+      }
+    }
+
+    .hob-logo {
+      svg {
         fill: var(--hob-color-alt--primary);
       }
     }
@@ -270,6 +279,13 @@ const Container = styled(Layout)`
     bottom: 1.25rem;
     left: 1rem;
     z-index: 2;
+
+    &--scrolled {
+      svg {
+        fill: none;
+        stroke: var(--hob-color--dark);
+      }
+    }
   }
 `;
 interface Position {
@@ -343,6 +359,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
   ] = useReducer(reducer, initialState);
 
   const { markdownRemark: post, prev, next } = data;
+  const scrollRef = useRef<HTMLDivElement>(null);
   const studioRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -379,9 +396,15 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
   );
   const height = 28;
 
-  useScrollPosition(({ currPos }) => {
-    dispatch({ type: "SET_SCROLL_Y", payload: currPos.y * -1 });
-  });
+  useScrollPosition(
+    ({ currPos }) => {
+      dispatch({ type: "SET_SCROLL_Y", payload: currPos.y });
+    },
+    {
+      element: scrollRef,
+      useWindow: false
+    }
+  );
 
   const EnhancedProjectComponent = post.frontmatter.protectedProject
     ? WithAuth(Project)
@@ -399,15 +422,21 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
       </DynamicGradientSvgText>
     </Link>
   );
+
   return (
-    <Container>
+    <Container forwardedRef={scrollRef}>
       <SidePagination prev={toProps(prev)} next={toProps(next)} />
       <Navbar className={`nav`} forwardedRef={navRef}>
         {link("/#work", "Work")}
         {link("#studio", "Studio")}
       </Navbar>
 
-      <HobLink className="logo" unsetTypography={true} color="primary" to="/">
+      <HobLink
+        className={`logo logo--${scrollY > 0 ? "scrolled" : "top"}`}
+        unsetTypography={true}
+        color="primary"
+        to="/"
+      >
         <HobLogo fill="var(--hob-color--primary)" />
       </HobLink>
 
