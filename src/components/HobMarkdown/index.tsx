@@ -36,8 +36,10 @@ const HobMarkdownHeading = ({
 
 const Paragraph = styled(HobTypography)`
   font-size: 1.75rem;
-  * + & {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
+
+  &:last-of-type {
+    margin-bottom: 0;
   }
 
   ${breakpoints.mobile} {
