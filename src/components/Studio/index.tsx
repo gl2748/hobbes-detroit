@@ -1,7 +1,7 @@
-import { HobLetters } from "@components/HobLetters";
 import styled from "@emotion/styled";
 import React from "react";
 import breakpoints from "../../breakpoints";
+import { HobLetters } from "../HobLetters";
 import { HobLink } from "../HobLink";
 import { HobTypography } from "../HobTypography";
 
