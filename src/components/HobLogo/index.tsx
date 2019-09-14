@@ -30,7 +30,7 @@ export const HobLogo: React.FC<IHobLogoProps> = ({
   return (
     <SvgContainer height={height} width={width} className="hob-logo">
       <svg
-        viewBox="0 0 37 41"
+        viewBox="0 0 36 41"
         xmlns="http://www.w3.org/2000/svg"
         fill={fill}
         stroke={stroke}

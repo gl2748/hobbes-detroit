@@ -56,7 +56,9 @@ export const Footer: React.FC<Props> = ({ toggleDrawer }) => {
   };
   return (
     <Container className="footer">
-      <Logo />
+      <Logo>
+        <HobLogo />
+      </Logo>
 
       <Copyright>
         <HobTypography variant="body1">2019 (c) Hobbes</HobTypography>

@@ -16,10 +16,11 @@ export interface IStudioProps {
 }
 
 const Container = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 7.9375rem);
   background-color: var(--hob-color--secondary);
   position: relative;
   padding: 1.5rem 1.25rem;
+  z-index: 2;
 `;
 
 const Description = styled(HobTypography)`
