@@ -432,7 +432,6 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
       useWindow: false
     }
   );
-  console.log({ scrollY, scrollYPrev });
 
   const EnhancedProjectComponent = post.frontmatter.protectedProject
     ? WithAuth(Project)
