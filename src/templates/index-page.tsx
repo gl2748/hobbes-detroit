@@ -1,5 +1,7 @@
 import { DynamicGradientSvgText } from "@components/DynamicGradientSvgText";
 import styled from "@emotion/styled";
+import { withLocation } from "@higherOrderComponents/withLocation";
+import { LocationState } from "history";
 import React, { useEffect, useReducer, useRef } from "react";
 import { HobLetters } from "../components/HobLetters";
 import { HobLink, HobLink as Link } from "../components/HobLink";
@@ -57,12 +59,6 @@ const Container = styled(LayoutWithLocation)`
       &:hover,
       &:focus {
         opacity: 0.5;
-      }
-
-      svg {
-        text {
-          text-decoration: underline;
-        }
       }
     }
 
@@ -157,7 +153,7 @@ const reducer = (state: State, action: Action) => {
   }
 };
 
-const IndexPage = () => {
+const IndexPage = ({ location: { hash } }: { location: LocationState }) => {
   const [
     {
       scrollY,
@@ -176,6 +172,12 @@ const IndexPage = () => {
 
   useEffect(() => {
     dispatch({ type: "SET_WINDOW_HEIGHT", payload: window.innerHeight });
+    if (hash !== "") {
+      const el = document.getElementById(hash.replace(/#/, ""));
+      if (el) {
+        el.scrollIntoView();
+      }
+    }
   }, []);
 
   React.useEffect(() => {
@@ -227,6 +229,7 @@ const IndexPage = () => {
   const link = (href: string, label: string) => (
     <Link color="secondary" href={href} unsetTypography={true}>
       <DynamicGradientSvgText
+        underline={hash === href.replace(/^\//, "")}
         height={height}
         offset={offset}
         from="var(--hob-color--light)"
@@ -259,4 +262,4 @@ const IndexPage = () => {
   );
 };
 
-export default IndexPage;
+export default withLocation(IndexPage);

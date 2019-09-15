@@ -80,6 +80,10 @@ const Field = styled.div`
   display: flex;
   flex-wrap: wrap;
 
+  .hob-link {
+    margin-bottom: 3rem;
+  }
+
   .hob-typography {
     width: 100%;
 
@@ -147,7 +151,9 @@ export const Studio: React.FC<
 
             <Field>
               <HobTypography variant="caption">Email</HobTypography>
-              <HobTypography variant="body1">{email}</HobTypography>
+              <HobLink color="primary" href={`mailto:${email}`} target="_blank">
+                {email}
+              </HobLink>
             </Field>
 
             <Field>

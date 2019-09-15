@@ -13,7 +13,7 @@ export interface IHobLinkProps {
 const withStyle = (C: "a" | (typeof GatsbyLink)) => styled<any>(C)<
   IHobLinkProps & HTMLProps<HTMLAnchorElement>
 >`
-  text-decoration: underline;
+  text-decoration: none;
   color: ${({ color }: IHobLinkProps) => `var(--hob-color--${color})`};
   .hob-typography {
     color: ${({ color }) => `var(--hob-color--${color})`};

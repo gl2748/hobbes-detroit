@@ -5,17 +5,14 @@ import { HobLogo } from "@components/HobLogo";
 import { HobTypography } from "@components/HobTypography";
 import { Layout } from "@components/Layout";
 import { Navbar } from "@components/Navbar";
-import {
-  IProjectProps,
-  MediaType,
-  ModuleProps,
-  Project
-} from "@components/Project";
+import { IProjectProps, MediaType, Project } from "@components/Project";
 import { StudioContainer } from "@containers/StudioContainer";
 import styled from "@emotion/styled";
 import { WithAuth } from "@higherOrderComponents/WithAuth";
+import { withLocation } from "@higherOrderComponents/withLocation";
 import { useScrollPosition } from "@hooks/useScrollPosition";
 import { graphql } from "gatsby";
+import { LocationState } from "history";
 import React, { useReducer, useRef, useState } from "react";
 import Helmet from "react-helmet";
 import breakpoints from "../breakpoints";
@@ -280,12 +277,6 @@ const Container = styled(Layout)`
       &:focus {
         opacity: 0.5;
       }
-
-      svg {
-        text {
-          text-decoration: underline;
-        }
-      }
     }
   }
 
@@ -363,8 +354,9 @@ const reducer = (state: State, action: Action) => {
 };
 
 const ProjectPost: React.FC<IProjectPostProps> = ({
-  data
-}: IProjectPostProps) => {
+  data,
+  location: { hash }
+}: IProjectPostProps & { location: LocationState }) => {
   const [
     {
       scrollY,
@@ -436,6 +428,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
   const link = (href: string, label: string) => (
     <Link color="secondary" href={href} unsetTypography={true}>
       <DynamicGradientSvgText
+        underline={hash === href.replace(/^\//, "")}
         height={height}
         offset={offset}
         from="var(--hob-color--dark)"
@@ -510,7 +503,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
   );
 };
 
-export default ProjectPost;
+export default withLocation(ProjectPost);
 
 // The $id param here comes from gatsby-node.js createPage method with a context property in the first argument.
 export const pageQuery = graphql`
