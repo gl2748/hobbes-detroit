@@ -12,6 +12,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
 import Lottie from "react-lottie";
 import breakpoints from "../../breakpoints";
+import { Header } from "./Header";
 import { ProjectBanner } from "./ProjectBanner";
 import { TextArea } from "./TextArea";
 
@@ -113,22 +114,6 @@ const withTags = (ms: ModuleProps[], tags: string[]): ModuleProps[] => {
 const ModulesContainer = styled.div`
   > * {
     margin-bottom: 1.5rem;
-  }
-`;
-
-const Header = styled.div`
-  display: flex;
-  position: relative;
-  align-items: center;
-  height: 4rem;
-  padding: 0 1.25rem;
-  ${breakpoints.mobile} {
-    height: 2.25rem;
-  }
-
-  .hob-typography {
-    margin: 0 auto;
-    font-size: 2.8125rem;
   }
 `;
 
@@ -343,11 +328,7 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
       }
 
     case "header":
-      return (
-        <Header>
-          <HobTypography variant="h2">{props.headerText}</HobTypography>
-        </Header>
-      );
+      return <Header text={props.headerText} />;
 
     case "textArea":
       return <TextArea text={props.textColumns.map(({ column }) => column)} />;
