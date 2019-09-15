@@ -72,11 +72,17 @@ const renderers = {
   paragraph: HobMarkdownParagraph
 };
 
-export const HobMarkdown = ({ source }: ReactMarkdownProps) => (
-  <ReactMarkdown
-    source={source}
-    renderers={renderers}
-    plugins={[breaks]}
-    linkTarget="_blank"
-  />
+export const HobMarkdown = React.memo(
+  ({ source }: ReactMarkdownProps) => (
+    <ReactMarkdown
+      source={source}
+      renderers={renderers}
+      plugins={[breaks]}
+      linkTarget="_blank"
+    />
+  ),
+  ({ source: a }, { source: b }) => {
+    console.log(a === b);
+    return a === b;
+  }
 );
