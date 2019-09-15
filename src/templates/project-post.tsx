@@ -446,6 +446,12 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
     </Link>
   );
 
+  const backToTop = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo(0, 0);
+    }
+  };
+
   return (
     <Container forwardedRef={scrollRef}>
       <SidePagination
@@ -469,6 +475,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
       </HobLink>
 
       <EnhancedProjectComponent
+        backToTop={backToTop}
         featuredJson={post.frontmatter.featuredJson}
         modules={post.frontmatter.modules}
         content={post.html}

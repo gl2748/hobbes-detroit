@@ -297,6 +297,7 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
 };
 
 export interface IProjectProps {
+  backToTop: () => void;
   content: string;
   contentComponent?: React.FC<IContentProps>;
   description: string;
@@ -327,6 +328,7 @@ const BackToTop = styled.div`
 `;
 
 export const Project: React.FC<IProjectProps> = ({
+  backToTop,
   content,
   contentComponent: PostContent = Content,
   description,
@@ -382,10 +384,6 @@ export const Project: React.FC<IProjectProps> = ({
           .filter(Boolean)
           .join(":");
     }
-  };
-
-  const backToTop = () => {
-    window.scrollTo(0, 0);
   };
 
   return (
