@@ -47,6 +47,7 @@ const Carousel = styled.div`
 
 const Page = styled.div`
   display: flex;
+  z-index: 1;
   flex-direction: column;
   width: 2.8125rem;
   text-align: center;
