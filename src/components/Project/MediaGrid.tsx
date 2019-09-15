@@ -16,7 +16,7 @@ const Grid = styled(HobGrid)`
     padding-bottom: 1rem;
     padding-top: 0;
     margin-bottom: 0;
-    margin-top: -1.5rem;
+    margin-top: -3rem;
   }
 
   ${breakpoints.mobile} {
