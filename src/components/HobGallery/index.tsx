@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import EmblaCarousel from "embla-carousel";
 import EmblaCarouselReact from "embla-carousel-react";
 import React, {
   HTMLProps,
@@ -15,7 +16,7 @@ export interface IGalleryProps {
 export const HobGallery: React.FC<
   IGalleryProps & HTMLProps<HTMLDivElement>
 > = ({ children, className = "" }) => {
-  const [embla, setEmbla] = useState(null);
+  const [embla, setEmbla] = useState<EmblaCarousel | null>(null);
 
   const GallerySlide = styled.div`
     min-width: 66vw;
@@ -31,7 +32,7 @@ export const HobGallery: React.FC<
       htmlTagName="div"
       emblaRef={setEmbla}
       options={{ loop: false }}
-      className={className as string}
+      className={`hob-gallery ${className}`}
     >
       <div style={{ display: "flex" }}>{gallerySlides}</div>
     </EmblaCarouselReact>
