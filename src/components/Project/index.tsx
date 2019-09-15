@@ -13,6 +13,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
 import Lottie from "react-lottie";
 import breakpoints from "../../breakpoints";
+import { TextArea } from "./TextArea";
 
 const getUploadcareUUID = (url: string): string => {
   return url.split("https://ucarecdn.com/")[1].split("/")[0];
@@ -39,56 +40,68 @@ export enum MediaType {
   JPG = "image/jpg",
   SVG = "image/svg+xml",
   GIF = "image/gif",
-  LOTTIE = "application/json"
+  LOTTIE = "application/json",
+  MP4 = "video/mp4",
+  QUICKTIME = "video/quicktime"
 }
 
-export interface IModuleProps {
-  textColumns: Array<{ column: string }>;
-  bleed: boolean;
+interface Slide {
   caption: string;
-  headerText: string;
-  hideCaptions: boolean;
-  mediaGridMedia: Array<{ caption: string; mediaGridMediaFile: string }>;
-  largeMediaFile: string;
-  mobileDeviceMedia: string;
-  projectBannerMedia: string;
-  tabletDeviceMedia: string;
-  type:
-    | "gallery"
-    | "header"
-    | "largeMedia"
-    | "mediaGrid"
-    | "mobileDevice"
-    | "projectBanner"
-    | "tabletDevice"
-    | "textArea";
-  slides: Array<{ caption: string; slideMediaFile: string; type: string }>;
-  mediaMetadata: ITransformerUploadcareMeta[];
+  slideMediaFile: string;
+  type: string;
 }
 
-const withDefaultHeader = (
-  ms: IModuleProps[],
-  title: string
-): IModuleProps[] => {
+export type Module =
+  | {
+      type: "textArea";
+      textColumns: Array<{ column: string }>;
+    }
+  | {
+      type: "gallery";
+      slides: Slide[];
+    }
+  | {
+      type: "header";
+      headerText: string;
+    }
+  | {
+      type: "largeMedia";
+      largeMediaFile: string;
+      bleed: boolean;
+      caption: string;
+    }
+  | {
+      type: "mediaGrid";
+      mediaGridMedia: Array<{ caption: string; mediaGridMediaFile: string }>;
+      hideCaptions: boolean;
+    }
+  | { type: "projectBanner"; projectBannerMedia: string }
+  | { type: "mobileDevice"; mobileDeviceMedia: string }
+  | { type: "tabletDevice"; tabletDeviceMedia: string }
+  | { type: "tags"; tags: string[] };
+
+interface IMediaMetaData {
+  mediaMetadata?: ITransformerUploadcareMeta[];
+}
+
+type ModuleProps = Module & IMediaMetaData;
+
+const withDefaultHeader = (ms: ModuleProps[], title: string): ModuleProps[] => {
   if (ms.findIndex(mod => mod.type === "header") === -1) {
-    const header: IModuleProps = {
-      bleed: false,
-      caption: "",
+    const header: Module = {
       headerText: title,
-      hideCaptions: false,
-      largeMediaFile: "",
-      mediaGridMedia: [],
-      mediaMetadata: [],
-      mobileDeviceMedia: "",
-      projectBannerMedia: "",
-      slides: [],
-      tabletDeviceMedia: "",
-      textColumns: [],
       type: "header"
     };
     return [ms[0], header, ...ms.slice(1)];
   }
   return ms;
+};
+
+const withTags = (ms: ModuleProps[], tags: string[]): ModuleProps[] => {
+  const tagsElement: ModuleProps = { tags, type: "tags" };
+  return tags && tags.length
+    ? [...ms.slice(0, 2), tagsElement, ...ms.slice(2)]
+    : ms;
 };
 
 const ModulesContainer = styled.div`
@@ -138,34 +151,6 @@ const Header = styled.div`
   .hob-typography {
     margin: 0 auto;
     font-size: 2.8125rem;
-  }
-`;
-
-const TextArea = styled(HobGrid)`
-  padding: 1.25rem 6.625rem;
-
-  ${breakpoints.mobile} {
-    padding: 1.25rem;
-  }
-
-  &.module-text-area {
-    &--one {
-      padding: 4.125rem 0;
-      ${breakpoints.mobile} {
-        padding: 0;
-      }
-      .hob-grid__item {
-        width: 50vw;
-        height: auto;
-        margin: 0 auto;
-
-        ${breakpoints.mobile} {
-          width: 100%;
-          height: 100%;
-          padding: 1.25rem;
-        }
-      }
-    }
   }
 `;
 
@@ -289,7 +274,25 @@ const MediaSlideMedia = styled.div`
 `;
 
 const Tags = styled.ul`
+  padding-top: 2.875rem;
   display: flex;
+  width: 50%;
+  margin: 0 auto;
+
+  ${breakpoints.mobile} {
+    width: 100%;
+    height: 100%;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  & + .module-text-area {
+    padding-top: 1.25rem !important;
+
+    ${breakpoints.mobile} {
+      padding-top: 0 !important;
+    }
+  }
 
   li {
     border-bottom: 1px solid var(--hob-color--primary);
@@ -308,34 +311,7 @@ const Tags = styled.ul`
   }
 `;
 
-const MainTextArea = styled.div`
-  padding-top: 2.875rem;
-
-  .module-text-area {
-    padding-top: 1.25rem !important;
-    ${breakpoints.mobile} {
-      padding-top: 0;
-    }
-  }
-  .main-text-area__tags {
-    width: 50vw;
-    margin: 0 auto;
-
-    ${breakpoints.mobile} {
-      width: 100%;
-      height: 100%;
-      padding: 0 1.25rem;
-    }
-  }
-`;
-
-const CMSModule = (
-  props: IModuleProps & {
-    index: number;
-    tags?: string[];
-    mediaMetadata: ITransformerUploadcareMeta[];
-  }
-): ReactElement => {
+const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
   const [media, setMedia] = useState<
     Array<{
       data: any;
@@ -343,7 +319,8 @@ const CMSModule = (
       url?: string;
     }>
   >([]);
-  const metaDataGetter = getMetadata(props.mediaMetadata);
+
+  const metaDataGetter = getMetadata(props.mediaMetadata || []);
 
   switch (props.type) {
     case "projectBanner":
@@ -372,34 +349,7 @@ const CMSModule = (
       );
 
     case "textArea":
-      const { index, tags } = props;
-      const text = (
-        <TextArea
-          className={`module-text-area module-text-area--${
-            props.textColumns.length === 1 ? "one" : "many"
-          }`}
-        >
-          {props.textColumns.map(({ column }) => (
-            <HobMarkdown source={column} key={column.slice(0, 50)} />
-          ))}
-        </TextArea>
-      );
-      return index < 3 && tags && tags.length ? (
-        <MainTextArea className="main-text-area">
-          <Tags className="main-text-area__tags">
-            {tags.map(tag => (
-              <li key={tag + `tag`}>
-                <HobTypography variant="caption">
-                  {_.kebabCase(tag)}
-                </HobTypography>
-              </li>
-            ))}
-          </Tags>
-          {text}
-        </MainTextArea>
-      ) : (
-        text
-      );
+      return <TextArea text={props.textColumns.map(({ column }) => column)} />;
 
     case "mediaGrid": {
       const makeMediaGridItem = (
@@ -585,7 +535,7 @@ const CMSModule = (
         </HobLargeMedia>
       );
     case "gallery":
-      const makeGallerySlide = (slides: IModuleProps["slides"]) => (
+      const makeGallerySlide = (slides: ModuleProps["slides"]) => (
         { data, type, url = "" }: { data: any; type: MediaType; url?: string },
         i: number
       ) => {
@@ -702,6 +652,20 @@ const CMSModule = (
 
       return <GalleryContainer>{gallerySlides}</GalleryContainer>;
 
+    case "tags":
+      const { tags } = props;
+      return (
+        <Tags className="tags">
+          {tags.map(tag => (
+            <li key={tag}>
+              <HobTypography variant="caption">
+                {_.kebabCase(tag)}
+              </HobTypography>
+            </li>
+          ))}
+        </Tags>
+      );
+
     default:
       return (
         <HobTypography variant="h4">
@@ -720,7 +684,7 @@ export interface IProjectProps {
   helmet: ReactElement;
   featured: boolean;
   protectedProject: boolean;
-  modules?: IModuleProps[];
+  modules?: ModuleProps[];
   featuredJson: string;
   mediaMetadata: ITransformerUploadcareMeta[];
 }
@@ -768,8 +732,8 @@ export const Project: React.FC<IProjectProps> = ({
     loop: true
   };
 
-  const getKey = ({ type, ...module }: IModuleProps) => {
-    switch (type) {
+  const getKey = (module: ModuleProps) => {
+    switch (module.type) {
       case "header":
         return module.headerText;
 
@@ -803,15 +767,16 @@ export const Project: React.FC<IProjectProps> = ({
     <Container>
       {helmet || ""}
       <ModulesContainer>
-        {withDefaultHeader(modules, title).map((module, index) => (
-          <CMSModule
-            {...module}
-            key={getKey(module)}
-            index={index}
-            tags={tags}
-            mediaMetadata={mediaMetadata}
-          />
-        ))}
+        {withTags(withDefaultHeader(modules, title), tags || []).map(
+          (module, index) => (
+            <CMSModule
+              {...module}
+              key={getKey(module)}
+              index={index}
+              mediaMetadata={mediaMetadata}
+            />
+          )
+        )}
         {content && <PostContent content={content} className="post-content" />}
       </ModulesContainer>
 
