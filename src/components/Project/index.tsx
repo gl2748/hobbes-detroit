@@ -12,6 +12,7 @@ import { LargeMedia } from "./LargeMedia";
 import { MediaGrid } from "./MediaGrid";
 import { ProjectBanner } from "./ProjectBanner";
 import { ProjectTags } from "./ProjectTags";
+import { Team } from "./Team";
 import { TextArea } from "./TextArea";
 
 const getUploadcareUUID = (url: string): string => {
@@ -95,13 +96,14 @@ export type Module =
   | { type: "projectBanner"; projectBannerMedia: string }
   | { type: "mobileDevice"; mobileDeviceMedia: string }
   | { type: "tabletDevice"; tabletDeviceMedia: string }
-  | { type: "tags"; tags: string[] };
+  | { type: "tags"; tags: string[] }
+  | { type: "team"; team: string[]; press: string[] };
 
 interface IMediaMetaData {
   mediaMetadata?: ITransformerUploadcareMeta[];
 }
 
-type ModuleProps = Module & IMediaMetaData;
+export type ModuleProps = Module & IMediaMetaData;
 
 const withDefaultHeader = (ms: ModuleProps[], title: string): ModuleProps[] => {
   if (ms.findIndex(mod => mod.type === "header") === -1) {
@@ -119,6 +121,15 @@ const withTags = (ms: ModuleProps[], tags: string[]): ModuleProps[] => {
   return tags && tags.length
     ? [...ms.slice(0, 2), tagsElement, ...ms.slice(2)]
     : ms;
+};
+
+const withTeamAndPress = (
+  ms: ModuleProps[],
+  team: string[],
+  press: string[]
+): ModuleProps[] => {
+  const teamElement: ModuleProps = { team, press, type: "team" };
+  return team.length || press.length ? [...ms, teamElement] : ms;
 };
 
 const ModulesContainer = styled.div`
@@ -273,6 +284,9 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
     case "tags":
       return <ProjectTags tags={props.tags} />;
 
+    case "team":
+      return <Team team={props.team} press={props.press} />;
+
     default:
       return (
         <HobTypography variant="h4">
@@ -294,6 +308,8 @@ export interface IProjectProps {
   modules?: ModuleProps[];
   featuredJson: string;
   mediaMetadata: ITransformerUploadcareMeta[];
+  team: string[];
+  press: string[];
 }
 
 const Container = styled.div``;
@@ -320,6 +336,8 @@ export const Project: React.FC<IProjectProps> = ({
   featured,
   featuredJson,
   protectedProject,
+  team,
+  press,
   modules = [],
   mediaMetadata
 }: IProjectProps) => {
@@ -372,18 +390,20 @@ export const Project: React.FC<IProjectProps> = ({
 
   return (
     <Container>
-      {helmet || ""}
+      {helmet}
       <ModulesContainer>
-        {withTags(withDefaultHeader(modules, title), tags || []).map(
-          (module, index) => (
-            <CMSModule
-              {...module}
-              key={getKey(module)}
-              index={index}
-              mediaMetadata={mediaMetadata}
-            />
-          )
-        )}
+        {withTeamAndPress(
+          withTags(withDefaultHeader(modules, title), tags || []),
+          team || [],
+          press || []
+        ).map((module, index) => (
+          <CMSModule
+            {...module}
+            key={getKey(module)}
+            index={index}
+            mediaMetadata={mediaMetadata}
+          />
+        ))}
         {content && <PostContent content={content} className="post-content" />}
       </ModulesContainer>
 

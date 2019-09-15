@@ -5,7 +5,12 @@ import { HobLogo } from "@components/HobLogo";
 import { HobTypography } from "@components/HobTypography";
 import { Layout } from "@components/Layout";
 import { Navbar } from "@components/Navbar";
-import { IModuleProps, MediaType, Project } from "@components/Project";
+import {
+  IProjectProps,
+  MediaType,
+  ModuleProps,
+  Project
+} from "@components/Project";
 import { StudioContainer } from "@containers/StudioContainer";
 import styled from "@emotion/styled";
 import { WithAuth } from "@higherOrderComponents/WithAuth";
@@ -45,16 +50,7 @@ export interface IProjectPostProps {
   data: {
     markdownRemark: {
       html: any;
-      frontmatter: {
-        description: string;
-        title: string;
-        imageMeta?: string;
-        tags: string[];
-        protectedProject: boolean;
-        featured: boolean;
-        featuredJson: string;
-        modules: IModuleProps[];
-      };
+      frontmatter: IProjectProps;
       childrenTransformerUploadcareMeta: ITransformerUploadcareMeta[];
     };
     prev: SideLink;
@@ -476,6 +472,8 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
         featuredJson={post.frontmatter.featuredJson}
         modules={post.frontmatter.modules}
         content={post.html}
+        team={post.frontmatter.team}
+        press={post.frontmatter.press}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
         helmet={
@@ -521,6 +519,8 @@ export const pageQuery = graphql`
         tags
         protectedProject
         featuredJson
+        team
+        press
         modules {
           headerText
           type
