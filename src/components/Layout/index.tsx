@@ -5,7 +5,6 @@ import { LocationState } from "history";
 import React, { HTMLProps, ReactNode, Ref, useEffect, useReducer } from "react";
 import { Helmet } from "react-helmet";
 import { useIdentityContext } from "react-netlify-identity-widget";
-import breakpoints from "../../breakpoints";
 import { withLocation } from "../../higherOrderComponents/withLocation";
 import useLoading from "../../hooks/useLoading";
 import { ConfirmEmailForm } from "../ConfirmEmailForm";

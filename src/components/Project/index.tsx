@@ -3,7 +3,6 @@ import { HobButton } from "@components/HobButton";
 import { HobGallery } from "@components/HobGallery";
 import { HobGrid } from "@components/HobGrid";
 import { HobLargeMedia } from "@components/HobLargeMedia";
-import { HobMarkdown } from "@components/HobMarkdown";
 import { HobTypography } from "@components/HobTypography";
 import styled from "@emotion/styled";
 import { ITransformerUploadcareMeta } from "@templates/project-post";
@@ -13,6 +12,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
 import Lottie from "react-lottie";
 import breakpoints from "../../breakpoints";
+import { ProjectBanner } from "./ProjectBanner";
 import { TextArea } from "./TextArea";
 
 const getUploadcareUUID = (url: string): string => {
@@ -44,6 +44,12 @@ export enum MediaType {
   MP4 = "video/mp4",
   QUICKTIME = "video/quicktime"
 }
+
+export type MediaImage =
+  | MediaType.GIF
+  | MediaType.JPEG
+  | MediaType.JPG
+  | MediaType.PNG;
 
 interface Slide {
   caption: string;
@@ -107,34 +113,6 @@ const withTags = (ms: ModuleProps[], tags: string[]): ModuleProps[] => {
 const ModulesContainer = styled.div`
   > * {
     margin-bottom: 1.5rem;
-  }
-`;
-
-const ProjectBanner = styled.div<{ image: string }>`
-  height: calc(100vh - 5.25rem);
-  ${breakpoints.mobile} {
-    height: calc(100vh - 3.5rem);
-  }
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.25rem;
-  margin-bottom: 0;
-
-  :after {
-    content: "";
-    width: 100%;
-    height: 100%;
-    display: block;
-    background-image: url(${({ image }) => image});
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    ${breakpoints.mobile} {
-      background-size: auto 100%;
-    }
   }
 `;
 
@@ -325,21 +303,44 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
   switch (props.type) {
     case "projectBanner":
       const meta = metaDataGetter(props.projectBannerMedia);
-      useEffect(() => {
-        setMedia([
-          {
-            data: null,
-            type: meta[0].mime_type,
-            url: props.projectBannerMedia
-          }
-        ]);
-      }, []);
-      return (
-        <ProjectBanner
-          className="media-project-banner"
-          image={props.projectBannerMedia}
-        />
-      );
+      const mimeType = meta[0] && meta[0].mime_type;
+      switch (mimeType) {
+        case MediaType.PNG:
+        case MediaType.JPEG:
+        case MediaType.JPG:
+        case MediaType.GIF:
+          return (
+            <ProjectBanner
+              mimeType={mimeType}
+              imageUrl={props.projectBannerMedia}
+            />
+          );
+
+        case MediaType.LOTTIE:
+          useEffect(() => {
+            axios.get(props.projectBannerMedia).then(({ data }) => {
+              setMedia([{ data, type: MediaType.LOTTIE }]);
+            });
+          }, []);
+
+          return (
+            <ProjectBanner
+              mimeType={mimeType}
+              animationOptions={{
+                animationData: media[0] ? media[0].data : {},
+                autoplay: true,
+                loop: true
+              }}
+            />
+          );
+
+        default:
+          return (
+            <HobTypography variant="caption">
+              Cannot render project banner
+            </HobTypography>
+          );
+      }
 
     case "header":
       return (
@@ -403,7 +404,7 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
               loop: true
             };
 
-            return <Lottie options={defaultOptions} height={400} width={400} />;
+            return <Lottie options={defaultOptions} />;
           }
         };
         const Component =

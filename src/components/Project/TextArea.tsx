@@ -1,7 +1,5 @@
 import { HobGrid } from "@components/HobGrid";
-import { HobTypography } from "@components/HobTypography";
 import styled from "@emotion/styled";
-import _ from "lodash";
 import breakpoints from "../../breakpoints";
 
 import { HobMarkdown } from "@components/HobMarkdown";
