@@ -70,7 +70,7 @@ const PaginationContainer = styled.div<{
   z-index: 10;
 
   :before {
-    width: 2rem;
+    width: 1rem;
     content: "";
     display: block;
     height: 100vh;
