@@ -13,6 +13,7 @@ import SVG from "react-inlinesvg";
 import Lottie from "react-lottie";
 import breakpoints from "../../breakpoints";
 import { Header } from "./Header";
+import { MediaGrid } from "./MediaGrid";
 import { ProjectBanner } from "./ProjectBanner";
 import { TextArea } from "./TextArea";
 
@@ -58,6 +59,16 @@ interface Slide {
   type: string;
 }
 
+export interface IMediaGridMedia {
+  caption: string;
+  mediaGridMediaFile: string;
+}
+export interface IMediaResult {
+  data: any;
+  type: MediaType;
+  url?: string;
+}
+
 export type Module =
   | {
       type: "textArea";
@@ -79,7 +90,7 @@ export type Module =
     }
   | {
       type: "mediaGrid";
-      mediaGridMedia: Array<{ caption: string; mediaGridMediaFile: string }>;
+      mediaGridMedia: IMediaGridMedia[];
       hideCaptions: boolean;
     }
   | { type: "projectBanner"; projectBannerMedia: string }
@@ -114,97 +125,6 @@ const withTags = (ms: ModuleProps[], tags: string[]): ModuleProps[] => {
 const ModulesContainer = styled.div`
   > * {
     margin-bottom: 1.5rem;
-  }
-`;
-
-const MediaGrid = styled(HobGrid)`
-  padding: 1.25rem 1.25rem 0;
-
-  & + &,
-  .hob-large-media + & {
-    padding-bottom: 1rem;
-    padding-top: 0;
-    margin-bottom: 0;
-    margin-top: -1.5rem;
-  }
-
-  ${breakpoints.mobile} {
-    padding: 0 1.25rem;
-  }
-
-  &.module-media-grid {
-    &--one {
-      .hob-grid__item {
-        width: 50vw;
-        margin: 0 auto;
-
-        ${breakpoints.mobile} {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-      img {
-        width: 100%;
-      }
-    }
-  }
-`;
-
-const MediaGridItem = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-
-  > div {
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  img,
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  .hob-typography {
-    position: absolute;
-    left: 0;
-    bottom: -1rem;
-  }
-
-  .module-media-grid__item {
-    img&,
-    & img {
-      width: 100%;
-    }
-  }
-`;
-
-const TwoThree = styled.div`
-  .module-media-grid {
-    & + .module-media-grid {
-      margin-top: 0rem;
-    }
-  }
-
-  .hob-grid {
-    &:first-of-type {
-      margin-bottom: 0;
-    }
-    &:last-of-type {
-      padding-top: 0;
-    }
-    ${breakpoints.mobile} {
-      &:nth-of-type(1) {
-        padding-bottom: 0;
-      }
-      &:nth-of-type(2) {
-        padding-top: 0;
-      }
-    }
   }
 `;
 
@@ -275,13 +195,7 @@ const Tags = styled.ul`
 `;
 
 const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
-  const [media, setMedia] = useState<
-    Array<{
-      data: any;
-      type: MediaType;
-      url?: string;
-    }>
-  >([]);
+  const [media, setMedia] = useState<IMediaResult[]>([]);
 
   const metaDataGetter = getMetadata(props.mediaMetadata || []);
 
@@ -334,78 +248,6 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
       return <TextArea text={props.textColumns.map(({ column }) => column)} />;
 
     case "mediaGrid": {
-      const makeMediaGridItem = (
-        {
-          data,
-          type,
-          url = ""
-        }: {
-          data: any;
-          type: MediaType;
-          url?: string;
-        },
-        i: number
-      ) => {
-        const components = {
-          [MediaType.PNG]: () => (
-            <img
-              className="module-media-grid__item"
-              src={url}
-              alt="module media grid item"
-            />
-          ),
-          [MediaType.JPG]: () => (
-            <img
-              className="module-media-grid__item"
-              src={url}
-              alt="module media grid item"
-            />
-          ),
-          [MediaType.JPEG]: () => (
-            <img
-              className="module-media-grid__item"
-              src={url}
-              alt="module media grid item"
-            />
-          ),
-          [MediaType.GIF]: () => (
-            <img
-              className="module-media-grid__item"
-              src={url}
-              alt="module media grid item"
-            />
-          ),
-          [MediaType.SVG]: () => (
-            <SVG className="module-media-grid__item" src={url} />
-          ),
-          [MediaType.LOTTIE]: () => {
-            const defaultOptions = {
-              animationData: data,
-              autoplay: true,
-              loop: true
-            };
-
-            return <Lottie options={defaultOptions} />;
-          }
-        };
-        const Component =
-          components[type] ||
-          (() => (
-            <div key={props.mediaGridMedia[i].mediaGridMediaFile}>{type}</div>
-          ));
-
-        return (
-          <MediaGridItem key={props.mediaGridMedia[i].mediaGridMediaFile}>
-            <Component />
-            {!props.hideCaptions && (
-              <HobTypography variant="caption">
-                {props.mediaGridMedia[i].caption}
-              </HobTypography>
-            )}
-          </MediaGridItem>
-        );
-      };
-
       useEffect(() => {
         Promise.all(
           props.mediaGridMedia.map(async ({ mediaGridMediaFile }) => {
@@ -428,24 +270,12 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
         ).then(setMedia);
       }, []);
 
-      return media.length < 4 ? (
+      return (
         <MediaGrid
-          className={`module-media-grid module-media-grid--${
-            media.length === 1 ? "one" : "many"
-          }`}
-        >
-          {media.map(makeMediaGridItem)}
-        </MediaGrid>
-      ) : (
-        <TwoThree>
-          <MediaGrid className="module-media-grid">
-            {media.slice(0, 2).map(makeMediaGridItem)}
-          </MediaGrid>
-
-          <MediaGrid className="module-media-grid">
-            {media.slice(2).map(makeMediaGridItem)}
-          </MediaGrid>
-        </TwoThree>
+          media={media}
+          mediaGridMedia={props.mediaGridMedia}
+          hideCaptions={props.hideCaptions}
+        />
       );
     }
 
