@@ -40,7 +40,7 @@ export const LargeMedia = ({
           loop: true
         };
 
-        return <Lottie options={defaultOptions} height={400} width={400} />;
+        return <Lottie options={defaultOptions} />;
       }
 
       case MediaType.MP4:

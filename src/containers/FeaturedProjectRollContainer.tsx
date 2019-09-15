@@ -33,58 +33,59 @@ const ProjectGraphic = styled.div`
   }
 `;
 
-const Project = ({ post }: { post: IProjectProps }) => {
-  const [animationData, setAnimationData] = useState<{
-    [key: string]: any;
-  } | null>(null);
+const Project = React.memo(
+  ({ post }: { post: IProjectProps }) => {
+    const [animationData, setAnimationData] = useState<{
+      [key: string]: any;
+    } | null>(null);
 
-  useEffect(() => {
-    axios.get(post.frontmatter.featuredJson).then(({ data }) => {
-      setAnimationData(data);
-    });
-  }, []);
+    useEffect(() => {
+      axios.get(post.frontmatter.featuredJson).then(({ data }) => {
+        setAnimationData(data);
+      });
+    }, []);
 
-  const defaultOptions = {
-    animationData,
-    autoplay: true,
-    loop: true
-  };
-  return (
-    <ProjectContainer
-      className={`hero-carousel__project ${
-        post.frontmatter.featured ? "is-featured" : ""
-      }`}
-    >
-      <HobLink
-        unsetTypography={true}
-        color="dark-gray"
-        to={
-          post.frontmatter.protectedProject
-            ? `/protected${post.fields.slug}`
-            : post.fields.slug
-        }
+    const defaultOptions = {
+      animationData,
+      autoplay: true,
+      loop: true
+    };
+    return (
+      <ProjectContainer
+        className={`hero-carousel__project ${
+          post.frontmatter.featured ? "is-featured" : ""
+        }`}
       >
-        <ProjectGraphic className="hero-carousel__project-graphic">
-          {animationData && (
-            <Lottie options={defaultOptions} height={400} width={400} />
-          )}
-        </ProjectGraphic>
-      </HobLink>
+        <HobLink
+          unsetTypography={true}
+          color="dark-gray"
+          to={
+            post.frontmatter.protectedProject
+              ? `/protected${post.fields.slug}`
+              : post.fields.slug
+          }
+        >
+          <ProjectGraphic className="hero-carousel__project-graphic">
+            {animationData && <Lottie options={defaultOptions} />}
+          </ProjectGraphic>
+        </HobLink>
 
-      <HobLink
-        className="text"
-        color="dark-gray"
-        to={
-          post.frontmatter.protectedProject
-            ? `/protected${post.fields.slug}`
-            : post.fields.slug
-        }
-      >
-        {post.frontmatter.title}
-      </HobLink>
-    </ProjectContainer>
-  );
-};
+        <HobLink
+          className="text"
+          color="dark-gray"
+          to={
+            post.frontmatter.protectedProject
+              ? `/protected${post.fields.slug}`
+              : post.fields.slug
+          }
+        >
+          {post.frontmatter.title}
+        </HobLink>
+      </ProjectContainer>
+    );
+  },
+  (a, b) => a.post.id === b.post.id
+);
 export const FeaturedProjectRollContainer: React.FC = () => {
   const render = (data: IAllMarkdownRemark<IProjectProps>): React.ReactNode => {
     const { edges: posts } = data.allMarkdownRemark;

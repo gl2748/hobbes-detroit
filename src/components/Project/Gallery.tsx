@@ -82,7 +82,7 @@ export const Gallery = React.memo(
               loop: true
             };
 
-            return <Lottie options={defaultOptions} height={400} width={400} />;
+            return <Lottie options={defaultOptions} />;
           }
 
           default:
