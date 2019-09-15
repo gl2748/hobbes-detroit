@@ -22,6 +22,13 @@ const Logo = styled.div`
   flex: 2;
   margin-right: 1rem;
 
+  & + .hob-link {
+    position: absolute;
+    z-index: 1;
+    left: 1rem;
+    bottom: 1.25rem;
+  }
+
   ${breakpoints.mobile} {
     margin-bottom: 1.5rem;
   }
@@ -57,7 +64,9 @@ export const Footer: React.FC<Props> = ({ toggleDrawer }) => {
   return (
     <Container className="footer">
       <Logo>
-        <HobLogo />
+        <Link unsetTypography={true} color="primary" to="/">
+          <HobLogo />
+        </Link>
       </Logo>
 
       <Copyright>
