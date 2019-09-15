@@ -1,5 +1,6 @@
 import { HobGallery } from "@components/HobGallery";
 import { HobTypography } from "@components/HobTypography";
+import { HobVideo } from "@components/HobVideo";
 import styled from "@emotion/styled";
 import React from "react";
 import SVG from "react-inlinesvg";
@@ -19,15 +20,12 @@ const MediaSlide = styled.div`
     width: 100px;
     height: 100px;
   }
-  .hob-typography {
+  > .hob-typography {
     color: var(--hob-color--);
     position: absolute;
     left: 0;
     top: 100%;
   }
-`;
-
-const MediaSlideMedia = styled.div`
   .module-gallery-slide {
     max-width: 60vw;
   }
@@ -67,9 +65,9 @@ export const Gallery = React.memo(
           case MediaType.MP4:
           case MediaType.QUICKTIME: {
             return (
-              <video controls={true} width="320" height="240">
+              <HobVideo>
                 <source src={url} type={type} />
-              </video>
+              </HobVideo>
             );
           }
 
@@ -93,7 +91,7 @@ export const Gallery = React.memo(
       })();
       return (
         <MediaSlide key={url}>
-          <MediaSlideMedia>{Component}</MediaSlideMedia>
+          {Component}
           <HobTypography variant="caption">{captions[url]}</HobTypography>
         </MediaSlide>
       );

@@ -1,5 +1,6 @@
 import { HobGrid } from "@components/HobGrid";
 import { HobTypography } from "@components/HobTypography";
+import { HobVideo } from "@components/HobVideo";
 import styled from "@emotion/styled";
 import React, { ReactElement } from "react";
 import SVG from "react-inlinesvg";
@@ -150,9 +151,9 @@ export const MediaGrid = React.memo(
           case MediaType.MP4:
           case MediaType.QUICKTIME: {
             return (
-              <video controls={true} width="320" height="240">
+              <HobVideo>
                 <source src={url} type={type} />
-              </video>
+              </HobVideo>
             );
           }
 

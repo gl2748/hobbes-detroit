@@ -1,5 +1,6 @@
 import { HobLargeMedia } from "@components/HobLargeMedia";
 import { HobTypography } from "@components/HobTypography";
+import { HobVideo } from "@components/HobVideo";
 import React from "react";
 import SVG from "react-inlinesvg";
 import Lottie from "react-lottie";
@@ -45,9 +46,9 @@ export const LargeMedia = ({
       case MediaType.MP4:
       case MediaType.QUICKTIME: {
         return (
-          <video controls={true} width="320" height="240">
+          <HobVideo>
             <source src={largeMediaFile} type={mimeType} />
-          </video>
+          </HobVideo>
         );
       }
 

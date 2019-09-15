@@ -12,9 +12,33 @@ export interface IVideoProps {
 
 const Container = styled.div`
   position: relative;
+  width: 100%;
+  height: 100%;
+
+  .hob-video__controls {
+    transition: opacity 300ms;
+  }
+
+  &.hob-video--playing {
+    .hob-video__controls {
+      opacity: 0;
+    }
+  }
+  &.hob-video--playing:hover {
+    .hob-video__controls {
+      opacity: 1;
+    }
+  }
 
   video {
     width: 100%;
+  }
+
+  button {
+    &:focus {
+      border: none;
+      outline: none;
+    }
   }
 
   progress[value] {
@@ -66,7 +90,7 @@ const PlayPause = styled.div`
 const CurrentTime = styled(HobTypography)`
   padding-left: 0.625rem;
   position: absolute;
-  bottom: 0.5rem;
+  bottom: 0.2rem;
   left: 0;
   z-index: 2;
   font-size: 2.5rem;
@@ -337,10 +361,11 @@ export const HobVideo: React.FC<IVideoProps & HTMLProps<HTMLVideoElement>> = ({
     return `${padLeft(minutes)}:${padLeft(seconds)}`;
   };
 
-  console.log(state.volume);
-
   return (
-    <Container ref={containerRef}>
+    <Container
+      ref={containerRef}
+      className={`hob-video hob-video--${state.paused ? "paused" : "playing"}`}
+    >
       <Video
         className="hob-video"
         ref={videoRef}
@@ -355,56 +380,61 @@ export const HobVideo: React.FC<IVideoProps & HTMLProps<HTMLVideoElement>> = ({
         </p>
       </Video>
 
-      <PlayPause>
-        <button onClick={withVideo(playPause)}>
-          {state.paused ? (
-            <>
-              <svg
-                viewBox="0 0 24 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M0 0l24 16L0 30V0z" fill="#C4C4C4" />
-              </svg>
-              <HobTypography variant="button">Play</HobTypography>
-            </>
-          ) : (
-            <>
-              <svg
-                viewBox="0 0 24 30"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path fill="#C4C4C4" d="M0 0h5v30H0zM9 0h5v30H9z" />
-              </svg>
-              <HobTypography variant="button">Pause</HobTypography>
-            </>
-          )}
-        </button>
-      </PlayPause>
+      <div className="hob-video__controls">
+        {state.duration > 0 && (
+          <PlayPause>
+            <button onClick={withVideo(playPause)}>
+              {state.paused ? (
+                <>
+                  <svg
+                    viewBox="0 0 24 30"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M0 0l24 16L0 30V0z" fill="#C4C4C4" />
+                  </svg>
+                  <HobTypography variant="button">Play</HobTypography>
+                </>
+              ) : (
+                <>
+                  <svg
+                    viewBox="0 0 24 30"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path fill="#C4C4C4" d="M0 0h5v30H0zM9 0h5v30H9z" />
+                  </svg>
+                  <HobTypography variant="button">Pause</HobTypography>
+                </>
+              )}
+            </button>
+          </PlayPause>
+        )}
 
-      <CurrentTime variant="body1">{currentTime()}</CurrentTime>
+        <CurrentTime variant="body1">{currentTime()}</CurrentTime>
 
-      {showStop && <button onClick={withVideo(stop)}>Stop</button>}
+        {showStop && <button onClick={withVideo(stop)}>Stop</button>}
 
-      <Progress value={state.currentTime} max={state.duration}>
-        <span
-          style={{
-            width: Math.floor((state.currentTime / state.duration) * 100) + "%"
-          }}
-        />
-      </Progress>
+        <Progress value={state.currentTime} max={String(state.duration)}>
+          <span
+            style={{
+              width:
+                Math.floor((state.currentTime / state.duration) * 100) + "%"
+            }}
+          />
+        </Progress>
 
-      {showMute && <button onClick={withVideo(mute)}>Mute/Unmute</button>}
+        {showMute && <button onClick={withVideo(mute)}>Mute/Unmute</button>}
 
-      <Volume volume={state.volume}>
-        <button onClick={withVideo(volumeDown)}>-</button>
-        <button onClick={withVideo(volumeUp)}>+</button>
-      </Volume>
+        <Volume volume={state.volume}>
+          <button onClick={withVideo(volumeDown)}>-</button>
+          <button onClick={withVideo(volumeUp)}>+</button>
+        </Volume>
 
-      {showFullscreen && state.fullscreenEnabled && (
-        <button onClick={withVideo(setFullscreen)}>Fullscreen</button>
-      )}
+        {showFullscreen && state.fullscreenEnabled && (
+          <button onClick={withVideo(setFullscreen)}>Fullscreen</button>
+        )}
+      </div>
     </Container>
   );
 };

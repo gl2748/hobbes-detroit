@@ -1,13 +1,7 @@
 import styled from "@emotion/styled";
 import EmblaCarousel from "embla-carousel";
 import EmblaCarouselReact from "embla-carousel-react";
-import React, {
-  HTMLProps,
-  ReactChild,
-  ReactNode,
-  useEffect,
-  useState
-} from "react";
+import React, { HTMLProps, ReactNode, useState } from "react";
 
 export interface IGalleryProps {
   children: ReactNode[];
@@ -24,7 +18,11 @@ export const HobGallery: React.FC<
   `;
 
   const gallerySlides = children.map((child, ix) => {
-    return <GallerySlide key={`gallery-slide-${ix}`}>{child}</GallerySlide>;
+    return (
+      <GallerySlide className="hob-gallery__slide" key={`gallery-slide-${ix}`}>
+        {child}
+      </GallerySlide>
+    );
   });
 
   return (
