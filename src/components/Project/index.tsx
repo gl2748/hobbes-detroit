@@ -13,6 +13,7 @@ import SVG from "react-inlinesvg";
 import Lottie from "react-lottie";
 import breakpoints from "../../breakpoints";
 import { Header } from "./Header";
+import { LargeMedia } from "./LargeMedia";
 import { MediaGrid } from "./MediaGrid";
 import { ProjectBanner } from "./ProjectBanner";
 import { TextArea } from "./TextArea";
@@ -200,7 +201,7 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
   const metaDataGetter = getMetadata(props.mediaMetadata || []);
 
   switch (props.type) {
-    case "projectBanner":
+    case "projectBanner": {
       const meta = metaDataGetter(props.projectBannerMedia);
       const mimeType = meta[0] && meta[0].mime_type;
       switch (mimeType) {
@@ -235,11 +236,12 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
 
         default:
           return (
-            <HobTypography variant="caption">
+            <HobTypography variant="body">
               Cannot render project banner
             </HobTypography>
           );
       }
+    }
 
     case "header":
       return <Header text={props.headerText} />;
@@ -279,75 +281,30 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
       );
     }
 
-    case "largeMedia":
+    case "largeMedia": {
+      const largeMediaMetadata = metaDataGetter(props.largeMediaFile);
+      const mimeType = largeMediaMetadata[0].mime_type;
       useEffect(() => {
-        const largeMediaMetadata = metaDataGetter(props.largeMediaFile);
-        if (largeMediaMetadata[0].mime_type === MediaType.LOTTIE) {
+        if (mimeType === MediaType.LOTTIE) {
           axios.get(props.largeMediaFile).then(({ data, headers }) => {
             setMedia([{ data, type: MediaType.LOTTIE }]);
           });
-        } else {
-          setMedia([
-            {
-              data: null,
-              type: largeMediaMetadata[0].mime_type,
-              url: props.largeMediaFile
-            }
-          ]);
         }
       }, []);
+
       return (
-        <HobLargeMedia bleed={props.bleed}>
-          {media.map(({ data, type }, i) => {
-            switch (type) {
-              case MediaType.PNG:
-              case MediaType.JPEG:
-              case MediaType.JPG:
-              case MediaType.GIF: {
-                return (
-                  <div key={props.largeMediaFile}>
-                    <img src={props.largeMediaFile} alt="banner media" />
-                    <HobTypography variant="body1">
-                      {props.caption}
-                    </HobTypography>
-                  </div>
-                );
-              }
-              case MediaType.SVG: {
-                return (
-                  <div key={props.largeMediaFile}>
-                    <SVG src={props.largeMediaFile} />
-                    <HobTypography variant="body1">
-                      {props.caption}
-                    </HobTypography>
-                  </div>
-                );
-              }
-
-              case MediaType.LOTTIE: {
-                const defaultOptions = {
-                  animationData: data,
-                  autoplay: true,
-                  loop: true
-                };
-
-                return (
-                  <div key={props.largeMediaFile}>
-                    <Lottie options={defaultOptions} height={400} width={400} />
-                    <HobTypography variant="body1">
-                      {props.caption}
-                    </HobTypography>
-                  </div>
-                );
-              }
-              default:
-                return <div key={props.largeMediaFile}>{type}</div>;
-            }
-          })}
-        </HobLargeMedia>
+        <LargeMedia
+          mimeType={mimeType}
+          media={media[0]}
+          bleed={props.bleed}
+          largeMediaFile={props.largeMediaFile}
+          caption={props.caption}
+        />
       );
+    }
+
     case "gallery":
-      const makeGallerySlide = (slides: ModuleProps["slides"]) => (
+      const makeGallerySlide = (slides: Slide[]) => (
         { data, type, url = "" }: { data: any; type: MediaType; url?: string },
         i: number
       ) => {
