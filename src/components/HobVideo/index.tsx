@@ -1,6 +1,7 @@
 import { HobTypography } from "@components/HobTypography";
 import styled from "@emotion/styled";
 import React, { HTMLProps, useEffect, useReducer, useRef } from "react";
+import breakpoints from "../../breakpoints";
 
 export interface IVideoProps {
   source?: string;
@@ -47,6 +48,10 @@ const Container = styled.div`
     -moz-appearance: none;
     height: 3.8125rem;
 
+    ${breakpoints.mobile} {
+      height: 1.5rem;
+    }
+
     /* For IE10 */
     color: var(--hob-color--light);
 
@@ -67,6 +72,10 @@ const PlayPause = styled.div`
 
   .hob-typography {
     font-size: 2.5rem;
+
+    ${breakpoints.mobile} {
+      font-size: 1rem;
+    }
   }
 
   button {
@@ -83,6 +92,10 @@ const PlayPause = styled.div`
     svg {
       width: 1.5rem;
       margin-right: 1.25rem;
+      ${breakpoints.mobile} {
+        width: 1rem;
+        margin-right: 1rem;
+      }
     }
   }
 `;
@@ -94,13 +107,21 @@ const CurrentTime = styled(HobTypography)`
   left: 0;
   z-index: 2;
   font-size: 2.5rem;
+
+  ${breakpoints.mobile} {
+    font-size: 1rem;
+  }
 `;
 
 const Progress = styled.progress`
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: calc(100% - 7.0625rem);
+
+  ${breakpoints.mobile} {
+    width: calc(100% - 3rem);
+  }
 `;
 
 const Volume = styled.div<{ volume: number }>`
@@ -117,18 +138,18 @@ const Volume = styled.div<{ volume: number }>`
     var(--hob-color--light) ${({ volume }) => Math.floor((volume / 1) * 100)}%
   );
 
-  &:after {
-    position: absolute;
-    content: "";
-    display: none;
-    width: 100%;
-    height: 100%;
+  ${breakpoints.mobile} {
+    height: 1.5rem;
+    width: 3rem;
   }
 
   button {
     font-size: 2.5rem;
     border: none;
     background: none;
+    ${breakpoints.mobile} {
+      font-size: 1rem;
+    }
   }
 `;
 
