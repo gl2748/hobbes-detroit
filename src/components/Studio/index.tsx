@@ -24,9 +24,9 @@ const Container = styled.div`
 `;
 
 const Description = styled(HobTypography)`
-  flex: 2;
-  min-width: 300px;
-  margin-right: 1.25rem;
+  flex: 1;
+  min-width: 480px;
+  margin-right: 2.5rem;
   margin-bottom: 1.25rem;
 
   ${breakpoints.mobile} {
@@ -63,6 +63,15 @@ const Inner = styled.div`
       width: 100%;
       margin-right: 0;
     }
+  }
+`;
+
+const Fields = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  ${breakpoints.mobile} {
+    flex-wrap: wrap;
   }
 `;
 
@@ -118,39 +127,41 @@ export const Studio: React.FC<
 
         <Description variant="body1">{description}</Description>
 
-        <Address>
-          <Field>
-            <HobTypography variant="caption">Address</HobTypography>
-            <HobTypography variant="body1">
-              {line1}
-              <br />
-              {line2}
-            </HobTypography>
-          </Field>
-        </Address>
+        <Fields>
+          <Address>
+            <Field>
+              <HobTypography variant="caption">Address</HobTypography>
+              <HobTypography variant="body1">
+                {line1}
+                <br />
+                {line2}
+              </HobTypography>
+            </Field>
+          </Address>
 
-        <Contact>
-          <Field>
-            <HobTypography variant="caption">Tel</HobTypography>
-            <HobTypography variant="body1">{phone}</HobTypography>
-          </Field>
+          <Contact>
+            <Field>
+              <HobTypography variant="caption">Tel</HobTypography>
+              <HobTypography variant="body1">{phone}</HobTypography>
+            </Field>
 
-          <Field>
-            <HobTypography variant="caption">Email</HobTypography>
-            <HobTypography variant="body1">{email}</HobTypography>
-          </Field>
+            <Field>
+              <HobTypography variant="caption">Email</HobTypography>
+              <HobTypography variant="body1">{email}</HobTypography>
+            </Field>
 
-          <Field>
-            <HobTypography variant="caption">Follow us</HobTypography>
-            {social.map(({ title: label, url }) => (
-              <div key={title}>
-                <HobLink color="primary" href={url}>
-                  {label}
-                </HobLink>
-              </div>
-            ))}
-          </Field>
-        </Contact>
+            <Field>
+              <HobTypography variant="caption">Follow us</HobTypography>
+              {social.map(({ title: label, url }) => (
+                <div key={title}>
+                  <HobLink color="primary" href={url}>
+                    {label}
+                  </HobLink>
+                </div>
+              ))}
+            </Field>
+          </Contact>
+        </Fields>
       </Inner>
     </Container>
   );
