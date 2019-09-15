@@ -6,14 +6,12 @@ import { ITransformerUploadcareMeta } from "@templates/project-post";
 import axios from "axios";
 import _ from "lodash";
 import React, { ReactElement, useEffect, useState } from "react";
-import SVG from "react-inlinesvg";
-import Lottie from "react-lottie";
-import breakpoints from "../../breakpoints";
 import { Gallery } from "./Gallery";
 import { Header } from "./Header";
 import { LargeMedia } from "./LargeMedia";
 import { MediaGrid } from "./MediaGrid";
 import { ProjectBanner } from "./ProjectBanner";
+import { ProjectTags } from "./ProjectTags";
 import { TextArea } from "./TextArea";
 
 const getUploadcareUUID = (url: string): string => {
@@ -123,45 +121,7 @@ const withTags = (ms: ModuleProps[], tags: string[]): ModuleProps[] => {
 
 const ModulesContainer = styled.div`
   > * {
-    margin-bottom: 1.5rem;
-  }
-`;
-
-const Tags = styled.ul`
-  padding-top: 2.875rem;
-  display: flex;
-  width: 50%;
-  margin: 0 auto;
-
-  ${breakpoints.mobile} {
-    width: 100%;
-    height: 100%;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
-  & + .module-text-area {
-    padding-top: 1.25rem !important;
-
-    ${breakpoints.mobile} {
-      padding-top: 0 !important;
-    }
-  }
-
-  li {
-    border-bottom: 1px solid var(--hob-color--primary);
-    padding-bottom: 0.375rem;
-    .hob-typography {
-      font-size: 0.875rem;
-    }
-  }
-
-  > * {
-    margin-right: 0.5rem;
-
-    &:last-of-type {
-      margin-right: none;
-    }
+    margin-bottom: 3rem;
   }
 `;
 
@@ -206,7 +166,7 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
 
         default:
           return (
-            <HobTypography variant="body">
+            <HobTypography variant="body1">
               Cannot render project banner
             </HobTypography>
           );
@@ -300,18 +260,7 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
     }
 
     case "tags":
-      const { tags } = props;
-      return (
-        <Tags className="tags">
-          {tags.map(tag => (
-            <li key={tag}>
-              <HobTypography variant="caption">
-                {_.kebabCase(tag)}
-              </HobTypography>
-            </li>
-          ))}
-        </Tags>
-      );
+      return <Tags tags={props.tags} />;
 
     default:
       return (
