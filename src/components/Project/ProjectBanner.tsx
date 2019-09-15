@@ -2,7 +2,7 @@ import { HobTypography } from "@components/HobTypography";
 import styled from "@emotion/styled";
 import React, { ReactElement } from "react";
 import Lottie, { Options } from "react-lottie";
-import { MediaImage, MediaType } from ".";
+import { MediaImage, MediaType, MediaVideo } from ".";
 import breakpoints from "../../breakpoints";
 
 const Banner = styled.div<{ image?: string }>`
@@ -47,6 +47,10 @@ type Props =
   | {
       mimeType: MediaType.LOTTIE;
       animationOptions: Options;
+    }
+  | {
+      mimeType: MediaVideo;
+      videoUrl: string;
     };
 
 export const ProjectBanner = (props: Props): ReactElement => {
@@ -65,5 +69,14 @@ export const ProjectBanner = (props: Props): ReactElement => {
           )}
         </Banner>
       );
+
+    case MediaType.MP4:
+    case MediaType.QUICKTIME: {
+      return (
+        <video controls={true} width="320" height="240">
+          <source src={props.videoUrl} type={props.mimeType} />
+        </video>
+      );
+    }
   }
 };

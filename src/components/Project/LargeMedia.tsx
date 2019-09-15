@@ -41,6 +41,16 @@ export const LargeMedia = ({
 
         return <Lottie options={defaultOptions} height={400} width={400} />;
       }
+
+      case MediaType.MP4:
+      case MediaType.QUICKTIME: {
+        return (
+          <video controls={true} width="320" height="240">
+            <source src={largeMediaFile} type={mimeType} />
+          </video>
+        );
+      }
+
       default:
         return <div key={largeMediaFile}>{mimeType}</div>;
     }

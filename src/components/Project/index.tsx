@@ -44,6 +44,8 @@ export enum MediaType {
   QUICKTIME = "video/quicktime"
 }
 
+export type MediaVideo = MediaType.QUICKTIME | MediaType.MP4;
+
 export type MediaImage =
   | MediaType.GIF
   | MediaType.JPEG
@@ -164,6 +166,15 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
             />
           );
 
+        case MediaType.MP4:
+        case MediaType.QUICKTIME:
+          return (
+            <ProjectBanner
+              mimeType={mimeType}
+              videoUrl={props.projectBannerMedia}
+            />
+          );
+
         default:
           return (
             <HobTypography variant="body1">
@@ -260,7 +271,7 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
     }
 
     case "tags":
-      return <Tags tags={props.tags} />;
+      return <ProjectTags tags={props.tags} />;
 
     default:
       return (

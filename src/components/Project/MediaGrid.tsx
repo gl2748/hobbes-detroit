@@ -147,6 +147,15 @@ export const MediaGrid = React.memo(
             return <Lottie options={defaultOptions} />;
           }
 
+          case MediaType.MP4:
+          case MediaType.QUICKTIME: {
+            return (
+              <video controls={true} width="320" height="240">
+                <source src={url} type={type} />
+              </video>
+            );
+          }
+
           default:
             return <div key={mediaGridMedia[i].mediaGridMediaFile}>{type}</div>;
         }
