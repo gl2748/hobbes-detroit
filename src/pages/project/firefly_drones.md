@@ -63,5 +63,8 @@ modules:
   - bleed: true
     largeMediaFile: 'https://ucarecdn.com/4e470de3-c2f6-4498-b192-3f4416034893/'
     type: largeMedia
+  - bleed: true
+    largeMediaFile: 'https://ucarecdn.com/a63773b2-f72e-4f92-9d85-c2bf62a4ebde/'
+    type: largeMedia
 ---
 
