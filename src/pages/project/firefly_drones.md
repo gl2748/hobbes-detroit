@@ -32,7 +32,7 @@ modules:
           as pixels, could we create a drone show with 3-D design software?
     type: textArea
   - slides:
-      - slideMediaFile: 'https://ucarecdn.com/52de4268-1d45-43a4-9fde-5c1a7af4293b/'
+      - slideMediaFile: 'https://ucarecdn.com/37b17a94-9acc-4cde-88be-e4b68b8f4137/'
         type: slideMedia
       - slideMediaFile: 'https://ucarecdn.com/edc4d433-be18-4b56-a07f-bc4de67b56d6/'
         type: slideMedia
