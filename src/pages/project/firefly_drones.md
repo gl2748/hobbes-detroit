@@ -3,20 +3,20 @@ templateKey: project-post
 title: Drones
 date: 2019-09-12T18:27:07.368Z
 description: Drone shows are a project by Hobbes
-metaImage: "https://ucarecdn.com/e95a9379-17f5-4eca-b42e-070c482cd6ec/"
-primaryColor: "#00000"
-secondaryColor: "#00000"
+metaImage: 'https://ucarecdn.com/e95a9379-17f5-4eca-b42e-070c482cd6ec/'
+primaryColor: '#00000'
+secondaryColor: '#00000'
 protectedProject: false
 featured: false
-featuredJson: "https://ucarecdn.com/f2649742-a36f-4e6b-8978-0b1a57d8ecf4/"
-indexSvg: "https://ucarecdn.com/4d2d1e48-eb49-44db-ab3c-867a5f7f9dd2/"
+featuredJson: 'https://ucarecdn.com/f2649742-a36f-4e6b-8978-0b1a57d8ecf4/'
+indexSvg: 'https://ucarecdn.com/4d2d1e48-eb49-44db-ab3c-867a5f7f9dd2/'
 tags:
   - drones
   - firefly
   - choreography
 client: Firefly
 modules:
-  - projectBannerMedia: "https://ucarecdn.com/96fd230b-43d8-4b0e-8f06-aeadba5b4fcc/"
+  - projectBannerMedia: 'https://ucarecdn.com/96fd230b-43d8-4b0e-8f06-aeadba5b4fcc/'
     type: projectBanner
   - textColumns:
       - column: >-
@@ -32,9 +32,9 @@ modules:
           as pixels, could we create a drone show with 3-D design software?
     type: textArea
   - slides:
-      - slideMediaFile: "https://ucarecdn.com/0f8770b3-8410-4a88-92d6-e6c4980fef60/"
+      - slideMediaFile: 'https://ucarecdn.com/52de4268-1d45-43a4-9fde-5c1a7af4293b/'
         type: slideMedia
-      - slideMediaFile: "https://ucarecdn.com/edc4d433-be18-4b56-a07f-bc4de67b56d6/"
+      - slideMediaFile: 'https://ucarecdn.com/edc4d433-be18-4b56-a07f-bc4de67b56d6/'
         type: slideMedia
     type: gallery
   - textColumns:
@@ -50,12 +50,13 @@ modules:
           to maintain compliance with regulations and avoid collisions.
     type: textArea
   - bleed: false
-    largeMediaFile: "https://ucarecdn.com/e5b0ed6d-2f40-4a1c-b73e-d4bc45087d0e/"
+    largeMediaFile: 'https://ucarecdn.com/e5b0ed6d-2f40-4a1c-b73e-d4bc45087d0e/'
     type: largeMedia
   - textColumns:
       - column: "Our final task became refining the experience; \Lwe wanted the ability to create drone shows that would take an audience’s breath away. So we developed a visual language, discovered best practices for pacing, and determined how to effectively use forced perspective."
     type: textArea
   - bleed: true
-    largeMediaFile: "https://ucarecdn.com/4e470de3-c2f6-4498-b192-3f4416034893/"
+    largeMediaFile: 'https://ucarecdn.com/4e470de3-c2f6-4498-b192-3f4416034893/'
     type: largeMedia
 ---
+
