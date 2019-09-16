@@ -20,17 +20,24 @@ const Container = styled.div`
   align-items: baseline;
 `;
 
-export const ProjectRoll: React.FC<IProjectRollProps> = ({
-  data
-}: IProjectRollProps) => {
-  const { edges: posts } = data.allMarkdownRemark;
+export const ProjectRoll: React.FC<IProjectRollProps> = React.memo(
+  ({ data }: IProjectRollProps) => {
+    const { edges: posts } = data.allMarkdownRemark;
 
-  return (
-    <Container id="work">
-      {posts &&
-        posts.map(({ node: post }: { node: IProjectProps }, index: number) => (
-          <ProjectRollItem post={post} key={post.id} index={index} />
-        ))}
-    </Container>
-  );
-};
+    return (
+      <Container id="work">
+        {posts &&
+          posts.map(
+            ({ node: post }: { node: IProjectProps }, index: number) => (
+              <ProjectRollItem post={post} key={post.id} index={index} />
+            )
+          )}
+      </Container>
+    );
+  },
+  (a, b) => {
+    return a.data.allMarkdownRemark.edges.every(
+      ({ node }, i) => node.id === b.data.allMarkdownRemark.edges[i].node.id
+    );
+  }
+);

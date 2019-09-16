@@ -74,6 +74,8 @@ const Image = ({ src, alt }: HTMLProps<HTMLImageElement>): ReactElement => (
 
 const StyledSvg = styled.div<{ fill: string }>`
   svg {
+    width: 100%;
+    height: 100%;
     fill: ${({ fill }) => fill};
   }
 `;
