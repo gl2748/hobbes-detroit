@@ -86,7 +86,7 @@ export const HobGallery: React.FC<
         onClick={prevClick}
         className="hob-gallery__button hob-gallery__button--prev"
       >
-        &lt;
+        ←
       </button>
 
       <button
@@ -94,7 +94,7 @@ export const HobGallery: React.FC<
         type="button"
         onClick={nextClick}
       >
-        &gt;
+        →
       </button>
     </Container>
   );

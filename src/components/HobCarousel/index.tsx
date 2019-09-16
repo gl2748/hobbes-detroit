@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
-import React, { ReactNode, useState } from "react";
+import EmblaCarousel from "embla-carousel";
+import EmblaCarouselReact from "embla-carousel-react";
+import React, { ReactNode, useEffect, useState } from "react";
 import breakpoints from "../../breakpoints";
 import { HobButton } from "../HobButton";
 import { HobTypography } from "../HobTypography";
@@ -8,14 +10,10 @@ export interface ICarouselProps {
   children: ReactNode[];
 }
 
-const Carousel = styled.div`
+const Container = styled.div`
   background-color: var(--hob-color--dark);
-  width: 100%;
   position: relative;
-  display: flex;
-  align-items: center;
-  padding: 1.875rem;
-  overflow-x: hidden;
+  padding: 1.25rem;
   height: 100vh;
 
   .hob-typography {
@@ -24,14 +22,17 @@ const Carousel = styled.div`
 
   .hob-carousel {
     &__nav {
+      z-index: 1;
       width: 1.75rem;
+      position: absolute;
+      top: calc(50% - 2.5rem);
 
       &--left {
-        order: -1;
+        left: 1.25rem;
       }
 
       &--right {
-        order: 1;
+        right: 1.25rem;
       }
     }
   }
@@ -43,6 +44,10 @@ const Carousel = styled.div`
       }
     }
   }
+`;
+
+const Carousel = styled(EmblaCarouselReact)`
+  height: 100%;
 `;
 
 const Page = styled.div`
@@ -74,46 +79,44 @@ const CurrentPage = styled(HobTypography)`
 `;
 
 const Horses = styled.div`
-  height: 100%;
-  flex: 1;
-  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: left var(--hob-transition-duration),
-    right var(--hob-transition-duration);
+  height: 100%;
 
-  .hob-carousel__horse {
-    position: absolute;
-    height: 100%;
-
-    &--left {
-      left: -100%;
-      width: 0;
-    }
-
-    &--right {
-      right: -100%;
-      width: 0;
-    }
+  > * {
+    flex: 0 0 100%;
   }
 `;
 
 export const HobCarousel: React.FC<ICarouselProps> = ({ children }) => {
+  const [embla, setEmbla] = useState<null | EmblaCarousel>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const length = children.length;
 
-  const leftIndex = currentIndex === 0 ? length - 1 : currentIndex - 1;
-  const rightIndex = (currentIndex + 1) % length;
-  const changeCurrent = (n: number) => (): void => {
-    setCurrentIndex(n === 1 ? rightIndex : leftIndex);
+  useEffect(() => {
+    if (embla) {
+      embla.on("select", () => {
+        setCurrentIndex(embla.selectedScrollSnap());
+      });
+    }
+  }, [embla]);
+
+  const prevClick = () => {
+    if (embla) {
+      embla.scrollPrev();
+    }
+  };
+
+  const nextClick = () => {
+    if (embla) {
+      embla.scrollNext();
+    }
   };
 
   return (
-    <Carousel className="hob-carousel">
+    <Container className="hob-carousel">
       <Page
         className="hob-carousel__page"
-        onClick={changeCurrent(1)}
+        onClick={nextClick}
         role="button"
         tabIndex={0}
       >
@@ -123,7 +126,7 @@ export const HobCarousel: React.FC<ICarouselProps> = ({ children }) => {
 
       <HobButton
         className="hob-carousel__nav hob-carousel__nav--left"
-        onClick={changeCurrent(-1)}
+        onClick={prevClick}
         variant="text"
         color="secondary"
       >
@@ -132,26 +135,16 @@ export const HobCarousel: React.FC<ICarouselProps> = ({ children }) => {
 
       <HobButton
         className="hob-carousel__nav hob-carousel__nav--right"
-        onClick={changeCurrent(1)}
+        onClick={nextClick}
         variant="text"
         color="secondary"
       >
         →
       </HobButton>
 
-      <Horses>
-        <div className="hob-carousel__horse hob-carousel__horse--left">
-          {children[leftIndex]}
-        </div>
-
-        <div className="hob-carousel__horse hob-carousel__horse--current">
-          {children[currentIndex]}
-        </div>
-
-        <div className="hob-carousel__horse hob-carousel__horse--right">
-          {children[rightIndex]}
-        </div>
-      </Horses>
-    </Carousel>
+      <Carousel htmlTagName="div" emblaRef={setEmbla} options={{ loop: true }}>
+        <Horses>{children}</Horses>
+      </Carousel>
+    </Container>
   );
 };
