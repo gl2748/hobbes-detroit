@@ -33,10 +33,9 @@ modules:
           recognized an opportunity to educate users about their options,
           empowering them to take control of their privacy.
     type: textArea
-  - hideCaptions: false
-    mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/66d3050a-fade-4400-b4f0-f9df361ea643/'
-    type: mediaGrid
+  - bleed: false
+    largeMediaFile: 'https://ucarecdn.com/3f457d11-6f27-4495-8e83-1bb9e42863dd/'
+    type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
       - mediaGridMediaFile: 'https://ucarecdn.com/b029bc7a-2c03-4358-a01e-49a97fd4921a/'
