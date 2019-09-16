@@ -61,9 +61,6 @@ modules:
       - column: "Our final task became refining the experience; \Lwe wanted the ability to create drone shows that would take an audience’s breath away. So we developed a visual language, discovered best practices for pacing, and determined how to effectively use forced perspective."
     type: textArea
   - bleed: true
-    largeMediaFile: 'https://ucarecdn.com/4e470de3-c2f6-4498-b192-3f4416034893/'
-    type: largeMedia
-  - bleed: true
     largeMediaFile: 'https://ucarecdn.com/a63773b2-f72e-4f92-9d85-c2bf62a4ebde/'
     type: largeMedia
 ---
