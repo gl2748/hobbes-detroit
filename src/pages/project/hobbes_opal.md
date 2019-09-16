@@ -9,7 +9,7 @@ secondaryColor: '#00000'
 protectedProject: false
 featured: false
 featuredJson: 'https://ucarecdn.com/acab972e-14d0-49f0-aa58-13e59221731b/'
-indexSvg: 'https://ucarecdn.com/60a98209-66a0-468b-9163-ba39341b0fb9/'
+indexSvg: 'https://ucarecdn.com/3eac6617-e572-4a05-b444-a2b346c69611/'
 tags:
   - self initiated
   - parametric
