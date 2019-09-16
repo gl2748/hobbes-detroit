@@ -4,8 +4,8 @@ title: Google Nest Home Hub Max
 date: 2019-09-06T21:18:50.099Z
 description: Google Nest Home Hub Max is a project by Hobbes
 metaImage: 'https://ucarecdn.com/80bb80eb-13ab-4729-a6df-80c5e18fe1d8/'
-primaryColor: '#4385f4'
-secondaryColor: '#4385f4'
+primaryColor: '#FFA8F4'
+secondaryColor: '#FFA8F4'
 protectedProject: false
 featured: false
 featuredJson: 'https://ucarecdn.com/61aa5094-7c9d-4204-b1c1-c18849ba5f8a/'
