@@ -20,7 +20,8 @@ const Container = styled(LayoutWithLocation)`
   overflow-y: scroll;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  height: 100vh;
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
 
   > .hob-letters {
     position: absolute;
@@ -178,7 +179,7 @@ const IndexPage = React.memo(
       if (hash !== "") {
         const el = document.getElementById(hash.replace(/#/, ""));
         if (el) {
-          el.scrollIntoView();
+          // el.scrollIntoView();
         }
       }
     }, []);

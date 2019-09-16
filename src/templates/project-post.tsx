@@ -243,7 +243,8 @@ const SidePagination = ({
 
 const Container = styled(Layout)`
   overflow-x: hidden;
-  height: 100vh;
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
   overflow-y: scroll;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
