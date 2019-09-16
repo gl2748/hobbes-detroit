@@ -34,7 +34,7 @@ modules:
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/c82e5ff6-69c1-410d-898c-d1f07182ca9a/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/4616a883-195b-4f34-a6cd-69424d661ed0/'
     type: mediaGrid
   - textColumns:
       - column: >-
@@ -49,8 +49,8 @@ modules:
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/408ac7f9-4ade-4af5-97b5-173660f20caa/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/8b4df866-3111-41d9-8ad6-f7afc1d74925/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/ecd298e4-6638-4b51-ba88-67dccb7977d8/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/57fb5c81-faa8-4d35-9dd7-7f6b1505f813/'
     type: mediaGrid
   - textColumns:
       - column: >-
@@ -65,8 +65,8 @@ modules:
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/3c0f4b71-3163-4ad1-a4d8-b2d3a36af5ad/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/731548f3-0cc5-4f85-92da-152fbc18d0a8/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/970c56ab-b42d-42e0-bff0-cc5245cbaf75/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/62323471-5a65-4b2a-8b8e-0166ce6f1169/'
     type: mediaGrid
   - textColumns:
       - column: >-
@@ -76,7 +76,7 @@ modules:
           the time and punctuating each minute with a moment of small delight.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/4ccbd9c6-cb4e-4127-8bef-23a0d8d1e26f/'
+    largeMediaFile: 'https://ucarecdn.com/ad5bb45a-7055-4a0a-88c7-c5c3bd72a4af/'
     type: largeMedia
 ---
 
