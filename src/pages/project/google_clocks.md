@@ -1,15 +1,15 @@
 ---
 templateKey: project-post
-title: Clocks
+title: Clocks 01
 date: 2019-09-06T18:39:28.904Z
-description: "A project with a bunch of clocks. "
-metaImage: "https://ucarecdn.com/1aa37987-cc37-417e-8c29-3e0b84535f1e/"
-primaryColor: "#DC6F62"
+description: 'A project with a bunch of clocks. '
+metaImage: 'https://ucarecdn.com/1aa37987-cc37-417e-8c29-3e0b84535f1e/'
+primaryColor: '#DC6F62'
 secondaryColor: dfdfd
 protectedProject: false
 featured: true
-featuredJson: "https://ucarecdn.com/6f3a1f07-8ff3-46a3-8ff4-35083b04f804/"
-indexSvg: "https://ucarecdn.com/79aedc78-580b-4d55-ad9f-3a4b25de718b/"
+featuredJson: 'https://ucarecdn.com/6f3a1f07-8ff3-46a3-8ff4-35083b04f804/'
+indexSvg: 'https://ucarecdn.com/79aedc78-580b-4d55-ad9f-3a4b25de718b/'
 tags:
   - google
   - clocks
@@ -23,7 +23,7 @@ team:
 press:
   - fdfdf
 modules:
-  - projectBannerMedia: "https://ucarecdn.com/3ea8275e-e852-4544-9d17-ecd6d2dc918c/"
+  - projectBannerMedia: 'https://ucarecdn.com/3ea8275e-e852-4544-9d17-ecd6d2dc918c/'
     type: projectBanner
   - textColumns:
       - column: >-
@@ -34,7 +34,7 @@ modules:
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: "https://ucarecdn.com/c82e5ff6-69c1-410d-898c-d1f07182ca9a/"
+      - mediaGridMediaFile: 'https://ucarecdn.com/4616a883-195b-4f34-a6cd-69424d661ed0/'
     type: mediaGrid
   - textColumns:
       - column: >-
@@ -45,12 +45,12 @@ modules:
           into pieces of home decor while remaining purposeful at every second.
     type: textArea
   - bleed: false
-    largeMediaFile: "https://ucarecdn.com/a4a15940-3ed3-4567-91c3-8b96614524db/"
+    largeMediaFile: 'https://ucarecdn.com/a4a15940-3ed3-4567-91c3-8b96614524db/'
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: "https://ucarecdn.com/408ac7f9-4ade-4af5-97b5-173660f20caa/"
-      - mediaGridMediaFile: "https://ucarecdn.com/8b4df866-3111-41d9-8ad6-f7afc1d74925/"
+      - mediaGridMediaFile: 'https://ucarecdn.com/ecd298e4-6638-4b51-ba88-67dccb7977d8/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/57fb5c81-faa8-4d35-9dd7-7f6b1505f813/'
     type: mediaGrid
   - textColumns:
       - column: >-
@@ -61,12 +61,12 @@ modules:
           the course of an entire day.
     type: textArea
   - bleed: false
-    largeMediaFile: "https://ucarecdn.com/6e8dd95f-f30a-4c1f-b85d-01a6fb564de7/"
+    largeMediaFile: 'https://ucarecdn.com/6e8dd95f-f30a-4c1f-b85d-01a6fb564de7/'
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: "https://ucarecdn.com/3c0f4b71-3163-4ad1-a4d8-b2d3a36af5ad/"
-      - mediaGridMediaFile: "https://ucarecdn.com/731548f3-0cc5-4f85-92da-152fbc18d0a8/"
+      - mediaGridMediaFile: 'https://ucarecdn.com/970c56ab-b42d-42e0-bff0-cc5245cbaf75/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/d72a6716-0392-417c-866e-bafa932c2987/'
     type: mediaGrid
   - textColumns:
       - column: >-
@@ -76,6 +76,7 @@ modules:
           the time and punctuating each minute with a moment of small delight.
     type: textArea
   - bleed: false
-    largeMediaFile: "https://ucarecdn.com/4ccbd9c6-cb4e-4127-8bef-23a0d8d1e26f/"
+    largeMediaFile: 'https://ucarecdn.com/ad5bb45a-7055-4a0a-88c7-c5c3bd72a4af/'
     type: largeMedia
 ---
+
