@@ -246,6 +246,7 @@ const Container = styled(Layout)`
   height: 100vh;
   overflow-y: scroll;
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 
   #studio,
   .footer {

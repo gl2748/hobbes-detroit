@@ -18,6 +18,7 @@ const Container = styled(LayoutWithLocation)`
   --fs: 1.75rem;
   overflow-y: scroll;
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
   height: 100vh;
 
   > .hob-letters {
