@@ -33,14 +33,21 @@ export const LargeMedia = ({
       }
 
       case MediaType.LOTTIE: {
-        const { data } = media;
-        const defaultOptions = {
-          animationData: data,
-          autoplay: true,
-          loop: true
-        };
+        if (media) {
+          const { data } = media;
+          const defaultOptions = {
+            animationData: data,
+            autoplay: true,
+            loop: true
+          };
 
-        return <Lottie options={defaultOptions} />;
+          return <Lottie options={defaultOptions} />;
+        }
+        return (
+          <HobTypography variant="body1">
+            Unable to load lottie file
+          </HobTypography>
+        );
       }
 
       case MediaType.MP4:
