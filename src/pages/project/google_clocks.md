@@ -4,8 +4,8 @@ title: Clocks
 date: 2019-09-06T18:39:28.904Z
 description: 'A project with a bunch of clocks. '
 metaImage: 'https://ucarecdn.com/1aa37987-cc37-417e-8c29-3e0b84535f1e/'
-primaryColor: '#DC6F62'
-secondaryColor: dfdfd
+primaryColor: '#00AD71'
+secondaryColor: '#00AD71'
 protectedProject: false
 featured: true
 featuredJson: 'https://ucarecdn.com/6f3a1f07-8ff3-46a3-8ff4-35083b04f804/'
