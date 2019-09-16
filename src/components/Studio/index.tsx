@@ -33,6 +33,7 @@ const Description = styled(HobTypography)`
     flex: unset;
     margin-right: 0;
     margin-bottom: 3rem;
+    min-width: 0;
   }
 `;
 
