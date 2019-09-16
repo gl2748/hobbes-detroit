@@ -32,10 +32,12 @@ modules:
           time when Google SUMUX happened to ask us to create clock faces for
           their Smart Displays. And when they did, we went a little crazy.
     type: textArea
-  - hideCaptions: false
-    mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/4616a883-195b-4f34-a6cd-69424d661ed0/'
-    type: mediaGrid
+  - slides:
+      - slideMediaFile: 'https://ucarecdn.com/4b90e56a-0678-4cad-a5f1-5d1a7810f059/'
+        type: slideMedia
+      - slideMediaFile: 'https://ucarecdn.com/12b1e617-7866-4cdb-8c20-af6732ab72ab/'
+        type: slideMedia
+    type: gallery
   - textColumns:
       - column: >-
           We recognized that Google Smart Displays live on end tables in living
