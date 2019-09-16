@@ -66,7 +66,7 @@ modules:
   - hideCaptions: false
     mediaGridMedia:
       - mediaGridMediaFile: 'https://ucarecdn.com/970c56ab-b42d-42e0-bff0-cc5245cbaf75/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/62323471-5a65-4b2a-8b8e-0166ce6f1169/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/d72a6716-0392-417c-866e-bafa932c2987/'
     type: mediaGrid
   - textColumns:
       - column: >-
