@@ -29,6 +29,7 @@ const ProjectContainer = styled.div`
 
 const ProjectGraphic = styled.div`
   max-width: 60%;
+  margin: 0 auto;
 
   .hob-typography {
     color: var(--hob-color--secondary);
