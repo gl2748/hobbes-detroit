@@ -36,6 +36,8 @@ modules:
         type: slideMedia
       - slideMediaFile: 'https://ucarecdn.com/edc4d433-be18-4b56-a07f-bc4de67b56d6/'
         type: slideMedia
+      - slideMediaFile: 'https://ucarecdn.com/66561eaf-62d6-4ca8-a1ae-154019798349/'
+        type: slideMedia
     type: gallery
   - textColumns:
       - column: >-
