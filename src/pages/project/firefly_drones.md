@@ -34,9 +34,9 @@ modules:
   - slides:
       - slideMediaFile: 'https://ucarecdn.com/e0a2059d-3154-463b-8aad-212b87fd110b/'
         type: slideMedia
-      - slideMediaFile: 'https://ucarecdn.com/edc4d433-be18-4b56-a07f-bc4de67b56d6/'
+      - slideMediaFile: 'https://ucarecdn.com/0420d866-f81e-4246-b95c-d14d11dd7d9a/'
         type: slideMedia
-      - slideMediaFile: 'https://ucarecdn.com/66561eaf-62d6-4ca8-a1ae-154019798349/'
+      - slideMediaFile: 'https://ucarecdn.com/59645e58-bd3d-4f68-9944-a6ab0f840360/'
         type: slideMedia
     type: gallery
   - textColumns:
