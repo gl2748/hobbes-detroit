@@ -36,6 +36,8 @@ modules:
         type: slideMedia
       - slideMediaFile: 'https://ucarecdn.com/edc4d433-be18-4b56-a07f-bc4de67b56d6/'
         type: slideMedia
+      - slideMediaFile: 'https://ucarecdn.com/66561eaf-62d6-4ca8-a1ae-154019798349/'
+        type: slideMedia
     type: gallery
   - textColumns:
       - column: >-
@@ -55,7 +57,7 @@ modules:
   - hideCaptions: false
     mediaGridMedia:
       - mediaGridMediaFile: 'https://ucarecdn.com/ba39d126-3b72-4520-b71b-dc24e5f912d4/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/ee12a2a3-d72e-4e5b-9e11-740bac5c7fd2/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/fc4377aa-c480-4952-a6b6-405921f5fc74/'
     type: mediaGrid
   - textColumns:
       - column: "Our final task became refining the experience; \Lwe wanted the ability to create drone shows that would take an audience’s breath away. So we developed a visual language, discovered best practices for pacing, and determined how to effectively use forced perspective."
