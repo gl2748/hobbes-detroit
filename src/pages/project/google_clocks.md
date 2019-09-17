@@ -9,7 +9,7 @@ secondaryColor: '#00AD71'
 protectedProject: false
 featured: true
 featuredJson: 'https://ucarecdn.com/6f3a1f07-8ff3-46a3-8ff4-35083b04f804/'
-indexSvg: 'https://ucarecdn.com/40e36be4-e229-4a67-94be-9bcf2fa7d2a9/'
+indexSvg: 'https://ucarecdn.com/b7db7553-7d23-4b85-bb80-2e43b5dec0a9/'
 tags:
   - google
   - clocks
