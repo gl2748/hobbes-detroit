@@ -3,20 +3,20 @@ templateKey: project-post
 title: Drones
 date: 2019-09-12T18:27:07.368Z
 description: Drone shows are a project by Hobbes
-metaImage: 'https://ucarecdn.com/e95a9379-17f5-4eca-b42e-070c482cd6ec/'
-primaryColor: '#57CCF2'
-secondaryColor: '#57CCF2'
+metaImage: "https://ucarecdn.com/e95a9379-17f5-4eca-b42e-070c482cd6ec/"
+primaryColor: "#57CCF2"
+secondaryColor: "#57CCF2"
 protectedProject: false
 featured: false
-featuredJson: 'https://ucarecdn.com/f2649742-a36f-4e6b-8978-0b1a57d8ecf4/'
-indexSvg: 'https://ucarecdn.com/8ccb7d03-578f-4783-82db-4ffb072e92d0/'
+featuredJson: "https://ucarecdn.com/f2649742-a36f-4e6b-8978-0b1a57d8ecf4/"
+indexSvg: "https://ucarecdn.com/8ccb7d03-578f-4783-82db-4ffb072e92d0/"
 tags:
   - drones
   - firefly
   - choreography
 client: Firefly
 modules:
-  - projectBannerMedia: 'https://ucarecdn.com/96fd230b-43d8-4b0e-8f06-aeadba5b4fcc/'
+  - projectBannerMedia: "https://ucarecdn.com/96fd230b-43d8-4b0e-8f06-aeadba5b4fcc/"
     type: projectBanner
   - textColumns:
       - column: >-
@@ -32,11 +32,11 @@ modules:
           as pixels, could we create a drone show with 3-D design software?
     type: textArea
   - slides:
-      - slideMediaFile: 'https://ucarecdn.com/e0a2059d-3154-463b-8aad-212b87fd110b/'
+      - slideMediaFile: "https://ucarecdn.com/e0a2059d-3154-463b-8aad-212b87fd110b/"
         type: slideMedia
-      - slideMediaFile: 'https://ucarecdn.com/0420d866-f81e-4246-b95c-d14d11dd7d9a/'
+      - slideMediaFile: "https://ucarecdn.com/0420d866-f81e-4246-b95c-d14d11dd7d9a/"
         type: slideMedia
-      - slideMediaFile: 'https://ucarecdn.com/59645e58-bd3d-4f68-9944-a6ab0f840360/'
+      - slideMediaFile: "https://ucarecdn.com/59645e58-bd3d-4f68-9944-a6ab0f840360/"
         type: slideMedia
     type: gallery
   - textColumns:
@@ -52,18 +52,17 @@ modules:
           to maintain compliance with regulations and avoid collisions.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/e5b0ed6d-2f40-4a1c-b73e-d4bc45087d0e/'
+    largeMediaFile: "https://ucarecdn.com/e5b0ed6d-2f40-4a1c-b73e-d4bc45087d0e/"
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/ba39d126-3b72-4520-b71b-dc24e5f912d4/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/fc4377aa-c480-4952-a6b6-405921f5fc74/'
+      - mediaGridMediaFile: "https://ucarecdn.com/ba39d126-3b72-4520-b71b-dc24e5f912d4/"
+      - mediaGridMediaFile: "https://ucarecdn.com/fc4377aa-c480-4952-a6b6-405921f5fc74/"
     type: mediaGrid
   - textColumns:
       - column: "Our final task became refining the experience; \Lwe wanted the ability to create drone shows that would take an audience’s breath away. So we developed a visual language, discovered best practices for pacing, and determined how to effectively use forced perspective."
     type: textArea
   - bleed: true
-    largeMediaFile: 'https://ucarecdn.com/a63773b2-f72e-4f92-9d85-c2bf62a4ebde/'
+    largeMediaFile: "https://ucarecdn.com/a63773b2-f72e-4f92-9d85-c2bf62a4ebde/"
     type: largeMedia
 ---
-
