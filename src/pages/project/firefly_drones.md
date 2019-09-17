@@ -9,7 +9,7 @@ secondaryColor: '#57CCF2'
 protectedProject: false
 featured: false
 featuredJson: 'https://ucarecdn.com/f2649742-a36f-4e6b-8978-0b1a57d8ecf4/'
-indexSvg: 'https://ucarecdn.com/65b57a0b-1b15-446c-a50c-f953895e2e4c/'
+indexSvg: 'https://ucarecdn.com/8ccb7d03-578f-4783-82db-4ffb072e92d0/'
 tags:
   - drones
   - firefly
