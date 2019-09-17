@@ -4,16 +4,21 @@ export const DynamicGradientSvgText = ({
   height,
   offset,
   children,
+  underline = false,
   from,
   to
-}: { height: number; offset: number; from: string; to: string } & HTMLProps<
-  HTMLElement
->) => (
+}: {
+  underline?: boolean;
+  height: number;
+  offset: number;
+  from: string;
+  to: string;
+} & HTMLProps<HTMLElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height={height}
     width={100}
-    viewBox={`0 0 60 ${height}`}
+    viewBox={`0 0 80 ${height}`}
   >
     <defs>
       <linearGradient id="bicolored" y1="0%" y2="100%" x1="100%" x2="100%">
@@ -21,7 +26,15 @@ export const DynamicGradientSvgText = ({
         <stop offset="0%" stopColor={to} />
       </linearGradient>
     </defs>
-    <text x="0" y={height * 0.9} fill="url(#bicolored)" fontSize={height}>
+    <text
+      x="0"
+      y={height * 0.9}
+      fill="url(#bicolored)"
+      fontSize={height}
+      style={{
+        ...(underline ? { textDecoration: "underline" } : {})
+      }}
+    >
       {children}
     </text>
   </svg>

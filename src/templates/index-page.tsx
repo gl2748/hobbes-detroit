@@ -1,5 +1,7 @@
 import { DynamicGradientSvgText } from "@components/DynamicGradientSvgText";
 import styled from "@emotion/styled";
+import { withLocation } from "@higherOrderComponents/withLocation";
+import { LocationState } from "history";
 import React, { useEffect, useReducer, useRef } from "react";
 import { HobLetters } from "../components/HobLetters";
 import { HobLink, HobLink as Link } from "../components/HobLink";
@@ -14,9 +16,12 @@ import { useScrollPosition } from "../hooks/useScrollPosition";
 const Container = styled(LayoutWithLocation)`
   --mb: 1.5rem;
   --fs: 1.75rem;
+  overflow-x: hidden;
   overflow-y: scroll;
   scroll-behavior: smooth;
-  height: 100vh;
+  -webkit-overflow-scrolling: touch;
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
 
   > .hob-letters {
     position: absolute;
@@ -30,8 +35,21 @@ const Container = styled(LayoutWithLocation)`
   > .logo {
     position: fixed;
     z-index: 1;
-    left: 1rem;
+    left: 1.25rem;
     bottom: 1.25rem;
+
+    &--scrolled {
+      svg {
+        fill: none;
+        stroke: var(--hob-color--light);
+      }
+    }
+  }
+
+  #studio .hob-logo {
+    svg {
+      fill: var(--hob-color--dark);
+    }
   }
 
   .nav {
@@ -44,12 +62,6 @@ const Container = styled(LayoutWithLocation)`
       &:hover,
       &:focus {
         opacity: 0.5;
-      }
-
-      svg {
-        text {
-          text-decoration: underline;
-        }
       }
     }
 
@@ -144,94 +156,117 @@ const reducer = (state: State, action: Action) => {
   }
 };
 
-const IndexPage = () => {
-  const [
-    {
-      scrollY,
-      windowHeight,
-      positions: {
-        nav: { bottom: navBottom = 1, top: navTop = 0 },
-        studio: { top: studioTop = 0 }
-      }
-    },
-    dispatch
-  ] = useReducer(reducer, initialState);
-
-  const studioRef = useRef<HTMLDivElement>(null);
-  const navRef = React.useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    dispatch({ type: "SET_WINDOW_HEIGHT", payload: window.innerHeight });
-  }, []);
-
-  React.useEffect(() => {
-    if (navRef.current === null || studioRef.current === null) {
-      return;
-    }
-    const navRect = navRef.current.getBoundingClientRect();
-    dispatch({
-      payload: {
-        nav: {
-          bottom: navRect.bottom,
-          top: navRect.top
-        },
-        studio: {
-          top: studioRef.current.offsetTop
+const IndexPage = React.memo(
+  ({ location: { hash } }: { location: LocationState }) => {
+    const [
+      {
+        scrollY,
+        windowHeight,
+        positions: {
+          nav: { bottom: navBottom = 1, top: navTop = 0 },
+          studio: { top: studioTop = 0 }
         }
       },
-      type: "SET_POSITIONS"
-    });
-  }, [
-    studioRef.current && studioRef.current.offsetTop,
-    navRef.current && navRef.current.getBoundingClientRect().top
-  ]);
+      dispatch
+    ] = useReducer(reducer, initialState);
 
-  const offset = Math.max(
-    0,
-    ((scrollY + navBottom - studioTop) / (navBottom - navTop)) * 100 || 0
-  );
-  const height = 28;
+    const scrollRef = useRef<HTMLDivElement>(null);
+    const studioRef = useRef<HTMLDivElement>(null);
+    const navRef = React.useRef<HTMLDivElement>(null);
 
-  useScrollPosition(({ currPos }) => {
-    dispatch({ type: "SET_SCROLL_Y", payload: currPos.y * -1 });
-  });
+    useEffect(() => {
+      dispatch({ type: "SET_WINDOW_HEIGHT", payload: window.innerHeight });
+      if (hash !== "") {
+        const el = document.getElementById(hash.replace(/#/, ""));
+        if (el) {
+          // el.scrollIntoView();
+        }
+      }
+    }, []);
 
-  const atTop = scrollY >= windowHeight - 1.5 * 16 - 2 * (1.75 * 16);
-  const modifiers = Object.entries({
-    fixed: { test: atTop, whenFalse: "absolute" },
-    top: { test: atTop, whenFalse: "bottom" }
-  })
-    .map(([key, { test, whenFalse }]) => `nav--${test ? key : whenFalse}`)
-    .join(" ");
+    React.useEffect(() => {
+      if (navRef.current === null || studioRef.current === null) {
+        return;
+      }
+      const navRect = navRef.current.getBoundingClientRect();
+      dispatch({
+        payload: {
+          nav: {
+            bottom: navRect.bottom,
+            top: navRect.top
+          },
+          studio: {
+            top: studioRef.current.offsetTop
+          }
+        },
+        type: "SET_POSITIONS"
+      });
+    }, [
+      studioRef.current && studioRef.current.offsetTop,
+      navRef.current && navRef.current.getBoundingClientRect().top
+    ]);
 
-  const link = (href: string, label: string) => (
-    <Link color="secondary" href={href} unsetTypography={true}>
-      <DynamicGradientSvgText
-        height={height}
-        offset={offset}
-        from="var(--hob-color--light)"
-        to="var(--hob-color--dark)"
-      >
-        {label}
-      </DynamicGradientSvgText>
-    </Link>
-  );
+    const offset = Math.max(
+      0,
+      ((scrollY + navBottom - studioTop) / (navBottom - navTop)) * 100 || 0
+    );
+    const height = 28;
 
-  return (
-    <Container>
-      <Navbar className={`nav ${modifiers}`} forwardedRef={navRef}>
-        {link("/#work", "Work")}
-        {link("#studio", "Studio")}
-      </Navbar>
-      <HobLetters size="lg" color="var(--hob-color--light)" />
-      <HobLink className="logo" unsetTypography={true} color="primary" to="/">
-        <HobLogo fill="var(--hob-color--secondary)" />
-      </HobLink>
-      <FeaturedProjectRollContainer />
-      <ProjectRollContainer />
-      <StudioContainer forwardedRef={studioRef} />
-    </Container>
-  );
-};
+    useScrollPosition(
+      ({ currPos }) => {
+        dispatch({ type: "SET_SCROLL_Y", payload: currPos.y });
+      },
+      {
+        element: scrollRef,
+        useWindow: false,
+        wait: 100
+      }
+    );
 
-export default IndexPage;
+    const atTop = scrollY >= windowHeight - 1.5 * 16 - 2 * (1.75 * 16);
+    const modifiers = Object.entries({
+      fixed: { test: atTop, whenFalse: "absolute" },
+      top: { test: atTop, whenFalse: "bottom" }
+    })
+      .map(([key, { test, whenFalse }]) => `nav--${test ? key : whenFalse}`)
+      .join(" ");
+
+    const link = (href: string, label: string) => (
+      <Link color="secondary" href={href} unsetTypography={true}>
+        <DynamicGradientSvgText
+          underline={hash === href.replace(/^\//, "")}
+          height={height}
+          offset={offset}
+          from="var(--hob-color--light)"
+          to="var(--hob-color--dark)"
+        >
+          {label}
+        </DynamicGradientSvgText>
+      </Link>
+    );
+
+    return (
+      <Container forwardedRef={scrollRef}>
+        <Navbar className={`nav ${modifiers}`} forwardedRef={navRef}>
+          {link("/#work", "Work")}
+          {link("#studio", "Studio")}
+        </Navbar>
+        <HobLetters size="lg" color="var(--hob-color--light)" />
+        <HobLink
+          className={`logo logo--${scrollY > 0 ? "scrolled" : "top"}`}
+          unsetTypography={true}
+          color="primary"
+          to="/"
+        >
+          <HobLogo fill="var(--hob-color--secondary)" />
+        </HobLink>
+        <FeaturedProjectRollContainer />
+        <ProjectRollContainer />
+        <StudioContainer forwardedRef={studioRef} />
+      </Container>
+    );
+  },
+  (a, b) => a.location.path === b.location.path
+);
+
+export default withLocation(IndexPage);

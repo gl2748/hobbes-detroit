@@ -34,7 +34,7 @@ const TextButton = styled(HobButtonBase)`
 
   :hover,
   :focus {
-    border-color: ${({ color }) => `var(--hob-color--${color})`};
+    opacity: 0.5;
   }
 `;
 

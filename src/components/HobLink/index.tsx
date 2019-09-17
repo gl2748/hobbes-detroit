@@ -13,9 +13,11 @@ export interface IHobLinkProps {
 const withStyle = (C: "a" | (typeof GatsbyLink)) => styled<any>(C)<
   IHobLinkProps & HTMLProps<HTMLAnchorElement>
 >`
-  text-decoration: underline;
+  text-decoration: none;
   color: ${({ color }: IHobLinkProps) => `var(--hob-color--${color})`};
+  transition: opacity var(--hob-transition-duration);
   .hob-typography {
+    transition: opacity var(--hob-transition-duration);
     color: ${({ color }) => `var(--hob-color--${color})`};
   }
 
@@ -26,9 +28,7 @@ const withStyle = (C: "a" | (typeof GatsbyLink)) => styled<any>(C)<
   :hover,
   :focus {
     .hob-typography {
-      background-color: ${({ color }) => `var(--hob-color--${color})`};
-      color: ${({ color }) => `var(--hob-color-alt--${color})`};
-      text-decoration: underline;
+      opacity: 0.5;
       cursor: pointer;
     }
   }

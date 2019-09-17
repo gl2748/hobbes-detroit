@@ -4,12 +4,12 @@ title: Clocks
 date: 2019-09-06T18:39:28.904Z
 description: 'A project with a bunch of clocks. '
 metaImage: 'https://ucarecdn.com/1aa37987-cc37-417e-8c29-3e0b84535f1e/'
-primaryColor: '#DC6F62'
-secondaryColor: dfdfd
+primaryColor: '#00AD71'
+secondaryColor: '#00AD71'
 protectedProject: false
 featured: true
 featuredJson: 'https://ucarecdn.com/6f3a1f07-8ff3-46a3-8ff4-35083b04f804/'
-indexSvg: 'https://ucarecdn.com/79aedc78-580b-4d55-ad9f-3a4b25de718b/'
+indexSvg: 'https://ucarecdn.com/b7db7553-7d23-4b85-bb80-2e43b5dec0a9/'
 tags:
   - google
   - clocks
@@ -32,10 +32,12 @@ modules:
           time when Google SUMUX happened to ask us to create clock faces for
           their Smart Displays. And when they did, we went a little crazy.
     type: textArea
-  - hideCaptions: false
-    mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/c82e5ff6-69c1-410d-898c-d1f07182ca9a/'
-    type: mediaGrid
+  - slides:
+      - slideMediaFile: 'https://ucarecdn.com/4b90e56a-0678-4cad-a5f1-5d1a7810f059/'
+        type: slideMedia
+      - slideMediaFile: 'https://ucarecdn.com/12b1e617-7866-4cdb-8c20-af6732ab72ab/'
+        type: slideMedia
+    type: gallery
   - textColumns:
       - column: >-
           We recognized that Google Smart Displays live on end tables in living
@@ -49,8 +51,8 @@ modules:
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/408ac7f9-4ade-4af5-97b5-173660f20caa/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/8b4df866-3111-41d9-8ad6-f7afc1d74925/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/ecd298e4-6638-4b51-ba88-67dccb7977d8/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/57fb5c81-faa8-4d35-9dd7-7f6b1505f813/'
     type: mediaGrid
   - textColumns:
       - column: >-
@@ -65,8 +67,8 @@ modules:
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/3c0f4b71-3163-4ad1-a4d8-b2d3a36af5ad/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/731548f3-0cc5-4f85-92da-152fbc18d0a8/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/970c56ab-b42d-42e0-bff0-cc5245cbaf75/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/d72a6716-0392-417c-866e-bafa932c2987/'
     type: mediaGrid
   - textColumns:
       - column: >-
@@ -76,7 +78,7 @@ modules:
           the time and punctuating each minute with a moment of small delight.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/4ccbd9c6-cb4e-4127-8bef-23a0d8d1e26f/'
+    largeMediaFile: 'https://ucarecdn.com/ad5bb45a-7055-4a0a-88c7-c5c3bd72a4af/'
     type: largeMedia
 ---
 

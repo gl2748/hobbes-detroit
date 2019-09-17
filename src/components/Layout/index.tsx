@@ -2,10 +2,9 @@ import { RecoverAccountForm } from "@components/RecoverAccountForm";
 import styled from "@emotion/styled";
 import { NavigateFn } from "@reach/router";
 import { LocationState } from "history";
-import React, { HTMLProps, ReactNode, useEffect, useReducer } from "react";
+import React, { HTMLProps, ReactNode, Ref, useEffect, useReducer } from "react";
 import { Helmet } from "react-helmet";
 import { useIdentityContext } from "react-netlify-identity-widget";
-import breakpoints from "../../breakpoints";
 import { withLocation } from "../../higherOrderComponents/withLocation";
 import useLoading from "../../hooks/useLoading";
 import { ConfirmEmailForm } from "../ConfirmEmailForm";
@@ -25,6 +24,7 @@ export interface ILayoutProps {
   portalCopy?: string;
   location?: LocationState;
   navigate?: NavigateFn;
+  forwardedRef?: Ref<HTMLDivElement>;
 }
 const defaultLinks = [
   {
@@ -96,7 +96,7 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
   portalCopy = defaultPortalCopy,
   portalLinks = defaultLinks,
   location,
-  navigate
+  forwardedRef
 }) => {
   const { title, description } = useSiteMetadata();
   const [isLoading, load] = useLoading();
@@ -135,7 +135,7 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
   const toggleDrawer = (payload?: boolean) => () =>
     dispatch({ type: "toggleDrawer", payload });
   return (
-    <Container className={className}>
+    <Container className={className} ref={forwardedRef}>
       <Helmet>
         <html lang="en" />
         <title>{title}</title>

@@ -46,8 +46,9 @@ const Container = styled.div`
   }
 `;
 
-const Graphic = styled.div`
+const Graphic = styled.div<{ primaryColor: string }>`
   margin-bottom: 0.625rem;
+  background-color: ${({ primaryColor }) => primaryColor};
   position: relative;
   width: 100%;
   &:hover,
@@ -73,7 +74,12 @@ const Image = ({ src, alt }: HTMLProps<HTMLImageElement>): ReactElement => (
 );
 
 const StyledSvg = styled.div<{ fill: string }>`
+  background-color: ${({ fill }) => fill};
+  width: 100%;
+  height: 100%;
   svg {
+    width: 100%;
+    height: 100%;
     fill: ${({ fill }) => fill};
   }
 `;
@@ -153,7 +159,7 @@ export const ProjectRollItem = ({
         }
         unsetTypography={true}
       >
-        <Graphic>
+        <Graphic primaryColor={primaryColor}>
           {Component === null ? (
             <HobTypography variant="caption">Loading...</HobTypography>
           ) : (

@@ -38,7 +38,7 @@ const TextButton = styled(HobButtonBase)`
 
   :hover,
   :focus {
-    border-color: ${({ color }) => `var(--hob-color--${color})`};
+    opacity: 0.5;
   }
 `;
 
@@ -51,8 +51,7 @@ const OutlinedButton = styled(HobButtonBase)`
 
   :hover,
   :focus {
-    background-color: ${({ color }) => `var(--hob-color--${color})`};
-    color: ${({ color }) => `var(--hob-color-alt--${color})`};
+    opacity: 0.5;
   }
 `;
 

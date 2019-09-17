@@ -22,6 +22,13 @@ const Logo = styled.div`
   flex: 2;
   margin-right: 1rem;
 
+  & + .hob-link {
+    position: absolute;
+    z-index: 1;
+    left: 1rem;
+    bottom: 1.25rem;
+  }
+
   ${breakpoints.mobile} {
     margin-bottom: 1.5rem;
   }
@@ -49,32 +56,39 @@ interface Props {
   toggleDrawer: () => void;
 }
 
-export const Footer: React.FC<Props> = ({ toggleDrawer }) => {
-  const handleDrawerClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    toggleDrawer();
-  };
-  return (
-    <Container className="footer">
-      <Logo />
+export const Footer: React.FC<Props> = React.memo(
+  ({ toggleDrawer }) => {
+    const handleDrawerClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault();
+      toggleDrawer();
+    };
+    return (
+      <Container className="footer">
+        <Logo>
+          <Link unsetTypography={true} color="primary" to="/">
+            <HobLogo />
+          </Link>
+        </Logo>
 
-      <Copyright>
-        <HobTypography variant="body1">2019 (c) Hobbes</HobTypography>
-      </Copyright>
+        <Copyright>
+          <HobTypography variant="body1">2019 (c) Hobbes</HobTypography>
+        </Copyright>
 
-      <Links>
-        <Link to="/legal" color="primary">
-          Legal Information
-        </Link>
+        <Links>
+          <Link to="/legal" color="primary">
+            Legal Information
+          </Link>
 
-        <Link to="/cookie" color="primary">
-          Cookie Policy
-        </Link>
+          <Link to="/cookie" color="primary">
+            Cookie Policy
+          </Link>
 
-        <Link onClick={handleDrawerClick} color="primary">
-          Client Portal
-        </Link>
-      </Links>
-    </Container>
-  );
-};
+          <Link onClick={handleDrawerClick} color="primary">
+            Client Portal
+          </Link>
+        </Links>
+      </Container>
+    );
+  },
+  () => true
+);

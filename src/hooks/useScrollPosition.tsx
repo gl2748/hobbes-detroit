@@ -23,12 +23,11 @@ function getScrollPosition({
     return { x: 0, y: 0 };
   }
 
-  const target = element ? element.current : document.body;
-  const position = target.getBoundingClientRect();
+  const target = element && element.current ? element.current : document.body;
 
   return useWindow
     ? { x: window.scrollX, y: window.scrollY }
-    : { x: position.left, y: position.top };
+    : { x: target.scrollLeft, y: target.scrollTop };
 }
 
 export function useScrollPosition(
@@ -36,7 +35,7 @@ export function useScrollPosition(
   {
     deps,
     element,
-    useWindow,
+    useWindow = true,
     wait
   }: {
     deps?: any[];
@@ -67,8 +66,10 @@ export function useScrollPosition(
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    const target =
+      !useWindow && element && element.current ? element.current : window;
+    target.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => target.removeEventListener("scroll", handleScroll);
   }, deps);
 }

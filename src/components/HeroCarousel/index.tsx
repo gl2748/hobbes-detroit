@@ -6,15 +6,11 @@ export interface ICarouselProps {
   children: ReactNode[];
 }
 
-const Carousel = styled.div`
+const Carousel = styled(HobCarousel)`
   background-color: var(--hob-color--dark);
   position: relative;
 `;
 
 export const HeroCarousel: React.FC<ICarouselProps> = ({ children }) => {
-  return (
-    <Carousel>
-      <HobCarousel>{children}</HobCarousel>
-    </Carousel>
-  );
+  return <Carousel>{children}</Carousel>;
 };

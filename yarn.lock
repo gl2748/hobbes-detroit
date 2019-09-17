@@ -6223,6 +6223,11 @@ embla-carousel@^2.4.0:
   resolved "https://registry.yarnpkg.com/embla-carousel/-/embla-carousel-2.4.4.tgz#05e31aa043e5d0b7849f9278c4abdd5cd8aec220"
   integrity sha512-/74LIgYTseRHCmLAjw66k768kDJIlC0kynZ/GxR0qS9KcUEGEnZMGtBo0Rr+5wB8SBaivpUHGXaDYFJ5N5pL9Q==
 
+embla-carousel@^2.4.6:
+  version "2.4.6"
+  resolved "https://registry.yarnpkg.com/embla-carousel/-/embla-carousel-2.4.6.tgz#24b568e59784100ddff63c3e7361ebad6ec4651c"
+  integrity sha512-22KH3JG0yxyS0WIwKHxLW0GfMXBc0V6agmxFW8jkhK4gukLf+DZ7dVP7EORr9GqiB5jrOAOhsxgxWCZKG8q6iQ==
+
 "emoji-regex@>=6.0.0 <=6.1.1":
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-6.1.1.tgz#c6cd0ec1b0642e2a3c67a1137efc5e796da4f88e"

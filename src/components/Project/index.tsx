@@ -1,18 +1,19 @@
 import { Content, IContentProps } from "@components/Content";
 import { HobButton } from "@components/HobButton";
-import { HobGallery } from "@components/HobGallery";
-import { HobGrid } from "@components/HobGrid";
-import { HobLargeMedia } from "@components/HobLargeMedia";
-import { HobMarkdown } from "@components/HobMarkdown";
 import { HobTypography } from "@components/HobTypography";
 import styled from "@emotion/styled";
 import { ITransformerUploadcareMeta } from "@templates/project-post";
 import axios from "axios";
 import _ from "lodash";
-import React, { ReactElement, ReactNode, useEffect, useState } from "react";
-import SVG from "react-inlinesvg";
-import Lottie from "react-lottie";
-import breakpoints from "../../breakpoints";
+import React, { ReactElement, useEffect, useState } from "react";
+import { Gallery } from "./Gallery";
+import { Header } from "./Header";
+import { LargeMedia } from "./LargeMedia";
+import { MediaGrid } from "./MediaGrid";
+import { ProjectBanner } from "./ProjectBanner";
+import { ProjectTags } from "./ProjectTags";
+import { Team } from "./Team";
+import { TextArea } from "./TextArea";
 
 const getUploadcareUUID = (url: string): string => {
   return url.split("https://ucarecdn.com/")[1].split("/")[0];
@@ -39,51 +40,75 @@ export enum MediaType {
   JPG = "image/jpg",
   SVG = "image/svg+xml",
   GIF = "image/gif",
-  LOTTIE = "application/json"
+  LOTTIE = "application/json",
+  MP4 = "video/mp4",
+  QUICKTIME = "video/quicktime"
 }
 
-export interface IModuleProps {
-  textColumns: Array<{ column: string }>;
-  bleed: boolean;
+export type MediaVideo = MediaType.QUICKTIME | MediaType.MP4;
+
+export type MediaImage =
+  | MediaType.GIF
+  | MediaType.JPEG
+  | MediaType.JPG
+  | MediaType.PNG;
+
+export interface ISlide {
   caption: string;
-  headerText: string;
-  hideCaptions: boolean;
-  mediaGridMedia: Array<{ caption: string; mediaGridMediaFile: string }>;
-  largeMediaFile: string;
-  mobileDeviceMedia: string;
-  projectBannerMedia: string;
-  tabletDeviceMedia: string;
-  type:
-    | "gallery"
-    | "header"
-    | "largeMedia"
-    | "mediaGrid"
-    | "mobileDevice"
-    | "projectBanner"
-    | "tabletDevice"
-    | "textArea";
-  slides: Array<{ caption: string; slideMediaFile: string; type: string }>;
-  mediaMetadata: ITransformerUploadcareMeta[];
+  slideMediaFile: string;
+  type: string;
 }
 
-const withDefaultHeader = (
-  ms: IModuleProps[],
-  title: string
-): IModuleProps[] => {
+export interface IMediaGridMedia {
+  caption: string;
+  mediaGridMediaFile: string;
+}
+export interface IMediaResult {
+  data: any;
+  type: MediaType;
+  url?: string;
+}
+
+export type Module =
+  | {
+      type: "textArea";
+      textColumns: Array<{ column: string }>;
+    }
+  | {
+      type: "gallery";
+      slides: ISlide[];
+    }
+  | {
+      type: "header";
+      headerText: string;
+    }
+  | {
+      type: "largeMedia";
+      largeMediaFile: string;
+      bleed: boolean;
+      caption: string;
+    }
+  | {
+      type: "mediaGrid";
+      mediaGridMedia: IMediaGridMedia[];
+      hideCaptions: boolean;
+    }
+  | { type: "projectBanner"; projectBannerMedia: string }
+  | { type: "mobileDevice"; mobileDeviceMedia: string }
+  | { type: "tabletDevice"; tabletDeviceMedia: string }
+  | { type: "tags"; tags: string[] }
+  | { type: "team"; team: string[]; press: string[] };
+
+interface IMediaMetaData {
+  mediaMetadata?: ITransformerUploadcareMeta[];
+}
+
+export type ModuleProps = Module & IMediaMetaData;
+
+const withDefaultHeader = (ms: ModuleProps[], title: string): ModuleProps[] => {
   if (ms.findIndex(mod => mod.type === "header") === -1) {
-    const header: IModuleProps = {
-      bleed: false,
-      caption: "",
+    const header: Module = {
       headerText: title,
-      hideCaptions: false,
-      largeMediaFile: "",
-      mediaGridMedia: [],
-      mediaMetadata: [],
-      mobileDeviceMedia: "",
-      projectBannerMedia: "",
-      slides: [],
-      tabletDeviceMedia: "",
-      textColumns: [],
       type: "header"
     };
     return [ms[0], header, ...ms.slice(1)];
@@ -91,389 +116,92 @@ const withDefaultHeader = (
   return ms;
 };
 
+const withTags = (ms: ModuleProps[], tags: string[]): ModuleProps[] => {
+  const tagsElement: ModuleProps = { tags, type: "tags" };
+  return tags && tags.length
+    ? [...ms.slice(0, 2), tagsElement, ...ms.slice(2)]
+    : ms;
+};
+
+const withTeamAndPress = (
+  ms: ModuleProps[],
+  team: string[],
+  press: string[]
+): ModuleProps[] => {
+  const teamElement: ModuleProps = { team, press, type: "team" };
+  return team.length || press.length ? [...ms, teamElement] : ms;
+};
+
 const ModulesContainer = styled.div`
   > * {
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
   }
 `;
 
-const ProjectBanner = styled.div<{ image: string }>`
-  height: calc(100vh - 5.25rem);
-  ${breakpoints.mobile} {
-    height: calc(100vh - 3.5rem);
-  }
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.25rem;
-  margin-bottom: 0;
+const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
+  const [media, setMedia] = useState<IMediaResult[]>([]);
 
-  :after {
-    content: "";
-    width: 100%;
-    height: 100%;
-    display: block;
-    background-image: url(${({ image }) => image});
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    ${breakpoints.mobile} {
-      background-size: auto 100%;
-    }
-  }
-`;
-
-const Header = styled.div`
-  display: flex;
-  position: relative;
-  align-items: center;
-  height: 4rem;
-  padding: 0 1.25rem;
-  ${breakpoints.mobile} {
-    height: 2.25rem;
-  }
-
-  .hob-typography {
-    margin: 0 auto;
-    font-size: 2.8125rem;
-  }
-`;
-
-const TextArea = styled(HobGrid)`
-  padding: 1.25rem 6.625rem;
-
-  ${breakpoints.mobile} {
-    padding: 1.25rem;
-  }
-
-  &.module-text-area {
-    &--one {
-      padding: 4.125rem 0;
-      ${breakpoints.mobile} {
-        padding: 0;
-      }
-      .hob-grid__item {
-        width: 50vw;
-        height: auto;
-        margin: 0 auto;
-
-        ${breakpoints.mobile} {
-          width: 100%;
-          height: 100%;
-          padding: 1.25rem;
-        }
-      }
-    }
-  }
-`;
-
-const MediaGrid = styled(HobGrid)`
-  padding: 1.25rem 1.25rem 0;
-
-  & + &,
-  .hob-large-media + & {
-    padding-bottom: 1rem;
-    padding-top: 0;
-    margin-bottom: 0;
-    margin-top: -1.5rem;
-  }
-
-  ${breakpoints.mobile} {
-    padding: 0 1.25rem;
-  }
-
-  &.module-media-grid {
-    &--one {
-      .hob-grid__item {
-        width: 50vw;
-        margin: 0 auto;
-
-        ${breakpoints.mobile} {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-      img {
-        width: 100%;
-      }
-    }
-  }
-`;
-
-const MediaGridItem = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-
-  > div {
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  img,
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  .hob-typography {
-    position: absolute;
-    left: 0;
-    bottom: -1rem;
-  }
-
-  .module-media-grid__item {
-    img&,
-    & img {
-      width: 100%;
-    }
-  }
-`;
-
-const TwoThree = styled.div`
-  .module-media-grid {
-    & + .module-media-grid {
-      margin-top: 0rem;
-    }
-  }
-
-  .hob-grid {
-    &:first-of-type {
-      margin-bottom: 0;
-    }
-    &:last-of-type {
-      padding-top: 0;
-    }
-    ${breakpoints.mobile} {
-      &:nth-of-type(1) {
-        padding-bottom: 0;
-      }
-      &:nth-of-type(2) {
-        padding-top: 0;
-      }
-    }
-  }
-`;
-
-const MediaSlide = styled.div`
-  position: relative;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--hob-color--white);
-  .hob-logo {
-    width: 100px;
-    height: 100px;
-  }
-  .hob-typography {
-    color: var(--hob-color--);
-    font-size: 1.75rem;
-    position: absolute;
-    left: 0;
-    top: 100%;
-  }
-`;
-
-const MediaSlideMedia = styled.div`
-  .module-gallery-slide {
-    max-width: 60vw;
-  }
-`;
-
-const Tags = styled.ul`
-  display: flex;
-
-  li {
-    border-bottom: 1px solid var(--hob-color--primary);
-    padding-bottom: 0.375rem;
-    .hob-typography {
-      font-size: 0.875rem;
-    }
-  }
-
-  > * {
-    margin-right: 0.5rem;
-
-    &:last-of-type {
-      margin-right: none;
-    }
-  }
-`;
-
-const MainTextArea = styled.div`
-  padding-top: 2.875rem;
-
-  .module-text-area {
-    padding-top: 1.25rem !important;
-    ${breakpoints.mobile} {
-      padding-top: 0;
-    }
-  }
-  .main-text-area__tags {
-    width: 50vw;
-    margin: 0 auto;
-
-    ${breakpoints.mobile} {
-      width: 100%;
-      height: 100%;
-      padding: 0 1.25rem;
-    }
-  }
-`;
-
-const CMSModule = (
-  props: IModuleProps & {
-    index: number;
-    tags?: string[];
-    mediaMetadata: ITransformerUploadcareMeta[];
-  }
-): ReactElement => {
-  const [media, setMedia] = useState<
-    Array<{
-      data: any;
-      type: MediaType;
-      url?: string;
-    }>
-  >([]);
-  const metaDataGetter = getMetadata(props.mediaMetadata);
+  const metaDataGetter = getMetadata(props.mediaMetadata || []);
 
   switch (props.type) {
-    case "projectBanner":
+    case "projectBanner": {
       const meta = metaDataGetter(props.projectBannerMedia);
-      useEffect(() => {
-        setMedia([
-          {
-            data: null,
-            type: meta[0].mime_type,
-            url: props.projectBannerMedia
-          }
-        ]);
-      }, []);
-      return (
-        <ProjectBanner
-          className="media-project-banner"
-          image={props.projectBannerMedia}
-        />
-      );
+      const mimeType = meta[0] && meta[0].mime_type;
+      switch (mimeType) {
+        case MediaType.PNG:
+        case MediaType.JPEG:
+        case MediaType.JPG:
+        case MediaType.GIF:
+          return (
+            <ProjectBanner
+              mimeType={mimeType}
+              imageUrl={props.projectBannerMedia}
+            />
+          );
+
+        case MediaType.LOTTIE:
+          useEffect(() => {
+            axios.get(props.projectBannerMedia).then(({ data }) => {
+              setMedia([{ data, type: MediaType.LOTTIE }]);
+            });
+          }, []);
+
+          return (
+            <ProjectBanner
+              mimeType={mimeType}
+              animationOptions={{
+                animationData: media[0] ? media[0].data : {},
+                autoplay: true,
+                loop: true
+              }}
+            />
+          );
+
+        case MediaType.MP4:
+        case MediaType.QUICKTIME:
+          return (
+            <ProjectBanner
+              mimeType={mimeType}
+              videoUrl={props.projectBannerMedia}
+            />
+          );
+
+        default:
+          return (
+            <HobTypography variant="body1">
+              Cannot render project banner
+            </HobTypography>
+          );
+      }
+    }
 
     case "header":
-      return (
-        <Header>
-          <HobTypography variant="h2">{props.headerText}</HobTypography>
-        </Header>
-      );
+      return <Header text={props.headerText} />;
 
     case "textArea":
-      const { index, tags } = props;
-      const text = (
-        <TextArea
-          className={`module-text-area module-text-area--${
-            props.textColumns.length === 1 ? "one" : "many"
-          }`}
-        >
-          {props.textColumns.map(({ column }) => (
-            <HobMarkdown source={column} key={column.slice(0, 50)} />
-          ))}
-        </TextArea>
-      );
-      return index < 3 && tags && tags.length ? (
-        <MainTextArea className="main-text-area">
-          <Tags className="main-text-area__tags">
-            {tags.map(tag => (
-              <li key={tag + `tag`}>
-                <HobTypography variant="caption">
-                  {_.kebabCase(tag)}
-                </HobTypography>
-              </li>
-            ))}
-          </Tags>
-          {text}
-        </MainTextArea>
-      ) : (
-        text
-      );
+      return <TextArea text={props.textColumns.map(({ column }) => column)} />;
 
     case "mediaGrid": {
-      const makeMediaGridItem = (
-        {
-          data,
-          type,
-          url = ""
-        }: {
-          data: any;
-          type: MediaType;
-          url?: string;
-        },
-        i: number
-      ) => {
-        const components = {
-          [MediaType.PNG]: () => (
-            <img
-              className="module-media-grid__item"
-              src={url}
-              alt="module media grid item"
-            />
-          ),
-          [MediaType.JPG]: () => (
-            <img
-              className="module-media-grid__item"
-              src={url}
-              alt="module media grid item"
-            />
-          ),
-          [MediaType.JPEG]: () => (
-            <img
-              className="module-media-grid__item"
-              src={url}
-              alt="module media grid item"
-            />
-          ),
-          [MediaType.GIF]: () => (
-            <img
-              className="module-media-grid__item"
-              src={url}
-              alt="module media grid item"
-            />
-          ),
-          [MediaType.SVG]: () => (
-            <SVG className="module-media-grid__item" src={url} />
-          ),
-          [MediaType.LOTTIE]: () => {
-            const defaultOptions = {
-              animationData: data,
-              autoplay: true,
-              loop: true
-            };
-
-            return <Lottie options={defaultOptions} height={400} width={400} />;
-          }
-        };
-        const Component =
-          components[type] ||
-          (() => (
-            <div key={props.mediaGridMedia[i].mediaGridMediaFile}>{type}</div>
-          ));
-
-        return (
-          <MediaGridItem key={props.mediaGridMedia[i].mediaGridMediaFile}>
-            <Component />
-            {!props.hideCaptions && (
-              <HobTypography variant="caption">
-                {props.mediaGridMedia[i].caption}
-              </HobTypography>
-            )}
-          </MediaGridItem>
-        );
-      };
-
       useEffect(() => {
         Promise.all(
           props.mediaGridMedia.map(async ({ mediaGridMediaFile }) => {
@@ -496,181 +224,39 @@ const CMSModule = (
         ).then(setMedia);
       }, []);
 
-      return media.length < 4 ? (
+      return (
         <MediaGrid
-          className={`module-media-grid module-media-grid--${
-            media.length === 1 ? "one" : "many"
-          }`}
-        >
-          {media.map(makeMediaGridItem)}
-        </MediaGrid>
-      ) : (
-        <TwoThree>
-          <MediaGrid className="module-media-grid">
-            {media.slice(0, 2).map(makeMediaGridItem)}
-          </MediaGrid>
-
-          <MediaGrid className="module-media-grid">
-            {media.slice(2).map(makeMediaGridItem)}
-          </MediaGrid>
-        </TwoThree>
+          media={media}
+          mediaGridMedia={props.mediaGridMedia}
+          hideCaptions={props.hideCaptions}
+        />
       );
     }
 
-    case "largeMedia":
+    case "largeMedia": {
+      const largeMediaMetadata = metaDataGetter(props.largeMediaFile);
+      const mimeType = largeMediaMetadata[0].mime_type;
       useEffect(() => {
-        const largeMediaMetadata = metaDataGetter(props.largeMediaFile);
-        if (largeMediaMetadata[0].mime_type === MediaType.LOTTIE) {
+        if (mimeType === MediaType.LOTTIE) {
           axios.get(props.largeMediaFile).then(({ data, headers }) => {
             setMedia([{ data, type: MediaType.LOTTIE }]);
           });
-        } else {
-          setMedia([
-            {
-              data: null,
-              type: largeMediaMetadata[0].mime_type,
-              url: props.largeMediaFile
-            }
-          ]);
         }
       }, []);
+
       return (
-        <HobLargeMedia bleed={props.bleed}>
-          {media.map(({ data, type }, i) => {
-            switch (type) {
-              case MediaType.PNG:
-              case MediaType.JPEG:
-              case MediaType.JPG:
-              case MediaType.GIF: {
-                return (
-                  <div key={props.largeMediaFile}>
-                    <img src={props.largeMediaFile} alt="banner media" />
-                    <HobTypography variant="body1">
-                      {props.caption}
-                    </HobTypography>
-                  </div>
-                );
-              }
-              case MediaType.SVG: {
-                return (
-                  <div key={props.largeMediaFile}>
-                    <SVG src={props.largeMediaFile} />
-                    <HobTypography variant="body1">
-                      {props.caption}
-                    </HobTypography>
-                  </div>
-                );
-              }
-
-              case MediaType.LOTTIE: {
-                const defaultOptions = {
-                  animationData: data,
-                  autoplay: true,
-                  loop: true
-                };
-
-                return (
-                  <div key={props.largeMediaFile}>
-                    <Lottie options={defaultOptions} height={400} width={400} />
-                    <HobTypography variant="body1">
-                      {props.caption}
-                    </HobTypography>
-                  </div>
-                );
-              }
-              default:
-                return <div key={props.largeMediaFile}>{type}</div>;
-            }
-          })}
-        </HobLargeMedia>
+        <LargeMedia
+          mimeType={mimeType}
+          media={media[0]}
+          bleed={props.bleed}
+          largeMediaFile={props.largeMediaFile}
+          caption={props.caption}
+        />
       );
-    case "gallery":
-      const makeGallerySlide = (slides: IModuleProps["slides"]) => (
-        { data, type, url = "" }: { data: any; type: MediaType; url?: string },
-        i: number
-      ) => {
-        switch (type) {
-          case MediaType.PNG:
-          case MediaType.JPEG:
-          case MediaType.JPG:
-          case MediaType.GIF: {
-            return (
-              <MediaSlide key={`${url}`}>
-                <MediaSlideMedia>
-                  <img
-                    className="module-gallery-slide"
-                    src={url}
-                    alt="module media grid item"
-                  />
-                </MediaSlideMedia>
-                <HobTypography variant="body1">
-                  {
-                    slides.filter(slide => slide.slideMediaFile === url)[0]
-                      .caption
-                  }
-                </HobTypography>
-              </MediaSlide>
-            );
-          }
+    }
 
-          case MediaType.SVG: {
-            return (
-              <MediaSlide key={`svg:${i}`}>
-                <MediaSlideMedia>
-                  <SVG src={url} />
-                </MediaSlideMedia>
-                <HobTypography variant="body1">
-                  {
-                    slides.filter(slide => slide.slideMediaFile === url)[0]
-                      .caption
-                  }
-                </HobTypography>
-              </MediaSlide>
-            );
-          }
-
-          case MediaType.LOTTIE: {
-            const defaultOptions = {
-              animationData: data,
-              autoplay: true,
-              loop: true
-            };
-
-            return (
-              <MediaSlide key={`lottie:${i}`}>
-                <MediaSlideMedia>
-                  <Lottie options={defaultOptions} height={400} width={400} />
-                </MediaSlideMedia>
-                <HobTypography variant="body1">
-                  {
-                    slides.filter(slide => slide.slideMediaFile === url)[0]
-                      .caption
-                  }
-                </HobTypography>
-              </MediaSlide>
-            );
-          }
-
-          default:
-            return <div key={`${type}:${i}`}>{type}</div>;
-        }
-      };
-
+    case "gallery": {
       useEffect(() => {
-        Promise.all(
-          props.slides.map(({ slideMediaFile }) => {
-            return axios.get(slideMediaFile);
-          })
-        ).then(responses => {
-          setMedia(
-            responses.map(({ data, headers, request }) => ({
-              data,
-              type: headers["content-type"],
-              url: request.responseURL
-            }))
-          );
-        });
-
         Promise.all(
           props.slides.map(async ({ slideMediaFile }) => {
             const slideMeta = metaDataGetter(slideMediaFile);
@@ -678,7 +264,7 @@ const CMSModule = (
               const response = await axios.get(slideMediaFile);
               return {
                 data: response.data,
-                type: mediaGridMeta[0].mime_type,
+                type: slideMeta[0].mime_type,
                 url: slideMediaFile
               };
             } else {
@@ -692,15 +278,14 @@ const CMSModule = (
         ).then(setMedia);
       }, []);
 
-      const gallerySlides = media.map(makeGallerySlide(props.slides));
+      return <Gallery media={media} slides={props.slides} />;
+    }
 
-      const GalleryContainer = styled(HobGallery)`
-        overflow: visible !important;
-        padding: 1.25rem 0 1.25rem 0;
-        margin-bottom: 1.5rem;
-      `;
+    case "tags":
+      return <ProjectTags tags={props.tags} />;
 
-      return <GalleryContainer>{gallerySlides}</GalleryContainer>;
+    case "team":
+      return <Team team={props.team} press={props.press} />;
 
     default:
       return (
@@ -712,6 +297,7 @@ const CMSModule = (
 };
 
 export interface IProjectProps {
+  backToTop: () => void;
   content: string;
   contentComponent?: React.FC<IContentProps>;
   description: string;
@@ -720,9 +306,11 @@ export interface IProjectProps {
   helmet: ReactElement;
   featured: boolean;
   protectedProject: boolean;
-  modules?: IModuleProps[];
+  modules?: ModuleProps[];
   featuredJson: string;
   mediaMetadata: ITransformerUploadcareMeta[];
+  team: string[];
+  press: string[];
 }
 
 const Container = styled.div``;
@@ -740,6 +328,7 @@ const BackToTop = styled.div`
 `;
 
 export const Project: React.FC<IProjectProps> = ({
+  backToTop,
   content,
   contentComponent: PostContent = Content,
   description,
@@ -749,6 +338,8 @@ export const Project: React.FC<IProjectProps> = ({
   featured,
   featuredJson,
   protectedProject,
+  team,
+  press,
   modules = [],
   mediaMetadata
 }: IProjectProps) => {
@@ -768,8 +359,8 @@ export const Project: React.FC<IProjectProps> = ({
     loop: true
   };
 
-  const getKey = ({ type, ...module }: IModuleProps) => {
-    switch (type) {
+  const getKey = (module: ModuleProps) => {
+    switch (module.type) {
       case "header":
         return module.headerText;
 
@@ -795,20 +386,19 @@ export const Project: React.FC<IProjectProps> = ({
     }
   };
 
-  const backToTop = () => {
-    window.scrollTo(0, 0);
-  };
-
   return (
     <Container>
-      {helmet || ""}
+      {helmet}
       <ModulesContainer>
-        {withDefaultHeader(modules, title).map((module, index) => (
+        {withTeamAndPress(
+          withTags(withDefaultHeader(modules, title), tags || []),
+          team || [],
+          press || []
+        ).map((module, index) => (
           <CMSModule
             {...module}
             key={getKey(module)}
             index={index}
-            tags={tags}
             mediaMetadata={mediaMetadata}
           />
         ))}

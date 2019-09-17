@@ -4,8 +4,8 @@ title: Google Nest Home Hub Max
 date: 2019-09-06T21:18:50.099Z
 description: Google Nest Home Hub Max is a project by Hobbes
 metaImage: 'https://ucarecdn.com/80bb80eb-13ab-4729-a6df-80c5e18fe1d8/'
-primaryColor: '#4385f4'
-secondaryColor: '#4385f4'
+primaryColor: '#FFA8F4'
+secondaryColor: '#FFA8F4'
 protectedProject: false
 featured: false
 featuredJson: 'https://ucarecdn.com/61aa5094-7c9d-4204-b1c1-c18849ba5f8a/'
@@ -33,13 +33,12 @@ modules:
           recognized an opportunity to educate users about their options,
           empowering them to take control of their privacy.
     type: textArea
+  - bleed: false
+    largeMediaFile: 'https://ucarecdn.com/3f457d11-6f27-4495-8e83-1bb9e42863dd/'
+    type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/f7c85738-19f5-42c2-83ca-a413e9cd1fab/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/be0e00d5-88b7-4557-b302-cb7d26afdd83/'
-    type: mediaGrid
-  - hideCaptions: false
-    mediaGridMedia:
+      - mediaGridMediaFile: 'https://ucarecdn.com/b029bc7a-2c03-4358-a01e-49a97fd4921a/'
       - mediaGridMediaFile: 'https://ucarecdn.com/a62df6b1-9cbe-49a6-9781-d8c1863845c5/'
       - mediaGridMediaFile: 'https://ucarecdn.com/5d4f1533-aae1-4ee9-b86f-a3e04a37df6f/'
     type: mediaGrid
@@ -52,8 +51,10 @@ modules:
           illustrations for the Nest Hub Max set-up experience. These forced us
           to design around some difficult constraints..
     type: textArea
-  - mobileDeviceMedia: 'https://ucarecdn.com/1ff14f2e-9971-415c-ae76-3035e82a710d/'
-    type: mobileDevice
+  - hideCaptions: false
+    mediaGridMedia:
+      - mediaGridMediaFile: 'https://ucarecdn.com/dd9f90a8-7514-4f7d-8129-d20563725f5c/'
+    type: mediaGrid
   - textColumns:
       - column: >-
           We needed to keep our animations from bloating the file size of an
