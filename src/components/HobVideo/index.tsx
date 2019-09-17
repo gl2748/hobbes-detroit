@@ -15,6 +15,7 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  background-color: var(--hob-color--dark);
 
   .hob-video__controls {
     transition: opacity 300ms;
@@ -33,6 +34,7 @@ const Container = styled.div`
 
   video {
     width: 100%;
+    height: 100%;
   }
 
   button {
