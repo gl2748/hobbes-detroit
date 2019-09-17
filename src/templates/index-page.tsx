@@ -35,7 +35,7 @@ const Container = styled(LayoutWithLocation)`
   > .logo {
     position: fixed;
     z-index: 1;
-    left: 1rem;
+    left: 1.25rem;
     bottom: 1.25rem;
 
     &--scrolled {

@@ -285,7 +285,7 @@ const Container = styled(Layout)`
   > .logo {
     position: fixed;
     bottom: 1.25rem;
-    left: 1rem;
+    left: 1.25rem;
     z-index: 2;
 
     &--scrolled {
