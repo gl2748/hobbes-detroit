@@ -15,7 +15,7 @@ const MediaSlide = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--hob-color--white);
+
   .hob-logo {
     width: 100px;
     height: 100px;
