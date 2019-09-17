@@ -60,7 +60,7 @@ const MediaGridItem = styled.div`
     height: 100%;
   }
 
-  .hob-typography {
+  > .hob-typography--caption {
     position: absolute;
     left: 0;
     bottom: -1rem;
