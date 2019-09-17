@@ -388,6 +388,7 @@ export const HobVideo: React.FC<IVideoProps & HTMLProps<HTMLVideoElement>> = ({
 
   let videoToRender = (
     <Video
+      preload="auto"
       className="hob-video"
       ref={videoRef}
       onLoadedMetadata={withVideo(onMetaLoad)}
@@ -405,6 +406,7 @@ export const HobVideo: React.FC<IVideoProps & HTMLProps<HTMLVideoElement>> = ({
   if (children.props.type === MediaType.QUICKTIME) {
     videoToRender = (
       <Video
+        preload={"auto"}
         className="hob-video"
         ref={videoRef}
         onLoadedMetadata={withVideo(onMetaLoad)}
