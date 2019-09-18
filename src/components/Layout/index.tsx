@@ -26,7 +26,7 @@ export interface ILayoutProps {
   navigate?: NavigateFn;
   forwardedRef?: Ref<HTMLDivElement>;
 }
-const defaultLinks: string[] = [];
+const defaultLinks: Array<{ href: string; label: string }> = [];
 const defaultPortalCopy = "";
 export interface ILayoutState {
   showDrawer: boolean;
