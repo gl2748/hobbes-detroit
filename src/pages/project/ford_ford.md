@@ -3,16 +3,17 @@ templateKey: project-post
 title: Ford
 date: 2019-09-14T14:19:27.252Z
 description: Ford is a protected project by Hobbes.
-metaImage: "https://ucarecdn.com/4e5a745f-f8f1-4005-aa68-e209f9afaf4f/"
-primaryColor: "#1351D8"
+metaImage: 'https://ucarecdn.com/5cd9eef2-d9a8-43fb-850b-79347e2e5204/'
+primaryColor: '#1351D8'
 protectedProject: true
 featured: false
+featuredJson: 'https://ucarecdn.com/93d31f62-41fe-4348-802e-d6a857571804/'
 featuredProjectSort: 1
-featuredJson: "https://ucarecdn.com/93d31f62-41fe-4348-802e-d6a857571804/"
-indexSvg: "https://ucarecdn.com/814a2683-9823-4323-883c-44396662329c/"
+indexSvg: 'https://ucarecdn.com/99a36aa7-2f29-41c9-a233-25b4bcab1c8a/'
 tags:
   - ford
   - innovation
   - synergy
 client: Ford
 ---
+
