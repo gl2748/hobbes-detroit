@@ -4,7 +4,7 @@ import GatsbyLink from "gatsby-link";
 import React, { HTMLProps } from "react";
 import { HobTypography } from "../HobTypography";
 
-export interface IHobLinkProps {
+export interface IHobLinkProps extends HTMLProps<HTMLAnchorElement> {
   color: "primary" | "secondary" | "dark-gray";
   to?: string;
   unsetTypography?: boolean;
@@ -34,9 +34,7 @@ const withStyle = (C: "a" | (typeof GatsbyLink)) => styled<any>(C)<
   }
 `;
 
-export const HobLink: React.FC<
-  IHobLinkProps & HTMLProps<HTMLAnchorElement>
-> = ({
+export const HobLink: React.FC<IHobLinkProps> = ({
   color,
   children,
   className = "",

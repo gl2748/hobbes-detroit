@@ -1,6 +1,13 @@
 import { HobTypography } from "@components/HobTypography";
+import { MediaType } from "@components/Project";
 import styled from "@emotion/styled";
-import React, { HTMLProps, useEffect, useReducer, useRef } from "react";
+import React, {
+  HTMLProps,
+  useEffect,
+  useReducer,
+  useRef,
+  ReactNode
+} from "react";
 import breakpoints from "../../breakpoints";
 
 export interface IVideoProps {
@@ -9,6 +16,8 @@ export interface IVideoProps {
   showStop?: boolean;
   showMute?: boolean;
   showFullscreen?: boolean;
+  children: ReactNode;
+  loop?: boolean;
 }
 
 const Container = styled.div`
@@ -68,6 +77,7 @@ const Container = styled.div`
 `;
 
 const PlayPause = styled.div`
+  opacity: 0.5;
   position: absolute;
   top: 0;
   left: 0;
@@ -111,22 +121,25 @@ const CurrentTime = styled(HobTypography)`
   font-size: 2.5rem;
 
   ${breakpoints.mobile} {
-    font-size: 1rem;
+    display: none;
   }
 `;
 
 const Progress = styled.progress`
+  opacity: 0.5;
   position: absolute;
   bottom: 0;
   left: 0;
   width: calc(100% - 7.0625rem);
+  height: 3.8125rem;
 
   ${breakpoints.mobile} {
-    width: calc(100% - 3rem);
+    display: none;
   }
 `;
 
 const Volume = styled.div<{ volume: number }>`
+  opacity: 0.5;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -141,21 +154,25 @@ const Volume = styled.div<{ volume: number }>`
   );
 
   ${breakpoints.mobile} {
-    height: 1.5rem;
-    width: 3rem;
+    display: none;
   }
 
   button {
+    &:hover {
+      cursor: pointer;
+    }
+
     font-size: 2.5rem;
     border: none;
     background: none;
-    ${breakpoints.mobile} {
-      font-size: 1rem;
-    }
   }
 `;
 
-const Video = styled.video``;
+const Video = styled.video`
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 interface State {
   currentTime: number;
@@ -232,6 +249,7 @@ export const HobVideo: React.FC<IVideoProps & HTMLProps<HTMLVideoElement>> = ({
   showMute = false,
   showFullscreen = false,
   showStop = false,
+  loop = true,
   children
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -384,55 +402,75 @@ export const HobVideo: React.FC<IVideoProps & HTMLProps<HTMLVideoElement>> = ({
     return `${padLeft(minutes)}:${padLeft(seconds)}`;
   };
 
-  return (
-    <Container
-      ref={containerRef}
-      className={`hob-video hob-video--${state.paused ? "paused" : "playing"}`}
+  let videoToRender = (
+    <Video
+      preload="auto"
+      className="hob-video"
+      ref={videoRef}
+      onLoadedMetadata={withVideo(onMetaLoad)}
+      onTimeUpdate={withVideo(updateTime)}
+      onEnded={withVideo(stop)}
+      onClick={withVideo(playPause)}
+      loop={loop}
     >
+      {source ? <source src={source} type={mimeType} /> : children}
+      <p>
+        Your browser doesn't support HTML5 video.
+        <a href="videos/mikethefrog.mp4">Download</a> the video instead.
+      </p>
+    </Video>
+  );
+
+  if (children.props.type === MediaType.QUICKTIME) {
+    videoToRender = (
       <Video
+        preload={"auto"}
         className="hob-video"
         ref={videoRef}
         onLoadedMetadata={withVideo(onMetaLoad)}
         onTimeUpdate={withVideo(updateTime)}
         onEnded={withVideo(stop)}
-      >
-        {source ? <source src={source} type={mimeType} /> : children}
-        <p>
-          Your browser doesn't support HTML5 video.
-          <a href="videos/mikethefrog.mp4">Download</a> the video instead.
-        </p>
-      </Video>
+        onClick={withVideo(playPause)}
+        loop={loop}
+        src={children.props.src}
+      />
+    );
+  }
 
+  return (
+    <Container
+      ref={containerRef}
+      className={`hob-video hob-video--${state.paused ? "paused" : "playing"}`}
+    >
+      {videoToRender}
       <div className="hob-video__controls">
-        {state.duration > 0 && (
-          <PlayPause>
-            <button onClick={withVideo(playPause)}>
-              {state.paused ? (
-                <>
-                  <svg
-                    viewBox="0 0 24 30"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M0 0l24 16L0 30V0z" fill="#C4C4C4" />
-                  </svg>
-                  <HobTypography variant="button">Play</HobTypography>
-                </>
-              ) : (
-                <>
-                  <svg
-                    viewBox="0 0 24 30"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path fill="#C4C4C4" d="M0 0h5v30H0zM9 0h5v30H9z" />
-                  </svg>
-                  <HobTypography variant="button">Pause</HobTypography>
-                </>
-              )}
-            </button>
-          </PlayPause>
-        )}
+        <PlayPause>
+          <button onClick={withVideo(playPause)}>
+            {state.paused ? (
+              <>
+                <svg
+                  viewBox="0 0 24 30"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M0 0l24 16L0 30V0z" fill="#C4C4C4" />
+                </svg>
+                <HobTypography variant="button">Play</HobTypography>
+              </>
+            ) : (
+              <>
+                <svg
+                  viewBox="0 0 24 30"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path fill="#C4C4C4" d="M0 0h5v30H0zM9 0h5v30H9z" />
+                </svg>
+                <HobTypography variant="button">Pause</HobTypography>
+              </>
+            )}
+          </button>
+        </PlayPause>
 
         <CurrentTime variant="body1">{currentTime()}</CurrentTime>
 

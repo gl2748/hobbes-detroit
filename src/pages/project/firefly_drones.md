@@ -1,13 +1,13 @@
 ---
 templateKey: project-post
 title: Drones
-date: 2019-09-12T18:27:07.368Z
+date: 2019-09-16T18:27:00.000Z
 description: Drone shows are a project by Hobbes
 metaImage: 'https://ucarecdn.com/e95a9379-17f5-4eca-b42e-070c482cd6ec/'
 primaryColor: '#57CCF2'
 secondaryColor: '#57CCF2'
 protectedProject: false
-featured: false
+featured: true
 featuredJson: 'https://ucarecdn.com/f2649742-a36f-4e6b-8978-0b1a57d8ecf4/'
 indexSvg: 'https://ucarecdn.com/e92a6db1-f47f-4215-b5ff-9ca76b7d1b97/'
 tags:

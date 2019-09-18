@@ -34,6 +34,7 @@ const Banner = styled.div<{ image?: string }>`
   }
 
   &.media-project-banner--lottie {
+    background-color: #ffffff;
     :after {
       display: none;
     }

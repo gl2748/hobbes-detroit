@@ -1,6 +1,5 @@
 import { HTMLContent } from "@components/Content";
-import { DynamicGradientSvgText } from "@components/DynamicGradientSvgText";
-import { HobLink, HobLink as Link } from "@components/HobLink";
+import { HobLink as Link } from "@components/HobLink";
 import { HobLogo } from "@components/HobLogo";
 import { HobTypography } from "@components/HobTypography";
 import { Layout } from "@components/Layout";
@@ -16,6 +15,8 @@ import { LocationState } from "history";
 import React, { useReducer, useRef, useState } from "react";
 import Helmet from "react-helmet";
 import breakpoints from "../breakpoints";
+import { MemoizedLink } from "./MemoizedLink";
+import { MemoizedLogo } from "./MemoizedLogo";
 
 interface SideLink {
   frontmatter: {
@@ -56,7 +57,6 @@ export interface IProjectPostProps {
 }
 
 const PaginationContainer = styled.div<{
-  scrollDirection: "north" | "south";
   bottomColor: string;
   topColor: string;
 }>`
@@ -81,17 +81,10 @@ const PaginationContainer = styled.div<{
   &.side-pagination {
     ${breakpoints.mobile}, ${breakpoints.noHover} {
       left: 0;
-      height: ${({ scrollDirection }) =>
-        scrollDirection === "north" ? 2 : 0}rem;
       overflow: hidden;
       width: 100%;
       display: flex;
-    }
-
-    &--northbound {
-      ${breakpoints.mobile}, ${breakpoints.noHover} {
-        height: 3rem;
-      }
+      height: 0;
     }
   }
 
@@ -197,57 +190,73 @@ interface ISideLink {
   label: string;
   color: string;
 }
-const SidePagination = ({
-  prev,
-  next,
-  prevY,
-  currY
-}: {
-  prev: ISideLink;
-  next: ISideLink;
-  prevY: number;
-  currY: number;
-}) => {
-  const scrollDirection: "north" | "south" =
-    currY !== 0 && prevY > currY ? "north" : "south";
-
-  return (
-    <PaginationContainer
-      topColor={next.color}
-      bottomColor={prev.color}
-      scrollDirection={scrollDirection}
-      className={`side-pagination side-pagination--${scrollDirection}bound`}
-    >
-      <Link
-        to={next.to}
-        color="primary"
-        className="side-pagination__link side-pagination__link--top"
-        unsetTypography={true}
+const SidePagination = React.memo(
+  ({ prev, next }: { prev: ISideLink; next: ISideLink }) => {
+    return (
+      <PaginationContainer
+        topColor={next.color}
+        bottomColor={prev.color}
+        className="side-pagination"
       >
-        <span className="side-pagination__arrow">→</span>
-        <HobTypography variant="link">{next.label}</HobTypography>
-      </Link>
+        <Link
+          to={next.to}
+          color="primary"
+          className="side-pagination__link side-pagination__link--top"
+          unsetTypography={true}
+        >
+          <span className="side-pagination__arrow">→</span>
+          <HobTypography variant="link">{next.label}</HobTypography>
+        </Link>
 
-      <Link
-        to={prev.to}
-        color="primary"
-        className="side-pagination__link side-pagination__link--bottom"
-        unsetTypography={true}
-      >
-        <span className="side-pagination__arrow">←</span>
-        <HobTypography variant="link">{prev.label}</HobTypography>
-      </Link>
-    </PaginationContainer>
-  );
-};
+        <Link
+          to={prev.to}
+          color="primary"
+          className="side-pagination__link side-pagination__link--bottom"
+          unsetTypography={true}
+        >
+          <span className="side-pagination__arrow">←</span>
+          <HobTypography variant="link">{prev.label}</HobTypography>
+        </Link>
+      </PaginationContainer>
+    );
+  },
+  (a, b) => a.prev.to === b.prev.to && a.next.to === b.next.to
+);
 
 const Container = styled(Layout)`
   overflow-x: hidden;
-  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
+  height: 100vh;
   overflow-y: scroll;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+
+  &.main--work {
+    .nav__item--Work {
+      svg {
+        text {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &.main--studio {
+    .nav__item--Studio {
+      svg {
+        text {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &.main--north {
+    .side-pagination {
+      ${breakpoints.mobile}, ${breakpoints.noHover} {
+        height: 3rem;
+      }
+    }
+  }
 
   #studio,
   .footer {
@@ -287,6 +296,10 @@ const Container = styled(Layout)`
     bottom: 1.25rem;
     left: 1.25rem;
     z-index: 2;
+    svg {
+      stroke: none;
+      fill: var(--hob-color--dark);
+    }
 
     &--scrolled {
       svg {
@@ -427,47 +440,49 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
     ? WithAuth(Project)
     : Project;
 
-  const link = (href: string, label: string) => (
-    <Link color="secondary" href={href} unsetTypography={true}>
-      <DynamicGradientSvgText
-        underline={hash === href.replace(/^\//, "")}
-        height={height}
-        offset={offset}
-        from="var(--hob-color--dark)"
-        to="var(--hob-color--light)"
-      >
-        {label}
-      </DynamicGradientSvgText>
-    </Link>
-  );
-
   const backToTop = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo(0, 0);
     }
   };
 
+  const section =
+    scrollY === 0 ? "home" : scrollY < studioTop ? "work" : "studio";
+
+  const scrollDirection: "north" | "south" =
+    scrollY !== 0 && scrollYPrev > scrollY ? "north" : "south";
+
   return (
-    <Container forwardedRef={scrollRef}>
-      <SidePagination
-        prev={toProps(prev)}
-        next={toProps(next)}
-        currY={scrollY}
-        prevY={scrollYPrev}
-      />
+    <Container
+      forwardedRef={scrollRef}
+      className={`main main--${section} main--${scrollDirection}`}
+    >
+      <SidePagination prev={toProps(prev)} next={toProps(next)} />
       <Navbar className={`nav`} forwardedRef={navRef}>
-        {link("/#work", "Work")}
-        {link("#studio", "Studio")}
+        <MemoizedLink
+          href="/#work"
+          label="Work"
+          color="primary"
+          height={height}
+          offset={offset}
+        />
+        <MemoizedLink
+          href="#studio"
+          label="Studio"
+          color="primary"
+          height={height}
+          offset={offset}
+        />
       </Navbar>
 
-      <HobLink
+      <MemoizedLogo
         className={`logo logo--${scrollY > 0 ? "scrolled" : "top"}`}
         unsetTypography={true}
         color="primary"
         to="/"
       >
-        <HobLogo fill="var(--hob-color--primary)" />
-      </HobLink>
+        <HobLogo fill="var(--hob-color--secondary)" />
+      </MemoizedLogo>
 
       <EnhancedProjectComponent
         backToTop={backToTop}

@@ -1,7 +1,7 @@
 ---
 templateKey: project-post
 title: Google Nest Home Hub Max
-date: 2019-09-06T21:18:50.099Z
+date: 2019-09-18T21:18:50.099Z
 description: Google Nest Home Hub Max is a project by Hobbes
 metaImage: 'https://ucarecdn.com/80bb80eb-13ab-4729-a6df-80c5e18fe1d8/'
 primaryColor: '#FFA8F4'

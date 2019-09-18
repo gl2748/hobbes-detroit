@@ -1,7 +1,7 @@
 ---
 templateKey: project-post
 title: Clocks
-date: 2019-09-06T18:39:28.904Z
+date: 2019-09-15T18:39:28.904Z
 description: 'A project with a bunch of clocks. '
 metaImage: 'https://ucarecdn.com/1aa37987-cc37-417e-8c29-3e0b84535f1e/'
 primaryColor: '#00AD71'
