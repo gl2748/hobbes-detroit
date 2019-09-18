@@ -1,11 +1,18 @@
 import styled from "@emotion/styled";
 import axios from "axios";
-import React, { HTMLProps, ReactElement, useEffect, useState } from "react";
+import React, {
+  HTMLProps,
+  ReactElement,
+  useContext,
+  useEffect,
+  useState
+} from "react";
 import breakpoints from "../../breakpoints";
 import { HobIcon } from "../HobIcon";
 import { HobLink as Link } from "../HobLink";
 import { HobLogo } from "../HobLogo";
 import { HobTypography } from "../HobTypography";
+import { AppContext } from "../Layout";
 
 export interface IProjectProps {
   title: string;
@@ -106,6 +113,7 @@ export const ProjectRollItem = ({
   post: IProjectProps;
   index: number;
 }) => {
+  const { toggleDrawer } = useContext(AppContext);
   const [Media, setMedia] = useState<{
     Component: null | React.FC<any>;
     props: { [key: string]: any };
@@ -150,6 +158,13 @@ export const ProjectRollItem = ({
   }, [indexSvg]);
 
   const { Component } = Media;
+
+  const handleLockClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleDrawer();
+  };
+
   return (
     <Container className={`${featured ? "is-featured" : ""}`}>
       <Link
@@ -166,7 +181,9 @@ export const ProjectRollItem = ({
             <Component {...Media.props} />
           )}
           {protectedProject && (
-            <HobIcon name="lock" fill="none" color="secondary" size="sm" />
+            <button onClick={handleLockClick}>
+              <HobIcon name="lock" fill="none" color="secondary" size="sm" />
+            </button>
           )}
         </Graphic>
       </Link>

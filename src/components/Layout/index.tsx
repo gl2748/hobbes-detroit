@@ -1,4 +1,3 @@
-import { RecoverAccountForm } from "@components/RecoverAccountForm";
 import styled from "@emotion/styled";
 import { NavigateFn } from "@reach/router";
 import { LocationState } from "history";
@@ -16,6 +15,7 @@ import { LoginForm } from "../LoginForm";
 import { LogoutForm } from "../LogoutForm";
 import "../main.css";
 import { Portal, PortalWithLocation } from "../Portal";
+import { RecoverAccountForm } from "../RecoverAccountForm";
 import { useSiteMetadata } from "../SiteMetadata";
 
 export interface ILayoutProps {
@@ -44,6 +44,7 @@ export interface ILayoutState {
   username: string;
   confirmEmailToken: string;
   recoveryToken: string;
+  toggleDrawer?: () => void;
 }
 
 type TAction =
@@ -90,6 +91,17 @@ const FinePrint = styled(HobTypography)`
   margin-bottom: 1.5rem;
 `;
 
+const initialState: ILayoutState = {
+  confirmEmailToken: "",
+  isLoggedIn: false,
+  recoveryToken: "",
+  showDrawer: false,
+  username: ""
+};
+
+export const AppContext = React.createContext<ILayoutState>(initialState);
+export const AppConsumer = AppContext.Consumer;
+
 export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
   children,
   className = "",
@@ -100,13 +112,6 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
 }) => {
   const { title, description } = useSiteMetadata();
   const [isLoading, load] = useLoading();
-  const initialState: ILayoutState = {
-    confirmEmailToken: "",
-    isLoggedIn: false,
-    recoveryToken: "",
-    showDrawer: false,
-    username: ""
-  };
   const [state, dispatch] = useReducer(layoutReducer, initialState);
   const identity = useIdentityContext();
 
@@ -134,83 +139,86 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
 
   const toggleDrawer = (payload?: boolean) => () =>
     dispatch({ type: "toggleDrawer", payload });
+
   return (
-    <Container className={className} ref={forwardedRef}>
-      <Helmet>
-        <html lang="en" />
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/img/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          href="/img/favicon-32x32.png"
-          sizes="32x32"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          href="/img/favicon-16x16.png"
-          sizes="16x16"
-        />
-
-        <link
-          rel="mask-icon"
-          href="/img/safari-pinned-tab.svg"
-          color="#ff4400"
-        />
-        <meta name="theme-color" content="#fff" />
-        <meta property="og:type" content="business.business" />
-        <meta property="og:title" content={title} />
-        <meta property="og:url" content="/" />
-        <meta property="og:image" content="/img/og-image.jpg" />
-      </Helmet>
-      <PortalWithLocation
-        onClose={toggleDrawer(false)}
-        isVisible={state.showDrawer}
-      >
-        {state.isLoggedIn &&
-          state.confirmEmailToken.length === 0 &&
-          state.recoveryToken.length === 0 && (
-            <LogoutForm onClose={toggleDrawer(false)} />
-          )}
-        {!state.isLoggedIn &&
-          state.confirmEmailToken.length === 0 &&
-          state.recoveryToken.length === 0 && (
-            <LoginForm onClose={toggleDrawer(false)} />
-          )}
-        {state.confirmEmailToken.length > 0 && (
-          <ConfirmEmailForm
-            onClose={toggleDrawer(false)}
-            token={state.confirmEmailToken}
+    <AppContext.Provider value={{ ...state, toggleDrawer: toggleDrawer() }}>
+      <Container className={className} ref={forwardedRef}>
+        <Helmet>
+          <html lang="en" />
+          <title>{title}</title>
+          <meta name="description" content={description} />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/img/apple-touch-icon.png"
           />
-        )}
-        {state.recoveryToken.length > 0 && (
-          <RecoverAccountForm
-            onClose={toggleDrawer(false)}
-            token={state.recoveryToken}
+          <link
+            rel="icon"
+            type="image/png"
+            href="/img/favicon-32x32.png"
+            sizes="32x32"
           />
-        )}
+          <link
+            rel="icon"
+            type="image/png"
+            href="/img/favicon-16x16.png"
+            sizes="16x16"
+          />
 
-        <PortalLegal>
-          <Lock size="sm" color="primary" name="lock" />
-          <FinePrint variant="body1">{portalCopy}</FinePrint>
-          {portalLinks.map(({ href, label }) => (
-            <div key={label}>
-              <HobLink href={href} target="blank" color="primary">
-                {label}
-              </HobLink>
-            </div>
-          ))}
-        </PortalLegal>
-      </PortalWithLocation>
-      {children}
-      <Footer toggleDrawer={toggleDrawer()} />
-    </Container>
+          <link
+            rel="mask-icon"
+            href="/img/safari-pinned-tab.svg"
+            color="#ff4400"
+          />
+          <meta name="theme-color" content="#fff" />
+          <meta property="og:type" content="business.business" />
+          <meta property="og:title" content={title} />
+          <meta property="og:url" content="/" />
+          <meta property="og:image" content="/img/og-image.jpg" />
+        </Helmet>
+        <PortalWithLocation
+          onClose={toggleDrawer(false)}
+          isVisible={state.showDrawer}
+        >
+          {state.isLoggedIn &&
+            state.confirmEmailToken.length === 0 &&
+            state.recoveryToken.length === 0 && (
+              <LogoutForm onClose={toggleDrawer(false)} />
+            )}
+          {!state.isLoggedIn &&
+            state.confirmEmailToken.length === 0 &&
+            state.recoveryToken.length === 0 && (
+              <LoginForm onClose={toggleDrawer(false)} />
+            )}
+          {state.confirmEmailToken.length > 0 && (
+            <ConfirmEmailForm
+              onClose={toggleDrawer(false)}
+              token={state.confirmEmailToken}
+            />
+          )}
+          {state.recoveryToken.length > 0 && (
+            <RecoverAccountForm
+              onClose={toggleDrawer(false)}
+              token={state.recoveryToken}
+            />
+          )}
+
+          <PortalLegal>
+            <Lock size="sm" color="primary" name="lock" />
+            <FinePrint variant="body1">{portalCopy}</FinePrint>
+            {portalLinks.map(({ href, label }) => (
+              <div key={label}>
+                <HobLink href={href} target="blank" color="primary">
+                  {label}
+                </HobLink>
+              </div>
+            ))}
+          </PortalLegal>
+        </PortalWithLocation>
+        {children}
+        <Footer toggleDrawer={toggleDrawer()} />
+      </Container>
+    </AppContext.Provider>
   );
 };
 

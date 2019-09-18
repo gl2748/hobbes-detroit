@@ -1,10 +1,10 @@
-import { HobTextField } from "@components/HobTextField";
 import styled from "@emotion/styled";
 import { navigate } from "gatsby";
 import React, { useReducer } from "react";
 import { useIdentityContext } from "react-netlify-identity";
 import useLoading from "../../hooks/useLoading";
 import { HobButton } from "../HobButton";
+import { HobTextField } from "../HobTextField";
 import { HobTypography } from "../HobTypography";
 
 export interface IRecoverAccountFormProps {

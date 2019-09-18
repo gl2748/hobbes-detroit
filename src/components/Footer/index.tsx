@@ -1,9 +1,9 @@
-import { HobLink as Link } from "@components/HobLink";
-import { HobLogo } from "@components/HobLogo";
-import { HobTypography } from "@components/HobTypography";
 import styled from "@emotion/styled";
 import React from "react";
 import breakpoints from "../../breakpoints";
+import { HobLink as Link } from "../HobLink";
+import { HobLogo } from "../HobLogo";
+import { HobTypography } from "../HobTypography";
 
 const Container = styled.div`
   position: relative;

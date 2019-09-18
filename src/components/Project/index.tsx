@@ -390,21 +390,25 @@ export const Project: React.FC<IProjectProps> = ({
   return (
     <Container>
       {helmet}
-      <ModulesContainer>
-        {withTeamAndPress(
-          withTags(withDefaultHeader(modules, title), tags || []),
-          team || [],
-          press || []
-        ).map((module, index) => (
-          <CMSModule
-            {...module}
-            key={getKey(module)}
-            index={index}
-            mediaMetadata={mediaMetadata}
-          />
-        ))}
-        {content && <PostContent content={content} className="post-content" />}
-      </ModulesContainer>
+      {modules && (
+        <ModulesContainer>
+          {withTeamAndPress(
+            withTags(withDefaultHeader(modules, title), tags || []),
+            team || [],
+            press || []
+          ).map((module, index) => (
+            <CMSModule
+              {...module}
+              key={getKey(module)}
+              index={index}
+              mediaMetadata={mediaMetadata}
+            />
+          ))}
+          {content && (
+            <PostContent content={content} className="post-content" />
+          )}
+        </ModulesContainer>
+      )}
 
       <BackToTop>
         <HobButton onClick={backToTop} variant="text" color="primary">

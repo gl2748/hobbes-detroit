@@ -65,3 +65,7 @@ button {
   background-color: var(--hob-color--light);
   font-family: var(--hob-font--regular);
 }
+
+button:hover {
+  cursor: pointer;
+}
