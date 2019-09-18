@@ -9,6 +9,7 @@ secondaryColor: '#FABA05'
 protectedProject: false
 featured: true
 featuredJson: 'https://ucarecdn.com/acab972e-14d0-49f0-aa58-13e59221731b/'
+featuredProjectSort: 2
 indexSvg: 'https://ucarecdn.com/3e0e6f9b-688c-4d45-8a8e-4d055c826df8/'
 tags:
   - self initiated
