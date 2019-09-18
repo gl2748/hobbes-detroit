@@ -162,7 +162,9 @@ export const ProjectRollItem = ({
   const handleLockClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleDrawer();
+    if (toggleDrawer) {
+      toggleDrawer();
+    }
   };
 
   return (
