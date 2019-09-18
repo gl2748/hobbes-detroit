@@ -8,12 +8,13 @@ description: >-
   eget libero. Morbi sem risus, tincidunt nec accumsan sit amet, vestibulum non
   justo. Maecenas blandit nunc ut leo viverra, vel volutpat erat sagittis.
   Maecenas rhoncus placerat convallis.
-primaryColor: "#adaaa1"
-secondaryColor: "#fffbf0"
+metaImage: 'https://ucarecdn.com/e91e1988-abc2-4c39-ba8b-b086be0f92bd/'
+primaryColor: '#adaaa1'
+secondaryColor: '#fffbf0'
 protectedProject: true
 featured: false
-featuredJson: "https://ucarecdn.com/cabd4878-85fa-4698-890a-f3afee25aa55/"
-indexSvg: "https://ucarecdn.com/2faa7fef-c9d4-46d4-861a-92f3211095cf/"
+featuredJson: 'https://ucarecdn.com/cabd4878-85fa-4698-890a-f3afee25aa55/'
+indexSvg: 'https://ucarecdn.com/2faa7fef-c9d4-46d4-861a-92f3211095cf/'
 tags:
   - hello
   - cool
@@ -26,7 +27,7 @@ press:
   - nbc
   - fox
 modules:
-  - headerText: "Praesent faucibus, dolor nec."
+  - headerText: 'Praesent faucibus, dolor nec.'
     type: header
   - textColumns:
       - column: >-
@@ -40,3 +41,4 @@ modules:
           placerat posuere nunc quis vulputate.
     type: textArea
 ---
+
