@@ -71,10 +71,11 @@ export const Footer: React.FC<Props> = React.memo(
         </Logo>
 
         <Copyright>
-          <HobTypography variant="body1">2019 (c) Hobbes</HobTypography>
+          <HobTypography variant="body1">2019 © Hobbes</HobTypography>
         </Copyright>
 
         <Links>
+          {/*
           <Link to="/legal" color="primary">
             Legal Information
           </Link>
@@ -82,6 +83,7 @@ export const Footer: React.FC<Props> = React.memo(
           <Link to="/cookie" color="primary">
             Cookie Policy
           </Link>
+          */}
 
           <Link onClick={handleDrawerClick} color="primary">
             Client Portal
