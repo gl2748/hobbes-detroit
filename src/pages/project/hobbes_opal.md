@@ -15,10 +15,9 @@ tags:
   - self initiated
   - parametric
   - icons
-client: 'Hobbes '
+client: Hobbes
 team:
   - Dan
-  - mostly
 modules:
   - projectBannerMedia: 'https://ucarecdn.com/afe6d53e-14f3-4219-944d-d84898dd0702/'
     type: projectBanner
