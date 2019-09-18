@@ -26,18 +26,8 @@ export interface ILayoutProps {
   navigate?: NavigateFn;
   forwardedRef?: Ref<HTMLDivElement>;
 }
-const defaultLinks = [
-  {
-    href: "#todo",
-    label: "NDA PDF"
-  },
-  {
-    href: "#todo",
-    label: "Click here to Contact"
-  }
-];
-const defaultPortalCopy =
-  "Nam turpis nunc, condimentum in ullamcorper et, molestie at justo. Proin tempus turpis sed felis fringilla, et facilisis justo . Nunc id elit ut sapien feugiat pretium. Proin interdum tristique nibh eget volutpat.";
+const defaultLinks: string[] = [];
+const defaultPortalCopy = "";
 export interface ILayoutState {
   showDrawer: boolean;
   isLoggedIn: boolean;
