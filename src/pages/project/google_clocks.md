@@ -30,7 +30,7 @@ team:
 press:
   - fdfdf
 modules:
-  - projectBannerMedia: 'https://ucarecdn.com/3ea8275e-e852-4544-9d17-ecd6d2dc918c/'
+  - projectBannerMedia: 'https://ucarecdn.com/e3e3211d-8f52-433b-8925-987fcc09e5dd/'
     type: projectBanner
   - textColumns:
       - column: >-
@@ -43,9 +43,9 @@ modules:
           entire day.
     type: textArea
   - slides:
-      - slideMediaFile: 'https://ucarecdn.com/4b90e56a-0678-4cad-a5f1-5d1a7810f059/'
+      - slideMediaFile: 'https://ucarecdn.com/24afda8d-8097-46fb-b351-bfed5972a371/'
         type: slideMedia
-      - slideMediaFile: 'https://ucarecdn.com/12b1e617-7866-4cdb-8c20-af6732ab72ab/'
+      - slideMediaFile: 'https://ucarecdn.com/4a54dc92-390d-4526-95e0-caa0b9793e47/'
         type: slideMedia
     type: gallery
   - textColumns:
@@ -60,7 +60,7 @@ modules:
           period.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/a4a15940-3ed3-4567-91c3-8b96614524db/'
+    largeMediaFile: 'https://ucarecdn.com/e70136a7-dae8-4284-8ec7-979a8164266c/'
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
@@ -76,7 +76,7 @@ modules:
           transforming information displays into decor that tells the time.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/6e8dd95f-f30a-4c1f-b85d-01a6fb564de7/'
+    largeMediaFile: 'https://ucarecdn.com/c31676bd-c932-4a3c-87fe-a1a837f328e1/'
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
