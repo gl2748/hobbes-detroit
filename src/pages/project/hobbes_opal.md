@@ -15,7 +15,7 @@ tags:
   - self initiated
   - parametric
   - icons
-client: Hobbes
+client: 'Hobbes '
 team:
   - Dan
   - mostly
