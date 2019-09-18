@@ -51,6 +51,10 @@ const Container = styled.div`
       margin-right: 0;
     }
   }
+  button {
+    border: none;
+    background: transparent;
+  }
 `;
 
 const Graphic = styled.div<{ primaryColor: string }>`
