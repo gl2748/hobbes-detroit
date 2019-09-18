@@ -3,7 +3,7 @@ templateKey: project-post
 title: Google Network Check
 date: 2019-09-18T14:25:18.651Z
 description: Network check is a project that Hobbes did for Google.
-metaImage: 'https://ucarecdn.com/02cb9e65-5a9e-447b-b653-39906c954429/'
+metaImage: 'https://ucarecdn.com/f58fabca-34c1-4e0e-89b4-425baa6d95d9/'
 primaryColor: '#8C6B58'
 protectedProject: true
 featured: false
