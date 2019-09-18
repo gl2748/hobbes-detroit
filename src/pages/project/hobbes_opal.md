@@ -18,7 +18,7 @@ protectedProject: false
 featured: true
 featuredJson: 'https://ucarecdn.com/acab972e-14d0-49f0-aa58-13e59221731b/'
 featuredProjectSort: 2
-indexSvg: 'https://ucarecdn.com/9b5c6c71-d3b6-46cf-8ca5-ba9b911ba325/'
+indexSvg: 'https://ucarecdn.com/f11b2651-0acd-423e-8dcd-75f3c648f1dd/'
 tags:
   - self initiated
   - parametric
