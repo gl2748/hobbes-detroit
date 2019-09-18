@@ -15,7 +15,7 @@ protectedProject: false
 featured: false
 featuredJson: 'https://ucarecdn.com/61aa5094-7c9d-4204-b1c1-c18849ba5f8a/'
 featuredProjectSort: 1
-indexSvg: 'https://ucarecdn.com/b39973f8-b20e-4fe6-89bc-982d5db21f57/'
+indexSvg: 'https://ucarecdn.com/3ab41f5a-9e5c-46f0-8ca4-01b9b0029d45/'
 tags:
   - google
   - home hub
