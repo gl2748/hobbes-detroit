@@ -1,14 +1,15 @@
 ---
 templateKey: project-post
-title: Clocks 002
+title: Clocks
 date: 2019-09-15T18:39:28.904Z
 description: >-
-  When Google asked Hobbes to animate the out-of-box experience for their Nest
-  Hub Max, our team had an opportunity to leverage motion design for user
-  education. Our challenge was to strategically employ animation within
-  difficult design constraints, enabling users to understand their new hardware
-  while setting a positive and productive tone for the user experience. 
-metaImage: 'https://ucarecdn.com/1aa37987-cc37-417e-8c29-3e0b84535f1e/'
+  Even before Google SUMUX asked Hobbes to animate clock faces designed for
+  their Smart Displays, our team had been exploring time displays as an
+  opportunity to apply motion design in a non-traditional medium. Animating the
+  designs that Google had created required our team to build systems that would
+  both satisfy the discerning eye of an animation lover and function exactingly
+  throughout each minute of an entire day.
+metaImage: 'https://ucarecdn.com/e444e343-19c6-4e17-82ef-6284ae0d7c96/'
 primaryColor: '#00AD71'
 secondaryColor: '#00AD71'
 protectedProject: false
