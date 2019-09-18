@@ -32,12 +32,12 @@ modules:
     type: projectBanner
   - textColumns:
       - column: >-
-          When Google asked us to help teach users about the camera on their
-          Nest Hub Max, we entered a conversation surrounding one of today’s
-          most pressing issues: privacy. We understood why cautious customers
-          might hesitate to install a camera in their living room, but also
-          recognized an opportunity to educate users about their options,
-          empowering them to take control of their privacy.
+          When Google asked Hobbes to animate the out-of-box experience for
+          their Nest Hub Max, our team had an opportunity to leverage motion
+          design for user education. Our challenge was to strategically employ
+          animation within difficult design constraints, enabling users to
+          understand their new hardware while setting a positive and productive
+          tone for the user experience.
     type: textArea
   - bleed: false
     largeMediaFile: 'https://ucarecdn.com/3f457d11-6f27-4495-8e83-1bb9e42863dd/'
@@ -50,12 +50,12 @@ modules:
     type: mediaGrid
   - textColumns:
       - column: >-
-          We wanted to make sure they truly understood how the camera works—that
-          having it active improves the user experience, but that by enabling
-          privacy mode it can be physically disconnected. To convey these
-          concepts clearly and efficiently, we created a series of animated
-          illustrations for the Nest Hub Max set-up experience. These forced us
-          to design around some difficult constraints..
+          Our team’s first task was to ensure that users understood how the
+          camera works—how having it active improves their experience, but that
+          by enabling privacy mode it can be physically disconnected. To convey
+          these concepts clearly and efficiently, Hobbes designed a series of
+          animated illustrations to visualize the physical hardware on the Nest
+          Hub Max during the set-up experience.
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
@@ -63,10 +63,15 @@ modules:
     type: mediaGrid
   - textColumns:
       - column: >-
-          We needed to keep our animations from bloating the file size of an
-          already large app, so we designed and delivered them as lightweight
-          JSON files. In doing so we designed the first (that we know of)
-          Lottie-based cel animation.
+          Relative to illustrating physical hardware, such as a camera,
+          designing animations to depict more abstract principles such as a mesh
+          network—the type of local network that allows all of a user’s home
+          devices to communicate with one another—posed a bigger challenge. Our
+          team needed to visualize the concept of an invisible, decentralized
+          network in a way that the user would understand. Their animations also
+          needed to keep users engaged and occupied while the Nest Hub Max
+          completed important setup operations and connected to the user’s home
+          network in the background.
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
@@ -78,12 +83,11 @@ modules:
     type: largeMedia
   - textColumns:
       - column: >-
-          And while our goal was clarity for the user, we knew that if we
-          depicted the Nest Hub Max interfaces with 100% accuracy, our designs
-          would require constant updating to accommodate every future UI change
-          and localization for every new market. So we future-proofed each
-          design, making it abstract enough to avoid constant updating but
-          literal enough for users to clearly understand the message.
+          Every design our team created had to be delivered as a code-based
+          animation. This forced us to design around some difficult constraints.
+          To keep our animations from bloating the file size of an already large
+          app, we designed and delivered them as lightweight JSON files. In
+          doing so our team employed Lottie-based cel animation.
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
@@ -91,10 +95,12 @@ modules:
     type: mediaGrid
   - textColumns:
       - column: >-
-          Each of the problems we solved to create the Nest Hub Max setup
-          experience emerged from the need to create clarity for the user—both
-          now and in the future—and to prioritize addressing the broad feeling
-          of caution that surrounds privacy issues today.
+          Our team’s goal was clarity for the user. Yet if we depicted the Nest
+          Hub Max interfaces with 100% accuracy, the designs would require
+          constant updating to accommodate every future UI change and
+          localization for every new market. So we future-proofed each design,
+          making it abstract enough to avoid constant updating but literal
+          enough for users to clearly understand the message.
     type: textArea
 ---
 
