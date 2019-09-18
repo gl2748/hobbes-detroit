@@ -4,11 +4,9 @@ export const DynamicGradientSvgText = ({
   height,
   offset,
   children,
-  underline = false,
   from,
   to
 }: {
-  underline?: boolean;
   height: number;
   offset: number;
   from: string;
@@ -26,15 +24,7 @@ export const DynamicGradientSvgText = ({
         <stop offset="0%" stopColor={to} />
       </linearGradient>
     </defs>
-    <text
-      x="0"
-      y={height * 0.9}
-      fill="url(#bicolored)"
-      fontSize={height}
-      style={{
-        ...(underline ? { textDecoration: "underline" } : {})
-      }}
-    >
+    <text x="0" y={height * 0.9} fill="url(#bicolored)" fontSize={height}>
       {children}
     </text>
   </svg>

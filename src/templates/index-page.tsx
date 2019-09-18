@@ -4,7 +4,7 @@ import { withLocation } from "@higherOrderComponents/withLocation";
 import { LocationState } from "history";
 import React, { useEffect, useReducer, useRef } from "react";
 import { HobLetters } from "../components/HobLetters";
-import { HobLink, HobLink as Link } from "../components/HobLink";
+import { HobLink, HobLink as Link, IHobLinkProps } from "../components/HobLink";
 import { HobLogo } from "../components/HobLogo";
 import { LayoutWithLocation } from "../components/Layout";
 import { Navbar } from "../components/Navbar";
@@ -23,6 +23,26 @@ const Container = styled(LayoutWithLocation)`
   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100);
 
+  &.main--work {
+    .nav__item--Work {
+      svg {
+        text {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &.main--studio {
+    .nav__item--Studio {
+      svg {
+        text {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
   > .hob-letters {
     position: absolute;
     z-index: 1;
@@ -30,6 +50,13 @@ const Container = styled(LayoutWithLocation)`
     left: 0;
     margin-left: 1.25rem;
     margin-top: 1.25rem;
+  }
+
+  &--scrolled {
+    > .logo svg {
+      fill: none;
+      stroke: var(--hob-color--light);
+    }
   }
 
   > .logo {
@@ -156,6 +183,44 @@ const reducer = (state: State, action: Action) => {
   }
 };
 
+const MemoizedLogo = React.memo(
+  (props: IHobLinkProps) => <HobLink {...props} />,
+  ({ className: a }, { className: b }) => a === b
+);
+
+const MemoizedLink = React.memo(
+  ({
+    label,
+    href = "",
+    height,
+    hash,
+    offset
+  }: IHobLinkProps & {
+    label: string;
+    hash: string;
+    height: number;
+    offset: number;
+  }) => (
+    <Link
+      className={`nav__item nav__item--${label}`}
+      color="secondary"
+      href={href}
+      unsetTypography={true}
+    >
+      <DynamicGradientSvgText
+        underline={hash === href.replace(/^\//, "")}
+        height={height}
+        offset={offset}
+        from="var(--hob-color--light)"
+        to="var(--hob-color--dark)"
+      >
+        {label}
+      </DynamicGradientSvgText>
+    </Link>
+  ),
+  (a, b) => a.offset === b.offset
+);
+
 const IndexPage = React.memo(
   ({ location: { hash } }: { location: LocationState }) => {
     const [
@@ -179,7 +244,7 @@ const IndexPage = React.memo(
       if (hash !== "") {
         const el = document.getElementById(hash.replace(/#/, ""));
         if (el) {
-          // el.scrollIntoView();
+          el.scrollIntoView();
         }
       }
     }, []);
@@ -231,42 +296,44 @@ const IndexPage = React.memo(
       .map(([key, { test, whenFalse }]) => `nav--${test ? key : whenFalse}`)
       .join(" ");
 
-    const link = (href: string, label: string) => (
-      <Link color="secondary" href={href} unsetTypography={true}>
-        <DynamicGradientSvgText
-          underline={hash === href.replace(/^\//, "")}
-          height={height}
-          offset={offset}
-          from="var(--hob-color--light)"
-          to="var(--hob-color--dark)"
-        >
-          {label}
-        </DynamicGradientSvgText>
-      </Link>
-    );
+    const section =
+      scrollY === 0 ? "home" : scrollY < studioTop ? "work" : "studio";
 
     return (
-      <Container forwardedRef={scrollRef}>
+      <Container forwardedRef={scrollRef} className={`main main--${section}`}>
         <Navbar className={`nav ${modifiers}`} forwardedRef={navRef}>
-          {link("/#work", "Work")}
-          {link("#studio", "Studio")}
+          <MemoizedLink
+            href="/#work"
+            label="Work"
+            height={height}
+            offset={offset}
+            hash={hash}
+          />
+          <MemoizedLink
+            href="#studio"
+            label="Studio"
+            height={height}
+            offset={offset}
+            hash={hash}
+          />
         </Navbar>
         <HobLetters size="lg" color="var(--hob-color--light)" />
-        <HobLink
+        <MemoizedLogo
           className={`logo logo--${scrollY > 0 ? "scrolled" : "top"}`}
           unsetTypography={true}
           color="primary"
           to="/"
         >
           <HobLogo fill="var(--hob-color--secondary)" />
-        </HobLink>
+        </MemoizedLogo>
         <FeaturedProjectRollContainer />
         <ProjectRollContainer />
         <StudioContainer forwardedRef={studioRef} />
       </Container>
     );
   },
-  (a, b) => a.location.path === b.location.path
+  (a, b) =>
+    a.location.path === b.location.path && a.location.hash === b.location.hash
 );
 
 export default withLocation(IndexPage);
