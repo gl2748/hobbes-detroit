@@ -16,7 +16,7 @@ protectedProject: false
 featured: true
 featuredJson: 'https://ucarecdn.com/6f3a1f07-8ff3-46a3-8ff4-35083b04f804/'
 featuredProjectSort: 2
-indexSvg: 'https://ucarecdn.com/3ffbb0fe-d3fe-4576-921f-500b1e0a510c/'
+indexSvg: 'https://ucarecdn.com/4b97197c-609e-4044-9304-36e4762315ec/'
 tags:
   - google
   - clocks
