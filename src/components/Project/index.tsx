@@ -311,6 +311,7 @@ export interface IProjectProps {
   mediaMetadata: ITransformerUploadcareMeta[];
   team: string[];
   press: string[];
+  metaImage: string;
 }
 
 const Container = styled.div``;

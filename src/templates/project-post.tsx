@@ -505,7 +505,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
             <meta property="og:title" content={`${post.frontmatter.title}`} />
             <meta
               property="og:image"
-              content={`${post.frontmatter.imageMeta}`}
+              content={`${post.frontmatter.metaImage}`}
             />
           </Helmet>
         }
@@ -532,32 +532,26 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         title
         description
-        imageMeta
+        metaImage
         tags
         protectedProject
         featuredJson
         team
         press
         modules {
-          headerText
           type
           projectBannerMedia
           hideCaptions
           bleed
-          caption
           largeMediaFile
-          mobileDeviceMedia
-          tabletDeviceMedia
           textColumns {
             column
           }
           slides {
-            caption
             slideMediaFile
             type
           }
           mediaGridMedia {
-            caption
             mediaGridMediaFile
           }
         }
