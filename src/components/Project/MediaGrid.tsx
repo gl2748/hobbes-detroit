@@ -145,7 +145,9 @@ export const MediaGrid = React.memo(
               loop: true
             };
 
-            return <Lottie options={defaultOptions} />;
+            return (
+              <Lottie isClickToPauseDisabled={true} options={defaultOptions} />
+            );
           }
 
           case MediaType.MP4:
