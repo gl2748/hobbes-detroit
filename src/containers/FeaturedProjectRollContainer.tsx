@@ -128,6 +128,7 @@ export const FeaturedProjectRollContainer: React.FC = () => {
                   date(formatString: "MMMM DD, YYYY")
                   featured
                   featuredJson
+                  featuredProjectSort
                 }
               }
             }
