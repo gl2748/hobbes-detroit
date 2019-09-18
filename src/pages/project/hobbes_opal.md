@@ -2,25 +2,33 @@
 templateKey: project-post
 title: OP/AL
 date: 2019-09-17T17:45:00.000Z
-description: Opal is a project by Hobbes
-metaImage: "https://ucarecdn.com/4eef7d3d-999b-4e83-8eaf-f2e5ecf167a9/"
-primaryColor: "#FABA05"
-secondaryColor: "#FABA05"
+description: >-
+  Hobbes created our animated icon set, OP/AL, because we wanted to build a tool
+  for the design community that had the flexibility to fit thousands of
+  different use cases. In order to provide this adaptability while also building
+  in guidelines designed to preserve visual consistency, our team created a
+  system that allows users to fully customize icons while also upholding rules
+  to maintain rigorous design standards. Rather than animating each individual
+  icon, this system of templatization reframes the processes through which we
+  deliver animation.
+metaImage: 'https://ucarecdn.com/46cf9193-1e55-4d3d-85d5-bf6cd1666d78/'
+primaryColor: '#FABA05'
+secondaryColor: '#FABA05'
 protectedProject: false
 featured: true
-featuredJson: "https://ucarecdn.com/acab972e-14d0-49f0-aa58-13e59221731b/"
-featuredProjectSort: 3
-indexSvg: "https://ucarecdn.com/76c9aaf4-e18f-4767-80c6-74ba662bb3c1/"
+featuredJson: 'https://ucarecdn.com/acab972e-14d0-49f0-aa58-13e59221731b/'
+featuredProjectSort: 2
+indexSvg: 'https://ucarecdn.com/3e0e6f9b-688c-4d45-8a8e-4d055c826df8/'
 tags:
   - self initiated
   - parametric
   - icons
 client: Hobbes
 team:
-  - Dan
-  - mostly
+  - Dan Stack
+  - Nevin McRay
 modules:
-  - projectBannerMedia: "https://ucarecdn.com/afe6d53e-14f3-4219-944d-d84898dd0702/"
+  - projectBannerMedia: 'https://ucarecdn.com/afe6d53e-14f3-4219-944d-d84898dd0702/'
     type: projectBanner
   - textColumns:
       - column: >-
@@ -33,13 +41,13 @@ modules:
           still upheld rigorous design standards.
     type: textArea
   - bleed: false
-    largeMediaFile: "https://ucarecdn.com/d32dede1-e1c8-403c-ab77-6765564a92be/"
+    largeMediaFile: 'https://ucarecdn.com/d32dede1-e1c8-403c-ab77-6765564a92be/'
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: "https://ucarecdn.com/d30a808d-1ab4-43e4-b772-34b01734689a/"
-      - mediaGridMediaFile: "https://ucarecdn.com/2ced33a3-1d43-4081-a5a5-4f610ed58442/"
-      - mediaGridMediaFile: "https://ucarecdn.com/6382a28f-857f-4eb2-abd4-b4c9cfe302b9/"
+      - mediaGridMediaFile: 'https://ucarecdn.com/d30a808d-1ab4-43e4-b772-34b01734689a/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/2ced33a3-1d43-4081-a5a5-4f610ed58442/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/6382a28f-857f-4eb2-abd4-b4c9cfe302b9/'
     type: mediaGrid
   - textColumns:
       - column: >-
@@ -51,7 +59,7 @@ modules:
           uphold a set of rules to ensure that our icons remain functional and
           striking.
     type: textArea
-  - mobileDeviceMedia: "https://ucarecdn.com/e6919beb-daee-4afb-ad31-315618fc9d05/"
+  - mobileDeviceMedia: 'https://ucarecdn.com/e6919beb-daee-4afb-ad31-315618fc9d05/'
     type: mobileDevice
   - textColumns:
       - column: >-
@@ -60,6 +68,7 @@ modules:
           drive to produce better work.
     type: textArea
   - bleed: true
-    largeMediaFile: "https://ucarecdn.com/e6bb6b34-3a02-47b8-8648-fe7fb570e8e0/"
+    largeMediaFile: 'https://ucarecdn.com/e6bb6b34-3a02-47b8-8648-fe7fb570e8e0/'
     type: largeMedia
 ---
+
