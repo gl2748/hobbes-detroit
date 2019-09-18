@@ -1,4 +1,5 @@
 import { HobTypography } from "@components/HobTypography";
+import { MediaType } from "@components/Project";
 import styled from "@emotion/styled";
 import React, { HTMLProps, useEffect, useReducer, useRef } from "react";
 import breakpoints from "../../breakpoints";
@@ -9,6 +10,7 @@ export interface IVideoProps {
   showStop?: boolean;
   showMute?: boolean;
   showFullscreen?: boolean;
+  children: ReactNode;
 }
 
 const Container = styled.div`
@@ -384,25 +386,43 @@ export const HobVideo: React.FC<IVideoProps & HTMLProps<HTMLVideoElement>> = ({
     return `${padLeft(minutes)}:${padLeft(seconds)}`;
   };
 
-  return (
-    <Container
-      ref={containerRef}
-      className={`hob-video hob-video--${state.paused ? "paused" : "playing"}`}
+  let videoToRender = (
+    <Video
+      preload="auto"
+      className="hob-video"
+      ref={videoRef}
+      onLoadedMetadata={withVideo(onMetaLoad)}
+      onTimeUpdate={withVideo(updateTime)}
+      onEnded={withVideo(stop)}
     >
+      {source ? <source src={source} type={mimeType} /> : children}
+      <p>
+        Your browser doesn't support HTML5 video.
+        <a href="videos/mikethefrog.mp4">Download</a> the video instead.
+      </p>
+    </Video>
+  );
+
+  if (children.props.type === MediaType.QUICKTIME) {
+    videoToRender = (
       <Video
+        preload={"auto"}
         className="hob-video"
         ref={videoRef}
         onLoadedMetadata={withVideo(onMetaLoad)}
         onTimeUpdate={withVideo(updateTime)}
         onEnded={withVideo(stop)}
-      >
-        {source ? <source src={source} type={mimeType} /> : children}
-        <p>
-          Your browser doesn't support HTML5 video.
-          <a href="videos/mikethefrog.mp4">Download</a> the video instead.
-        </p>
-      </Video>
+        src={children.props.src}
+      />
+    );
+  }
 
+  return (
+    <Container
+      ref={containerRef}
+      className={`hob-video hob-video--${state.paused ? "paused" : "playing"}`}
+    >
+      {videoToRender}
       <div className="hob-video__controls">
         {state.duration > 0 && (
           <PlayPause>
