@@ -2,7 +2,12 @@
 templateKey: project-post
 title: Clocks 002
 date: 2019-09-15T18:39:28.904Z
-description: 'A project with a bunch of clocks. '
+description: >-
+  When Google asked Hobbes to animate the out-of-box experience for their Nest
+  Hub Max, our team had an opportunity to leverage motion design for user
+  education. Our challenge was to strategically employ animation within
+  difficult design constraints, enabling users to understand their new hardware
+  while setting a positive and productive tone for the user experience. 
 metaImage: 'https://ucarecdn.com/1aa37987-cc37-417e-8c29-3e0b84535f1e/'
 primaryColor: '#00AD71'
 secondaryColor: '#00AD71'
