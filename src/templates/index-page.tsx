@@ -1,10 +1,8 @@
-import { DynamicGradientSvgText } from "@components/DynamicGradientSvgText";
 import styled from "@emotion/styled";
 import { withLocation } from "@higherOrderComponents/withLocation";
 import { LocationState } from "history";
 import React, { useEffect, useReducer, useRef } from "react";
 import { HobLetters } from "../components/HobLetters";
-import { HobLink, HobLink as Link, IHobLinkProps } from "../components/HobLink";
 import { HobLogo } from "../components/HobLogo";
 import { LayoutWithLocation } from "../components/Layout";
 import { Navbar } from "../components/Navbar";
@@ -12,6 +10,8 @@ import { FeaturedProjectRollContainer } from "../containers/FeaturedProjectRollC
 import { ProjectRollContainer } from "../containers/ProjectRollContainer";
 import { StudioContainer } from "../containers/StudioContainer";
 import { useScrollPosition } from "../hooks/useScrollPosition";
+import { MemoizedLink } from "./MemoizedLink";
+import { MemoizedLogo } from "./MemoizedLogo";
 
 const Container = styled(LayoutWithLocation)`
   --mb: 1.5rem;
@@ -20,8 +20,7 @@ const Container = styled(LayoutWithLocation)`
   overflow-y: scroll;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
+  height: 100vh;
 
   &.main--work {
     .nav__item--Work {
@@ -183,44 +182,6 @@ const reducer = (state: State, action: Action) => {
   }
 };
 
-const MemoizedLogo = React.memo(
-  (props: IHobLinkProps) => <HobLink {...props} />,
-  ({ className: a }, { className: b }) => a === b
-);
-
-const MemoizedLink = React.memo(
-  ({
-    label,
-    href = "",
-    height,
-    hash,
-    offset
-  }: IHobLinkProps & {
-    label: string;
-    hash: string;
-    height: number;
-    offset: number;
-  }) => (
-    <Link
-      className={`nav__item nav__item--${label}`}
-      color="secondary"
-      href={href}
-      unsetTypography={true}
-    >
-      <DynamicGradientSvgText
-        underline={hash === href.replace(/^\//, "")}
-        height={height}
-        offset={offset}
-        from="var(--hob-color--light)"
-        to="var(--hob-color--dark)"
-      >
-        {label}
-      </DynamicGradientSvgText>
-    </Link>
-  ),
-  (a, b) => a.offset === b.offset
-);
-
 const IndexPage = React.memo(
   ({ location: { hash } }: { location: LocationState }) => {
     const [
@@ -305,16 +266,16 @@ const IndexPage = React.memo(
           <MemoizedLink
             href="/#work"
             label="Work"
+            color="secondary"
             height={height}
             offset={offset}
-            hash={hash}
           />
           <MemoizedLink
             href="#studio"
             label="Studio"
+            color="secondary"
             height={height}
             offset={offset}
-            hash={hash}
           />
         </Navbar>
         <HobLetters size="lg" color="var(--hob-color--light)" />
