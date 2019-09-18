@@ -2,8 +2,16 @@
 templateKey: project-post
 title: OP/AL
 date: 2019-09-17T17:45:00.000Z
-description: Opal is a project by Hobbes
-metaImage: 'https://ucarecdn.com/4eef7d3d-999b-4e83-8eaf-f2e5ecf167a9/'
+description: >-
+  Hobbes created our animated icon set, OP/AL, because we wanted to build a tool
+  for the design community that had the flexibility to fit thousands of
+  different use cases. In order to provide this adaptability while also building
+  in guidelines designed to preserve visual consistency, our team created a
+  system that allows users to fully customize icons while also upholding rules
+  to maintain rigorous design standards. Rather than animating each individual
+  icon, this system of templatization reframes the processes through which we
+  deliver animation.
+metaImage: 'https://ucarecdn.com/46cf9193-1e55-4d3d-85d5-bf6cd1666d78/'
 primaryColor: '#FABA05'
 secondaryColor: '#FABA05'
 protectedProject: false
