@@ -82,7 +82,9 @@ export const Gallery = React.memo(
               loop: true
             };
 
-            return <Lottie options={defaultOptions} />;
+            return (
+              <Lottie isClickToPauseDisabled={true} options={defaultOptions} />
+            );
           }
 
           default:

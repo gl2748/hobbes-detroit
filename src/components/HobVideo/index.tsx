@@ -3,10 +3,10 @@ import { MediaType } from "@components/Project";
 import styled from "@emotion/styled";
 import React, {
   HTMLProps,
+  ReactNode,
   useEffect,
   useReducer,
-  useRef,
-  ReactNode
+  useRef
 } from "react";
 import breakpoints from "../../breakpoints";
 
@@ -412,6 +412,7 @@ export const HobVideo: React.FC<IVideoProps & HTMLProps<HTMLVideoElement>> = ({
       onEnded={withVideo(stop)}
       onClick={withVideo(playPause)}
       loop={loop}
+      muted={true}
     >
       {source ? <source src={source} type={mimeType} /> : children}
       <p>
@@ -433,6 +434,7 @@ export const HobVideo: React.FC<IVideoProps & HTMLProps<HTMLVideoElement>> = ({
         onClick={withVideo(playPause)}
         loop={loop}
         src={children.props.src}
+        muted={true}
       />
     );
   }
