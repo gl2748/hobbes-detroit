@@ -1,6 +1,6 @@
 ---
 templateKey: project-post
-title: Clocks
+title: 'Clocks '
 date: 2019-09-15T18:39:28.904Z
 description: >-
   Even before Google SUMUX asked Hobbes to animate clock faces designed for
