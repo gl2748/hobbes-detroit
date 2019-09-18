@@ -107,7 +107,7 @@ export const FeaturedProjectRollContainer: React.FC = () => {
       query={graphql`
         query featuredRollQuery {
           allMarkdownRemark(
-            sort: { order: DESC, fields: [frontmatter___date] }
+            sort: { order: DESC, fields: [frontmatter___featuredProjectSort] }
             filter: {
               frontmatter: {
                 templateKey: { eq: "project-post" }
