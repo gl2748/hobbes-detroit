@@ -17,7 +17,8 @@ tags:
   - icons
 client: Hobbes
 team:
-  - Dan
+  - Dan Stack
+  - Nevin McRay
 modules:
   - projectBannerMedia: 'https://ucarecdn.com/afe6d53e-14f3-4219-944d-d84898dd0702/'
     type: projectBanner
