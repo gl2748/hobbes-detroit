@@ -11,7 +11,7 @@ description: >-
   to maintain rigorous design standards. Rather than animating each individual
   icon, this system of templatization reframes the processes through which we
   deliver animation.
-metaImage: 'https://ucarecdn.com/65369d27-1acb-4baf-b7c9-cf17fd81f906/'
+metaImage: 'https://ucarecdn.com/2dde041c-f5cd-4f88-979b-9d9f3ea07639/'
 primaryColor: '#FABA05'
 secondaryColor: '#FABA05'
 protectedProject: false
