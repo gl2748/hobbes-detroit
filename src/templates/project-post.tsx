@@ -587,6 +587,7 @@ export const pageQuery = graphql`
       frontmatter {
         protectedProject
         title
+        primaryColor
       }
       fields {
         slug
