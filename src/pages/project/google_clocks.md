@@ -79,7 +79,7 @@ modules:
           transforming information displays into decor that tells the time.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/c31676bd-c932-4a3c-87fe-a1a837f328e1/'
+    largeMediaFile: 'https://ucarecdn.com/6bd9ad49-63af-4434-846b-cfdfea17a1c3/'
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
