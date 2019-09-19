@@ -497,7 +497,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
         helmet={
-          <Helmet titleTemplate="%s | Blog">
+          <Helmet titleTemplate="%s | Case Study">
             <title>{`${post.frontmatter.title}`}</title>
             <meta
               name="description"
