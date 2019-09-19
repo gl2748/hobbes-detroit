@@ -1,6 +1,6 @@
 ---
 templateKey: project-post
-title: Drones
+title: Drones Shows
 date: 2019-09-16T18:27:00.000Z
 description: >-
   When our partner, Firefly Drone Shows, began experimenting with drone
