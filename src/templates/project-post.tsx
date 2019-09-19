@@ -91,6 +91,9 @@ const PaginationContainer = styled.div<{
   &:hover,
   &:focus {
     width: 3.3rem;
+    ${breakpoints.mobile}, ${breakpoints.noHover} {
+      width: 100%;
+    }
   }
 
   .side-pagination {
