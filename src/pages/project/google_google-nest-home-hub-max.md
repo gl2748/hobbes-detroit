@@ -25,6 +25,7 @@ tags:
 client: Google
 team:
   - Dan Stack
+  - Kikko Paradela
   - Nevin McRay
 press:
   - ''
