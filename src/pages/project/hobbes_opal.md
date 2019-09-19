@@ -62,9 +62,10 @@ modules:
           around JSON files that are infinitely adjustable yet also uphold a set
           of rules to ensure that the icons remain functional and striking.
     type: textArea
-  - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/3cc196a5-1541-47ee-8d7b-88c058687b73/'
-    type: largeMedia
+  - hideCaptions: false
+    mediaGridMedia:
+      - mediaGridMediaFile: 'https://ucarecdn.com/49943dd3-de74-42c1-85ae-f7906260f807/'
+    type: mediaGrid
   - textColumns:
       - column: >-
           What began with a search for the best tool became our team’s creation
@@ -75,9 +76,5 @@ modules:
   - bleed: true
     largeMediaFile: 'https://ucarecdn.com/7136a1a8-f106-4bde-ace3-543ea320954c/'
     type: largeMedia
-  - hideCaptions: false
-    mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/49943dd3-de74-42c1-85ae-f7906260f807/'
-    type: mediaGrid
 ---
 
