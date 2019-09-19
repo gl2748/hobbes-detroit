@@ -1,7 +1,7 @@
 ---
 templateKey: project-post
 title: Ford
-date: 2019-09-14T14:19:27.252Z
+date: 2019-09-13T14:19:00.000Z
 description: Ford is a protected project by Hobbes.
 metaImage: 'https://ucarecdn.com/5cd9eef2-d9a8-43fb-850b-79347e2e5204/'
 primaryColor: '#1351D8'
