@@ -77,8 +77,8 @@ modules:
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/940ee1ce-2c9c-4d92-ab1b-47e797048f30/'
       - mediaGridMediaFile: 'https://ucarecdn.com/2e55fa72-8703-4bb3-a724-1ff0e95ef0c4/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/940ee1ce-2c9c-4d92-ab1b-47e797048f30/'
     type: mediaGrid
   - bleed: true
     largeMediaFile: 'https://ucarecdn.com/43d79244-a743-4900-b8f6-8259593e4477/'
