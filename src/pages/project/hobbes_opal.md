@@ -20,13 +20,15 @@ featuredJson: 'https://ucarecdn.com/acab972e-14d0-49f0-aa58-13e59221731b/'
 featuredProjectSort: 2
 indexSvg: 'https://ucarecdn.com/f11b2651-0acd-423e-8dcd-75f3c648f1dd/'
 tags:
-  - self initiated
   - parametric
   - icons
+  - design-tools
+  - lottie
 client: Hobbes
 team:
   - Dan Stack
   - Nevin McRay
+  - Lucas Vocos
 modules:
   - projectBannerMedia: 'https://ucarecdn.com/afe6d53e-14f3-4219-944d-d84898dd0702/'
     type: projectBanner
