@@ -93,7 +93,7 @@ modules:
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/eda1e64d-4b55-4b0f-98d6-b52aa19360a4/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/d5312138-d4e7-499a-97e4-54e81bde809f/'
     type: mediaGrid
   - textColumns:
       - column: >-
