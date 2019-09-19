@@ -64,7 +64,7 @@ const Graphic = styled.div<{ primaryColor: string }>`
   width: 100%;
   &:hover,
   &:focus {
-    filter: invert(1);
+    background-color: #3c3c3c;
   }
 
   img {
@@ -88,10 +88,19 @@ const StyledSvg = styled.div<{ fill: string }>`
   background-color: ${({ fill }) => fill};
   width: 100%;
   height: 100%;
+
   svg {
     width: 100%;
     height: 100%;
     fill: ${({ fill }) => fill};
+  }
+
+  &:hover,
+  &:focus {
+    background-color: #3c3c3c;
+    svg {
+      fill: #3c3c3c;
+    }
   }
 `;
 const Svg = ({ svg, fill }: { svg: string; fill: string }): ReactElement => (
