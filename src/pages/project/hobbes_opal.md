@@ -70,7 +70,7 @@ modules:
           resource for designers and developers.
     type: textArea
   - bleed: true
-    largeMediaFile: 'https://ucarecdn.com/3f59d232-6288-40b4-a793-94fd62a6d193/'
+    largeMediaFile: 'https://ucarecdn.com/7136a1a8-f106-4bde-ace3-543ea320954c/'
     type: largeMedia
 ---
 
