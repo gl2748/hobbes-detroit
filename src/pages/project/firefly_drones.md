@@ -10,8 +10,8 @@ description: >-
   digital animations. In doing so, our team built a system to satisfy a
   multitude of difficult technical and design challenges. 
 metaImage: 'https://ucarecdn.com/ff91a45e-cef7-40fd-b1d4-0fddbfb11cdd/'
-primaryColor: '#57CCF2'
-secondaryColor: '#57CCF2'
+primaryColor: '#430098'
+secondaryColor: '#430098'
 protectedProject: false
 featured: true
 featuredJson: 'https://ucarecdn.com/f2649742-a36f-4e6b-8978-0b1a57d8ecf4/'
