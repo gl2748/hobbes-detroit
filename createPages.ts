@@ -2,23 +2,22 @@ import { CreatePagesArgs, GatsbyNode } from "gatsby";
 import _ from "lodash";
 import { resolve } from "path";
 
+interface Node {
+  node: {
+    id: string;
+    fields: {
+      slug: string;
+    };
+    frontmatter: {
+      tags?: string[];
+      templateKey?: string;
+      protectedProject?: boolean;
+    };
+  };
+}
 export interface IAllMarkdownRemarkQueryResult {
   allMarkdownRemark: {
-    edges: [
-      {
-        node: {
-          id: string;
-          fields: {
-            slug: string;
-          };
-          frontmatter: {
-            tags?: string[];
-            templateKey?: string;
-            protectedPost?: boolean;
-          };
-        };
-      }
-    ];
+    edges: Node[];
   };
 }
 
@@ -30,7 +29,10 @@ export const createPages: GatsbyNode["createPages"] = ({
 
   return graphql(`
     {
-      allMarkdownRemark(limit: 1000) {
+      allMarkdownRemark(
+        limit: 1000
+        sort: { order: DESC, fields: [frontmatter___date] }
+      ) {
         edges {
           node {
             id
@@ -65,13 +67,18 @@ export const createPages: GatsbyNode["createPages"] = ({
         edge => edge.node.frontmatter.templateKey === "project-post"
       );
 
-      projects.forEach((edge, index) => {
-        const id = edge.node.id;
+      const [publicProjects, protectedProjects] = _.partition(
+        projects,
+        project => !project.node.frontmatter.protectedProject
+      );
 
+      const makePage = (edge: Node, index: number, all: Node[]) => {
+        const id = edge.node.id;
+        const isProtected = _.get(edge, `node.frontmatter.protectedProject`);
         // If this is a protectedProject project...create a post at the /protectedProject path.
         // See the gatsby-plugin-create-client-paths plugin in the gatsby config.
         let p = `${edge.node.fields.slug}`;
-        if (_.get(edge, `node.frontmatter.protectedProject`)) {
+        if (isProtected) {
           p = `/protected${edge.node.fields.slug}`;
         }
         const newPost = {
@@ -81,15 +88,17 @@ export const createPages: GatsbyNode["createPages"] = ({
           // Additional data can be passed via context and will be available via graphql pageQuery in component defined above.
           context: {
             id,
-            nextId: projects[(index + 1) % projects.length].node.id,
-            prevId:
-              projects[index - 1 < 0 ? projects.length - 1 : index - 1].node.id
+            nextId: all[(index + 1) % all.length].node.id,
+            prevId: all[index - 1 < 0 ? all.length - 1 : index - 1].node.id
           },
           path: p,
           tags: edge.node.frontmatter.tags
         };
         createPage(newPost);
-      });
+      };
+
+      publicProjects.forEach(makePage);
+      protectedProjects.forEach(makePage);
 
       rest.forEach(edge => {
         const id = edge.node.id;
