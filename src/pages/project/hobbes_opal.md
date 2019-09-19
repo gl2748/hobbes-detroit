@@ -30,7 +30,7 @@ team:
   - Nevin McRay
   - Lucas Vocos
 modules:
-  - projectBannerMedia: 'https://ucarecdn.com/afe6d53e-14f3-4219-944d-d84898dd0702/'
+  - projectBannerMedia: 'https://ucarecdn.com/fe7f5bec-fdf3-4048-83bc-f318ee6767cb/'
     type: projectBanner
   - textColumns:
       - column: >-
