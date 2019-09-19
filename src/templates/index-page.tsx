@@ -211,6 +211,7 @@ const IndexPage = React.memo(
     }, []);
 
     React.useEffect(() => {
+      console.log("in this");
       if (navRef.current === null || studioRef.current === null) {
         return;
       }
@@ -227,10 +228,7 @@ const IndexPage = React.memo(
         },
         type: "SET_POSITIONS"
       });
-    }, [
-      studioRef.current && studioRef.current.offsetTop,
-      navRef.current && navRef.current.getBoundingClientRect().top
-    ]);
+    }, [navRef.current && navRef.current.getBoundingClientRect().top]);
 
     const offset = Math.max(
       0,
