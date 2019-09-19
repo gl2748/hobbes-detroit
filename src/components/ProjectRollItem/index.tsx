@@ -174,6 +174,7 @@ export const ProjectRollItem = ({
   return (
     <Container className={`${featured ? "is-featured" : ""}`}>
       <Link
+        {...(protectedProject ? { onClick: handleLockClick } : {})}
         color="secondary"
         to={
           protectedProject ? `/protected${post.fields.slug}` : post.fields.slug
