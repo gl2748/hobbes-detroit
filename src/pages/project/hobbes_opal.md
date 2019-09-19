@@ -43,13 +43,13 @@ modules:
           deliver animation.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/d32dede1-e1c8-403c-ab77-6765564a92be/'
+    largeMediaFile: 'https://ucarecdn.com/0a616c0d-cb2a-449f-bd36-d82e3513c4ce/'
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/d30a808d-1ab4-43e4-b772-34b01734689a/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/2ced33a3-1d43-4081-a5a5-4f610ed58442/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/6382a28f-857f-4eb2-abd4-b4c9cfe302b9/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/14a944ea-e9ff-4e20-8201-cb999935338c/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/ad93bbe4-afeb-4061-a230-6f2cf8725585/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/82d311ab-880f-4c77-b6d4-da83743601f1/'
     type: mediaGrid
   - textColumns:
       - column: >-
@@ -70,7 +70,7 @@ modules:
           resource for designers and developers.
     type: textArea
   - bleed: true
-    largeMediaFile: 'https://ucarecdn.com/3f59d232-6288-40b4-a793-94fd62a6d193/'
+    largeMediaFile: 'https://ucarecdn.com/7136a1a8-f106-4bde-ace3-543ea320954c/'
     type: largeMedia
 ---
 
