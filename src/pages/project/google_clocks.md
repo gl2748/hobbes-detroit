@@ -30,7 +30,6 @@ team:
   - Nick Parente
   - Matthew Campagiorni
   - Nevin McRay
-  - Benjamin Dresser
 press:
   - ''
 modules:
