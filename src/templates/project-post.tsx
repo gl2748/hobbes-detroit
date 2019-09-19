@@ -99,7 +99,7 @@ const PaginationContainer = styled.div<{
   .side-pagination {
     &__arrow {
       position: absolute;
-      left: 0.5rem;
+      left: 1rem;
       font-size: 1.3rem;
 
       ${breakpoints.mobile}, ${breakpoints.noHover} {
