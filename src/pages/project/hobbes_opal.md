@@ -15,8 +15,8 @@ metaImage: 'https://ucarecdn.com/2dde041c-f5cd-4f88-979b-9d9f3ea07639/'
 primaryColor: '#FABA05'
 secondaryColor: '#FABA05'
 protectedProject: false
-featured: false
-featuredJson: 'https://ucarecdn.com/acab972e-14d0-49f0-aa58-13e59221731b/'
+featured: true
+featuredJson: 'https://ucarecdn.com/68841d09-c620-475f-831d-2017524649b8/'
 featuredProjectSort: 2
 indexSvg: 'https://ucarecdn.com/f11b2651-0acd-423e-8dcd-75f3c648f1dd/'
 tags:
