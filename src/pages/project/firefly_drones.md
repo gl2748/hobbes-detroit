@@ -59,7 +59,7 @@ modules:
           with regulations and to avoid collisions.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/e5b0ed6d-2f40-4a1c-b73e-d4bc45087d0e/'
+    largeMediaFile: 'https://ucarecdn.com/1a17985d-65cf-40df-9d58-4b64d113a6bc/'
     type: largeMedia
   - textColumns:
       - column: >-
