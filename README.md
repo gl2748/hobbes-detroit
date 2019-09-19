@@ -1,15 +1,18 @@
 This repo contains a business website that is built with Gatsby, and Netlify
-CMS.It follows the JAMstack architecture by using Git as a single source of
+CMS. It follows the JAMstack architecture by using Git as a single source of
 truth, and Netlify for continuous deployment, and CDN distribution.
 
-Really `src/templates` and `src/containers` could be merged, simply called
-`containers`, if following the container pattern from redux.
-
-Currently the flow is. `static/admin/config.yml` -> `gatsby-node.js` ->->
+Currently the flow is. `static/admin/config.yml` -> `gatsby-node.js` ->
 `src/templates`(graphql page query has access to context params passed from
 `gatsby-node.js`) -> `src/containers`(graphql static query) ->
 `src/components`(dumb component) and for the cms preview templates.
 `src/cms/preview-templates`(graphql netlify cms query) -> `src/components`.
+
+# Mobile dev
+
+`yarn run mobile`
+and on mobile device connected to same network go to:
+`laptop-name.local:8000`
 
 # notes
 
@@ -101,22 +104,22 @@ them from module import and registration in `src/cms/cms.js`. Here is an example
 of the lines to comment or remove them your project.
 
 ```javascript
-import CMS from 'netlify-cms-app';
-import uploadcare from 'netlify-cms-media-library-uploadcare';
+import CMS from "netlify-cms-app";
+import uploadcare from "netlify-cms-media-library-uploadcare";
 // import cloudinary from 'netlify-cms-media-library-cloudinary'
 
-import AboutPagePreview from './preview-templates/AboutPagePreview';
-import BlogPostPreview from './preview-templates/BlogPostPreview';
-import ProductPagePreview from './preview-templates/ProductPagePreview';
-import IndexPagePreview from './preview-templates/IndexPagePreview';
+import AboutPagePreview from "./preview-templates/AboutPagePreview";
+import BlogPostPreview from "./preview-templates/BlogPostPreview";
+import ProductPagePreview from "./preview-templates/ProductPagePreview";
+import IndexPagePreview from "./preview-templates/IndexPagePreview";
 
 // CMS.registerMediaLibrary(uploadcare);
 // CMS.registerMediaLibrary(cloudinary);
 
-CMS.registerPreviewTemplate('index', IndexPagePreview);
-CMS.registerPreviewTemplate('about', AboutPagePreview);
-CMS.registerPreviewTemplate('products', ProductPagePreview);
-CMS.registerPreviewTemplate('blog', BlogPostPreview);
+CMS.registerPreviewTemplate("index", IndexPagePreview);
+CMS.registerPreviewTemplate("about", AboutPagePreview);
+CMS.registerPreviewTemplate("products", ProductPagePreview);
+CMS.registerPreviewTemplate("blog", BlogPostPreview);
 ```
 
 ## Getting Started (Without Netlify)
@@ -145,7 +148,7 @@ npm config set python python2.7
 npm install --global --production windows-build-tools
 ```
 
-[Full details here](https://www.npmjs.com/package/node-gyp 'NPM node-gyp page')
+[Full details here](https://www.npmjs.com/package/node-gyp "NPM node-gyp page")
 
 ## Purgecss
 
