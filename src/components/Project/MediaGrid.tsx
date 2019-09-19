@@ -54,10 +54,16 @@ const MediaGridItem = styled.div`
     height: 100% !important;
   }
 
-  img,
-  svg {
+  img {
     width: 100%;
     height: 100%;
+  }
+
+  svg {
+    width: auto !important;
+    height: auto !important;
+    min-height: 100%;
+    min-width: 100%;
   }
 
   > .hob-typography--caption {
