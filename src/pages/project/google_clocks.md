@@ -20,15 +20,19 @@ indexSvg: 'https://ucarecdn.com/4b97197c-609e-4044-9304-36e4762315ec/'
 tags:
   - google
   - clocks
-  - hooray
-client: google
+  - smart-displays
+client: Google
 team:
-  - dan
-  - ben
-  - kikko
-  - eddy
+  - Eddy Nieto
+  - Dan Stack
+  - Stephen Kelleher
+  - Jared Rippy
+  - Nick Parente
+  - Matthew Campagiorni
+  - Nevin McRay
+  - Benjamin Dresser
 press:
-  - fdfdf
+  - ''
 modules:
   - projectBannerMedia: 'https://ucarecdn.com/e3e3211d-8f52-433b-8925-987fcc09e5dd/'
     type: projectBanner
