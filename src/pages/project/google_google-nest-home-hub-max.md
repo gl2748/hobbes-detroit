@@ -42,13 +42,13 @@ modules:
           tone for the user experience.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/3f457d11-6f27-4495-8e83-1bb9e42863dd/'
+    largeMediaFile: 'https://ucarecdn.com/830b6b05-52ee-4b86-a5f2-366c114cfc62/'
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/b029bc7a-2c03-4358-a01e-49a97fd4921a/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/a62df6b1-9cbe-49a6-9781-d8c1863845c5/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/5d4f1533-aae1-4ee9-b86f-a3e04a37df6f/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/859fe7de-2c14-490b-9ba4-6418e1541550/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/a7379256-203e-4654-907f-da749cf9dd0e/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/016e2752-19aa-4907-ace4-68d57ccdde2b/'
     type: mediaGrid
   - textColumns:
       - column: >-
@@ -61,7 +61,7 @@ modules:
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/dd9f90a8-7514-4f7d-8129-d20563725f5c/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/4629fdd8-bf64-4d90-b35f-f3c5b4f00243/'
     type: mediaGrid
   - textColumns:
       - column: >-
@@ -77,11 +77,11 @@ modules:
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/0349139e-52b0-4d4c-b7ef-28d8f5e96961/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/0a8e0b22-eab5-4543-b60a-598968cc334a/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/940ee1ce-2c9c-4d92-ab1b-47e797048f30/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/2e55fa72-8703-4bb3-a724-1ff0e95ef0c4/'
     type: mediaGrid
   - bleed: true
-    largeMediaFile: 'https://ucarecdn.com/676b4d78-897d-486a-9be2-1c0e50a68dd4/'
+    largeMediaFile: 'https://ucarecdn.com/43d79244-a743-4900-b8f6-8259593e4477/'
     type: largeMedia
   - textColumns:
       - column: >-
