@@ -43,7 +43,7 @@ modules:
           deliver animation.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/d32dede1-e1c8-403c-ab77-6765564a92be/'
+    largeMediaFile: 'https://ucarecdn.com/0a616c0d-cb2a-449f-bd36-d82e3513c4ce/'
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
@@ -70,7 +70,7 @@ modules:
           resource for designers and developers.
     type: textArea
   - bleed: true
-    largeMediaFile: 'https://ucarecdn.com/e6bb6b34-3a02-47b8-8648-fe7fb570e8e0/'
+    largeMediaFile: 'https://ucarecdn.com/7136a1a8-f106-4bde-ace3-543ea320954c/'
     type: largeMedia
 ---
 
