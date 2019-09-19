@@ -22,6 +22,10 @@ tags:
   - firefly
   - choreography
 client: Firefly
+team:
+  - Nick Forshee
+  - Adam Zimmer
+  - Benjamin Dresser
 modules:
   - projectBannerMedia: 'https://ucarecdn.com/96fd230b-43d8-4b0e-8f06-aeadba5b4fcc/'
     type: projectBanner
