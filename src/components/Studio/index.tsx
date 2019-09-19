@@ -16,7 +16,7 @@ export interface IStudioProps {
 }
 
 const Container = styled.div`
-  min-height: calc(100vh - 7.9375rem);
+  min-height: 100vh;
   background-color: var(--hob-color--secondary);
   position: relative;
   padding: 1.5rem 1.25rem;
