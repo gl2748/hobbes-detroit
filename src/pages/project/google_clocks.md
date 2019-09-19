@@ -33,7 +33,7 @@ team:
 press:
   - ''
 modules:
-  - projectBannerMedia: 'https://ucarecdn.com/e3e3211d-8f52-433b-8925-987fcc09e5dd/'
+  - projectBannerMedia: 'https://ucarecdn.com/9060c0d8-05c5-4767-b7ba-11f03b7477fb/'
     type: projectBanner
   - textColumns:
       - column: >-
