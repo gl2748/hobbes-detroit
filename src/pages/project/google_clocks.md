@@ -14,7 +14,7 @@ primaryColor: '#00AD71'
 secondaryColor: '#00AD71'
 protectedProject: false
 featured: true
-featuredJson: 'https://ucarecdn.com/c2b240ed-c2df-4723-a678-c56942620e2e/'
+featuredJson: 'https://ucarecdn.com/be290147-347b-4a9c-8b2f-fe62b27cfdfd/'
 featuredProjectSort: 2
 indexSvg: 'https://ucarecdn.com/4b97197c-609e-4044-9304-36e4762315ec/'
 tags:
@@ -33,7 +33,7 @@ team:
 press:
   - ''
 modules:
-  - projectBannerMedia: 'https://ucarecdn.com/e3e3211d-8f52-433b-8925-987fcc09e5dd/'
+  - projectBannerMedia: 'https://ucarecdn.com/9060c0d8-05c5-4767-b7ba-11f03b7477fb/'
     type: projectBanner
   - textColumns:
       - column: >-
@@ -79,7 +79,7 @@ modules:
           transforming information displays into decor that tells the time.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/c31676bd-c932-4a3c-87fe-a1a837f328e1/'
+    largeMediaFile: 'https://ucarecdn.com/6bd9ad49-63af-4434-846b-cfdfea17a1c3/'
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
