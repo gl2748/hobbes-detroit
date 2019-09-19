@@ -28,7 +28,7 @@ const ProjectContainer = styled.div`
 `;
 
 const ProjectGraphic = styled.div`
-  max-width: 60%;
+  max-height: 80%;
   margin: 0 auto;
 
   .hob-typography {
