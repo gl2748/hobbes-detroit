@@ -237,7 +237,6 @@ const IndexPage = React.memo(
       ((scrollY + navBottom - studioTop) / (navBottom - navTop)) * 100 || 0
     );
     console.log("offset is:", offset);
-    console.log("ScrollY is:", scrollY);
     const height = 28;
 
     useScrollPosition(
@@ -264,23 +263,15 @@ const IndexPage = React.memo(
 
     return (
       <Container forwardedRef={scrollRef} className={`main main--${section}`}>
-        <Navbar className={`nav ${modifiers}`} forwardedRef={navRef}>
-          <MemoizedLink
-            href="/#work"
-            label="Work"
-            color="secondary"
-            height={height}
-            offset={offset}
-          />
-          <MemoizedLink
-            href="#studio"
-            label="Studio"
-            color="secondary"
-            height={height}
-            offset={offset}
-          />
-        </Navbar>
         <HobLetters size="lg" color="var(--hob-color--light)" />
+        <MemoizedLogo
+          className={`logo logo--${scrollY > 0 ? "scrolled" : "top"}`}
+          unsetTypography={true}
+          color="primary"
+          to="/"
+        >
+          <HobLogo fill="var(--hob-color--secondary)" />
+        </MemoizedLogo>
         <FeaturedProjectRollContainer />
         <ProjectRollContainer />
         <StudioContainer forwardedRef={studioRef} />
