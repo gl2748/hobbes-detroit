@@ -30,7 +30,7 @@ team:
   - Nevin McRay
   - Lucas Vocos
 modules:
-  - projectBannerMedia: 'https://ucarecdn.com/fe7f5bec-fdf3-4048-83bc-f318ee6767cb/'
+  - projectBannerMedia: 'https://ucarecdn.com/1843ebef-96c6-4c8e-bde5-571177ee087b/'
     type: projectBanner
   - textColumns:
       - column: >-
@@ -62,8 +62,10 @@ modules:
           around JSON files that are infinitely adjustable yet also uphold a set
           of rules to ensure that the icons remain functional and striking.
     type: textArea
-  - mobileDeviceMedia: 'https://ucarecdn.com/e6919beb-daee-4afb-ad31-315618fc9d05/'
-    type: mobileDevice
+  - hideCaptions: false
+    mediaGridMedia:
+      - mediaGridMediaFile: 'https://ucarecdn.com/49943dd3-de74-42c1-85ae-f7906260f807/'
+    type: mediaGrid
   - textColumns:
       - column: >-
           What began with a search for the best tool became our team’s creation
