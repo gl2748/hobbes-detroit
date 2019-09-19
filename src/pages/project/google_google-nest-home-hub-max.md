@@ -1,6 +1,6 @@
 ---
 templateKey: project-post
-title: Google Nest Home Hub Max
+title: Google Nest Hub Max
 date: 2019-09-18T21:18:50.099Z
 description: >-
   When Google asked Hobbes to animate the out-of-box experience for their Nest
@@ -18,15 +18,16 @@ featuredProjectSort: 1
 indexSvg: 'https://ucarecdn.com/3ab41f5a-9e5c-46f0-8ca4-01b9b0029d45/'
 tags:
   - google
-  - home hub
-  - etc
-client: google
+  - nest
+  - smart display
+  - oobe
+  - lottie
+client: Google
 team:
-  - dan
-  - dan
-  - dan
+  - Dan Stack
+  - Nevin McRay
 press:
-  - none yet
+  - ''
 modules:
   - projectBannerMedia: 'https://ucarecdn.com/87a83bd4-7cac-4a3e-8979-89c38a6cfd68/'
     type: projectBanner
