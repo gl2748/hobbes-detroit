@@ -62,8 +62,9 @@ modules:
           around JSON files that are infinitely adjustable yet also uphold a set
           of rules to ensure that the icons remain functional and striking.
     type: textArea
-  - mobileDeviceMedia: 'https://ucarecdn.com/e6919beb-daee-4afb-ad31-315618fc9d05/'
-    type: mobileDevice
+  - bleed: true
+    largeMediaFile: 'https://ucarecdn.com/3cc196a5-1541-47ee-8d7b-88c058687b73/'
+    type: largeMedia
   - textColumns:
       - column: >-
           What began with a search for the best tool became our team’s creation
