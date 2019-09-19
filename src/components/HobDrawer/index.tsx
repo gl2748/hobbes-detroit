@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React, { MouseEvent, ReactNode } from "react";
+import breakpoints from "../../breakpoints";
 import { HobIconButton } from "../HobIconButton";
 
 export interface IDrawerProps {
@@ -29,6 +30,8 @@ const Drawer = styled.div`
   position: relative;
   padding: 1.25rem;
   height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: "touch";
   transition: left var(--hob-transition-duration);
   background-color: var(--hob-color--light);
   width: 447px;
@@ -36,6 +39,9 @@ const Drawer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  ${breakpoints.mobile} {
+    width: 100vw;
+  }
 
   .hob-icon-button--close {
     position: absolute;
