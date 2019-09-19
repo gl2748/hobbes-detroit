@@ -40,7 +40,7 @@ modules:
         type: slideMedia
       - slideMediaFile: 'https://ucarecdn.com/0420d866-f81e-4246-b95c-d14d11dd7d9a/'
         type: slideMedia
-      - slideMediaFile: 'https://ucarecdn.com/59645e58-bd3d-4f68-9944-a6ab0f840360/'
+      - slideMediaFile: 'https://ucarecdn.com/c207bb2e-838c-45b6-b6d2-851400137878/'
         type: slideMedia
     type: gallery
   - textColumns:
