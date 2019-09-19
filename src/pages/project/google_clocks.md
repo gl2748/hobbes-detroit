@@ -14,7 +14,7 @@ primaryColor: '#00AD71'
 secondaryColor: '#00AD71'
 protectedProject: false
 featured: true
-featuredJson: 'https://ucarecdn.com/6f3a1f07-8ff3-46a3-8ff4-35083b04f804/'
+featuredJson: 'https://ucarecdn.com/ac4cddcd-ae96-49c0-b886-344560496465/'
 featuredProjectSort: 2
 indexSvg: 'https://ucarecdn.com/4b97197c-609e-4044-9304-36e4762315ec/'
 tags:
