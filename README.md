@@ -2,7 +2,7 @@ This repo contains a business website that is built with Gatsby, and Netlify
 CMS.It follows the JAMstack architecture by using Git as a single source of
 truth, and Netlify for continuous deployment, and CDN distribution.
 
-kick
+kick1
 
 Really `src/templates` and `src/containers` could be merged, simply called
 `containers`, if following the container pattern from redux.
