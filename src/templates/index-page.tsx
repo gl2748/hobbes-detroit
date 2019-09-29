@@ -92,11 +92,11 @@ const Container = styled(LayoutWithLocation)`
     }
 
     &--fixed {
-      position: fixed;
+      transform: translateZ(0);
     }
 
     &--absolute {
-      position: absolute;
+      transform: translate(-50%, -50%) .;
     }
 
     &--top {
