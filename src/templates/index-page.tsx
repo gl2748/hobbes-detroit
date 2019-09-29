@@ -214,12 +214,13 @@ const IndexPage = React.memo(
       if (navRef.current === null || studioRef.current === null) {
         return;
       }
-      const navRect = navRef.current.getBoundingClientRect();
+      // const navRect = navRef.current.getBoundingClientRect();
+      // debugger
       dispatch({
         payload: {
           nav: {
-            bottom: navRect.bottom,
-            top: navRect.top
+            bottom: navRef.current.offsetHeight + navRef.current.offsetTop,
+            top: navRef.current.offsetTop
           },
           studio: {
             top: studioRef.current.offsetTop
@@ -229,7 +230,7 @@ const IndexPage = React.memo(
       });
     }, [
       studioRef.current && studioRef.current.offsetTop,
-      navRef.current && navRef.current.getBoundingClientRect().top
+      navRef.current && navRef.current.offsetTop
     ]);
 
     const offset = Math.max(
