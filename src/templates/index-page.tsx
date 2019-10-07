@@ -14,21 +14,29 @@ import { MemoizedLink } from "./MemoizedLink";
 import { MemoizedLogo } from "./MemoizedLogo";
 
 const Sticky = styled.div`
+  padding-right: 1.5rem;
+  padding-top: 1.5rem;
+  display: flex;
+  z-index: 5;
   &.not-sticky {
-    display: flex;
+    postion: initial;
     justify-content: flex-end;
-    padding-right: 1.5rem;
-    padding-top: 1.5rem;
-    z-index: 99;
     background: black;
   }
   &.sticky {
-    --fs: 1.75rem;
-    display: flex;
-    right: 1.5rem;
-    top: 1.5rem;
     position: fixed;
-    z-index: 5;
+    top: 0;
+    right: 0;
+  }
+`;
+
+const StickySpacer = styled.div`
+  &.show {
+    background: black;
+    height: 56px;
+  }
+  &.hide {
+    display: none;
   }
 `;
 
@@ -113,20 +121,29 @@ interface State {
   };
   windowHeight: number;
   sticky: number;
+  stickyHeight: number;
+  studio: number;
+  offset: number;
 }
 
 const initialState: State = {
+  offset: 0,
   positions: {
     nav: { bottom: 0, top: 0 },
     studio: { top: 0 }
   },
   scrollY: 0,
   sticky: 0,
+  stickyHeight: 0,
+  studio: 0,
   windowHeight: 0
 };
 
 type Action =
   | { type: "SET_STICKY"; payload: number }
+  | { type: "SET_STICKY_HEIGHT"; payload: number }
+  | { type: "SET_STUDIO"; payload: number }
+  | { type: "SET_OFFSET"; payload: number }
   | { type: "SET_SCROLL_Y"; payload: number }
   | { type: "SET_WINDOW_HEIGHT"; payload: number }
   | { type: "SET_POSITIONS"; payload: { [key: string]: Position } };
@@ -160,6 +177,24 @@ const reducer = (state: State, action: Action) => {
         sticky: action.payload
       };
     }
+    case "SET_STICKY_HEIGHT": {
+      return {
+        ...state,
+        stickyHeight: action.payload
+      };
+    }
+    case "SET_STUDIO": {
+      return {
+        ...state,
+        studio: action.payload
+      };
+    }
+    case "SET_OFFSET": {
+      return {
+        ...state,
+        offset: action.payload
+      };
+    }
     default: {
       return state;
     }
@@ -168,28 +203,23 @@ const reducer = (state: State, action: Action) => {
 
 const IndexPage = React.memo(
   ({ location: { hash } }: { location: LocationState }) => {
-    const [
-      {
-        scrollY,
-        windowHeight,
-        positions: {
-          nav: { bottom: navBottom = 1, top: navTop = 0 },
-          studio: { top: studioTop = 0 }
-        },
-        sticky
-      },
-      dispatch
-    ] = useReducer(reducer, initialState);
+    const [{ offset, sticky }, dispatch] = useReducer(reducer, initialState);
 
     const scrollRef = useRef<HTMLDivElement>(null);
-    const studioRef = useRef<HTMLDivElement>(null);
     const navRef = React.useRef<HTMLDivElement>(null);
+    const studioRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
       const stickyElement = document.getElementById("sticky");
       if (stickyElement) {
-        const stickyOffsetTop = stickyElement.offsetTop;
-        dispatch({ type: "SET_STICKY", payload: stickyOffsetTop });
+        dispatch({
+          payload: stickyElement.offsetTop,
+          type: "SET_STICKY"
+        });
+        dispatch({
+          payload: stickyElement.offsetHeight,
+          type: "SET_STICKY_HEIGHT"
+        });
       }
       dispatch({ type: "SET_WINDOW_HEIGHT", payload: window.innerHeight });
       if (hash !== "") {
@@ -203,14 +233,30 @@ const IndexPage = React.memo(
     useScrollPosition(
       ({ currPos }: { currPos: { x: number; y: number } }) => {
         const stickyArea = document.getElementById("sticky");
-        if (stickyArea) {
+        const stickySpacer = document.getElementById("sticky-spacer");
+        const studioArea = document.getElementById("studio");
+        if (stickyArea && stickySpacer && studioArea) {
           if (currPos.y >= sticky) {
             stickyArea.classList.add("sticky");
             stickyArea.classList.remove("not-sticky");
+            stickySpacer.classList.add("show");
+            stickySpacer.classList.remove("hide");
           } else {
             stickyArea.classList.add("not-sticky");
             stickyArea.classList.remove("sticky");
+            stickySpacer.classList.add("hide");
+            stickySpacer.classList.remove("show");
           }
+          const scrollY = currPos.y;
+          const navTop = stickyArea.offsetTop;
+          const navBottom = stickyArea.offsetHeight - stickyArea.offsetTop;
+          const studioTop = studioArea.offsetTop;
+          const updatedOffset = Math.max(
+            0,
+            ((scrollY + navBottom - studioTop) / (navBottom - navTop)) * 100 ||
+              0
+          );
+          dispatch({ type: "SET_OFFSET", payload: updatedOffset });
         }
       },
       {
@@ -281,6 +327,11 @@ const IndexPage = React.memo(
     const section =
       scrollY === 0 ? "home" : scrollY < studioTop ? "work" : "studio";
 */
+    // TODO: Reinstate this in the scroll callback.
+    const section =
+      scrollY === 0 ? "home" : scrollY < studioTop ? "work" : "studio";
+
+    console.log("OFFSET IS:", offset);
 
     return (
       <Container forwardedRef={scrollRef} className={`main`}>
@@ -294,6 +345,7 @@ const IndexPage = React.memo(
           <HobLogo fill="var(--hob-color--secondary)" />
         </MemoizedLogo>
         <FeaturedProjectRollContainer />
+        <StickySpacer id={`sticky-spacer`} className={`hide`} />
         <Sticky id={`sticky`} className={`not-sticky`}>
           <Navbar forwardedRef={navRef}>
             <MemoizedLink
@@ -301,19 +353,19 @@ const IndexPage = React.memo(
               label="Work"
               color="secondary"
               height={28}
-              offset={0}
+              offset={offset}
             />
             <MemoizedLink
               href="#studio"
               label="Studio"
               color="secondary"
               height={28}
-              offset={0}
+              offset={offset}
             />
           </Navbar>
         </Sticky>
         <ProjectRollContainer />
-        <StudioContainer forwardedRef={studioRef} />
+        <StudioContainer forwardedId={`studio`} forwardedRef={studioRef} />
       </Container>
     );
   },

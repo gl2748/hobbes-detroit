@@ -14,30 +14,34 @@ export const MemoizedLink = React.memo(
     height: number;
     offset: number;
     color?: string;
-  }) => (
-    <Link
-      className={`nav__item nav__item--${label}`}
-      color={color}
-      href={href}
-      unsetTypography={true}
-    >
-      <DynamicGradientSvgText
-        height={height}
-        offset={offset}
-        from={
-          color === "primary"
-            ? "var(--hob-color--dark)"
-            : "var(--hob-color--light)"
-        }
-        to={
-          color === "primary"
-            ? "var(--hob-color--light)"
-            : "var(--hob-color--dark)"
-        }
+  }) => {
+    console.log("OS", offset);
+
+    return (
+      <Link
+        className={`nav__item nav__item--${label}`}
+        color={color}
+        href={href}
+        unsetTypography={true}
       >
-        {label}
-      </DynamicGradientSvgText>
-    </Link>
-  ),
+        <DynamicGradientSvgText
+          height={height}
+          offset={offset}
+          from={
+            color === "primary"
+              ? "var(--hob-color--dark)"
+              : "var(--hob-color--light)"
+          }
+          to={
+            color === "primary"
+              ? "var(--hob-color--light)"
+              : "var(--hob-color--dark)"
+          }
+        >
+          {label}
+        </DynamicGradientSvgText>
+      </Link>
+    );
+  },
   (a, b) => a.offset === b.offset
 );

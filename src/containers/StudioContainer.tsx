@@ -4,9 +4,11 @@ import { IStudioProps, Studio } from "../components/Studio";
 import { IAllMarkdownRemark, IFrontmatter } from "./interfaces";
 
 export const StudioContainer = ({
-  forwardedRef
+  forwardedRef,
+  forwardedId
 }: {
   forwardedRef?: React.Ref<HTMLDivElement>;
+  forwardedId?: string;
 }) => {
   const render = (data: IAllMarkdownRemark<IFrontmatter<IStudioProps>>) => {
     const {
@@ -20,6 +22,7 @@ export const StudioContainer = ({
 
     return (
       <Studio
+        id={forwardedId}
         forwardedRef={forwardedRef}
         title={title}
         description={description}

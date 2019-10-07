@@ -28,8 +28,6 @@ function getScrollPosition({
 
   const target = element && element.current ? element.current : getBody();
 
-  console.log("target", target);
-
   return useWindow
     ? { x: window.scrollX, y: window.scrollY }
     : { x: target.scrollLeft, y: target.scrollTop }; // this one
