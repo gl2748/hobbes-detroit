@@ -257,6 +257,14 @@ const IndexPage = React.memo(
               0
           );
           dispatch({ type: "SET_OFFSET", payload: updatedOffset });
+          /*
+          const section =
+            scrollY === 0
+              ? 'home'
+              : scrollY < studioTop
+              ? 'work'
+              : 'studio';
+          */
         }
       },
       {
@@ -328,8 +336,6 @@ const IndexPage = React.memo(
       scrollY === 0 ? "home" : scrollY < studioTop ? "work" : "studio";
 */
     // TODO: Reinstate this in the scroll callback.
-    const section =
-      scrollY === 0 ? "home" : scrollY < studioTop ? "work" : "studio";
 
     console.log("OFFSET IS:", offset);
 
