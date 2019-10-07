@@ -13,6 +13,25 @@ import { useScrollPosition } from "../hooks/useScrollPosition";
 import { MemoizedLink } from "./MemoizedLink";
 import { MemoizedLogo } from "./MemoizedLogo";
 
+const Sticky = styled.div`
+  &.not-sticky {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 1.5rem;
+    padding-top: 1.5rem;
+    z-index: 99;
+    background: black;
+  }
+  &.sticky {
+    --fs: 1.75rem;
+    display: flex;
+    right: 1.5rem;
+    top: 1.5rem;
+    position: fixed;
+    z-index: 5;
+  }
+`;
+
 const Container = styled(LayoutWithLocation)`
   --mb: 1.5rem;
   --fs: 1.75rem;
@@ -77,50 +96,6 @@ const Container = styled(LayoutWithLocation)`
       fill: var(--hob-color--dark);
     }
   }
-
-  .nav {
-    z-index: 3;
-    display: flex;
-    right: 0;
-    margin-right: 1.25rem;
-
-    a {
-      &:hover,
-      &:focus {
-        opacity: 0.5;
-      }
-    }
-
-    &--fixed {
-      transform: translateZ(0);
-    }
-
-    &--absolute {
-      transform: translate(-50%, -50%) .;
-    }
-
-    &--top {
-      top: 0;
-      margin-top: var(--mb);
-    }
-
-    &--bottom {
-      top: calc(100vh - var(--mb) - var(--fs));
-      margin-bottom: var(--mb);
-    }
-
-    .hob-link {
-      margin-right: 1rem;
-
-      &:last-of-type {
-        margin-right: 0;
-      }
-      &,
-      .hob-typography--link {
-        font-size: var(--fs);
-      }
-    }
-  }
 `;
 
 interface Position {
@@ -137,6 +112,7 @@ interface State {
     nav: Position;
   };
   windowHeight: number;
+  sticky: number;
 }
 
 const initialState: State = {
@@ -145,10 +121,12 @@ const initialState: State = {
     studio: { top: 0 }
   },
   scrollY: 0,
+  sticky: 0,
   windowHeight: 0
 };
 
 type Action =
+  | { type: "SET_STICKY"; payload: number }
   | { type: "SET_SCROLL_Y"; payload: number }
   | { type: "SET_WINDOW_HEIGHT"; payload: number }
   | { type: "SET_POSITIONS"; payload: { [key: string]: Position } };
@@ -176,6 +154,12 @@ const reducer = (state: State, action: Action) => {
         }
       };
     }
+    case "SET_STICKY": {
+      return {
+        ...state,
+        sticky: action.payload
+      };
+    }
     default: {
       return state;
     }
@@ -191,7 +175,8 @@ const IndexPage = React.memo(
         positions: {
           nav: { bottom: navBottom = 1, top: navTop = 0 },
           studio: { top: studioTop = 0 }
-        }
+        },
+        sticky
       },
       dispatch
     ] = useReducer(reducer, initialState);
@@ -201,6 +186,11 @@ const IndexPage = React.memo(
     const navRef = React.useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+      const stickyElement = document.getElementById("sticky");
+      if (stickyElement) {
+        const stickyOffsetTop = stickyElement.offsetTop;
+        dispatch({ type: "SET_STICKY", payload: stickyOffsetTop });
+      }
       dispatch({ type: "SET_WINDOW_HEIGHT", payload: window.innerHeight });
       if (hash !== "") {
         const el = document.getElementById(hash.replace(/#/, ""));
@@ -210,6 +200,27 @@ const IndexPage = React.memo(
       }
     }, []);
 
+    useScrollPosition(
+      ({ currPos }: { currPos: { x: number; y: number } }) => {
+        const stickyArea = document.getElementById("sticky");
+        if (stickyArea) {
+          if (currPos.y >= sticky) {
+            stickyArea.classList.add("sticky");
+            stickyArea.classList.remove("not-sticky");
+          } else {
+            stickyArea.classList.add("not-sticky");
+            stickyArea.classList.remove("sticky");
+          }
+        }
+      },
+      {
+        element: scrollRef,
+        useWindow: false,
+        wait: 300
+      }
+    );
+
+    /*
     React.useEffect(() => {
       if (navRef.current === null || studioRef.current === null) {
         return;
@@ -232,13 +243,17 @@ const IndexPage = React.memo(
       studioRef.current && studioRef.current.offsetTop,
       navRef.current && navRef.current.offsetTop
     ]);
+    */
 
+    /*
     const offset = Math.max(
       0,
       ((scrollY + navBottom - studioTop) / (navBottom - navTop)) * 100 || 0
     );
     const height = 28;
+    */
 
+    /*
     useScrollPosition(
       ({ currPos }) => {
         dispatch({ type: "SET_SCROLL_Y", payload: currPos.y });
@@ -249,36 +264,26 @@ const IndexPage = React.memo(
         wait: 100
       }
     );
+    */
 
-    const atTop = scrollY >= windowHeight - 1.5 * 16 - 2 * (1.75 * 16);
+    // const atTop = scrollY >= windowHeight - 1.5 * 16 - 2 * (1.75 * 16);
+    /*
     const modifiers = Object.entries({
       fixed: { test: atTop, whenFalse: "absolute" },
       top: { test: atTop, whenFalse: "bottom" }
     })
       .map(([key, { test, whenFalse }]) => `nav--${test ? key : whenFalse}`)
       .join(" ");
+      */
+
+    /*
 
     const section =
       scrollY === 0 ? "home" : scrollY < studioTop ? "work" : "studio";
+*/
 
     return (
-      <Container forwardedRef={scrollRef} className={`main main--${section}`}>
-        <Navbar className={`nav ${modifiers}`} forwardedRef={navRef}>
-          <MemoizedLink
-            href="/#work"
-            label="Work"
-            color="secondary"
-            height={height}
-            offset={offset}
-          />
-          <MemoizedLink
-            href="#studio"
-            label="Studio"
-            color="secondary"
-            height={height}
-            offset={offset}
-          />
-        </Navbar>
+      <Container forwardedRef={scrollRef} className={`main`}>
         <HobLetters size="lg" color="var(--hob-color--light)" />
         <MemoizedLogo
           className={`logo logo--${scrollY > 0 ? "scrolled" : "top"}`}
@@ -289,6 +294,24 @@ const IndexPage = React.memo(
           <HobLogo fill="var(--hob-color--secondary)" />
         </MemoizedLogo>
         <FeaturedProjectRollContainer />
+        <Sticky id={`sticky`} className={`not-sticky`}>
+          <Navbar forwardedRef={navRef}>
+            <MemoizedLink
+              href="/#work"
+              label="Work"
+              color="secondary"
+              height={28}
+              offset={0}
+            />
+            <MemoizedLink
+              href="#studio"
+              label="Studio"
+              color="secondary"
+              height={28}
+              offset={0}
+            />
+          </Navbar>
+        </Sticky>
         <ProjectRollContainer />
         <StudioContainer forwardedRef={studioRef} />
       </Container>

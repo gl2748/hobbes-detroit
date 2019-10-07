@@ -2,15 +2,16 @@ import styled from "@emotion/styled";
 import React, { HTMLProps } from "react";
 import { HobLink as Link } from "../HobLink";
 
-const Nav = styled.div`
+const Nav2 = styled.div`
   --fs: 1.75rem;
-
   display: flex;
   right: 1.5rem;
   top: 1.5rem;
   position: fixed;
   z-index: 5;
+`;
 
+const Nav = styled.div`
   .hob-link {
     margin-right: 1rem;
 
