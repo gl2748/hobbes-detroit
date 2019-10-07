@@ -259,8 +259,8 @@ const IndexPage = React.memo(
             ((updatedScrollY + navBottom - studioTop) / (navBottom - navTop)) *
               100 || 0
           );
-          dispatch({ type: "SET_OFFSET", payload: updatedOffset });
-          dispatch({ type: "SET_SCROLL_Y", payload: updatedScrollY });
+          // dispatch({ type: "SET_OFFSET", payload: updatedOffset });
+          // dispatch({ type: "SET_SCROLL_Y", payload: updatedScrollY });
           /*
           const section =
             scrollY === 0
