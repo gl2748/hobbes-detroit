@@ -203,7 +203,10 @@ const reducer = (state: State, action: Action) => {
 
 const IndexPage = React.memo(
   ({ location: { hash } }: { location: LocationState }) => {
-    const [{ offset, sticky }, dispatch] = useReducer(reducer, initialState);
+    const [{ offset, sticky, scrollY }, dispatch] = useReducer(
+      reducer,
+      initialState
+    );
 
     const scrollRef = useRef<HTMLDivElement>(null);
     const navRef = React.useRef<HTMLDivElement>(null);
@@ -247,16 +250,17 @@ const IndexPage = React.memo(
             stickySpacer.classList.add("hide");
             stickySpacer.classList.remove("show");
           }
-          const scrollY = currPos.y;
+          const updatedScrollY = currPos.y;
           const navTop = stickyArea.offsetTop;
           const navBottom = stickyArea.offsetHeight - stickyArea.offsetTop;
           const studioTop = studioArea.offsetTop;
           const updatedOffset = Math.max(
             0,
-            ((scrollY + navBottom - studioTop) / (navBottom - navTop)) * 100 ||
-              0
+            ((updatedScrollY + navBottom - studioTop) / (navBottom - navTop)) *
+              100 || 0
           );
           dispatch({ type: "SET_OFFSET", payload: updatedOffset });
+          dispatch({ type: "SET_SCROLL_Y", payload: updatedScrollY });
           /*
           const section =
             scrollY === 0
