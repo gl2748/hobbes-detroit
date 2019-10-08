@@ -21,6 +21,8 @@ const Container = styled(LayoutWithLocation)`
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
 
   &.main--work {
     .nav__item--Work {

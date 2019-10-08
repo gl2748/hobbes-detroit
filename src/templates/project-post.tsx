@@ -232,6 +232,10 @@ const Container = styled(Layout)`
   overflow-y: scroll;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+    width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; /* enables “momentum” (smooth) scrolling *
 
   &.main--work {
     .nav__item--Work {

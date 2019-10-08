@@ -58,6 +58,8 @@
 
 body {
   overflow-x: hidden;
+  position: fixed;
+  overflow: hidden;
 }
 
 body,
