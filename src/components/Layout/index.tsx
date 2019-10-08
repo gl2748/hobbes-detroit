@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet";
 import { useIdentityContext } from "react-netlify-identity-widget";
 import { withLocation } from "../../higherOrderComponents/withLocation";
 import useLoading from "../../hooks/useLoading";
+import useMobileDetect from "../../hooks/useMobileDetect";
 import { ConfirmEmailForm } from "../ConfirmEmailForm";
 import { Footer } from "../Footer";
 import { HobIcon } from "../HobIcon";
@@ -126,22 +127,26 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
 }) => {
   const { title, description } = useSiteMetadata();
   const [isLoading, load] = useLoading();
+  const detectMobile = useMobileDetect();
   const [state, dispatch] = useReducer(layoutReducer, initialState);
   const identity = useIdentityContext();
 
   useEffect(() => {
-    const htmlElement = document.getElementById("scrollWatcher");
-    function pauseLottie(element: HTMLElement) {
-      dispatch({ type: "toggleLottie", payload: true });
-    }
-    if (htmlElement) {
-      htmlElement.addEventListener("scroll", debounced(300, pauseLottie)); // Not reliable
-    }
-    return function cleanup() {
-      if (htmlElement) {
-        htmlElement.removeEventListener("scroll", pauseLottie);
+    // Only do this if iOS.
+    if (detectMobile.isIos()) {
+      const htmlElement = document.getElementById("scrollWatcher");
+      function pauseLottie(element: HTMLElement) {
+        dispatch({ type: "toggleLottie", payload: true });
       }
-    };
+      if (htmlElement) {
+        htmlElement.addEventListener("scroll", debounced(300, pauseLottie)); // Not reliable
+      }
+      return function cleanup() {
+        if (htmlElement) {
+          htmlElement.removeEventListener("scroll", pauseLottie);
+        }
+      };
+    }
   }, []);
 
   useEffect(() => {
