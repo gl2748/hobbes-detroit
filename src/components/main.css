@@ -58,6 +58,7 @@
 
 body {
   overflow-x: hidden;
+  -webkit-transition: translateZ(0);
 }
 
 body,
