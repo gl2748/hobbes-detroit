@@ -4,10 +4,10 @@ import { IProjectProps } from "@components/ProjectRollItem";
 import styled from "@emotion/styled";
 import axios from "axios";
 import { graphql, StaticQuery } from "gatsby";
-import React, { useEffect, useState, useContext } from "react";
-import { AppContext } from "../components/Layout";
+import React, { useContext, useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import breakpoints from "../breakpoints";
+import { AppContext } from "../components/Layout";
 import { IAllMarkdownRemark } from "./interfaces";
 
 const ProjectContainer = styled.div`
@@ -44,8 +44,8 @@ const Project = React.memo(
     } | null>(null);
 
     const { pauseLottie } = useContext(AppContext);
-    
-    console.log('PAUSE LOTTIE IS:', pauseLottie)
+
+    console.log("PAUSE LOTTIE IS:", pauseLottie);
 
     useEffect(() => {
       axios.get(post.frontmatter.featuredJson).then(({ data }) => {

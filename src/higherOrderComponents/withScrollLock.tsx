@@ -1,11 +1,11 @@
-import React from 'react';
 import {
-  disableBodyScroll,
-  enableBodyScroll,
   clearAllBodyScrollLocks,
-} from 'body-scroll-lock';
+  disableBodyScroll,
+  enableBodyScroll
+} from "body-scroll-lock";
+import React from "react";
 
-export const withScrollLock = (Component) => {
+export const withScrollLock = Component => {
   return class extends React.Component {
     // 2. Initialise your ref and targetElement here
     targetRef = React.createRef();
@@ -23,14 +23,14 @@ export const withScrollLock = (Component) => {
 
       // 4. Disable body scroll
       disableBodyScroll(this.targetElement);
-    };
+    }
 
     hideTargetElement = () => {
       // ... some logic to hide target element
 
       // 5. Re-enable body scroll
       enableBodyScroll(this.targetElement);
-    };
+    }
 
     componentWillUnmount() {
       // 5. Useful if we have called disableBodyScroll for multiple target elements,
@@ -41,10 +41,10 @@ export const withScrollLock = (Component) => {
     }
 
     render() {
-      const {...passThroughProps} = this.props
+      const { ...passThroughProps } = this.props;
       return (
         // 6. Pass your ref with the reference to the targetElement to SomeOtherComponent
-        <Component forwardRef={this.targetRef} {...passThroughProps}/>
+        <Component forwardRef={this.targetRef} {...passThroughProps} />
       );
     }
   };
