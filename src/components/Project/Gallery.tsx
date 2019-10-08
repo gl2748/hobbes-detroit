@@ -78,7 +78,7 @@ export const Gallery = React.memo(
           case MediaType.LOTTIE: {
             const defaultOptions = {
               animationData: data,
-              autoplay: false,
+              autoplay: true,
               loop: true
             };
 
