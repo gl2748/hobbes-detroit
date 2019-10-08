@@ -2,8 +2,6 @@ This repo contains a business website that is built with Gatsby, and Netlify
 CMS.It follows the JAMstack architecture by using Git as a single source of
 truth, and Netlify for continuous deployment, and CDN distribution.
 
-kick1
-
 Really `src/templates` and `src/containers` could be merged, simply called
 `containers`, if following the container pattern from redux.
 
@@ -12,6 +10,12 @@ Currently the flow is. `static/admin/config.yml` -> `gatsby-node.js` ->->
 `gatsby-node.js`) -> `src/containers`(graphql static query) ->
 `src/components`(dumb component) and for the cms preview templates.
 `src/cms/preview-templates`(graphql netlify cms query) -> `src/components`.
+
+# Mobile development.
+
+Follow: https://zeph.co/iphone-localhost-mac
+then run Gatsby bound to a port.
+`gatsby develop -H 0.0.0.0`
 
 # notes
 
