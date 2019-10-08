@@ -167,45 +167,47 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
           <meta property="og:url" content="/" />
           <meta property="og:image" content="/img/og-image.jpg" />
         </Helmet>
-        <PortalWithLocation
-          onClose={toggleDrawer(false)}
-          isVisible={state.showDrawer}
-        >
-          {state.isLoggedIn &&
-            state.confirmEmailToken.length === 0 &&
-            state.recoveryToken.length === 0 && (
-              <LogoutForm onClose={toggleDrawer(false)} />
+        {state.showDrawer && (
+          <PortalWithLocation
+            onClose={toggleDrawer(false)}
+            isVisible={state.showDrawer}
+          >
+            {state.isLoggedIn &&
+              state.confirmEmailToken.length === 0 &&
+              state.recoveryToken.length === 0 && (
+                <LogoutForm onClose={toggleDrawer(false)} />
+              )}
+            {!state.isLoggedIn &&
+              state.confirmEmailToken.length === 0 &&
+              state.recoveryToken.length === 0 && (
+                <LoginForm onClose={toggleDrawer(false)} />
+              )}
+            {state.confirmEmailToken.length > 0 && (
+              <ConfirmEmailForm
+                onClose={toggleDrawer(false)}
+                token={state.confirmEmailToken}
+              />
             )}
-          {!state.isLoggedIn &&
-            state.confirmEmailToken.length === 0 &&
-            state.recoveryToken.length === 0 && (
-              <LoginForm onClose={toggleDrawer(false)} />
+            {state.recoveryToken.length > 0 && (
+              <RecoverAccountForm
+                onClose={toggleDrawer(false)}
+                token={state.recoveryToken}
+              />
             )}
-          {state.confirmEmailToken.length > 0 && (
-            <ConfirmEmailForm
-              onClose={toggleDrawer(false)}
-              token={state.confirmEmailToken}
-            />
-          )}
-          {state.recoveryToken.length > 0 && (
-            <RecoverAccountForm
-              onClose={toggleDrawer(false)}
-              token={state.recoveryToken}
-            />
-          )}
 
-          <PortalLegal>
-            <Lock size="sm" color="primary" name="lock" />
-            <FinePrint variant="body1">{portalCopy}</FinePrint>
-            {portalLinks.map(({ href, label }) => (
-              <div key={label}>
-                <HobLink href={href} target="blank" color="primary">
-                  {label}
-                </HobLink>
-              </div>
-            ))}
-          </PortalLegal>
-        </PortalWithLocation>
+            <PortalLegal>
+              <Lock size="sm" color="primary" name="lock" />
+              <FinePrint variant="body1">{portalCopy}</FinePrint>
+              {portalLinks.map(({ href, label }) => (
+                <div key={label}>
+                  <HobLink href={href} target="blank" color="primary">
+                    {label}
+                  </HobLink>
+                </div>
+              ))}
+            </PortalLegal>
+          </PortalWithLocation>
+        )}
         {children}
         <Footer toggleDrawer={toggleDrawer()} />
       </Container>
