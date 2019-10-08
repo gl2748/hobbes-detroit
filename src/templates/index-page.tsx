@@ -238,29 +238,44 @@ const IndexPage = React.memo(
         const stickyArea = document.getElementById("sticky");
         const stickySpacer = document.getElementById("sticky-spacer");
         const studioArea = document.getElementById("studio");
-        if (stickyArea && stickySpacer && studioArea) {
-          if (currPos.y >= sticky) {
-            stickyArea.classList.add("sticky");
-            stickyArea.classList.remove("not-sticky");
-            stickySpacer.classList.add("show");
-            stickySpacer.classList.remove("hide");
-          } else {
-            stickyArea.classList.add("not-sticky");
-            stickyArea.classList.remove("sticky");
-            stickySpacer.classList.add("hide");
-            stickySpacer.classList.remove("show");
+        if (currPos.y < 20) {
+          dispatch({ type: "SET_SCROLL_Y", payload: 0 });
+          return;
+        }
+        if (currPos.y > 200) {
+          if (stickyArea && stickySpacer && studioArea) {
+            if (currPos.y >= sticky) {
+              stickyArea.classList.add("sticky");
+              stickyArea.classList.remove("not-sticky");
+              stickySpacer.classList.add("show");
+              stickySpacer.classList.remove("hide");
+            } else {
+              stickyArea.classList.add("not-sticky");
+              stickyArea.classList.remove("sticky");
+              stickySpacer.classList.add("hide");
+              stickySpacer.classList.remove("show");
+            }
+
+            const updatedScrollY = currPos.y;
+            const navTop = stickyArea.offsetTop;
+            const navBottom = stickyArea.offsetHeight - stickyArea.offsetTop;
+            const studioTop = studioArea.offsetTop;
+
+            console.log("studioTOP", studioTop);
+            console.log("updatedScrollY", updatedScrollY);
+
+            const updatedOffset =
+              updatedScrollY < studioTop - 200
+                ? 0
+                : Math.max(
+                    0,
+                    ((updatedScrollY + navBottom - studioTop) /
+                      (navBottom - navTop)) *
+                      100 || 0
+                  );
+            dispatch({ type: "SET_OFFSET", payload: updatedOffset });
+            dispatch({ type: "SET_SCROLL_Y", payload: updatedScrollY });
           }
-          const updatedScrollY = currPos.y;
-          const navTop = stickyArea.offsetTop;
-          const navBottom = stickyArea.offsetHeight - stickyArea.offsetTop;
-          const studioTop = studioArea.offsetTop;
-          const updatedOffset = Math.max(
-            0,
-            ((updatedScrollY + navBottom - studioTop) / (navBottom - navTop)) *
-              100 || 0
-          );
-          // dispatch({ type: "SET_OFFSET", payload: updatedOffset });
-          // dispatch({ type: "SET_SCROLL_Y", payload: updatedScrollY });
           /*
           const section =
             scrollY === 0
@@ -341,13 +356,11 @@ const IndexPage = React.memo(
 */
     // TODO: Reinstate this in the scroll callback.
 
-    console.log("OFFSET IS:", offset);
-
     return (
       <Container forwardedRef={scrollRef} className={`main`}>
         <HobLetters size="lg" color="var(--hob-color--light)" />
         <MemoizedLogo
-          className={`logo logo--${scrollY > 0 ? "scrolled" : "top"}`}
+          className={`logo logo--${scrollY > 100 ? "scrolled" : "top"}`}
           unsetTypography={true}
           color="primary"
           to="/"
