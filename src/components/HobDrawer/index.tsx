@@ -31,7 +31,7 @@ const Drawer = styled.div`
   padding: 1.25rem;
   height: 100%;
   overflow-y: scroll;
-  -webkit-overflow-scrolling: "touch";
+  -webkit-overflow-scrolling: "auto";
   transition: left var(--hob-transition-duration);
   background-color: var(--hob-color--light);
   width: 447px;
