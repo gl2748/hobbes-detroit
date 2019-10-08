@@ -135,7 +135,7 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
       dispatch({ type: "toggleLottie", payload: true });
     }
     if (htmlElement) {
-      htmlElement.addEventListener("scroll", debounced(1000, pauseLottie)); // Not reliable
+      htmlElement.addEventListener("scroll", debounced(300, pauseLottie)); // Not reliable
     }
     return function cleanup() {
       if (htmlElement) {

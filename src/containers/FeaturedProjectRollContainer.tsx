@@ -45,8 +45,6 @@ const Project = React.memo(
 
     const { pauseLottie } = useContext(AppContext);
 
-    console.log("PAUSE LOTTIE IS:", pauseLottie);
-
     useEffect(() => {
       axios.get(post.frontmatter.featuredJson).then(({ data }) => {
         setAnimationData(data);
@@ -55,7 +53,8 @@ const Project = React.memo(
 
     const defaultOptions = {
       animationData,
-      isPaused: !pauseLottie,
+      autoplay: true,
+      isPaused: pauseLottie,
       loop: true
     };
     return (
