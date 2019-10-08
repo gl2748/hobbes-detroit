@@ -19,7 +19,6 @@ const Container = styled.div`
   z-index: 100;
   transition: width var(--hob-transition-duration);
   height: 100vh;
-
   &.hob-drawer-container--visible {
     width: 100vw;
   }
