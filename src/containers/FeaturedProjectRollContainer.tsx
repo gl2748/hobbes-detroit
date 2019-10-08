@@ -4,9 +4,10 @@ import { IProjectProps } from "@components/ProjectRollItem";
 import styled from "@emotion/styled";
 import axios from "axios";
 import { graphql, StaticQuery } from "gatsby";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import breakpoints from "../breakpoints";
+import { AppContext } from "../components/Layout";
 import { IAllMarkdownRemark } from "./interfaces";
 
 const ProjectContainer = styled.div`
@@ -42,6 +43,10 @@ const Project = React.memo(
       [key: string]: any;
     } | null>(null);
 
+    const { pauseLottie } = useContext(AppContext);
+
+    console.log("PAUSE LOTTIE IS:", pauseLottie);
+
     useEffect(() => {
       axios.get(post.frontmatter.featuredJson).then(({ data }) => {
         setAnimationData(data);
@@ -50,7 +55,7 @@ const Project = React.memo(
 
     const defaultOptions = {
       animationData,
-      autoplay: true,
+      isPaused: !pauseLottie,
       loop: true
     };
     return (
