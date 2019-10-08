@@ -44,7 +44,7 @@ export const withScrollLock = (Component) => {
       const {...passThroughProps} = this.props
       return (
         // 6. Pass your ref with the reference to the targetElement to SomeOtherComponent
-        <Component ref={this.targetRef} {...passThroughProps}/>
+        <Component forwardRef={this.targetRef} {...passThroughProps}/>
       );
     }
   };

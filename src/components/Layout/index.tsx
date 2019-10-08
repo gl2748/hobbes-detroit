@@ -19,6 +19,19 @@ import { Portal, PortalWithLocation } from '../Portal';
 import { RecoverAccountForm } from '../RecoverAccountForm';
 import { useSiteMetadata } from '../SiteMetadata';
 
+export function debounced(delay, fn) {
+  let timerId;
+  return function(...args) {
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+    timerId = setTimeout(() => {
+      fn(...args);
+      timerId = null;
+    }, delay);
+  };
+}
+
 export interface ILayoutProps {
   children: ReactNode;
   portalLinks?: [{ label: string; href: string }];
@@ -30,15 +43,18 @@ export interface ILayoutProps {
 const defaultLinks: Array<{ href: string; label: string }> = [];
 const defaultPortalCopy = '';
 export interface ILayoutState {
+  pauseLottie: boolean;
   showDrawer: boolean;
   isLoggedIn: boolean;
   username: string;
   confirmEmailToken: string;
   recoveryToken: string;
   toggleDrawer?: () => void;
+  toggleLottie?: () => void;
 }
 
 type TAction =
+  | { type: 'toggleLottie'; payload?: boolean }
   | { type: 'toggleDrawer'; payload?: boolean }
   | { type: 'updateUsername'; payload: string }
   | { type: 'updateIsLoggedIn'; payload: boolean }
@@ -47,6 +63,12 @@ type TAction =
 
 const layoutReducer = (state: ILayoutState, action: TAction) => {
   switch (action.type) {
+    case 'toggleLottie':
+      return {
+        ...state,
+        pauseLottie:
+          action.payload === undefined ? !state.pauseLottie : action.payload,
+      };
     case 'toggleDrawer':
       return {
         ...state,
@@ -84,6 +106,7 @@ const FinePrint = styled(HobTypography)`
 `;
 
 const initialState: ILayoutState = {
+  pauseLottie: false,
   confirmEmailToken: '',
   isLoggedIn: false,
   recoveryToken: '',
@@ -106,6 +129,22 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
   const [isLoading, load] = useLoading();
   const [state, dispatch] = useReducer(layoutReducer, initialState);
   const identity = useIdentityContext();
+
+  useEffect(() => {
+    const htmlElement = document.getElementById('scrollWatcher');
+    function pauseLottie(htmlElement: HTMLElement) {
+      dispatch({ type: 'toggleLottie', payload: true});
+    }
+
+    if (htmlElement) {
+      htmlElement.addEventListener('scroll', debounced(1000, pauseLottie)); // Not reliable
+    }
+    return function cleanup() {
+      if (htmlElement) {
+        htmlElement.removeEventListener('scroll', pauseLottie);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     dispatch({ type: 'updateIsLoggedIn', payload: identity.isLoggedIn });
@@ -134,7 +173,7 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
 
   return (
     <AppContext.Provider value={{ ...state, toggleDrawer: toggleDrawer() }}>
-      <Container className={className} ref={forwardedRef}>
+      <Container id={'scrollWatcher'} className={className} ref={forwardedRef}>
         <Helmet>
           <html lang='en' />
           <title>{title}</title>
