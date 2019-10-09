@@ -250,10 +250,10 @@ export const HobVideo: React.FC<IVideoProps & HTMLProps<HTMLVideoElement>> = ({
   showFullscreen = false,
   showStop = false,
   loop = true,
+  poster = false,
   children
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -413,6 +413,7 @@ export const HobVideo: React.FC<IVideoProps & HTMLProps<HTMLVideoElement>> = ({
       onClick={withVideo(playPause)}
       loop={loop}
       muted={true}
+      poster={poster ? poster : undefined}
     >
       {source ? <source src={source} type={mimeType} /> : children}
       <p>
@@ -435,6 +436,7 @@ export const HobVideo: React.FC<IVideoProps & HTMLProps<HTMLVideoElement>> = ({
         loop={loop}
         src={children.props.src}
         muted={true}
+        poster={poster ? poster : undefined}
       />
     );
   }

@@ -10,12 +10,14 @@ export const LargeMedia = ({
   mimeType,
   media,
   largeMediaFile,
+  largeMediaFileThumbnail,
   caption,
   bleed
 }: {
   mimeType: MediaType;
   media: IMediaResult;
   largeMediaFile: string;
+  largeMediaFileThumbnail?: string | undefined;
   caption: string;
   bleed: boolean;
 }) => {
@@ -53,7 +55,7 @@ export const LargeMedia = ({
       case MediaType.MP4:
       case MediaType.QUICKTIME: {
         return (
-          <HobVideo>
+          <HobVideo poster={largeMediaFileThumbnail}>
             <source src={largeMediaFile} type={mimeType} />
           </HobVideo>
         );

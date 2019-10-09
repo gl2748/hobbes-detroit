@@ -56,6 +56,7 @@ export type MediaImage =
 export interface ISlide {
   caption: string;
   slideMediaFile: string;
+  slideMediaFileThumbnail?: string;
   type: string;
 }
 
@@ -67,6 +68,7 @@ export interface IMediaResult {
   data: any;
   type: MediaType;
   url?: string;
+  thumbnail?: string;
 }
 
 export type Module =
@@ -85,6 +87,7 @@ export type Module =
   | {
       type: "largeMedia";
       largeMediaFile: string;
+      largeMediaFileThumbnail?: string;
       bleed: boolean;
       caption: string;
     }
@@ -93,7 +96,11 @@ export type Module =
       mediaGridMedia: IMediaGridMedia[];
       hideCaptions: boolean;
     }
-  | { type: "projectBanner"; projectBannerMedia: string }
+  | {
+      type: "projectBanner";
+      projectBannerMedia: string;
+      projectBannerMediaThumnail?: string;
+    }
   | { type: "mobileDevice"; mobileDeviceMedia: string }
   | { type: "tabletDevice"; tabletDeviceMedia: string }
   | { type: "tags"; tags: string[] }
@@ -243,13 +250,20 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
           });
         }
       }, []);
-
+      let videoThumbnail: string | undefined;
+      if (
+        mimeType === MediaType.MP4 ||
+        (mimeType === MediaType.QUICKTIME && props.largeMediaFileThumnail)
+      ) {
+        videoThumbnail = props.largeMediaFileThumbnail;
+      }
       return (
         <LargeMedia
           mimeType={mimeType}
           media={media[0]}
           bleed={props.bleed}
           largeMediaFile={props.largeMediaFile}
+          largeMediaFileThumbnail={videoThumbnail}
           caption={props.caption}
         />
       );
@@ -258,23 +272,26 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
     case "gallery": {
       useEffect(() => {
         Promise.all(
-          props.slides.map(async ({ slideMediaFile }) => {
-            const slideMeta = metaDataGetter(slideMediaFile);
-            if (slideMeta[0].mime_type === MediaType.LOTTIE) {
-              const response = await axios.get(slideMediaFile);
-              return {
-                data: response.data,
-                type: slideMeta[0].mime_type,
-                url: slideMediaFile
-              };
-            } else {
-              return {
-                data: null,
-                type: slideMeta[0].mime_type,
-                url: slideMediaFile
-              };
+          props.slides.map(
+            async ({ slideMediaFile, slideMediaFileThumbnail }) => {
+              const slideMeta = metaDataGetter(slideMediaFile);
+              if (slideMeta[0].mime_type === MediaType.LOTTIE) {
+                const response = await axios.get(slideMediaFile);
+                return {
+                  data: response.data,
+                  type: slideMeta[0].mime_type,
+                  url: slideMediaFile
+                };
+              } else {
+                return {
+                  data: null,
+                  thumbnail: slideMediaFileThumbnail,
+                  type: slideMeta[0].mime_type,
+                  url: slideMediaFile
+                };
+              }
             }
-          })
+          )
         ).then(setMedia);
       }, []);
 
