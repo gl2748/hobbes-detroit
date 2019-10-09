@@ -1,7 +1,15 @@
 import styled from "@emotion/styled";
 import { NavigateFn } from "@reach/router";
 import { LocationState } from "history";
-import React, { HTMLProps, ReactNode, Ref, useEffect, useReducer } from "react";
+import React, {
+  EventHandler,
+  HTMLProps,
+  ReactNode,
+  Ref,
+  TouchEventHandler,
+  useEffect,
+  useReducer
+} from "react";
 import { Helmet } from "react-helmet";
 import { useIdentityContext } from "react-netlify-identity-widget";
 import { withLocation } from "../../higherOrderComponents/withLocation";
@@ -135,9 +143,9 @@ export const Layout: React.FC<ILayoutProps & HTMLProps<HTMLDivElement>> = ({
     // Only do this if iOS.
     if (detectMobile.isIos()) {
       const htmlElement = document.getElementById("scrollWatcher");
-      function pauseLottie(element: HTMLElement) {
+      const pauseLottie: EventHandler<any> = (element: any) => {
         dispatch({ type: "toggleLottie", payload: true });
-      }
+      };
       if (htmlElement) {
         htmlElement.addEventListener("scroll", debounced(300, pauseLottie)); // Not reliable
       }

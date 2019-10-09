@@ -38,23 +38,21 @@ const ProjectGraphic = styled.div`
 `;
 
 const Project = React.memo(
-  ({ post }: { post: IProjectProps }) => {
+  ({ post, paused }: { post: IProjectProps; paused?: boolean }) => {
     const [animationData, setAnimationData] = useState<{
       [key: string]: any;
     } | null>(null);
 
-    const { pauseLottie } = useContext(AppContext);
-
+    // TODO: Consider moving the fetch to the container level.
     useEffect(() => {
       axios.get(post.frontmatter.featuredJson).then(({ data }) => {
         setAnimationData(data);
       });
     }, []);
-
     const defaultOptions = {
       animationData,
       autoplay: true,
-      isPaused: pauseLottie,
+      isPaused: !!paused,
       loop: true
     };
     return (
@@ -96,11 +94,11 @@ const Project = React.memo(
 export const FeaturedProjectRollContainer: React.FC = () => {
   const render = (data: IAllMarkdownRemark<IProjectProps>): React.ReactNode => {
     const { edges: posts } = data.allMarkdownRemark;
-
+    const { pauseLottie } = useContext(AppContext);
     return (
       <HeroCarousel>
         {posts.map(({ node: post }: { node: IProjectProps }) => (
-          <Project key={post.id} post={post} />
+          <Project key={post.id} post={post} paused={pauseLottie} />
         ))}
       </HeroCarousel>
     );
