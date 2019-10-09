@@ -69,7 +69,13 @@ const Project = React.memo(
           }
         >
           <ProjectGraphic className="hero-carousel__project-graphic">
-            {animationData && <Lottie options={defaultOptions} />}
+            {animationData && (
+              <Lottie
+                options={defaultOptions}
+                isPaused={false}
+                isStopped={false}
+              />
+            )}
           </ProjectGraphic>
         </HobLink>
 
