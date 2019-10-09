@@ -28,6 +28,7 @@ team:
   - Benjamin Dresser
 modules:
   - projectBannerMedia: 'https://ucarecdn.com/96fd230b-43d8-4b0e-8f06-aeadba5b4fcc/'
+    projectBannerMediaThumbnail: 'https://ucarecdn.com/fd3607a8-1209-4e8e-8b62-8bddd5e489bf/'
     type: projectBanner
   - textColumns:
       - column: >-
@@ -41,10 +42,13 @@ modules:
     type: textArea
   - slides:
       - slideMediaFile: 'https://ucarecdn.com/e0a2059d-3154-463b-8aad-212b87fd110b/'
+        slideMediaFileThumbnail: 'https://ucarecdn.com/73cbe17f-ab3d-4d39-80b4-1de23c6b1a6e/'
         type: slideMedia
       - slideMediaFile: 'https://ucarecdn.com/0420d866-f81e-4246-b95c-d14d11dd7d9a/'
+        slideMediaFileThumbnail: 'https://ucarecdn.com/1aea900b-c727-476e-a2d1-6aa38319e182/'
         type: slideMedia
       - slideMediaFile: 'https://ucarecdn.com/c207bb2e-838c-45b6-b6d2-851400137878/'
+        slideMediaFileThumbnail: 'https://ucarecdn.com/fe01c3a7-7e54-4981-a9cc-9a3ecb6f77e4/'
         type: slideMedia
     type: gallery
   - textColumns:
@@ -64,6 +68,7 @@ modules:
     type: textArea
   - bleed: false
     largeMediaFile: 'https://ucarecdn.com/1a17985d-65cf-40df-9d58-4b64d113a6bc/'
+    largeMediaFileThumbnail: 'https://ucarecdn.com/d64f551c-0bd6-486d-b3e6-0134d5f385ab/'
     type: largeMedia
   - textColumns:
       - column: >-
@@ -75,6 +80,7 @@ modules:
     type: textArea
   - bleed: true
     largeMediaFile: 'https://ucarecdn.com/a63773b2-f72e-4f92-9d85-c2bf62a4ebde/'
+    largeMediaFileThumbnail: 'https://ucarecdn.com/9f321576-eaec-4844-a0cd-1374035a54bd/'
     type: largeMedia
   - textColumns:
       - column: >-
