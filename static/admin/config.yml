@@ -91,6 +91,11 @@ collections:
               - label: 'Project Banner Media'
                 name: 'projectBannerMedia'
                 widget: 'file'
+              - label: 'Project Banner Media Thumbnail'
+                name: 'projectBannerMediaThumbnail'
+                widget: 'file'
+                required: false
+                hint: 'Image to display when video media is loading'
           - label: 'Header'
             name: 'header'
             widget: 'object'
@@ -115,6 +120,7 @@ collections:
                 fields:
                   - { label: 'Media', name: 'mediaGridMediaFile', widget: file}
                   - { label: 'Caption', name: 'caption', widget: 'string', required: false }
+                  - { label: 'Media Thumbnail', name: 'mediaGridMediaFileThumbnail', widget: file, required: false, hint: 'Image to display while video media loads, add this if the media file is a video.'}
               - label: 'Hide all captions'
                 name: 'hideCaptions'
                 widget: 'boolean'
@@ -135,6 +141,7 @@ collections:
                   default: false,
                   required: false,
                 }
+              - { label: 'Media Thumbnail', name: 'largeMediaFileThumbnail', widget: file, required: false, hint: 'Image to display while video media loads, add this if the media file is a video.'}
           - label: 'Gallery'
             name: 'gallery'
             widget: 'object'
@@ -149,6 +156,7 @@ collections:
                     fields:
                       - { label: 'Media', name: 'slideMediaFile', widget: 'file' }
                       - { label: 'Caption', name: 'caption', widget: 'string', required: false }
+                      - { label: 'Media Thumbnail', name: 'slideMediaFileThumbnail', widget: file, required: false, hint: 'Image to display while video media loads, add this if the media file is a video.'}
           - label: 'Mobile Device'
             name: 'mobileDevice'
             widget: 'object'
@@ -156,6 +164,7 @@ collections:
               - label: 'Mobile Device Media'
                 name: 'mobileDeviceMedia'
                 widget: 'file'
+              - { label: 'Media Thumbnail', name: 'mobileDeviceMediaFileThumbnail', widget: file, required: false, hint: 'Image to display while video media loads, add this if the media file is a video.'}
           - label: 'Tablet Device'
             name: 'tabletDevice'
             widget: 'object'
@@ -163,6 +172,7 @@ collections:
               - label: 'Tablet Device Media'
                 name: 'tabletDeviceMedia'
                 widget: 'file'
+              - { label: 'Media Thumbnail', name: 'tabletDeviceMediaFileThumbnail', widget: file, required: false, hint: 'Image to display while video media loads, add this if the media file is a video.'}
   - name: 'pages'
     label: 'Pages'
     files:
