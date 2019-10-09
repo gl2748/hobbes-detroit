@@ -4,11 +4,14 @@ import { HobLink as Link } from "../HobLink";
 
 const Nav = styled.div`
   --fs: 1.75rem;
-
+  transform: translateZ(0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
   display: flex;
   right: 1.5rem;
   top: 1.5rem;
-  position: fixed;
+  position: absolute;
   z-index: 5;
 
   .hob-link {
