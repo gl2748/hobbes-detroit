@@ -65,8 +65,7 @@ const PaginationContainer = styled.div<{
   bottom: 0;
   height: 100vh;
   width: 0.625rem;
-  transition: width var(--hob-transition-duration),
-    height var(--hob-transition-duration);
+  transform: translateZ(0) height var(--hob-transition-duration);
   z-index: 10;
 
   :before {
@@ -101,7 +100,6 @@ const PaginationContainer = styled.div<{
       position: absolute;
       left: 1rem;
       font-size: 1.3rem;
-
       ${breakpoints.mobile}, ${breakpoints.noHover} {
         position: unset;
       }
@@ -320,7 +318,7 @@ interface Position {
 }
 
 interface State {
-  scrollYPrev: number;
+  scrollDirection: "north" | "south";
   scrollY: number;
   positions: {
     studio: Position;
@@ -333,12 +331,18 @@ const initialState: State = {
     nav: { bottom: 0, top: 0 },
     studio: { top: 0 }
   },
-  scrollY: 0,
-  scrollYPrev: 0
+  scrollDirection: "south",
+  scrollY: 0
 };
 
 type Action =
-  | { type: "SET_SCROLL_Y"; payload: { prev: number; curr: number } }
+  | {
+      type: "SET_SCROLL_Y";
+      payload: {
+        curr: number;
+        direction: "north" | "south";
+      };
+    }
   | { type: "SET_WINDOW_HEIGHT"; payload: number }
   | { type: "SET_POSITIONS"; payload: { [key: string]: Position } };
 
@@ -347,8 +351,8 @@ const reducer = (state: State, action: Action) => {
     case "SET_SCROLL_Y": {
       return {
         ...state,
-        scrollY: action.payload.curr,
-        scrollYPrev: action.payload.prev
+        scrollDirection: action.payload.direction,
+        scrollY: action.payload.curr
       };
     }
     case "SET_WINDOW_HEIGHT": {
@@ -378,7 +382,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
   const [
     {
       scrollY,
-      scrollYPrev,
+      scrollDirection,
       positions: {
         nav: { bottom: navBottom = 1, top: navTop = 0 },
         studio: { top: studioTop = 0 }
@@ -428,14 +432,17 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
 
   useScrollPosition(
     ({ currPos, prevPos }) => {
+      const direction: "north" | "south" =
+        prevPos.y > currPos.y && currPos.y > 500 ? "north" : "south";
       dispatch({
-        payload: { curr: currPos.y, prev: prevPos.y },
+        payload: { curr: currPos.y, direction },
         type: "SET_SCROLL_Y"
       });
     },
     {
       element: scrollRef,
-      useWindow: false
+      useWindow: false,
+      wait: 300
     }
   );
 
@@ -450,15 +457,13 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
   };
 
   const section =
-    scrollY === 0 ? "home" : scrollY < studioTop ? "work" : "studio";
-
-  const scrollDirection: "north" | "south" =
-    scrollY !== 0 && scrollYPrev > scrollY ? "north" : "south";
+    scrollY === 0 ? "home" : scrollY < studioTop - 1000 ? "work" : "studio";
 
   return (
     <Container
       forwardedRef={scrollRef}
-      className={`main main--${section} main--${scrollDirection}`}
+      className={`main main--${section} main--${scrollDirection} main--${section ===
+        "studio" && "north"}`}
     >
       <SidePagination prev={toProps(prev)} next={toProps(next)} />
       <Navbar className={`nav`} forwardedRef={navRef}>

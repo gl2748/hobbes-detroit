@@ -69,7 +69,11 @@ export const ProjectBanner = (props: Props): ReactElement => {
       return (
         <Banner className="media-project-banner media-project-banner--lottie">
           {Object.keys(props.animationOptions.animationData).length && (
-            <Lottie options={props.animationOptions} />
+            <Lottie
+              options={props.animationOptions}
+              isPaused={false}
+              isStopped={false}
+            />
           )}
         </Banner>
       );
