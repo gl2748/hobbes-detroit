@@ -549,14 +549,17 @@ export const pageQuery = graphql`
         modules {
           type
           projectBannerMedia
+          projectBannerMediaThumbnail
           hideCaptions
           bleed
           largeMediaFile
+          largeMediaFileThumbnail
           textColumns {
             column
           }
           slides {
             slideMediaFile
+            slideMediaFileThumbnail
             type
           }
           mediaGridMedia {
