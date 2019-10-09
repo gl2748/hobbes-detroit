@@ -41,11 +41,13 @@ export const Gallery = React.memo(
     const makeGallerySlide = ({
       data,
       type,
-      url = ""
+      url = "",
+      thumbnail = ""
     }: {
       data: any;
       type: MediaType;
       url?: string;
+      thumbnail?: string;
     }) => {
       const Component = (() => {
         switch (type) {
@@ -65,7 +67,7 @@ export const Gallery = React.memo(
           case MediaType.MP4:
           case MediaType.QUICKTIME: {
             return (
-              <HobVideo>
+              <HobVideo poster={thumbnail}>
                 <source src={url} type={type} />
               </HobVideo>
             );
