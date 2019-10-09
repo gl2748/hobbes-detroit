@@ -55,6 +55,7 @@ type Props =
   | {
       mimeType: MediaVideo;
       videoUrl: string;
+      videoThumbnail?: string;
     };
 
 export const ProjectBanner = (props: Props): ReactElement => {
@@ -81,7 +82,7 @@ export const ProjectBanner = (props: Props): ReactElement => {
     case MediaType.MP4:
     case MediaType.QUICKTIME: {
       return (
-        <HobVideo>
+        <HobVideo poster={props.videoThumbnail}>
           <source src={props.videoUrl} type={props.mimeType} />
         </HobVideo>
       );

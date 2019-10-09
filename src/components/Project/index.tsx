@@ -186,10 +186,14 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
 
         case MediaType.MP4:
         case MediaType.QUICKTIME:
+          const videoThumbnail = props.projectBannerMediaThumnail
+            ? props.projectBannerMediaThumnail
+            : undefined;
           return (
             <ProjectBanner
               mimeType={mimeType}
               videoUrl={props.projectBannerMedia}
+              videoThumbnail={videoThumbnail}
             />
           );
 
