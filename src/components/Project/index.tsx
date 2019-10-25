@@ -157,7 +157,10 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
   switch (props.type) {
     case "projectBanner": {
       const meta = metaDataGetter(props.projectBannerMedia);
+      console.log(meta);
       const mimeType = meta[0] && meta[0].mime_type;
+      const width = meta[0] && meta[0].image_info && meta[0].image_info.width;
+      const height = meta[0] && meta[0].image_info && meta[0].image_info.height;
       switch (mimeType) {
         case MediaType.PNG:
         case MediaType.JPEG:
@@ -167,6 +170,8 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
             <ProjectBanner
               mimeType={mimeType}
               imageUrl={props.projectBannerMedia}
+              width={width ? width : 0}
+              height={height ? height : 0}
             />
           );
 
@@ -185,6 +190,8 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
                 autoplay: true,
                 loop: true
               }}
+              width={width ? width : 0}
+              height={height ? height : 0}
             />
           );
 
@@ -198,6 +205,8 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
               mimeType={mimeType}
               videoUrl={props.projectBannerMedia}
               videoThumbnail={videoThumbnail}
+              width={width ? width : 0}
+              height={height ? height : 0}
             />
           );
 
