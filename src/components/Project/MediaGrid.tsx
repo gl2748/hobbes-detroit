@@ -47,10 +47,13 @@ const MediaGridItem = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-
-  > div {
-    width: 100% !important;
-    height: 100% !important;
+  ${breakpoints.mobile} {
+    > div {
+      > svg {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
   }
 
   img {
