@@ -6,6 +6,7 @@ import { ITransformerUploadcareMeta } from "@templates/project-post";
 import axios from "axios";
 import _ from "lodash";
 import React, { ReactElement, useEffect, useState } from "react";
+import breakpoints from "../../breakpoints";
 import { Gallery } from "./Gallery";
 import { Header } from "./Header";
 import { LargeMedia } from "./LargeMedia";
@@ -142,6 +143,9 @@ const withTeamAndPress = (
 const ModulesContainer = styled.div`
   > * {
     margin-bottom: 9.625rem;
+    ${breakpoints.mobile} {
+      margin-bottom: 3rem;
+    }
   }
 `;
 
