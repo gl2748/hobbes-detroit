@@ -6,17 +6,30 @@ import Lottie, { Options } from "react-lottie";
 import { MediaImage, MediaType, MediaVideo } from ".";
 import breakpoints from "../../breakpoints";
 
-const Banner = styled.div<{ image?: string }>`
+const Banner = styled.div<{
+  image?: string;
+  heightWidthRatio?: number;
+  widthHeightRatio?: number;
+}>`
   height: calc(100vh - 5.25rem);
-  ${breakpoints.mobile} {
-    height: calc(100vh - 3.5rem);
-  }
   width: 100vw;
+  ${breakpoints.mobile} {
+    width: 100vw;
+    height: ${props =>
+      props.heightWidthRatio ? props.heightWidthRatio * 100 + "vw" : "56.25vw"};
+    max-height: 100vh;
+    max-width: ${props =>
+      props.widthHeightRatio
+        ? props.widthHeightRatio * 100 + "vh"
+        : "177.78vh"};
+    margin-bottom: 3rem;
+    padding: 0.75rem;
+  }
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1.25rem;
-  margin-bottom: 0;
+  margin-bottom: 5.6875rem;
 
   :after {
     content: "";
@@ -47,28 +60,47 @@ type Props =
   | {
       mimeType: MediaImage;
       imageUrl: string;
+      width: number;
+      height: number;
     }
   | {
       mimeType: MediaType.LOTTIE;
       animationOptions: Options;
+      width: number;
+      height: number;
     }
   | {
       mimeType: MediaVideo;
       videoUrl: string;
       videoThumbnail?: string;
+      width: number;
+      height: number;
     };
 
 export const ProjectBanner = (props: Props): ReactElement => {
+  const bannerHeightWidthRatio = props.height / props.width;
+  const bannerWidthHeightRatio = props.width / props.height;
   switch (props.mimeType) {
     case MediaType.PNG:
     case MediaType.JPEG:
     case MediaType.JPG:
     case MediaType.GIF:
-      return <Banner className="media-project-banner" image={props.imageUrl} />;
+      return (
+        <Banner
+          className="media-project-banner"
+          image={props.imageUrl}
+          heightWidthRatio={bannerHeightWidthRatio}
+          widthHeightRatio={bannerWidthHeightRatio}
+        />
+      );
 
     case MediaType.LOTTIE:
       return (
-        <Banner className="media-project-banner media-project-banner--lottie">
+        <Banner
+          className="media-project-banner media-project-banner--lottie"
+          heightWidthRatio={bannerHeightWidthRatio}
+          widthHeightRatio={bannerWidthHeightRatio}
+        >
           {Object.keys(props.animationOptions.animationData).length && (
             <Lottie
               options={props.animationOptions}
