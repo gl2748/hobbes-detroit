@@ -104,7 +104,6 @@ export const Gallery = React.memo(
     const GalleryContainer = styled(HobGallery)`
       overflow: visible !important;
       padding: 1.25rem 0;
-      margin-bottom: 1.5rem;
     `;
 
     return <GalleryContainer>{media.map(makeGallerySlide)}</GalleryContainer>;

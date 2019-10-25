@@ -15,7 +15,6 @@ const Grid = styled(HobGrid)`
   .hob-large-media + & {
     padding-bottom: 1rem;
     padding-top: 0;
-    margin-bottom: 0;
     margin-top: -3rem;
   }
 
