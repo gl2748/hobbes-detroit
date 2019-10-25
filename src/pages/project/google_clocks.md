@@ -14,7 +14,7 @@ primaryColor: '#00AD71'
 secondaryColor: '#00AD71'
 protectedProject: false
 featured: true
-featuredJson: 'https://ucarecdn.com/be290147-347b-4a9c-8b2f-fe62b27cfdfd/'
+featuredJson: 'https://ucarecdn.com/1a6e4130-0688-4caa-a632-c69ff640904a/'
 featuredProjectSort: 2
 indexSvg: 'https://ucarecdn.com/4b97197c-609e-4044-9304-36e4762315ec/'
 tags:
@@ -63,11 +63,11 @@ modules:
           period.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/e70136a7-dae8-4284-8ec7-979a8164266c/'
+    largeMediaFile: 'https://ucarecdn.com/18dec155-fcb4-45d9-b6ea-6630fb677fb3/'
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/ecd298e4-6638-4b51-ba88-67dccb7977d8/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/9af35cce-7507-4453-862b-f7ba4cdadbb6/'
       - mediaGridMediaFile: 'https://ucarecdn.com/57fb5c81-faa8-4d35-9dd7-7f6b1505f813/'
     type: mediaGrid
   - textColumns:
@@ -79,7 +79,7 @@ modules:
           transforming information displays into decor that tells the time.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/6bd9ad49-63af-4434-846b-cfdfea17a1c3/'
+    largeMediaFile: 'https://ucarecdn.com/6ecbcdfd-7f3e-4f33-a3ed-cefb3f672111/'
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
