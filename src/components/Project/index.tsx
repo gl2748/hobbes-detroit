@@ -141,7 +141,7 @@ const withTeamAndPress = (
 
 const ModulesContainer = styled.div`
   > * {
-    margin-bottom: 3rem;
+    margin-bottom: 9.625rem;
   }
 `;
 
