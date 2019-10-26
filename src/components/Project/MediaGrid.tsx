@@ -18,10 +18,21 @@ const Grid = styled(HobGrid)`
     margin-top: -9.75rem;
   }
 
+  + .hob-large-media {
+    padding-bottom: 1rem;
+    padding-top: 0;
+    margin-top: -9.25rem;
+  }
+
   ${breakpoints.mobile} {
     padding: 0 1.25rem;
     & + &,
     .hob-large-media + & {
+      padding-bottom: 1rem;
+      padding-top: 0;
+      margin-top: -3rem;
+    }
+    + .hob-large-media {
       padding-bottom: 1rem;
       padding-top: 0;
       margin-top: -3rem;
