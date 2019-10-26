@@ -15,11 +15,17 @@ const Grid = styled(HobGrid)`
   .hob-large-media + & {
     padding-bottom: 1rem;
     padding-top: 0;
-    margin-top: -3rem;
+    margin-top: -9.75rem;
   }
 
   ${breakpoints.mobile} {
     padding: 0 1.25rem;
+    & + &,
+    .hob-large-media + & {
+      padding-bottom: 1rem;
+      padding-top: 0;
+      margin-top: -3rem;
+    }
   }
 
   &.module-media-grid {
@@ -31,6 +37,8 @@ const Grid = styled(HobGrid)`
         ${breakpoints.mobile} {
           width: 100%;
           height: 100%;
+          padding-top: 1.25rem;
+          padding-bottom: 1.25rem;
         }
       }
 
