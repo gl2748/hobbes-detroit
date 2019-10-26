@@ -25,7 +25,7 @@ export const Team = ({
     {team.length > 0 && (
       <HobTypography variant="body1">TEAM: {team.join(", ")}</HobTypography>
     )}
-    {press.length > 0 && (
+    {press.length > 0 && press[0] !== "" && (
       <HobTypography variant="body1">PRESS: {press.join(", ")}</HobTypography>
     )}
   </Container>
