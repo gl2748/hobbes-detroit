@@ -245,7 +245,7 @@ const IndexPage = React.memo(
       {
         element: scrollRef,
         useWindow: false,
-        wait: 100
+        wait: 40
       }
     );
 
