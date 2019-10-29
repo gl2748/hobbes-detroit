@@ -74,7 +74,7 @@ modules:
           resource for designers and developers.
     type: textArea
   - bleed: true
-    largeMediaFile: 'https://ucarecdn.com/7136a1a8-f106-4bde-ace3-543ea320954c/'
+    largeMediaFile: 'https://ucarecdn.com/254876f6-0598-4301-b6d8-024b6d0776e6/'
     type: largeMedia
 ---
 
