@@ -56,6 +56,12 @@ export interface IProjectPostProps {
   };
 }
 
+const Sticky = styled.div<{}>`
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1px;
+`;
+
 const PaginationContainer = styled.div<{
   bottomColor: string;
   topColor: string;
@@ -84,6 +90,9 @@ const PaginationContainer = styled.div<{
       width: 100%;
       display: flex;
       height: 0;
+      &.side-pagination--inline {
+        position: inherit;
+      }
     }
   }
 
@@ -192,12 +201,22 @@ interface ISideLink {
   color: string;
 }
 const SidePagination = React.memo(
-  ({ prev, next }: { prev: ISideLink; next: ISideLink }) => {
+  ({
+    prev,
+    next,
+    inline
+  }: {
+    prev: ISideLink;
+    next: ISideLink;
+    inline: boolean;
+  }) => {
     return (
       <PaginationContainer
         topColor={next.color}
         bottomColor={prev.color}
-        className="side-pagination"
+        className={`side-pagination side-pagination--${
+          inline ? "inline" : "absolute"
+        }`}
       >
         <Link
           to={next.to}
@@ -221,7 +240,8 @@ const SidePagination = React.memo(
       </PaginationContainer>
     );
   },
-  (a, b) => a.prev.to === b.prev.to && a.next.to === b.next.to
+  (a, b) =>
+    a.prev.to === b.prev.to && a.next.to === b.next.to && a.inline === b.inline
 );
 
 const Container = styled(Layout)`
@@ -324,6 +344,8 @@ interface State {
     studio: Position;
     nav: Position;
   };
+  windowHeight: 0;
+  studioInView: boolean;
 }
 
 const initialState: State = {
@@ -332,7 +354,9 @@ const initialState: State = {
     studio: { top: 0 }
   },
   scrollDirection: "south",
-  scrollY: 0
+  scrollY: 0,
+  studioInView: false,
+  windowHeight: 0
 };
 
 type Action =
@@ -344,6 +368,7 @@ type Action =
       };
     }
   | { type: "SET_WINDOW_HEIGHT"; payload: number }
+  | { type: "SET_STUDIO_IN_VIEW"; payload: boolean }
   | { type: "SET_POSITIONS"; payload: { [key: string]: Position } };
 
 const reducer = (state: State, action: Action) => {
@@ -357,7 +382,14 @@ const reducer = (state: State, action: Action) => {
     }
     case "SET_WINDOW_HEIGHT": {
       return {
-        ...state
+        ...state,
+        windowHeight: action.payload
+      };
+    }
+    case "SET_STUDIO_IN_VIEW": {
+      return {
+        ...state,
+        studioInView: action.payload
       };
     }
     case "SET_POSITIONS": {
@@ -386,7 +418,9 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
       positions: {
         nav: { bottom: navBottom = 1, top: navTop = 0 },
         studio: { top: studioTop = 0 }
-      }
+      },
+      windowHeight,
+      studioInView
     },
     dispatch
   ] = useReducer(reducer, initialState);
@@ -406,6 +440,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
     if (navRef.current === null || studioRef.current === null) {
       return;
     }
+    dispatch({ type: "SET_WINDOW_HEIGHT", payload: window.innerHeight });
     const navRect = navRef.current.getBoundingClientRect();
     dispatch({
       payload: {
@@ -438,6 +473,10 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
         payload: { curr: currPos.y, direction },
         type: "SET_SCROLL_Y"
       });
+      dispatch({
+        payload: currPos.y + window.innerHeight >= studioTop,
+        type: "SET_STUDIO_IN_VIEW"
+      });
     },
     {
       element: scrollRef,
@@ -465,7 +504,6 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
       className={`main main--${section} main--${scrollDirection} main--${section ===
         "studio" && "north"}`}
     >
-      <SidePagination prev={toProps(prev)} next={toProps(next)} />
       <Navbar className={`nav`} forwardedRef={navRef}>
         <MemoizedLink
           href="/#work"
@@ -523,7 +561,23 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
         featured={post.frontmatter.featured}
         mediaMetadata={post.childrenTransformerUploadcareMeta}
       />
-      <StudioContainer forwardedRef={studioRef} />
+      <div>
+        <Sticky>
+          {studioInView === false && (
+            <SidePagination
+              inline={false}
+              prev={toProps(prev)}
+              next={toProps(next)}
+            />
+          )}
+          <SidePagination
+            inline={true}
+            prev={toProps(prev)}
+            next={toProps(next)}
+          />
+        </Sticky>
+        <StudioContainer forwardedRef={studioRef} />
+      </div>
     </Container>
   );
 };

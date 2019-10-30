@@ -17,7 +17,6 @@ export const StudioContainer = ({
       email,
       social
     } = data.allMarkdownRemark.edges[0].node.frontmatter;
-
     return (
       <Studio
         forwardedRef={forwardedRef}

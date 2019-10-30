@@ -157,7 +157,6 @@ const CMSModule = (props: ModuleProps & { index: number }): ReactElement => {
   switch (props.type) {
     case "projectBanner": {
       const meta = metaDataGetter(props.projectBannerMedia);
-      console.log(meta);
       const mimeType = meta[0] && meta[0].mime_type;
       const width = meta[0] && meta[0].image_info && meta[0].image_info.width;
       const height = meta[0] && meta[0].image_info && meta[0].image_info.height;
