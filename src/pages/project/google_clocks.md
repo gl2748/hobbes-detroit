@@ -37,13 +37,12 @@ modules:
     type: projectBanner
   - textColumns:
       - column: >-
-          Even before Google SUMUX asked Hobbes to animate clock faces designed
-          for their Smart Displays, our team had been exploring time displays as
-          an opportunity to apply motion design in a non-traditional medium.
-          Animating the designs that Google had created required our team to
-          build systems that would both satisfy the discerning eye of an
-          animation lover and function exactingly throughout each minute of an
-          entire day.
+          Even before Google SUMUX asked Hobbes to animate clock faces for their
+          Smart Displays, our team had been exploring time displays as an
+          opportunity to apply motion design to a non-traditional medium.
+          Animating Google’s designs required our team to build systems that
+          would both satisfy the discerning eye of an animation lover and
+          function exactingly throughout each minute of the day.
     type: textArea
   - slides:
       - slideMediaFile: 'https://ucarecdn.com/24afda8d-8097-46fb-b351-bfed5972a371/'
@@ -53,13 +52,13 @@ modules:
     type: gallery
   - textColumns:
       - column: >-
-          In addition to animating Google’s clock faces, our team tasked itself
-          to create a broad array of supplementary designs, all of which are
-          built around motion. Within each the animations of each clock face,
-          each specific design dictates every frame. Yet because each animation
-          creates movement as often as every second, our team’s broader
+          In addition to animating Google’s clock faces, our team created a
+          broad array of supplementary designs, all of which are built around
+          motion. Each design expresses a unique approach to a clock layout and
+          animation style.  And because each clock incorporates many frequent
+          animations, rather than being a single animation, our team’s broader
           challenge was to build motion design systems that would successfully
-          control and methodize every animation that occurs across a 24-hour
+          control and methodize every animation that must occur across a 24-hour
           period.
     type: textArea
   - bleed: false
@@ -72,9 +71,9 @@ modules:
     type: mediaGrid
   - textColumns:
       - column: >-
-          Hobbes also recognized that our clock faces would need to suit the
-          real world context for Google Smart Displays, which live on end tables
-          in living rooms and on counters in kitchens. The motion design systems
+          Hobbes also recognized that clock faces would need to suit the real
+          world context for Google Smart Displays, which sit on end tables in
+          living rooms and on counters in kitchens. The motion design systems
           that our team created for Google SUMUX were built with the goal of
           transforming information displays into decor that tells the time.
     type: textArea
@@ -89,9 +88,9 @@ modules:
   - textColumns:
       - column: >-
           The result of this collaboration is a set of designs that, at first
-          glance, might look like artwork in the drawing room. On closer
-          examination they change throughout the day, communicating the time
-          while punctuating each minute with a moment of small delight.
+          glance, might simply look like artwork. On closer examination they
+          change throughout the day, communicating the time while punctuating
+          each minute with a moment of small delight.
     type: textArea
   - bleed: false
     largeMediaFile: 'https://ucarecdn.com/ad5bb45a-7055-4a0a-88c7-c5c3bd72a4af/'
