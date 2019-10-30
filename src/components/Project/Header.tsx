@@ -12,7 +12,6 @@ const Container = styled.div`
   ${breakpoints.mobile} {
     height: 2.25rem;
   }
-
   .hob-typography {
     margin: 0 auto;
     font-size: 2.8125rem;

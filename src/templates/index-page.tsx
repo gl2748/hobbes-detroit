@@ -236,7 +236,8 @@ const IndexPage = React.memo(
       0,
       ((scrollY + navBottom - studioTop) / (navBottom - navTop)) * 100 || 0
     );
-    const height = 28;
+
+    const height = window.screen.width < 600 ? 22 : 28;
 
     useScrollPosition(
       ({ currPos }) => {
