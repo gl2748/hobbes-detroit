@@ -39,10 +39,10 @@ modules:
           thousands of different use cases. In order to provide this
           adaptability while also building in guidelines designed to preserve
           visual consistency, our team created a system that allows users to
-          fully customize icons while also upholding rules to maintain rigorous
-          design standards. Rather than animating each individual icon, this
-          system of templatization reframes the processes through which we
-          deliver animation.
+          adjust the properties of the entire icon set and to download the
+          collection once it has been suited to their needs. Rather than
+          animating each individual icon, this system of templatization reframes
+          the processes through which we deliver animation.
     type: textArea
   - bleed: false
     largeMediaFile: 'https://ucarecdn.com/0a616c0d-cb2a-449f-bd36-d82e3513c4ce/'
@@ -55,12 +55,12 @@ modules:
     type: mediaGrid
   - textColumns:
       - column: >-
-          Templatization demanded a filetype that was extremely lightweight—one
-          that could accommodate the staggering number of deliverables required
-          to allow variation of duration, color, scale, and stroke weight,
-          without an unwieldy file size. Our team’s solution was a system built
-          around JSON files that are infinitely adjustable yet also uphold a set
-          of rules to ensure that the icons remain functional and striking.
+          A functional animated icon set demanded a filetype that was extremely
+          lightweight. Customization also required a filetype which could be
+          adjusted live on the site, avoiding the need to animate every possible
+          permutation of each icon. Our team’s solution was a system built
+          around JSON files, which are remarkably small and allow for live
+          variation of duration, color, scale, and stroke weight.
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
