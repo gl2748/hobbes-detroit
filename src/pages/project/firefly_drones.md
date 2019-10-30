@@ -41,8 +41,8 @@ modules:
           design challenges.
     type: textArea
   - slides:
-      - slideMediaFile: 'https://ucarecdn.com/e0a2059d-3154-463b-8aad-212b87fd110b/'
-        slideMediaFileThumbnail: 'https://ucarecdn.com/73cbe17f-ab3d-4d39-80b4-1de23c6b1a6e/'
+      - slideMediaFile: 'https://ucarecdn.com/32bbd977-2e2e-46bb-a6cf-25438178578f/'
+        slideMediaFileThumbnail: 'https://ucarecdn.com/6d395f29-a87d-415a-8491-dc242c0db4fd/'
         type: slideMedia
       - slideMediaFile: 'https://ucarecdn.com/0420d866-f81e-4246-b95c-d14d11dd7d9a/'
         slideMediaFileThumbnail: 'https://ucarecdn.com/1aea900b-c727-476e-a2d1-6aa38319e182/'
@@ -66,7 +66,7 @@ modules:
     type: textArea
   - bleed: false
     largeMediaFile: 'https://ucarecdn.com/1a17985d-65cf-40df-9d58-4b64d113a6bc/'
-    largeMediaFileThumbnail: 'https://ucarecdn.com/d64f551c-0bd6-486d-b3e6-0134d5f385ab/'
+    largeMediaFileThumbnail: 'https://ucarecdn.com/fda570a4-1cc5-4c5a-bfb0-d58ffa9b22c3/'
     type: largeMedia
   - textColumns:
       - column: >-
@@ -78,8 +78,8 @@ modules:
           more.
     type: textArea
   - bleed: true
-    largeMediaFile: 'https://ucarecdn.com/a63773b2-f72e-4f92-9d85-c2bf62a4ebde/'
-    largeMediaFileThumbnail: 'https://ucarecdn.com/9f321576-eaec-4844-a0cd-1374035a54bd/'
+    largeMediaFile: 'https://ucarecdn.com/d0bee899-0ec8-49d3-a160-2f3eb56b43e1/'
+    largeMediaFileThumbnail: 'https://ucarecdn.com/61fc3ea0-db22-4377-8bd1-51e54bfa250c/'
     type: largeMedia
   - textColumns:
       - column: >-
