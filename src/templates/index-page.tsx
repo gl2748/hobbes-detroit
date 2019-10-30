@@ -9,7 +9,7 @@ import { Navbar } from "../components/Navbar";
 import { FeaturedProjectRollContainer } from "../containers/FeaturedProjectRollContainer";
 import { ProjectRollContainer } from "../containers/ProjectRollContainer";
 import { StudioContainer } from "../containers/StudioContainer";
-import { useScrollPosition } from "../hooks/useScrollPosition";
+import { isBrowser, useScrollPosition } from "../hooks/useScrollPosition";
 import { MemoizedLink } from "./MemoizedLink";
 import { MemoizedLogo } from "./MemoizedLogo";
 
@@ -237,7 +237,10 @@ const IndexPage = React.memo(
       ((scrollY + navBottom - studioTop) / (navBottom - navTop)) * 100 || 0
     );
 
-    const height = window.screen.width < 600 ? 22 : 28;
+    let height = 28;
+    if (isBrowser) {
+      height = window.screen.width < 600 ? 22 : 28;
+    }
 
     useScrollPosition(
       ({ currPos }) => {

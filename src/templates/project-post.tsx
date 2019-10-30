@@ -9,7 +9,7 @@ import { StudioContainer } from "@containers/StudioContainer";
 import styled from "@emotion/styled";
 import { WithAuth } from "@higherOrderComponents/WithAuth";
 import { withLocation } from "@higherOrderComponents/withLocation";
-import { useScrollPosition } from "@hooks/useScrollPosition";
+import { isBrowser, useScrollPosition } from "@hooks/useScrollPosition";
 import { graphql } from "gatsby";
 import { LocationState } from "history";
 import React, { useReducer, useRef, useState } from "react";
@@ -441,7 +441,10 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
     if (navRef.current === null || studioRef.current === null) {
       return;
     }
-    dispatch({ type: "SET_WINDOW_HEIGHT", payload: window.innerHeight });
+    dispatch({
+      payload: isBrowser ? window.innerHeight : 1000,
+      type: "SET_WINDOW_HEIGHT"
+    });
     const navRect = navRef.current.getBoundingClientRect();
     dispatch({
       payload: {
@@ -465,7 +468,10 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
     ((scrollY + navBottom - studioTop) / (navBottom - navTop)) * 100 || 0
   );
 
-  const height = window.screen.width < 600 ? 22 : 28;
+  let height = 28;
+  if (isBrowser) {
+    height = window.screen.width < 600 ? 22 : 28;
+  }
 
   useScrollPosition(
     ({ currPos, prevPos }) => {

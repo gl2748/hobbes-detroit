@@ -10,7 +10,7 @@ interface IPosition {
 type TEffect = ({  }: { prevPos: IPosition; currPos: IPosition }) => void;
 
 // Importantly this will work for SSR.
-const isBrowser = typeof window !== `undefined`;
+export const isBrowser = typeof window !== `undefined`;
 
 function getScrollPosition({
   element,
