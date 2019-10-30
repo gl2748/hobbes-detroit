@@ -53,18 +53,16 @@ modules:
     type: gallery
   - textColumns:
       - column: >-
-          To animate a fleet of individual drones, our team’s strategy was to
-          treat the drones as pixels, creating a drone show using 3-D design
-          software. In order to do so, we needed to devise a strategy for
-          translating data from Cinema 4D into a form that would be readable by
-          a drone fleet. Whereas pixels engage from within the two-dimensional
-          landscape of a screen, drones move through three dimensions and are
-          bound by physical constraints. This required our team to account for
-          variables such as top flight speed and maximum altitude, all while
-          acknowledging the governance of FAA rules. Our design systems
-          therefore needed to allow every drone’s path to be precisely
-          choreographed from take off to landing in order to maintain compliance
-          with regulations and to avoid collisions.
+          To animate a fleet of individual drones, our team treated the drones
+          as pixels, choreographing a show in 3-D design software and
+          translating the data into a form readable by a drone fleet. Whereas
+          pixels exist within the two-dimensional landscape of a screen, drones
+          move through three dimensions and are bound by physical constraints.
+          This required our team to account for variables such as top flight
+          speed and maximum altitude, all while adhering to FAA rules. Our
+          design system therefore needed to allow every drone’s path to be
+          precisely choreographed from take off to landing in order to maintain
+          compliance with regulations and to avoid collisions.
     type: textArea
   - bleed: false
     largeMediaFile: 'https://ucarecdn.com/1a17985d-65cf-40df-9d58-4b64d113a6bc/'
@@ -72,11 +70,12 @@ modules:
     type: largeMedia
   - textColumns:
       - column: >-
-          Our team’s final task became enhancing the viewer experience. To
-          create the capability to design drone shows that would take an
-          audience’s breath away, we developed a visual language, established
-          best practices for pacing, and determined how to effectively use
-          forced perspective.
+          After developing a framework for handling the technical challenges,
+          our team focused on enhancing the viewer experience. To create the
+          capability to design drone shows that would take an audience’s breath
+          away, we developed a visual language, established best practices for
+          pacing, determined how to effectively use forced perspective, and
+          more.
     type: textArea
   - bleed: true
     largeMediaFile: 'https://ucarecdn.com/a63773b2-f72e-4f92-9d85-c2bf62a4ebde/'
