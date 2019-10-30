@@ -65,7 +65,7 @@ modules:
           compliance with regulations and to avoid collisions.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/1a17985d-65cf-40df-9d58-4b64d113a6bc/'
+    largeMediaFile: 'https://ucarecdn.com/c5ff3258-e78e-4887-b270-e47a31be1096/'
     largeMediaFileThumbnail: 'https://ucarecdn.com/fda570a4-1cc5-4c5a-bfb0-d58ffa9b22c3/'
     type: largeMedia
   - textColumns:
