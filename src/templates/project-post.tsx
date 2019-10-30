@@ -300,10 +300,11 @@ const Container = styled(Layout)`
 
   .nav {
     position: fixed;
-    top: 1.25rem;
+    top: 1.5rem;
     right: 1.25rem;
     background-color: transparent;
-
+    &.nav--studio {
+    }
     a {
       &:hover,
       &:focus {
@@ -463,7 +464,8 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
     0,
     ((scrollY + navBottom - studioTop) / (navBottom - navTop)) * 100 || 0
   );
-  const height = 28;
+
+  const height = window.screen.width < 600 ? 22 : 28;
 
   useScrollPosition(
     ({ currPos, prevPos }) => {
@@ -496,7 +498,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
   };
 
   const section =
-    scrollY === 0 ? "home" : scrollY < studioTop - 1000 ? "work" : "studio";
+    scrollY === 0 ? "home" : scrollY <= studioTop ? "work" : "studio";
 
   return (
     <Container
@@ -504,7 +506,7 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
       className={`main main--${section} main--${scrollDirection} main--${section ===
         "studio" && "north"}`}
     >
-      <Navbar className={`nav`} forwardedRef={navRef}>
+      <Navbar className={`nav nav--${section}`} forwardedRef={navRef}>
         <MemoizedLink
           href="/#work"
           label="Work"

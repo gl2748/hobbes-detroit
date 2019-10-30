@@ -20,6 +20,7 @@ const Container = styled.div`
   background-color: var(--hob-color--secondary);
   position: relative;
   padding: 1.5rem 1.25rem;
+  padding-top: 1.77rem;
   z-index: 2;
 `;
 
