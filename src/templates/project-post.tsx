@@ -561,23 +561,21 @@ const ProjectPost: React.FC<IProjectPostProps> = ({
         featured={post.frontmatter.featured}
         mediaMetadata={post.childrenTransformerUploadcareMeta}
       />
-      <div>
-        <Sticky>
-          {studioInView === false && (
-            <SidePagination
-              inline={false}
-              prev={toProps(prev)}
-              next={toProps(next)}
-            />
-          )}
+      <Sticky>
+        {studioInView === false && (
           <SidePagination
-            inline={true}
+            inline={false}
             prev={toProps(prev)}
             next={toProps(next)}
           />
-        </Sticky>
-        <StudioContainer forwardedRef={studioRef} />
-      </div>
+        )}
+        <SidePagination
+          inline={true}
+          prev={toProps(prev)}
+          next={toProps(next)}
+        />
+      </Sticky>
+      <StudioContainer forwardedRef={studioRef} />
     </Container>
   );
 };
