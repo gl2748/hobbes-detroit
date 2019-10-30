@@ -53,11 +53,11 @@ modules:
   - textColumns:
       - column: >-
           Our team’s first task was to ensure that users understood how the
-          camera works—how having it active improves their experience, but that
-          by enabling privacy mode it can be physically disconnected. To convey
-          these concepts clearly and efficiently, Hobbes designed a series of
-          animated illustrations to visualize the physical hardware on the Nest
-          Hub Max during the set-up experience.
+          camera works—how activating it improves their experience, but that it
+          can also be physically disconnected by enabling privacy mode. To
+          convey these concepts clearly and efficiently, Hobbes designed a
+          series of animated illustrations to visualize the physical hardware on
+          the Nest Hub Max during the set-up experience.
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
@@ -66,14 +66,12 @@ modules:
   - textColumns:
       - column: >-
           Relative to illustrating physical hardware, such as a camera,
-          designing animations to depict more abstract principles such as a mesh
+          designing animations to depict more abstract principles like a mesh
           network—the type of local network that allows all of a user’s home
           devices to communicate with one another—posed a bigger challenge. Our
           team needed to visualize the concept of an invisible, decentralized
-          network in a way that the user would understand. Their animations also
-          needed to keep users engaged and occupied while the Nest Hub Max
-          completed important setup operations and connected to the user’s home
-          network in the background.
+          network, and create animations which would keep users engaged and
+          occupied while the Nest Hub Max completed important setup operations.
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
@@ -85,11 +83,9 @@ modules:
     type: largeMedia
   - textColumns:
       - column: >-
-          Every design our team created had to be delivered as a code-based
-          animation. This forced us to design around some difficult constraints.
-          To keep our animations from bloating the file size of an already large
-          app, we designed and delivered them as lightweight JSON files. In
-          doing so our team employed Lottie-based cel animation.
+          Every file our team created had to be delivered as a code-based
+          animation. This meant designing each of the animations—including this
+          cel-animation—to work with Lottie.
     type: textArea
   - hideCaptions: false
     mediaGridMedia:
