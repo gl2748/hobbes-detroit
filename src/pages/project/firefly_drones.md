@@ -16,7 +16,7 @@ protectedProject: false
 featured: true
 featuredJson: 'https://ucarecdn.com/05ac161e-2863-42e9-997b-c4a6ff8abe54/'
 featuredProjectSort: 1
-indexSvg: 'https://ucarecdn.com/9cd49354-6781-4f20-9577-59c281f196c6/'
+indexSvg: 'https://ucarecdn.com/d84e0f58-0a2f-40bd-91e2-b49399420973/'
 tags:
   - drones
   - firefly
