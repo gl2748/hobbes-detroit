@@ -43,7 +43,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-netlify-identity`,
       options: {
-        url: `https://hobbes.netlify.com/` // required!
+        url: `https://hobbes-prod.netlify.com/` // required!
       }
     },
     {
