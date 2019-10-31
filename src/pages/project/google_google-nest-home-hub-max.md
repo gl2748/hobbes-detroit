@@ -100,16 +100,5 @@ modules:
           making it abstract enough to avoid constant updating but literal
           enough for users to clearly understand the message.
     type: textArea
-  - hideCaptions: false
-    mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/ff478c68-e320-41a6-9196-cbf1490ae670/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/5af51462-c686-4f0b-9030-6c07b57f19c2/'
-    type: mediaGrid
-  - hideCaptions: false
-    mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/46d83576-133f-4b16-887c-5c79c97e4077/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/0f00d9ae-c300-4c91-8839-532c4bf0fbb2/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/32f4bb30-6078-4a52-904d-413c0e5510bf/'
-    type: mediaGrid
 ---
 
