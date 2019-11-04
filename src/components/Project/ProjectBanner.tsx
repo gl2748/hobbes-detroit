@@ -29,7 +29,7 @@ const Banner = styled.div<{
   align-items: center;
   justify-content: center;
   padding: 1.25rem;
-  margin-bottom: 5.6875rem;
+  margin-bottom: 0;
 
   :after {
     content: "";
