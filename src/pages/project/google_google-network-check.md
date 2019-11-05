@@ -9,7 +9,7 @@ protectedProject: true
 featured: false
 featuredJson: 'https://ucarecdn.com/49cf52d7-897d-4830-bbc8-3d1e77d0ff8c/'
 featuredProjectSort: 1
-indexSvg: 'https://ucarecdn.com/db62da12-dda5-4b38-9b2e-eb0e54167221/'
+indexSvg: 'https://ucarecdn.com/8eae4b8f-e0e7-486b-ae25-22d4d5286ba0/'
 tags:
   - google
   - wifi
