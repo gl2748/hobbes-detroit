@@ -91,6 +91,7 @@ const PaginationContainer = styled.div<{
       display: flex;
       height: 0;
       transition: 0.2s height ease;
+
       &.side-pagination--inline {
         position: inherit;
       }
@@ -250,7 +251,6 @@ const Container = styled(Layout)`
   ${breakpoints.mobile} {
     height: 100vh;
   }
-  overflow-y: scroll;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 

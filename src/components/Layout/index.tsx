@@ -67,8 +67,8 @@ const layoutReducer = (state: ILayoutState, action: TAction) => {
 const Container = styled.div`
   position: relative;
   width: 100vw;
+  min-height: 100vh;
 `;
-// min-height: 100vh;
 
 const PortalLegal = styled.div`
   flex: 1;
