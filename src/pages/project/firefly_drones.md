@@ -27,7 +27,7 @@ team:
   - Adam Zimmer
   - Benjamin Dresser
 modules:
-  - projectBannerMedia: 'https://ucarecdn.com/96fd230b-43d8-4b0e-8f06-aeadba5b4fcc/'
+  - projectBannerMedia: 'https://ucarecdn.com/0898e01f-957f-487c-a02a-e1cee4ff3a63/'
     projectBannerMediaThumbnail: 'https://ucarecdn.com/fd3607a8-1209-4e8e-8b62-8bddd5e489bf/'
     type: projectBanner
   - textColumns:
