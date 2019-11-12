@@ -60,6 +60,12 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  overflow-y: scroll;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
 body,
 button {
   background-color: var(--hob-color--light);
