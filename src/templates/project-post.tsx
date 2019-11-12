@@ -246,7 +246,7 @@ const SidePagination = React.memo(
 
 const Container = styled(Layout)`
   overflow-x: hidden;
-  height: 100vh;
+
   overflow-y: scroll;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;

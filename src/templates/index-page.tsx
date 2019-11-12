@@ -20,7 +20,7 @@ const Container = styled(LayoutWithLocation)`
   overflow-y: scroll;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  height: 100vh;
+  min-height: auto;
 
   &.main--work {
     .nav__item--Work {
