@@ -10,9 +10,13 @@ exports.onRouteUpdate = ({ location }) => {
   }
 };
 exports.onClientEntry = () => {
-  // IE9 Plus
-  console.log("testing");
-  if (window.navigator.msPointerEnabled) {
-    window.location = "https://google.com";
+  const isIe = () => {
+    return (
+      window.navigator.userAgent.indexOf("MSIE ") > 0 ||
+      !!navigator.userAgent.match(/Trident.*rv\:11\./)
+    );
+  };
+  if (isIe) {
+    window.location = "https://www.google.com";
   }
 };
