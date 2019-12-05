@@ -11,6 +11,7 @@ exports.onRouteUpdate = ({ location }) => {
 };
 exports.onClientEntry = () => {
   // IE9 Plus
+  console.log("testing");
   if (window.navigator.msPointerEnabled) {
     window.location = "https://google.com";
   }
