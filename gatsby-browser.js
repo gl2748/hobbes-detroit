@@ -9,3 +9,9 @@ exports.onRouteUpdate = ({ location }) => {
     }, 5);
   }
 };
+exports.onClientEntry = () => {
+  // IE9 Plus
+  if (window.navigator.msPointerEnabled) {
+    window.location = "https://google.com";
+  }
+};
