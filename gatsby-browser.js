@@ -10,13 +10,10 @@ exports.onRouteUpdate = ({ location }) => {
   }
 };
 exports.onClientEntry = () => {
-  const isIe = () => {
-    return (
-      window.navigator.userAgent.indexOf("MSIE ") > 0 ||
-      !!navigator.userAgent.match(/Trident.*rv\:11\./)
-    );
-  };
-  if (isIe) {
+  let ua = window.navigator.userAgent;
+  let isIE = /MSIE|Trident/.test(ua);
+
+  if (isIE) {
     window.location = "https://www.google.com";
   }
 };
