@@ -1,6 +1,5 @@
 import React from "react";
 import { navigate } from "gatsby-link";
-import { fetch as fetchPolyfill } from "whatwg-fetch";
 import { Layout } from "../../components/Layout";
 
 function encode(data) {
@@ -22,7 +21,7 @@ export default class Index extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     const form = e.target;
-    fetchPolyfill("/", {
+    fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
