@@ -58,7 +58,7 @@
     "remark-breaks": "^1.0.3",
     "ts-node": "^8.3.0",
     "uuid": "^3.2.1",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "2.0.4"
   },
   "keywords": [
     "gatsby"
