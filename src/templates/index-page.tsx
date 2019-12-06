@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { withLocation } from "@higherOrderComponents/withLocation";
 import { LocationState } from "history";
+import "isomorphic-fetch";
 import React, { useEffect, useReducer, useRef } from "react";
 import { HobLetters } from "../components/HobLetters";
 import { HobLogo } from "../components/HobLogo";
