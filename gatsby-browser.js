@@ -14,6 +14,6 @@ exports.onClientEntry = () => {
   let isIE = /MSIE|Trident/.test(ua);
 
   if (isIE) {
-    window.location = "https://www.google.com";
+    window.location = "https://static.hobbes.work";
   }
 };
