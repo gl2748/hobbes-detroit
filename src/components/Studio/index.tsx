@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import ReactMarkdown from "react-markdown";
 import breakpoints from "../../breakpoints";
 import { HobLetters } from "../HobLetters";
 import { HobLink } from "../HobLink";
@@ -131,7 +132,9 @@ export const Studio: React.FC<
           <HobLetters size="lg" color="var(--hob-color--dark)" />
         </Letters>
 
-        <Description variant="body1">{description}</Description>
+        <Description variant="body1">
+          {<ReactMarkdown source={description} />}
+        </Description>
 
         <Fields>
           <Address>
