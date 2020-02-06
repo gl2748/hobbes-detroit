@@ -51,7 +51,7 @@
     "react-helmet": "^5.2.0",
     "react-inlinesvg": "^1.1.6",
     "react-lottie": "^1.2.3",
-    "react-markdown": "^4.2.2",
+    "react-markdown": "^4.3.1",
     "react-netlify-identity": "^0.1.9",
     "react-netlify-identity-widget": "^0.1.4",
     "react-visibility-sensor": "^5.1.1",
