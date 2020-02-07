@@ -3,6 +3,9 @@
   "description": "Hobbes Studio Site",
   "version": "0.0.1",
   "author": "iain maitland, mike schutte",
+  "browserslist": [
+    "defaults"
+  ],
   "dependencies": {
     "@emotion/core": "^10.0.16",
     "@emotion/css": "^10.0.14",
