@@ -102,6 +102,32 @@ const Field = styled.div`
   }
 `;
 
+const FollowField = styled.div`
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  .hob-link {
+    margin-bottom: 3rem;
+  }
+
+  .hob-typography {
+    width: 100%;
+
+    &--caption {
+      margin-bottom: 2rem;
+      ${breakpoints.mobile} {
+        margin-bottom: 0;
+      }
+    }
+
+    &--body1 {
+      margin-bottom: 3rem;
+    }
+  }
+`;
+
 const Address = styled.div`
   flex: 1;
   display: flex;
@@ -120,9 +146,16 @@ const Letters = styled.div`
   margin-bottom: 4.4375rem;
 `;
 
-export const Studio: React.FC<
-  IStudioProps & React.HTMLProps<HTMLDivElement>
-> = ({ title, description, address, phone, email, forwardedRef, social }) => {
+export const Studio: React.FC<IStudioProps &
+  React.HTMLProps<HTMLDivElement>> = ({
+  title,
+  description,
+  address,
+  phone,
+  email,
+  forwardedRef,
+  social
+}) => {
   const [, line1, line2] = address.match(/^(.*)\s(.*,.*)/) || [];
   return (
     <Container id="studio" ref={forwardedRef}>
@@ -158,7 +191,7 @@ export const Studio: React.FC<
               </HobLink>
             </Field>
 
-            <Field>
+            <FollowField>
               <HobTypography variant="caption">Follow us</HobTypography>
               {social.map(({ title: label, url }) => (
                 <div key={title}>
@@ -167,7 +200,7 @@ export const Studio: React.FC<
                   </HobLink>
                 </div>
               ))}
-            </Field>
+            </FollowField>
           </Contact>
         </Fields>
       </Inner>
