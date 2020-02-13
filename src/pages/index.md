@@ -11,5 +11,7 @@ email: info@hobbes.work
 social:
   - title: Instagram
     url: 'https://www.instagram.com/hobbes/'
+  - title: are.na
+    url: 'https://www.are.na/hobbes'
 ---
 
