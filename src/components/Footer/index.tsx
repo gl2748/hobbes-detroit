@@ -71,7 +71,9 @@ export const Footer: React.FC<Props> = React.memo(
         </Logo>
 
         <Copyright>
-          <HobTypography variant="body1">2019 © Hobbes</HobTypography>
+          <HobTypography variant="body1">
+            {new Date().getFullYear()} © Hobbes
+          </HobTypography>
         </Copyright>
 
         <Links>
