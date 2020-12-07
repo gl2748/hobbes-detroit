@@ -35,8 +35,8 @@ modules:
   - textColumns:
       - column: >-
           [OP/AL](https://opal.work/) is a free-to-use resource that helps users
-          easily customize and download a set of 100 pre-animated icons as
-          ready-to-implement code.
+          easily customize and download a set of 100 animated icons as code,
+          ready to be implemented.
     type: textArea
   - bleed: true
     largeMediaFile: 'https://ucarecdn.com/d908beea-bea1-482b-ba0a-99625fa90061/'
