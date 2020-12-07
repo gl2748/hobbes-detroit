@@ -40,9 +40,6 @@ modules:
   - bleed: true
     largeMediaFile: 'https://ucarecdn.com/d908beea-bea1-482b-ba0a-99625fa90061/'
     type: largeMedia
-  - bleed: true
-    largeMediaFile: 'https://ucarecdn.com/5414f32e-ee0d-4418-8a78-91885ae3e58d/'
-    type: largeMedia
   - textColumns:
       - column: >-
           This project emerged from a fascination with json files and the
@@ -60,6 +57,9 @@ modules:
           something powerful enough to accomplish all of this, but light enough
           to make an entire animated set around the size of a megabyte.
     type: textArea
+  - bleed: true
+    largeMediaFile: 'https://ucarecdn.com/5414f32e-ee0d-4418-8a78-91885ae3e58d/'
+    type: largeMedia
   - textColumns:
       - column: >-
           The goal of our approach was to provide as much creative autonomy as
