@@ -34,47 +34,73 @@ modules:
     type: projectBanner
   - textColumns:
       - column: >-
-          Hobbes created our animated icon set, OP/AL, because we wanted to
-          build a tool for the design community that had the flexibility to fit
-          thousands of different use cases. In order to provide this
-          adaptability while also building in guidelines designed to preserve
-          visual consistency, our team created a system that allows users to
-          adjust the properties of the entire icon set and to download the
-          collection once it has been suited to their needs. Rather than
-          animating each individual icon, this system of templatization reframes
-          the processes through which we deliver animation.
-    type: textArea
-  - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/0a616c0d-cb2a-449f-bd36-d82e3513c4ce/'
-    type: largeMedia
-  - hideCaptions: false
-    mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/14a944ea-e9ff-4e20-8201-cb999935338c/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/ad93bbe4-afeb-4061-a230-6f2cf8725585/'
-      - mediaGridMediaFile: 'https://ucarecdn.com/82d311ab-880f-4c77-b6d4-da83743601f1/'
-    type: mediaGrid
-  - textColumns:
-      - column: >-
-          A functional animated icon set demanded a filetype that was extremely
-          lightweight. Customization also required a filetype which could be
-          adjusted live on the site, avoiding the need to animate every possible
-          permutation of each icon. Our team’s solution was a system built
-          around JSON files, which are remarkably small and allow for live
-          variation of duration, color, scale, and stroke weight.
-    type: textArea
-  - hideCaptions: false
-    mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/49943dd3-de74-42c1-85ae-f7906260f807/'
-    type: mediaGrid
-  - textColumns:
-      - column: >-
-          What began with a search for the best tool became our team’s creation
-          of OP/AL, a system for animating icons that leverages Hobbes’
-          knowledge of applied motion and design in a practical yet ambitious
-          resource for designers and developers.
+          OP/AL is a free-to-use resource that helps users easily customize and
+          download a set of 100 pre-animated icons as ready-to-implement code.
     type: textArea
   - bleed: true
-    largeMediaFile: 'https://ucarecdn.com/254876f6-0598-4301-b6d8-024b6d0776e6/'
+    largeMediaFile: 'https://ucarecdn.com/d908beea-bea1-482b-ba0a-99625fa90061/'
+    type: largeMedia
+  - bleed: true
+    largeMediaFile: 'https://ucarecdn.com/5414f32e-ee0d-4418-8a78-91885ae3e58d/'
+    type: largeMedia
+  - textColumns:
+      - column: >-
+          This project emerged from a fascination with json files and the
+          possibilities of live animation, driven by code.By tinkering with json
+          files, we found relationships that established how certain variables
+          affected the animations. One of the most important discoveries was
+          that OP (outPoint) / AL (animationLength) = FR (frameRate). This
+          equation allowed us to dictate the duration of animations after they
+          had been exported, and from that, OP/AL was born.
+
+
+          We created the animated icon set OP/AL to provide the design community
+          with a resource that has the flexibility to fit thousands of different
+          use cases.By using Lottie and json files, we were able to create
+          something powerful enough to accomplish all of this, but light enough
+          to make an entire animated set around the size of a megabyte.
+    type: textArea
+  - textColumns:
+      - column: >-
+          The goal of our approach was to provide as much creative autonomy as
+          we could to the user, while still ensuring the generated icons
+          communicated effectively. The most important constraints for
+          guaranteeing readability were the use of two-pixel stroke and
+          counterstrokes, and adhering the icons to a 24x24 pixel grid. Because
+          the design of each icon was determined from its smallest and thickest
+          possible iterations, they’ll always remain legible despite changes in
+          scale or stroke weight.
+    type: textArea
+  - hideCaptions: true
+    mediaGridMedia:
+      - mediaGridMediaFile: 'https://ucarecdn.com/7d4a6a94-426d-47b6-8f3e-0a265a303d9d/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/171ca6cb-cb07-4813-a7d7-1f3edc50f0a3/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/59475654-17de-4e80-893f-755074478b47/'
+    type: mediaGrid
+  - textColumns:
+      - column: >-
+          While the design constraints helped in creating the set initially,
+          animation is where we were most excited to explore the code and create
+          parameters. This allowed us to set limits and relationships for
+          certain variables, providing an additional level of quality control to
+          the assets the tool creates.
+    type: textArea
+  - hideCaptions: false
+    mediaGridMedia:
+      - mediaGridMediaFile: 'https://ucarecdn.com/cb360920-822c-445c-8b95-58c056d07c6f/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/f8d3329c-b3ac-4343-b47c-11eddbf59df3/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/15f0d6b8-c720-4b10-9271-06870c4a581f/'
+    type: mediaGrid
+  - textColumns:
+      - column: >-
+          Though this project was originally conceived as a vehicle for
+          exploration in json, it evolved into a more specific and directed
+          effort. Its final form allowed us to contribute to a larger goal of
+          visioning design and animation for scale through simple and accessible
+          tools.
+    type: textArea
+  - bleed: true
+    largeMediaFile: 'https://ucarecdn.com/8a54f354-a1f2-4741-819d-5a81277697c2/'
     type: largeMedia
 ---
 
