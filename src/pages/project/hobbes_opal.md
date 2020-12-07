@@ -34,8 +34,9 @@ modules:
     type: projectBanner
   - textColumns:
       - column: >-
-          OP/AL is a free-to-use resource that helps users easily customize and
-          download a set of 100 pre-animated icons as ready-to-implement code.
+          [OP/AL](https://opal.work/) is a free-to-use resource that helps users
+          easily customize and download a set of 100 pre-animated icons as
+          ready-to-implement code.
     type: textArea
   - bleed: true
     largeMediaFile: 'https://ucarecdn.com/d908beea-bea1-482b-ba0a-99625fa90061/'
@@ -46,7 +47,7 @@ modules:
           possibilities of live animation, driven by code.By tinkering with json
           files, we found relationships that established how certain variables
           affected the animations. One of the most important discoveries was
-          that OP (outPoint) / AL (animationLength) = FR (frameRate). This
+          that **OP (outPoint) / AL (animationLength) = FR (frameRate)**. This
           equation allowed us to dictate the duration of animations after they
           had been exported, and from that, OP/AL was born.
 
