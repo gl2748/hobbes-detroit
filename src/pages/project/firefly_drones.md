@@ -40,11 +40,6 @@ modules:
           built a system to satisfy a multitude of difficult technical and
           design challenges.
     type: textArea
-  - slides:
-      - slideMediaFile: 'https://ucarecdn.com/f38e5234-7725-4d03-86d5-8fc7fa42d406/'
-        slideMediaFileThumbnail: ''
-        type: slideMedia
-    type: gallery
   - textColumns:
       - column: >-
           To animate a fleet of individual drones, our team treated the drones
