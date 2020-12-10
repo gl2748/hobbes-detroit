@@ -40,17 +40,6 @@ modules:
           built a system to satisfy a multitude of difficult technical and
           design challenges.
     type: textArea
-  - slides:
-      - slideMediaFile: 'https://ucarecdn.com/32bbd977-2e2e-46bb-a6cf-25438178578f/'
-        slideMediaFileThumbnail: 'https://ucarecdn.com/6d395f29-a87d-415a-8491-dc242c0db4fd/'
-        type: slideMedia
-      - slideMediaFile: 'https://ucarecdn.com/0420d866-f81e-4246-b95c-d14d11dd7d9a/'
-        slideMediaFileThumbnail: 'https://ucarecdn.com/1aea900b-c727-476e-a2d1-6aa38319e182/'
-        type: slideMedia
-      - slideMediaFile: 'https://ucarecdn.com/c207bb2e-838c-45b6-b6d2-851400137878/'
-        slideMediaFileThumbnail: 'https://ucarecdn.com/fe01c3a7-7e54-4981-a9cc-9a3ecb6f77e4/'
-        type: slideMedia
-    type: gallery
   - bleed: false
     largeMediaFile: 'https://ucarecdn.com/49c52a2c-4476-42a0-bc97-f848c9159f27/'
     type: largeMedia
