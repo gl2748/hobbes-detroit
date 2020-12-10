@@ -40,7 +40,7 @@ modules:
           built a system to satisfy a multitude of difficult technical and
           design challenges.
     type: textArea
-  - bleed: true
+  - bleed: false
     largeMediaFile: 'https://ucarecdn.com/49c52a2c-4476-42a0-bc97-f848c9159f27/'
     largeMediaFileThumbnail: 'https://ucarecdn.com/a089b0ac-8539-4664-a48c-9924c0974586/'
     type: largeMedia
