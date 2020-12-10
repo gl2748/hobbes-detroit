@@ -51,6 +51,9 @@ modules:
         slideMediaFileThumbnail: 'https://ucarecdn.com/fe01c3a7-7e54-4981-a9cc-9a3ecb6f77e4/'
         type: slideMedia
     type: gallery
+  - bleed: false
+    largeMediaFile: 'https://ucarecdn.com/49c52a2c-4476-42a0-bc97-f848c9159f27/'
+    type: largeMedia
   - textColumns:
       - column: >-
           To animate a fleet of individual drones, our team treated the drones
