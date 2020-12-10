@@ -40,7 +40,7 @@ modules:
 
           Visit www.opal.work to see it live.
     type: textArea
-  - bleed: true
+  - bleed: false
     largeMediaFile: 'https://ucarecdn.com/d908beea-bea1-482b-ba0a-99625fa90061/'
     type: largeMedia
   - textColumns:
