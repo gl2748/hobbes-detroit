@@ -42,6 +42,7 @@ modules:
     type: textArea
   - bleed: false
     largeMediaFile: 'https://ucarecdn.com/d908beea-bea1-482b-ba0a-99625fa90061/'
+    largeMediaFileThumbnail: 'https://ucarecdn.com/5b976588-0452-4f96-b50c-14a798a69e2e/'
     type: largeMedia
   - textColumns:
       - column: >-
