@@ -47,12 +47,13 @@ modules:
   - textColumns:
       - column: >-
           This project emerged from a fascination with json files and the
-          possibilities of live animation, driven by code.By tinkering with json
-          files, we found relationships that established how certain variables
-          affected the animations. One of the most important discoveries was
-          that **OP (outPoint) / AL (animationLength) = FR (frameRate)**. This
-          equation allowed us to dictate the duration of animations after they
-          had been exported, and from that, OP/AL was born.
+          possibilities of live animation, driven by code. By tinkering with
+          json files, we found relationships that established how certain
+          variables affected the animations. One of the most important
+          discoveries was that **OP (outPoint) / AL (animationLength) = FR
+          (frameRate)**. This equation allowed us to dictate the duration of
+          animations after they had been exported, and from that, OP/AL was
+          born.
 
 
           We created the animated icon set OP/AL to provide the design community
