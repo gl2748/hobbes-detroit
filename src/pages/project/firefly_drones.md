@@ -89,5 +89,8 @@ modules:
           viewers at once, as with this audience at the 2019 World Scout
           Jamboree.
     type: textArea
+  - bleed: false
+    largeMediaFile: 'https://ucarecdn.com/47162a80-0897-497d-aa3f-93a1f0071140/'
+    type: largeMedia
 ---
 
