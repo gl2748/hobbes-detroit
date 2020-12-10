@@ -34,9 +34,11 @@ modules:
     type: projectBanner
   - textColumns:
       - column: >-
-          [OP/AL](https://opal.work/) is a free-to-use resource that helps users
-          easily customize and download a set of 100 animated icons as code,
-          ready to be implemented.
+          OP/AL is a free-to-use resource that helps users easily customize and
+          download a set of 100 animated icons as code, ready to be implemented.
+
+
+          Visit www.opal.work to see it live.
     type: textArea
   - bleed: true
     largeMediaFile: 'https://ucarecdn.com/d908beea-bea1-482b-ba0a-99625fa90061/'
