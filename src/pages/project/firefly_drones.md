@@ -41,14 +41,20 @@ modules:
           design challenges.
     type: textArea
   - slides:
-      - slideMediaFile: 'https://ucarecdn.com/fe2955de-1ae5-494e-9f2b-4a557bc5cdb8/'
+      - slideMediaFile: 'https://ucarecdn.com/52ad45cc-da72-4484-af42-84718330b397/'
         slideMediaFileThumbnail: ''
         type: slideMedia
-      - slideMediaFile: 'https://ucarecdn.com/ab2e3ff6-cb3d-476d-b890-0f6d3241723d/'
+      - slideMediaFile: 'https://ucarecdn.com/2b8a7d78-695a-4e40-8037-61600422252b/'
         slideMediaFileThumbnail: ''
         type: slideMedia
-      - slideMediaFile: 'https://ucarecdn.com/d1e83f19-ed91-41a9-aadc-ef26bfc0b184/'
+      - slideMediaFile: 'https://ucarecdn.com/9ca00567-ad10-44cb-9b05-79c78167d98c/'
         slideMediaFileThumbnail: ''
+        type: slideMedia
+      - slideMediaFile: 'https://ucarecdn.com/b8fc87df-3930-4aa3-827c-54dcc5d99da1/'
+        type: slideMedia
+      - slideMediaFile: 'https://ucarecdn.com/4915e3ef-7232-4e85-8616-c4a1b252ec08/'
+        type: slideMedia
+      - slideMediaFile: 'https://ucarecdn.com/e0d0774a-3796-47d1-b0b5-d331abf7f5e9/'
         type: slideMedia
     type: gallery
   - textColumns:
