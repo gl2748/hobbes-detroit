@@ -40,17 +40,10 @@ modules:
           built a system to satisfy a multitude of difficult technical and
           design challenges.
     type: textArea
-  - slides:
-      - slideMediaFile: 'https://ucarecdn.com/32bbd977-2e2e-46bb-a6cf-25438178578f/'
-        slideMediaFileThumbnail: 'https://ucarecdn.com/6d395f29-a87d-415a-8491-dc242c0db4fd/'
-        type: slideMedia
-      - slideMediaFile: 'https://ucarecdn.com/0420d866-f81e-4246-b95c-d14d11dd7d9a/'
-        slideMediaFileThumbnail: 'https://ucarecdn.com/1aea900b-c727-476e-a2d1-6aa38319e182/'
-        type: slideMedia
-      - slideMediaFile: 'https://ucarecdn.com/c207bb2e-838c-45b6-b6d2-851400137878/'
-        slideMediaFileThumbnail: 'https://ucarecdn.com/fe01c3a7-7e54-4981-a9cc-9a3ecb6f77e4/'
-        type: slideMedia
-    type: gallery
+  - bleed: false
+    largeMediaFile: 'https://ucarecdn.com/929cc339-397f-4ee9-80e0-360f47506c8b/'
+    largeMediaFileThumbnail: 'https://ucarecdn.com/671352ba-3780-425d-a260-78a19b830071/'
+    type: largeMedia
   - textColumns:
       - column: >-
           To animate a fleet of individual drones, our team treated the drones
@@ -89,5 +82,22 @@ modules:
           viewers at once, as with this audience at the 2019 World Scout
           Jamboree.
     type: textArea
+  - slides:
+      - slideMediaFile: 'https://ucarecdn.com/52ad45cc-da72-4484-af42-84718330b397/'
+        slideMediaFileThumbnail: ''
+        type: slideMedia
+      - slideMediaFile: 'https://ucarecdn.com/2b8a7d78-695a-4e40-8037-61600422252b/'
+        slideMediaFileThumbnail: ''
+        type: slideMedia
+      - slideMediaFile: 'https://ucarecdn.com/9ca00567-ad10-44cb-9b05-79c78167d98c/'
+        slideMediaFileThumbnail: ''
+        type: slideMedia
+      - slideMediaFile: 'https://ucarecdn.com/b8fc87df-3930-4aa3-827c-54dcc5d99da1/'
+        type: slideMedia
+      - slideMediaFile: 'https://ucarecdn.com/4915e3ef-7232-4e85-8616-c4a1b252ec08/'
+        type: slideMedia
+      - slideMediaFile: 'https://ucarecdn.com/e0d0774a-3796-47d1-b0b5-d331abf7f5e9/'
+        type: slideMedia
+    type: gallery
 ---
 
