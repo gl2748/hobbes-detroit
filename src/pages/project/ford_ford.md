@@ -15,5 +15,56 @@ tags:
   - innovation
   - synergy
 client: Ford
+modules:
+  - textColumns:
+      - column: >-
+          In order to remain true to the fundamental elements of clock design,
+          our clock faces also needed to incorporate movement. Our challenge was
+          to balance the rapid, eye-catching motion you might find in an
+          animated gif against slow, meaningful motion systems that could span
+          the course of an entire day.
+    type: textArea
+  - bleed: false
+    largeMediaFile: 'https://ucarecdn.com/eb405146-7caf-4c44-af7e-f8a18cefa259/'
+    type: largeMedia
+  - textColumns:
+      - column: >-
+          In order to remain true to the fundamental elements of clock design,
+          our clock faces also needed to incorporate movement. Our challenge was
+          to balance the rapid, eye-catching motion you might find in an
+          animated gif against slow, meaningful motion systems that could span
+          the course of an entire day.
+    type: textArea
+  - bleed: false
+    largeMediaFile: 'https://ucarecdn.com/8070a793-a8bf-4904-ac38-81b05140ce83/'
+    type: largeMedia
+  - textColumns:
+      - column: >-
+          In order to remain true to the fundamental elements of clock design,
+          our clock faces also needed to incorporate movement. Our challenge was
+          to balance the rapid, eye-catching motion you might find in an
+          animated gif against slow, meaningful motion systems that could span
+          the course of an entire day.
+    type: textArea
+  - bleed: false
+    largeMediaFile: 'https://ucarecdn.com/0edea81e-c753-4aa7-9c10-66e99fbbf58b/'
+    type: largeMedia
+  - textColumns:
+      - column: >-
+          In order to remain true to the fundamental elements of clock design,
+          our clock faces also needed to incorporate movement. Our challenge was
+          to balance the rapid, eye-catching motion you might find in an
+          animated gif against slow, meaningful motion systems that could span
+          the course of an entire day.
+
+
+          The result of this collaboration is a set of delightfully clever
+          designs that, at first glance, might look like artwork in the drawing
+          room. On closer examination they change throughout the day, telling
+          the time and punctuating each minute with a moment of small delight.
+    type: textArea
+  - bleed: false
+    largeMediaFile: 'https://ucarecdn.com/c58dabff-03e0-47a1-a7d6-a9ff5d4baa4d/'
+    type: largeMedia
 ---
 
