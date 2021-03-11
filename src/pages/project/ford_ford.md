@@ -16,8 +16,8 @@ tags:
   - synergy
 client: Ford
 modules:
-  - headerText: 'Header Text '
-    type: header
+  - projectBannerMedia: 'https://ucarecdn.com/7cee1aa7-e95f-43f6-8808-5491856d4178/'
+    type: projectBanner
   - textColumns:
       - column: >-
           In order to remain true to the fundamental elements of clock design,
