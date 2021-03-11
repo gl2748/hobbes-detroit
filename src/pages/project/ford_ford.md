@@ -16,6 +16,8 @@ tags:
   - synergy
 client: Ford
 modules:
+  - headerText: 'Header Text '
+    type: header
   - textColumns:
       - column: >-
           In order to remain true to the fundamental elements of clock design,
