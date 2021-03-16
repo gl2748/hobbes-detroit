@@ -14,9 +14,13 @@ tags:
   - ford
   - innovation
   - synergy
+  - logistics
+  - business
+  - all the shades of blue
+  - ovals only club
 client: Ford
 modules:
-  - projectBannerMedia: 'https://ucarecdn.com/7cee1aa7-e95f-43f6-8808-5491856d4178/'
+  - projectBannerMedia: 'https://ucarecdn.com/0ceb0b00-125a-4b15-b89a-c510afaff265/'
     type: projectBanner
   - textColumns:
       - column: >-
@@ -38,7 +42,7 @@ modules:
           the course of an entire day.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/8070a793-a8bf-4904-ac38-81b05140ce83/'
+    largeMediaFile: 'https://ucarecdn.com/22885410-9d31-465f-b35f-5f85d0a159aa/'
     type: largeMedia
   - textColumns:
       - column: >-
@@ -66,7 +70,7 @@ modules:
           the time and punctuating each minute with a moment of small delight.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/c58dabff-03e0-47a1-a7d6-a9ff5d4baa4d/'
+    largeMediaFile: 'https://ucarecdn.com/fbec6112-3a5a-4f9d-9876-305c14539cbb/'
     type: largeMedia
 ---
 
