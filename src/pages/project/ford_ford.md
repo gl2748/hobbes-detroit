@@ -20,7 +20,7 @@ tags:
   - ovals only club
 client: Ford
 modules:
-  - projectBannerMedia: 'https://ucarecdn.com/0ceb0b00-125a-4b15-b89a-c510afaff265/'
+  - projectBannerMedia: 'https://ucarecdn.com/ba9fca14-4bd3-484d-b4d6-8e433d98b6eb/'
     type: projectBanner
   - textColumns:
       - column: >-
