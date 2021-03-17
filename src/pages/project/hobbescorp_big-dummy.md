@@ -163,5 +163,11 @@ modules:
       - slideMediaFile: 'https://ucarecdn.com/82acaa35-3da6-47e5-89d6-769dc2d5218a/'
         type: slideMedia
     type: gallery
+  - hideCaptions: false
+    mediaGridMedia:
+      - mediaGridMediaFile: 'https://ucarecdn.com/56815f68-567c-480c-b993-26253cebec3a/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/fd2ed852-ede2-4b5c-ae9a-96ae2ec5f82a/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/6e717a53-3bb5-4eb0-9517-08e1481284d1/'
+    type: mediaGrid
 ---
 
