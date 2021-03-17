@@ -169,6 +169,7 @@ modules:
       - mediaGridMediaFile: 'https://ucarecdn.com/fd2ed852-ede2-4b5c-ae9a-96ae2ec5f82a/'
       - mediaGridMediaFile: 'https://ucarecdn.com/6e717a53-3bb5-4eb0-9517-08e1481284d1/'
       - mediaGridMediaFile: 'https://ucarecdn.com/884745d8-4882-4a9e-86ec-575d61e20328/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/9fd004e3-01c6-424c-8a76-214530bc7535/'
     type: mediaGrid
 ---
 
