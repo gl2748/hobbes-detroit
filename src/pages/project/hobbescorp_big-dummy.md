@@ -25,7 +25,7 @@ modules:
           **Our team’s first task was** 
 
 
-          ## _to ensure that users_ 
+          ## _to ensure that users_
 
 
           > understood how the camera works—
@@ -128,6 +128,10 @@ modules:
           series of animated illustrations to visualize the physical hardware on
           the Nest Hub Max during the set-up experience.
     type: textArea
+  - hideCaptions: false
+    mediaGridMedia:
+      - mediaGridMediaFile: 'https://ucarecdn.com/ce85b2a1-c4a9-4f2b-9f89-111255dd0b95/'
+    type: mediaGrid
   - hideCaptions: false
     mediaGridMedia:
       - mediaGridMediaFile: 'https://ucarecdn.com/f787b269-79e3-46bb-a2af-6f33ee693127/'
