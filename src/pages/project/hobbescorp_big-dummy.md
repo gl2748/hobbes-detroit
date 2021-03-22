@@ -171,5 +171,11 @@ modules:
       - mediaGridMediaFile: 'https://ucarecdn.com/884745d8-4882-4a9e-86ec-575d61e20328/'
       - mediaGridMediaFile: 'https://ucarecdn.com/9fd004e3-01c6-424c-8a76-214530bc7535/'
     type: mediaGrid
+  - hideCaptions: false
+    mediaGridMedia:
+      - mediaGridMediaFile: 'https://ucarecdn.com/85d3e6ec-2d40-42af-98a6-1c78c4390193/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/7f15f5af-bb83-456b-9d40-240dab591d50/'
+      - mediaGridMediaFile: 'https://ucarecdn.com/f2c52b32-a537-4139-93e9-3622a094c156/'
+    type: mediaGrid
 ---
 
