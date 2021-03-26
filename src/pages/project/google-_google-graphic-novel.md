@@ -124,13 +124,16 @@ modules:
         type: slideMedia
     type: gallery
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/d5d4a5fd-cc07-443f-8e6a-44e687d93177/'
+    largeMediaFile: 'https://ucarecdn.com/fab974fe-9ca1-4340-8d91-c57744d98d2d/'
     type: largeMedia
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/274b8e8c-138a-4baa-911a-449e5f7b6e42/'
+    largeMediaFile: 'https://ucarecdn.com/2fc48636-d1c6-4004-a917-9d3362021f69/'
     type: largeMedia
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/6fd79063-277d-48f9-946a-2b9e7d4ffa17/'
+    largeMediaFile: 'https://ucarecdn.com/b06ba910-addf-48e7-94fb-cfa16fd3a39e/'
+    type: largeMedia
+  - bleed: false
+    largeMediaFile: 'https://ucarecdn.com/b3046f38-3392-4e2e-b78c-3946ddc7bf68/'
     type: largeMedia
 ---
 
