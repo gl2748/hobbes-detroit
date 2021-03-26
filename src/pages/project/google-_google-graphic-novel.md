@@ -26,7 +26,7 @@ team:
   - Jaedoo Lee
   - Nevin McRay
 modules:
-  - projectBannerMedia: 'https://ucarecdn.com/8b741209-5110-46f4-9354-7010b301a897/'
+  - projectBannerMedia: 'https://ucarecdn.com/538eb433-a147-4297-82f3-7a112d2127c3/'
     type: projectBanner
   - textColumns:
       - column: >-
