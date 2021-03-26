@@ -39,10 +39,10 @@ modules:
           complex ideas.
     type: textArea
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/78f51f3d-b29f-4afb-8229-1146f9d08415/'
+    largeMediaFile: 'https://ucarecdn.com/c4ccdcf1-0e55-4ab6-a5f4-274bf6c7a72b/'
     type: largeMedia
   - bleed: false
-    largeMediaFile: 'https://ucarecdn.com/fe1d803d-84bc-4a0c-9bac-3473927f185b/'
+    largeMediaFile: 'https://ucarecdn.com/497fc5d5-ee1d-4ab0-9b97-b724a69106fc/'
     type: largeMedia
   - hideCaptions: false
     mediaGridMedia:
