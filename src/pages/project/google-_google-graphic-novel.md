@@ -123,5 +123,14 @@ modules:
       - slideMediaFile: 'https://ucarecdn.com/991d2a1f-020c-44bf-b658-9b4be9b48ff7/'
         type: slideMedia
     type: gallery
+  - bleed: false
+    largeMediaFile: 'https://ucarecdn.com/d5d4a5fd-cc07-443f-8e6a-44e687d93177/'
+    type: largeMedia
+  - bleed: false
+    largeMediaFile: 'https://ucarecdn.com/274b8e8c-138a-4baa-911a-449e5f7b6e42/'
+    type: largeMedia
+  - bleed: false
+    largeMediaFile: 'https://ucarecdn.com/6fd79063-277d-48f9-946a-2b9e7d4ffa17/'
+    type: largeMedia
 ---
 
