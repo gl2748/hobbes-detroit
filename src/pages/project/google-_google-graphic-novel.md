@@ -15,7 +15,7 @@ protectedProject: false
 featured: true
 featuredJson: 'https://ucarecdn.com/b312c920-ffe8-4c39-9383-5c338ef56db3/'
 featuredProjectSort: 1
-indexSvg: 'https://ucarecdn.com/ac3d4a01-f549-4ea7-8093-c7e52c9fcef5/'
+indexSvg: 'https://ucarecdn.com/c5055403-89d8-42ff-ba95-97e614411c6f/'
 tags:
   - google
   - '2020'
