@@ -62,5 +62,11 @@ modules:
       - slideMediaFile: 'https://ucarecdn.com/06c3afed-f3e6-4ae6-8863-27106c06c17c/'
         type: slideMedia
     type: gallery
+  - bleed: false
+    largeMediaFile: 'https://ucarecdn.com/5eaa00f3-8e8b-4d58-93cb-240f26f429dc/'
+    type: largeMedia
+  - bleed: true
+    largeMediaFile: 'https://ucarecdn.com/8a437bd6-53d1-4dc1-bb12-02ca1e67b1fb/'
+    type: largeMedia
 ---
 
