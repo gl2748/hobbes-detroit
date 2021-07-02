@@ -49,9 +49,5 @@ modules:
           uphold a set of rules to ensure that our icons remain functional and
           striking.
     type: textArea
-  - hideCaptions: false
-    mediaGridMedia:
-      - mediaGridMediaFile: 'https://ucarecdn.com/9c9cabda-4c39-4339-a6ee-a83877f1c1cf/'
-    type: mediaGrid
 ---
 
