@@ -55,7 +55,11 @@
     --hob-logo-size--md: 2.25rem;
   }
 }
-
+html {
+  overflow-y: scroll;
+  width: 100vw;
+  overflow-x: hidden;
+}
 body {
   overflow-x: hidden;
 }

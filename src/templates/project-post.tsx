@@ -90,6 +90,8 @@ const PaginationContainer = styled.div<{
       width: 100%;
       display: flex;
       height: 0;
+      transition: 0.2s height ease;
+
       &.side-pagination--inline {
         position: inherit;
       }
@@ -246,8 +248,9 @@ const SidePagination = React.memo(
 
 const Container = styled(Layout)`
   overflow-x: hidden;
-  height: 100vh;
-  overflow-y: scroll;
+  ${breakpoints.mobile} {
+    height: 100vh;
+  }
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 
